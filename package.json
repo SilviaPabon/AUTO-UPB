@@ -1,0 +1,70 @@
+{
+  "name": "auto-upb",
+  "version": "1.0.0",
+  "description": "Repository for a university project",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "nodemon run src",
+    "start": "node src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SilviaPabon/AUTO-UPB.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "npm",
+    "ejs",
+    "Sass",
+    "express",
+    "web-development",
+    "networks",
+    "project-management",
+    "database"
+  ],
+  "author": "",
+  "contributors": [
+    {
+      "name": "Silvia Pabon",
+      "url": "https://github.com/SilviaPabon"
+    },
+    {
+      "name": "Pedro Chaparro",
+      "url": "https://github.com/PedroChaparro"
+    },
+    {
+      "name": "Diego Angulo",
+      "url": "https://github.com/diegoaach"
+    },
+    {
+      "name": "Daniel Cadena",
+      "url": "https://github.com/danielcadena02"
+    }
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SilviaPabon/AUTO-UPB/issues"
+  },
+  "homepage": "https://github.com/SilviaPabon/AUTO-UPB#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^14.3.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-mysql-session": "^2.1.7",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "nodemon": "^2.0.15"
+  }
+}
