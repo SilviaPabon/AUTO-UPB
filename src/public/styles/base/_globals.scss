@@ -1,5 +1,25 @@
-/*Colors*/
+/* ######## Colors ########*/
 
-/*Font families*/
+/*Primary colors*/
+$background_color: #1E1E20; 
+$main_blue: #003078; 
+$very_dark: #100F12; 
+/*Secondary colors*/
+$bright_red: #E60118;
+$odd_table_row_color: #ccd2db;  
+$input_bg: #dcdcdc; 
+$placeholder_color: #959595; 
 
-/*Font sizes*/
+$total_white: #fff; 
+$total_black: #000; 
+
+/* ######## Font families ########*/
+$poppins: 'Roboto', sans-serif, arial; 
+
+/*######## Font sizes ########*/
+$x_sm: 14px; 
+$sm: 16px; 
+$md: 18px; 
+$lg: 22px; 
+$x_lg: 32px; 
+$giant: 42px;
