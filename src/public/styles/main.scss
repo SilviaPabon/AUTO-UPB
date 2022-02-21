@@ -1,4 +1,31 @@
 @import './base/globals';
 @import './components/components'; 
+@import './layouts/nav'; 
 
 /*Global rulesets*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $roboto;
+}
+
+html{
+    background-color: white;
+}
+
+body{
+    max-width: 1440px;
+    background-color: $background_color;
+    margin: 0px auto;
+    border-left: 1px solid $very_dark;
+    border-right: 1px solid $very_dark;
+
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+main{
+    padding: 8px;
+    grid-column: 2;
+}

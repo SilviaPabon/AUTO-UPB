@@ -13,12 +13,15 @@
     width: max-content;
     text-decoration: none;
     margin: 8px 0;
+    text-align: center;
 
     transition: background-color 0.3s ease;
 
     &--primary{
         background-color: $main_blue;
         border: $main_blue;
+
+        transition: background-color 0.2s ease-in;
 
         &--transparent{
             background-color: transparent;
@@ -28,9 +31,22 @@
 
     }
 
+    &--primary:hover{
+        background-color: #00388d;
+    }
+
     &--secondary{
         background-color: transparent;
         border: 1px solid $total_white; 
+    }
+
+    &--block{
+        display: block; 
+        width: 100%;
+    }
+
+    &--no-radius{
+        border-radius: 0;
     }
 }
 
