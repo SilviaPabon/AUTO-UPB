@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles/main.css" />
+        <script src="https://kit.fontawesome.com/5023e2a492.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <title>SIGNUP</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            <form action="" method="post" class="input-form">
+                <h1 class="title title--center">CREACIÓN DE CUENTA</h1>
+
+                <div class="form-group" id="">
+                    <label class="label--block" for="name">Nombre:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Ingresa tu nombre completo"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="">
+                    <label class="label--block" for="documento">Número de documento:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="documento"
+                            name="documento"
+                            placeholder="Ingresa tu documento"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="">
+                    <label class="label--block" for="email">Correo electrónico (Nombre de usuario):</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="ejemplo@dominio.com"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="">
+                    <label class="label--block" for="phone">Número de celular:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="phone"
+                            name="phone"
+                            placeholder="Ingresa tu número de celular"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="">
+                    <label class="label--block" for="address">Dirección:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="address"
+                            name="address"
+                            placeholder="Ingresa tu dirección"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="">
+                    <label class="label--block" for="password">Contraseña:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="********"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="">
+                    <div class="form-group__check">
+                        <input type="checkbox" name="conditions" id="conditions" />
+                        <p id="signup-conditions">
+                            Acepto las
+                            <a href="#" target="_blank" rel="noopener noreferrer"
+                                >políticas de seguridad y tratamiento de datos personales de la empresa.</a
+                            >
+                        </p>
+                    </div>
+                </div>
+
+                <input type="submit" value="CREAR CUENTA" class="btn btn--primary btn--block btn--no-radius" />
+            
+                <p class="auth_redirect_message">¿Ya tienes una cuenta? <a href="#">Inicia sesión ahora.</a></p>
+
+            </form>
+        </main>
+    </body>
+</html>

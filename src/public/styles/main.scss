@@ -1,6 +1,7 @@
 @import './base/globals';
 @import './components/components'; 
 @import './layouts/nav'; 
+@import './pages/signup'; 
 
 /*Global rulesets*/
 *{
@@ -8,6 +9,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: $roboto;
+    color: white; /*Color por defecto de los textos*/
 }
 
 html{
