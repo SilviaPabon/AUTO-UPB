@@ -1,0 +1,74 @@
+@media (max-width: 768px) {
+
+    main {
+        margin-left: 0px;
+    }
+
+    .aside-navigation {
+        /*Columa contenedora de la barra de navegación*/
+        height: 60px;
+        width: 100%;
+
+        /*Display flex para poner el logo encima de las opciones de navegación*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 36px;
+
+        /*La posición es fija al costado*/
+        position: inherit;
+
+        /*Contenedor de las opciones de navegación*/
+        .menu {
+            /*Tiene flex para separar la navegación de los botones de sesión*/
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            /*La posición es fija y comienza por fuera de la pantalla*/
+            position:fixed; 
+            top:60px; 
+            left: 100%;
+            width: 100%;
+            height: calc(100vh - 60px);
+
+            flex-direction: column;
+            overflow-y: hidden;
+            z-index: 10;
+            background-color: $very_dark;    
+
+            /*Padding a los laterales*/
+            padding: 0px 16px;     
+            
+            /*Transición para efecto smooth al abrir en celulares*/
+            transition: 0.4s ease all;
+
+            /*Navegación entre las pestañas de la página*/
+            .navigation {
+                /*Link dentro del li*/
+                &__link {
+                    /*Centrar los textos*/
+                    display: flex;
+                    justify-content: center;
+                    line-height: 1.5;
+                    border-bottom: 1px solid rgb(255, 255, 255);
+                }
+            }
+        }
+
+        /*Clase que muestra la barra de navegación cuando se dé click al toggle*/
+        .menu-visible{
+            left: 0;
+        }
+
+        /*Menú de hamburguesa para dispositivos móviles*/
+        .menu-toggle {
+            display: block; 
+
+            i{
+                font-size: $lg;
+            }
+        }
+    }
+}

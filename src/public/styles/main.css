@@ -51,6 +51,10 @@
   background-color: #00388d;
 }
 
+.btn--submit {
+  padding: 0.8em 0.6em;
+}
+
 .btn--secondary {
   background-color: transparent;
   border: 1px solid #fff;
@@ -80,7 +84,7 @@
 
 /*Formularios*/
 .input-form {
-  width: 80%;
+  width: 90%;
   max-width: 420px;
   min-width: 240px;
   margin: 0 auto;
@@ -112,9 +116,39 @@ label {
 }
 
 .aside-navigation {
-  width: 100%;
+  /*Columa contenedora de la barra de navegación*/
+  width: 200px;
   height: 100vh;
   background-color: #100F12;
+  /*Display flex para poner el logo encima de las opciones de navegación*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  /*La posición es fija al costado*/
+  position: fixed;
+  top: 0;
+  /*Estilos del brand (temporal)*/
+  /*Contenedor de las opciones de navegación*/
+  /*Menú de hamburguesa para dispositivos móviles*/
+}
+
+.aside-navigation .brand {
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  margin: 12px 0;
+}
+
+.aside-navigation .menu {
+  /*Se pone flex-grow: 1 para que ocupe todo el height que el logo deja disponible*/
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  /*Tiene flex para separar la navegación de los botones de sesión*/
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -125,28 +159,20 @@ label {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -ms-grid-column: 1;
-  grid-column: 1;
-  position: -webkit-sticky;
-  position: sticky;
+  /*Navegación entre las pestañas de la página*/
 }
 
-.aside-navigation .top .brand {
-  color: white;
-  font-size: 32px;
-  text-align: center;
-  margin: 12px 0;
-}
-
-.aside-navigation .top .navigation {
+.aside-navigation .menu .navigation {
   list-style: none;
+  /*Li dentro del ul*/
+  /*Link dentro del li*/
 }
 
-.aside-navigation .top .navigation__item {
+.aside-navigation .menu .navigation__item {
   margin-bottom: 8px;
 }
 
-.aside-navigation .top .navigation__link {
+.aside-navigation .menu .navigation__link {
   padding: 0.6em 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -160,11 +186,11 @@ label {
   transition: background-color 0.2s ease-in;
 }
 
-.aside-navigation .top .navigation__link:hover {
+.aside-navigation .menu .navigation__link:hover {
   background-color: #1E1E20;
 }
 
-.aside-navigation .top .navigation__icon {
+.aside-navigation .menu .navigation__icon {
   color: white;
   /*Centrar el icono dentro del contenedor para normalizar el tamaño*/
   display: -webkit-inline-box;
@@ -178,6 +204,10 @@ label {
           justify-content: center;
   min-width: 40px;
   margin: 0 8px;
+}
+
+.aside-navigation .menu-toggle {
+  display: none;
 }
 
 #signup-conditions {
@@ -230,20 +260,105 @@ html {
 }
 
 body {
+  min-height: 100vh;
   max-width: 1440px;
   background-color: #1E1E20;
   margin: 0px auto;
   border-left: 1px solid #100F12;
   border-right: 1px solid #100F12;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 200px 1fr;
-      grid-template-columns: 200px 1fr;
 }
 
 main {
-  padding: 8px;
-  -ms-grid-column: 2;
-  grid-column: 2;
+  margin-left: 200px;
+  min-height: 100vh;
+  padding: 16px 8px;
+}
+
+/*Clase para fijar el body cuando se abre el menú en mobile*/
+.body--fixed {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+@media (max-width: 768px) {
+  main {
+    margin-left: 0px;
+  }
+  .aside-navigation {
+    /*Columa contenedora de la barra de navegación*/
+    height: 60px;
+    width: 100%;
+    /*Display flex para poner el logo encima de las opciones de navegación*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 36px;
+    /*La posición es fija al costado*/
+    position: inherit;
+    /*Contenedor de las opciones de navegación*/
+    /*Clase que muestra la barra de navegación cuando se dé click al toggle*/
+    /*Menú de hamburguesa para dispositivos móviles*/
+  }
+  .aside-navigation .menu {
+    /*Tiene flex para separar la navegación de los botones de sesión*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    /*La posición es fija y comienza por fuera de la pantalla*/
+    position: fixed;
+    top: 60px;
+    left: 100%;
+    width: 100%;
+    height: calc(100vh - 60px);
+    flex-direction: column;
+    overflow-y: hidden;
+    z-index: 10;
+    background-color: #100F12;
+    /*Padding a los laterales*/
+    padding: 0px 16px;
+    /*Transición para efecto smooth al abrir en celulares*/
+    -webkit-transition: 0.4s ease all;
+    transition: 0.4s ease all;
+    /*Navegación entre las pestañas de la página*/
+  }
+  .aside-navigation .menu .navigation {
+    /*Link dentro del li*/
+  }
+  .aside-navigation .menu .navigation__link {
+    /*Centrar los textos*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    line-height: 1.5;
+    border-bottom: 1px solid white;
+  }
+  .aside-navigation .menu-visible {
+    left: 0;
+  }
+  .aside-navigation .menu-toggle {
+    display: block;
+  }
+  .aside-navigation .menu-toggle i {
+    font-size: 22px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
