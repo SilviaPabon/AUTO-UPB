@@ -17,12 +17,12 @@
         <%- include('../partials/_navbar.ejs') %>
 
         <main>
-            <form action="" method="post" class="input-form">
+            <form action="" method="post" class="input-form" id="signup-form">
                 <h1 class="title title--center">CREACIÓN DE CUENTA</h1>
 
-                <div class="form-group" id="">
+                <div class="form-group">
                     <label class="label--block" for="name">Nombre:</label>
-                    <div class="form-group__input">
+                    <div class="form-group__input" id="name-group">
                         <input
                             class="input input--full-width"
                             type="text"
@@ -30,12 +30,13 @@
                             name="name"
                             placeholder="Ingresa tu nombre completo"
                         />
+                        <p class="form-group__error-message">El nombre solo puede contener letras.</p>
                     </div>
                 </div>
 
                 <div class="form-group" id="">
                     <label class="label--block" for="documento">Número de documento:</label>
-                    <div class="form-group__input">
+                    <div class="form-group__input" id="documento-group">
                         <input
                             class="input input--full-width"
                             type="number"
@@ -43,12 +44,13 @@
                             name="documento"
                             placeholder="Ingresa tu documento"
                         />
+                        <p class="form-group__error-message">El número de documento solo puede tener números y debe tener de 6 a 14 números.</p>
                     </div>
                 </div>
 
                 <div class="form-group" id="">
                     <label class="label--block" for="email">Correo electrónico (Nombre de usuario):</label>
-                    <div class="form-group__input">
+                    <div class="form-group__input" id="email-group">
                         <input
                             class="input input--full-width"
                             type="email"
@@ -56,12 +58,14 @@
                             name="email"
                             placeholder="ejemplo@dominio.com"
                         />
+
+                        <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
                     </div>
                 </div>
 
                 <div class="form-group" id="">
                     <label class="label--block" for="phone">Número de celular:</label>
-                    <div class="form-group__input">
+                    <div class="form-group__input" id="phone-group">
                         <input
                             class="input input--full-width"
                             type="number"
@@ -69,12 +73,14 @@
                             name="phone"
                             placeholder="Ingresa tu número de celular"
                         />
+
+                        <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
                     </div>
                 </div>
 
                 <div class="form-group" id="">
                     <label class="label--block" for="address">Dirección:</label>
-                    <div class="form-group__input">
+                    <div class="form-group__input" id="address-group">
                         <input
                             class="input input--full-width"
                             type="text"
@@ -82,12 +88,14 @@
                             name="address"
                             placeholder="Ingresa tu dirección"
                         />
+
+                        <p class="form-group__error-message">La dirección no puede contener los siguientes caracteres: | ° ! $ % & / = * < > { } +</p>
                     </div>
                 </div>
 
                 <div class="form-group" id="">
                     <label class="label--block" for="password">Contraseña:</label>
-                    <div class="form-group__input">
+                    <div class="form-group__input" id="password-group">
                         <input
                             class="input input--full-width"
                             type="password"
@@ -95,12 +103,14 @@
                             name="password"
                             placeholder="********"
                         />
+
+                        <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluír un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
                     </div>
                 </div>
 
                 <div class="form-group" id="">
                     <div class="form-group__check">
-                        <input type="checkbox" name="conditions" id="conditions" />
+                        <input type="checkbox" name="conditions" id="conditions" checked/>
                         <p id="signup-conditions">
                             Acepto las
                             <a href="#" target="_blank" rel="noopener noreferrer"
@@ -110,6 +120,8 @@
                     </div>
                 </div>
 
+                <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
+
                 <input type="submit" value="CREAR CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
             
                 <p class="auth_redirect_message">¿Ya tienes una cuenta? <a href="/login">Inicia sesión ahora.</a></p>
@@ -117,6 +129,7 @@
             </form>
         </main>
 
+        <script src="/scripts/signup_validate.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>

@@ -102,6 +102,24 @@ label {
   margin: 24px 0;
 }
 
+.form-group--correct input {
+  outline: none;
+  border: 2px solid #00e400;
+}
+
+.form-group--correct label {
+  color: #00e400;
+}
+
+.form-group--incorrect input {
+  outline: none;
+  border: 2px solid #ff4646;
+}
+
+.form-group--incorrect label {
+  color: #ff4646;
+}
+
 .input {
   background-color: #dcdcdc;
   outline: none;
@@ -113,6 +131,36 @@ label {
 
 .input--full-width {
   width: 100%;
+}
+
+/*Error general del formulario*/
+.form__error-message {
+  background-color: #FF0000;
+  text-align: justify;
+  font-weight: lighter;
+  padding: 8px;
+  margin-bottom: 12px;
+  /*Solo se muestra si hay un error*/
+  display: none;
+}
+
+.form__error-message--active {
+  display: block;
+}
+
+/*Error en un campo específico del formulario*/
+.form-group__error-message {
+  font-weight: lighter;
+  color: red;
+  text-align: justify;
+  font-size: 14px;
+  margin-top: 8px;
+  /*Solo se muestran si hay un error*/
+  display: none;
+}
+
+.form-group__error-message--active {
+  display: block;
 }
 
 .aside-navigation {
