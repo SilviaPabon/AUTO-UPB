@@ -76,6 +76,8 @@ passport.use(
                     done(null, false, req.flash('message','ERROR: Contraseña incorrecta.')); 
                 }
 
+            }else{
+                done(null, false, req.flash('message','ERROR: El usuario ingresado no existe')); 
             }
     })
 );
@@ -86,7 +88,7 @@ passport.serializeUser((user, done) => {
 });
 
 //Deserializar el usuario a partir del correo
-passport.deserializeUser(async (mail, done) => {
-    const rows = await pool.query('CALL GET_USER_SESSION_DATA_FROM_MAIL(?)', [mail]);
+passport.deserializeUser(async (correo_electronico, done) => {
+    const rows = await pool.query('CALL GET_USER_SESSION_DATA_FROM_MAIL(?)', [correo_electronico]);  
     done(null, rows[0][0]);
 });
