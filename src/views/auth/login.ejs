@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles/main.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <title>LOGIN</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            <form action="" method="post" class="input-form">
+                <h1 class="title title--center">INICIO DE SESIÓN</h1>
+
+                <div class="form-group" id="">
+                    <label class="label--block" for="email">Correo electrónico (Nombre de usuario):</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="ejemplo@dominio.com"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="">
+                    <label class="label--block" for="password">Contraseña:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="********"
+                        />
+                    </div>
+                </div>
+
+                <input type="submit" value="CREAR CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
+            
+                <p class="auth_redirect_message">¿Aún no tienes una cuenta? <a href="/signup">Créala ahora.</a></p>
+
+            </form>
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+
+    </body>
+</html>

@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles/main.css" />
-        <script src="https://kit.fontawesome.com/5023e2a492.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -111,11 +110,14 @@
                     </div>
                 </div>
 
-                <input type="submit" value="CREAR CUENTA" class="btn btn--primary btn--block btn--no-radius" />
+                <input type="submit" value="CREAR CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
             
-                <p class="auth_redirect_message">¿Ya tienes una cuenta? <a href="#">Inicia sesión ahora.</a></p>
+                <p class="auth_redirect_message">¿Ya tienes una cuenta? <a href="/login">Inicia sesión ahora.</a></p>
 
             </form>
         </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+
     </body>
 </html>

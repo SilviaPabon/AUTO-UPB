@@ -45,6 +45,10 @@
         background-color: #00388d;
     }
 
+    &--submit{
+        padding: 0.8em 0.6em;
+    }
+
     &--secondary{
         background-color: transparent;
         border: 1px solid $total_white; 
@@ -70,7 +74,7 @@
 
 /*Formularios*/
 .input-form{
-    width: 80%;
+    width: 90%;
     max-width: 420px;
     min-width: 240px;
     margin: 0 auto;
