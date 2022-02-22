@@ -139,4 +139,8 @@ CREATE TABLE ORDENES_COMPRA_HAS_ACCESORIOS(
     INDEX ordenes_compra_has_accesorios_id_accesorio(id_accesorio)
 ); 
 
+CREATE VIEW SESSION_USER_DATA AS
+SELECT id_usuario, nombre, correo_electronico, contraseña, codigo_tipo_usuario, codigo_estado_cuenta
+FROM USUARIOS; 
+
 

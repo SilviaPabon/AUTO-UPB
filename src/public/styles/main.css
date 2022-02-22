@@ -163,6 +163,36 @@ label {
   display: block;
 }
 
+/*MENSAJES DE ERROR*/
+.alert {
+  position: relative;
+  background-color: transparent;
+  padding: 32px 8px;
+  margin: 12px 0px 4px 0px;
+  background-color: white;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.alert--ward {
+  background-color: #FF0000;
+}
+
+.alert--success {
+  background-color: #00ff22;
+}
+
+.alert__close {
+  border: transparent;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding: 2px;
+  background-color: #100F12;
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+}
+
 .aside-navigation {
   /*Columa contenedora de la barra de navegación*/
   width: 200px;
