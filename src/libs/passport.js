@@ -19,13 +19,12 @@ passport.use(
             const newUser = {
                 name,
                 documento,
-                email,
+                correo_electronico : email,
                 phone,
                 address,
                 password,
                 conditions,
             };
-
             newUser.conditions = newUser.conditions == 'on' ? 1 : 0;
 
             //Verificar que el usuario no exista en la base de datos
@@ -37,14 +36,14 @@ passport.use(
                 await pool.query('CALL REGISTER_NEW_CLIENT(?, ?, ?, ?, ?, ?, ?)', [
                     newUser.name,
                     newUser.documento,
-                    newUser.email,
+                    newUser.correo_electronico,
                     newUser.address,
                     newUser.phone,
                     newUser.conditions,
                     newUser.password,
                 ]);
 
-                return done(null, newUser, req.flash('success', 'PROCESO EXITOSO: Se ha iniciado sesión satisfactoriamente'));
+                return done(null, newUser);
             } else {
                 //Si el usuario existe, se manda un flash
                 return done(null, false, req.flash('message', `ERROR: El correo: ${newUser.email} ya está en uso.`));
@@ -72,7 +71,7 @@ passport.use(
                 const passwordIsValid = await helpers.matchPassword(password, user[0][0].contraseña);
 
                 if(passwordIsValid){
-                    done(null, user, req.flash('success', 'PROCESO EXITOSO: Se ha iniciado sesión satisfactoriamente')); 
+                    done(null, user[0][0]); 
                 }else{
                     done(null, false, req.flash('message','ERROR: Contraseña incorrecta.')); 
                 }
@@ -83,7 +82,7 @@ passport.use(
 
 //Serializar el usuario a partir del correo
 passport.serializeUser((user, done) => {
-    done(null, user.email);
+    done(null, user.correo_electronico);
 });
 
 //Deserializar el usuario a partir del correo
