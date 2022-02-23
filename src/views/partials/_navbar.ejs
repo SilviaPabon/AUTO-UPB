@@ -1,27 +1,178 @@
-<nav class="aside-navigation">
-    <p class="brand" translate="no">WEARCAR</p>
-
-    <div class="menu">
-        <ul class="navigation">
-            <li class="navigation__item">
-                <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><i class="fas fa-plus-square"></i></div>
-                    Ver productos</a
-                >
-            </li>
-            <li class="navigation__item">
-                <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><i class="fas fa-comment-alt"></i></div>
-                    Escríbenos</a
-                >
-            </li>
-        </ul>
+<% if(user) {%>
+    <nav class="aside-navigation">
+        <p class="brand" translate="no">WEARCAR</p>
     
-        <div class="bottom">
-            <a href="#" class="btn btn--primary btn--block btn--no-radius">Crear cuenta</a>
-            <a href="#" class="btn btn--primary btn--block btn--no-radius">Inicial sesión</a>
-        </div>
-    </div>
+        <div class="menu">
+            <ul class="navigation">
+                <% if(user.codigo_tipo_usuario == 1) { %>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-plus-square"></i></div>
+                            Ver productos</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-shopping-cart"></i></div>
+                            Carrito de compras</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-briefcase"></i></div>
+                            Mis órdenes de compra</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-comment-alt"></i></div>
+                            Escríbenos</a
+                        >
+                    </li>
+                <% } else if (user.codigo_tipo_usuario == 2){ %>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-plus-square"></i></div>
+                            Ver productos</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-shopping-cart"></i></div>
+                            Carrito de compras</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-briefcase"></i></div>
+                            Mis órdenes de compra</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-users"></i></div>
+                            Consulta de clientes</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-th-list"></i></div>
+                            Consulta de inventario</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-comment-alt"></i></div>
+                            Escríbenos</a
+                        >
+                    </li>
+                <% } else if (user.codigo_tipo_usuario == 3){ %>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-plus-square"></i></div>
+                            Ver productos</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-shopping-cart"></i></div>
+                            Carrito de compras</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-briefcase"></i></div>
+                            Órdenes de los clientes</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-th-list"></i></div>
+                            Consulta de inventario</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-comment-alt"></i></div>
+                            Escríbenos</a
+                        >
+                    </li>
 
-    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-</nav>
+                <% } else if (user.codigo_tipo_usuario == 4){ %>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-plus-square"></i></div>
+                            Ver productos</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-briefcase"></i></div>
+                            Órdenes de los clientes</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-users"></i></div>
+                            Consulta de clientes</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-th-list"></i></div>
+                            Gestión de inventario</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-dollar-sign"></i></div>
+                            Detalles financieros</a
+                        >
+                    </li>
+                    <li class="navigation__item">
+                        <a href="#" class="navigation__link"
+                            ><div class="navigation__icon"><i class="fas fa-users-cog"></i></div>
+                            Gestión de cuentas internas</a
+                        >
+                    </li>
+                <% } %>
+
+            </ul>
+        
+            <div class="bottom">
+                <a href="#" class="btn btn--primary btn--block btn--no-radius">Editar perfil</a>
+                <a href="#" class="btn btn--primary btn--block btn--no-radius">Cerrar sesión</a>
+            </div>
+        </div>
+    
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </nav> 
+<% }else{ %>
+    <nav class="aside-navigation">
+        <p class="brand" translate="no">WEARCAR</p>
+    
+        <div class="menu">
+            <ul class="navigation">
+                <li class="navigation__item">
+                    <a href="#" class="navigation__link"
+                        ><div class="navigation__icon"><i class="fas fa-plus-square"></i></div>
+                        Ver productos</a
+                    >
+                </li>
+                <li class="navigation__item">
+                    <a href="#" class="navigation__link"
+                        ><div class="navigation__icon"><i class="fas fa-comment-alt"></i></div>
+                        Escríbenos</a
+                    >
+                </li>
+            </ul>
+        
+            <div class="bottom">
+                <a href="#" class="btn btn--primary btn--block btn--no-radius">Crear cuenta</a>
+                <a href="#" class="btn btn--primary btn--block btn--no-radius">Iniciar sesión</a>
+            </div>
+        </div>
+    
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </nav> 
+<% } %>

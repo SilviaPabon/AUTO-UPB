@@ -30,7 +30,7 @@ app.use(express.json());
 
 // -- Sesión de la aplicación
 app.use(session({
-    secret: 'process.env.SECRET',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
