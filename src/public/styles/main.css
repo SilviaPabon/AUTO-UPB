@@ -1,5 +1,442 @@
-/*Colors*/
-/*Font families*/
-/*Font sizes*/
+@charset "UTF-8";
+/* ######## Colors ########*/
+/*Primary colors*/
+/*Secondary colors*/
+/* ######## Font families ########*/
+/*######## Font sizes ########*/
+/*Global components (USING BEM METODOLOGY)*/
+/*Títulos*/
+.title {
+  color: white;
+  margin: 12px 0;
+}
+
+.title--center {
+  text-align: center;
+}
+
+/*Botones*/
+.btn {
+  border: 1px solid transparent;
+  padding: 0.4em 0.6em;
+  cursor: pointer;
+  background-color: transparent;
+  text-transform: uppercase;
+  border-radius: 4px;
+  color: white;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  text-decoration: none;
+  margin: 8px 0;
+  text-align: center;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.btn--primary {
+  background-color: #003078;
+  border: #003078;
+  -webkit-transition: background-color 0.2s ease-in;
+  transition: background-color 0.2s ease-in;
+}
+
+.btn--primary--transparent {
+  background-color: transparent;
+  border: 1px solid #003078;
+  color: #003078;
+}
+
+.btn--primary:hover {
+  background-color: #00388d;
+}
+
+.btn--submit {
+  padding: 0.8em 0.6em;
+}
+
+.btn--secondary {
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+.btn--block {
+  display: block;
+  width: 100%;
+}
+
+.btn--no-radius {
+  border-radius: 0;
+}
+
+/*Contenedor de cards responsive */
+.cards_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 16px;
+}
+
+/*Formularios*/
+.input-form {
+  width: 90%;
+  max-width: 420px;
+  min-width: 240px;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #100F12;
+}
+
+label {
+  color: white;
+  font-weight: 300;
+}
+
+.form-group {
+  margin: 24px 0;
+}
+
+.form-group--correct input {
+  outline: none;
+  border: 2px solid #00e400;
+}
+
+.form-group--correct label {
+  color: #00e400;
+}
+
+.form-group--incorrect input {
+  outline: none;
+  border: 2px solid #ff4646;
+}
+
+.form-group--incorrect label {
+  color: #ff4646;
+}
+
+.input {
+  background-color: #dcdcdc;
+  outline: none;
+  border: 1px transparent;
+  padding: 0.6em 0.2em;
+  margin-top: 4px;
+  color: #959595;
+}
+
+.input--full-width {
+  width: 100%;
+}
+
+/*Error general del formulario*/
+.form__error-message {
+  background-color: #FF0000;
+  text-align: justify;
+  font-weight: lighter;
+  padding: 8px;
+  margin-bottom: 12px;
+  /*Solo se muestra si hay un error*/
+  display: none;
+}
+
+.form__error-message--active {
+  display: block;
+}
+
+/*Error en un campo específico del formulario*/
+.form-group__error-message {
+  font-weight: lighter;
+  color: red;
+  text-align: justify;
+  font-size: 14px;
+  margin-top: 8px;
+  /*Solo se muestran si hay un error*/
+  display: none;
+}
+
+.form-group__error-message--active {
+  display: block;
+}
+
+/*MENSAJES DE ERROR*/
+.alert {
+  position: relative;
+  background-color: transparent;
+  padding: 32px 8px;
+  margin: 12px 0px 4px 0px;
+  background-color: white;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.alert--ward {
+  background-color: #FF0000;
+}
+
+.alert--success {
+  background-color: #00ff22;
+}
+
+.alert__close {
+  border: transparent;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding: 2px;
+  background-color: #100F12;
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+}
+
+.aside-navigation {
+  /*Columa contenedora de la barra de navegación*/
+  width: 200px;
+  height: 100vh;
+  background-color: #100F12;
+  /*Display flex para poner el logo encima de las opciones de navegación*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  /*La posición es fija al costado*/
+  position: fixed;
+  top: 0;
+  /*Estilos del brand (temporal)*/
+  /*Contenedor de las opciones de navegación*/
+  /*Menú de hamburguesa para dispositivos móviles*/
+}
+
+.aside-navigation .brand {
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  margin: 12px 0;
+}
+
+.aside-navigation .menu {
+  /*Se pone flex-grow: 1 para que ocupe todo el height que el logo deja disponible*/
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  /*Tiene flex para separar la navegación de los botones de sesión*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  /*Navegación entre las pestañas de la página*/
+}
+
+.aside-navigation .menu .navigation {
+  list-style: none;
+  /*Li dentro del ul*/
+  /*Link dentro del li*/
+}
+
+.aside-navigation .menu .navigation__item {
+  margin-bottom: 8px;
+}
+
+.aside-navigation .menu .navigation__link {
+  padding: 0.6em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  -webkit-transition: background-color 0.2s ease-in;
+  transition: background-color 0.2s ease-in;
+}
+
+.aside-navigation .menu .navigation__link:hover {
+  background-color: #1E1E20;
+}
+
+.aside-navigation .menu .navigation__icon {
+  color: white;
+  /*Centrar el icono dentro del contenedor para normalizar el tamaño*/
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-width: 40px;
+  margin: 0 8px;
+}
+
+.aside-navigation .menu-toggle {
+  display: none;
+}
+
+#signup-conditions {
+  font-weight: 300;
+  text-align: justify;
+}
+
+#signup-conditions a {
+  font-weight: bold;
+  color: #0057FF;
+}
+
+.form-group__check {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 12px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.auth_redirect_message {
+  text-align: center;
+  font-weight: 300;
+  margin: 24px 0 16px 0;
+}
+
+.auth_redirect_message a {
+  font-weight: bold;
+  color: #0057FF;
+}
+
 /*Global rulesets*/
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Roboto", sans-serif, arial;
+  color: white;
+  /*Color por defecto de los textos*/
+}
+
+html {
+  background-color: white;
+}
+
+body {
+  min-height: 100vh;
+  max-width: 1440px;
+  background-color: #1E1E20;
+  margin: 0px auto;
+  border-left: 1px solid #100F12;
+  border-right: 1px solid #100F12;
+}
+
+main {
+  margin-left: 200px;
+  min-height: 100vh;
+  padding: 16px 8px;
+}
+
+/*Clase para fijar el body cuando se abre el menú en mobile*/
+.body--fixed {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+@media (max-width: 768px) {
+  main {
+    margin-left: 0px;
+  }
+  .aside-navigation {
+    /*Columa contenedora de la barra de navegación*/
+    height: 60px;
+    width: 100%;
+    /*Display flex para poner el logo encima de las opciones de navegación*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 36px;
+    /*La posición es fija al costado*/
+    position: inherit;
+    /*Contenedor de las opciones de navegación*/
+    /*Clase que muestra la barra de navegación cuando se dé click al toggle*/
+    /*Menú de hamburguesa para dispositivos móviles*/
+  }
+  .aside-navigation .menu {
+    /*Tiene flex para separar la navegación de los botones de sesión*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    /*La posición es fija y comienza por fuera de la pantalla*/
+    position: fixed;
+    top: 60px;
+    left: 100%;
+    width: 100%;
+    height: calc(100vh - 60px);
+    flex-direction: column;
+    overflow-y: hidden;
+    z-index: 10;
+    background-color: #100F12;
+    /*Padding a los laterales*/
+    padding: 0px 16px;
+    /*Transición para efecto smooth al abrir en celulares*/
+    -webkit-transition: 0.4s ease all;
+    transition: 0.4s ease all;
+    /*Navegación entre las pestañas de la página*/
+  }
+  .aside-navigation .menu .navigation {
+    /*Link dentro del li*/
+  }
+  .aside-navigation .menu .navigation__link {
+    /*Centrar los textos*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    line-height: 1.5;
+    border-bottom: 1px solid white;
+  }
+  .aside-navigation .menu-visible {
+    left: 0;
+  }
+  .aside-navigation .menu-toggle {
+    display: block;
+  }
+  .aside-navigation .menu-toggle i {
+    font-size: 22px;
+  }
+}
 /*# sourceMappingURL=main.css.map */

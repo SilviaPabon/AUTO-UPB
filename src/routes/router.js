@@ -1,7 +1,7 @@
 const router = {}; 
 
-router.users = require('./users'); 
-
 // Las rutas se separan para mayor organización
+router.authentication = require('./router_authentication'); 
+router.general = require('./general_routes'); 
 
 module.exports = router; 

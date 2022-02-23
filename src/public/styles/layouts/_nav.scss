@@ -1,0 +1,80 @@
+.aside-navigation {
+    /*Columa contenedora de la barra de navegación*/
+    width: 200px;
+    height: 100vh;
+    background-color: $very_dark;
+    
+    /*Display flex para poner el logo encima de las opciones de navegación*/
+    display: flex;
+    flex-direction: column;
+
+    /*La posición es fija al costado*/
+    position: fixed;
+    top: 0;
+
+    /*Estilos del brand (temporal)*/
+    .brand {
+        color: white;
+        font-size: $x_lg;
+        text-align: center;
+        margin: 12px 0;
+    }
+
+    /*Contenedor de las opciones de navegación*/
+    .menu {
+        /*Se pone flex-grow: 1 para que ocupe todo el height que el logo deja disponible*/
+        flex-grow: 1;
+
+        /*Tiene flex para separar la navegación de los botones de sesión*/
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        /*Navegación entre las pestañas de la página*/
+        .navigation {
+
+            list-style: none;
+
+            /*Li dentro del ul*/
+            &__item {
+                margin-bottom: 8px;
+            }
+
+            /*Link dentro del li*/
+            &__link {
+                padding: 0.6em 0;
+                display: flex;
+                width: 100%;
+                text-decoration: none;
+                color: white;
+                font-size: $md;
+                font-weight: 300;
+
+                transition: background-color 0.2s ease-in;
+            }
+
+            &__link:hover {
+                background-color: $background_color;
+            }
+
+            &__icon {
+                color: white;
+
+                /*Centrar el icono dentro del contenedor para normalizar el tamaño*/
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 40px;
+
+                margin: 0 8px;
+            }
+        }
+
+    }
+
+    /*Menú de hamburguesa para dispositivos móviles*/
+    .menu-toggle {
+        display: none;
+    }
+
+}

@@ -1,5 +1,5 @@
-CREATE DATABASE PRUEBAS_PROYECTO_INTEGRADOR; 
-USE PRUEBAS_PROYECTO_INTEGRADOR; 
+-- CREATE DATABASE PRUEBAS_PROYECTO_INTEGRADOR; 
+-- USE PRUEBAS_PROYECTO_INTEGRADOR; 
 
 CREATE TABLE TIPOS_USUARIO(
 	codigo_tipo_usuario INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
@@ -138,5 +138,9 @@ CREATE TABLE ORDENES_COMPRA_HAS_ACCESORIOS(
     INDEX ordenes_compra_has_accesorios_id_orden(id_orden), 
     INDEX ordenes_compra_has_accesorios_id_accesorio(id_accesorio)
 ); 
+
+CREATE VIEW SESSION_USER_DATA AS
+SELECT id_usuario, nombre, correo_electronico, contraseña, codigo_tipo_usuario, codigo_estado_cuenta
+FROM USUARIOS; 
 
 

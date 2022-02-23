@@ -1,4 +1,39 @@
 @import './base/globals';
 @import './components/components'; 
+@import './layouts/nav'; 
+@import './pages/signup'; 
 
 /*Global rulesets*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $roboto;
+    color: white; /*Color por defecto de los textos*/
+}
+
+html{
+    background-color: white;
+}
+
+body{
+    min-height: 100vh;
+    max-width: 1440px;
+    background-color: $background_color;
+    margin: 0px auto;
+    border-left: 1px solid $very_dark;
+    border-right: 1px solid $very_dark;
+}
+
+main{
+    margin-left: 200px;
+    min-height: 100vh;
+    padding: 16px 8px;
+}
+
+/*Clase para fijar el body cuando se abre el menú en mobile*/
+.body--fixed{
+    position: sticky; 
+}
+
+@import './mediaQueries'; 

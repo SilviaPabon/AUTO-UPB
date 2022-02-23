@@ -1,5 +1,15 @@
 /*Global components (USING BEM METODOLOGY)*/
 
+/*Títulos*/
+.title{
+    color: white;
+    margin: 12px 0;
+
+    &--center{
+        text-align: center;
+    }
+}
+
 /*Botones*/
 .btn{
 
@@ -13,12 +23,15 @@
     width: max-content;
     text-decoration: none;
     margin: 8px 0;
+    text-align: center;
 
     transition: background-color 0.3s ease;
 
     &--primary{
         background-color: $main_blue;
         border: $main_blue;
+
+        transition: background-color 0.2s ease-in;
 
         &--transparent{
             background-color: transparent;
@@ -28,9 +41,26 @@
 
     }
 
+    &--primary:hover{
+        background-color: #00388d;
+    }
+
+    &--submit{
+        padding: 0.8em 0.6em;
+    }
+
     &--secondary{
         background-color: transparent;
         border: 1px solid $total_white; 
+    }
+
+    &--block{
+        display: block; 
+        width: 100%;
+    }
+
+    &--no-radius{
+        border-radius: 0;
     }
 }
 
@@ -40,4 +70,119 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
+}
+
+/*Formularios*/
+.input-form{
+    width: 90%;
+    max-width: 420px;
+    min-width: 240px;
+    margin: 0 auto;
+    padding: 16px;
+    border-radius: 16px;
+
+    background-color: $very_dark;
+}
+
+label{
+    color: white;
+    font-weight: 300;
+}
+
+.form-group{
+    margin: 24px 0; 
+}
+
+.form-group--correct input{
+    outline: none;
+    border: 2px solid rgb(0, 228, 0);
+}
+
+.form-group--correct label{
+    color: rgb(0, 228, 0);
+}
+
+.form-group--incorrect input{
+    outline: none;
+    border: 2px solid rgb(255, 70, 70);
+}
+
+.form-group--incorrect label{
+    color: rgb(255, 70, 70);
+}
+
+.input{
+    background-color: $input_bg;
+    outline: none;
+    border: 1px transparent;
+    padding: 0.6em 0.2em;
+    margin-top: 4px;
+    color: #959595;
+
+    &--full-width{
+        width: 100%;
+    }
+}
+
+/*Error general del formulario*/
+.form__error-message{
+    background-color: #FF0000;
+    text-align: justify;
+    font-weight: lighter;
+    padding: 8px;
+    margin-bottom: 12px;
+
+    /*Solo se muestra si hay un error*/
+    display: none;
+}
+
+.form__error-message--active{
+    display: block;
+}
+
+/*Error en un campo específico del formulario*/
+.form-group__error-message{
+    font-weight: lighter;
+    color: red;
+    text-align: justify;
+    font-size: 14px;
+    margin-top: 8px;
+
+    /*Solo se muestran si hay un error*/
+    display: none;   
+}
+
+.form-group__error-message--active{
+    display: block;
+}
+
+/*MENSAJES DE ERROR*/
+
+
+.alert {
+    position: relative;
+    background-color: transparent;
+    padding: 32px 8px;
+    margin: 12px 0px 4px 0px;
+    background-color: white;
+    transition: all 0.4s ease;
+}
+
+.alert--ward {
+    background-color: #FF0000;
+}
+
+.alert--success {
+    background-color: #00ff22;
+}
+
+.alert__close {
+    border: transparent;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    padding: 2px;
+    background-color: $very_dark;
+    border-radius: 4px;
+    padding: 0.2em 0.6em;
 }

@@ -138,6 +138,64 @@ CALL CHANGE_EXISTING_USER_STATUS(
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA LA SABER SU UN USUARIO YA EXISTE
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE PROCEDURE USER_EXIST(
+	correo_electronico VARCHAR(255)
+)
+BEGIN 
+	SELECT COUNT(*) 'CONTEO' FROM USUARIOS
+    WHERE UPPER(USUARIOS.correo_electronico) = UPPER(correo_electronico); 
+END //
+
+DELIMITER ; 
+
+-- CALL USER_EXIST('carlos@upb.edu.co'); 
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER LOS DATOS DE LA SESIÓN DEL USUARIO A PARTIR DEL ID
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_SESSION_DATA_FROM_ID(
+	user_id INT UNSIGNED
+)
+BEGIN 
+	SELECT * FROM SESSION_USER_DATA WHERE SESSION_USER_DATA.id_usuario = user_id; 
+END //
+
+DELIMITER ; 
+
+-- CALL GET_USER_SESSION_DATA_FROM_ID(1); 
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER LOS DATOS DE LA SESIÓN DEL USUARIO A PARTIR DEL CORREO
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_SESSION_DATA_FROM_MAIL(
+	correo_electronico VARCHAR(255)
+)
+BEGIN 
+	SELECT * FROM SESSION_USER_DATA WHERE SESSION_USER_DATA.correo_electronico = correo_electronico; 
+END //
+
+DELIMITER ; 
+
+-- CALL GET_USER_SESSION_DATA_FROM_MAIL('carlos@upb.edu.co'); 
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE INVENTARIO
 #######################################################
 */
