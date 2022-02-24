@@ -138,6 +138,11 @@ label {
   width: 100%;
 }
 
+.input--textarea {
+  resize: none;
+  height: 80px;
+}
+
 /*Error general del formulario*/
 .form__error-message {
   background-color: #FF0000;

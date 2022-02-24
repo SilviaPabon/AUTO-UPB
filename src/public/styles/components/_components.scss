@@ -130,6 +130,11 @@ label{
     &--full-width{
         width: 100%;
     }
+
+    &--textarea{
+        resize: none;
+        height: 80px;
+    }
 }
 
 /*Error general del formulario*/
