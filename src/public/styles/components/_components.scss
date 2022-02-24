@@ -45,6 +45,11 @@
         background-color: #00388d;
     }
 
+    &--card{
+        font-weight: 300;
+        padding: 0.6em 0.8em;
+    }
+
     &--submit{
         padding: 0.8em 0.6em;
     }
@@ -79,6 +84,10 @@
     }
 }
 
+.card__title{
+    font-size: $md;
+    margin: 12px 0;
+}
 
 /*Formularios*/
 .input-form{

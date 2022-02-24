@@ -49,6 +49,11 @@
   background-color: #00388d;
 }
 
+.btn--card {
+  font-weight: 300;
+  padding: 0.6em 0.8em;
+}
+
 .btn--submit {
   padding: 0.8em 0.6em;
 }
@@ -85,6 +90,11 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.card__title {
+  font-size: 18px;
+  margin: 12px 0;
 }
 
 /*Formularios*/
@@ -376,6 +386,33 @@ label {
 }
 
 .accessory_type_card:hover {
+  -webkit-box-shadow: #100F12 0 4px 16px;
+          box-shadow: #100F12 0 4px 16px;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.inventory_existing_accessories_card {
+  width: 25%;
+  max-width: 340px;
+  min-width: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #100F12;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.inventory_existing_accessories_card__image img {
+  width: 100%;
+}
+
+.inventory_existing_accessories_card__body {
+  padding: 0px 8px 8px 8px;
+  text-align: center;
+}
+
+.inventory_existing_accessories_card:hover {
   -webkit-box-shadow: #100F12 0 4px 16px;
           box-shadow: #100F12 0 4px 16px;
   -webkit-transform: scale(1.02);
