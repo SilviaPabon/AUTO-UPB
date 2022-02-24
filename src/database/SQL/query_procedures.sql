@@ -29,17 +29,9 @@ END //
 
 DELIMITER ; 
 
-/*
-CALL REGISTER_NEW_CLIENT(
-	"Pedro Andrés Chaparro Quintero", 
-    "1005542142", 
-    "pedroandreschaparro@gmail.com", 
-    "Cll 1C #720-420 Cañaveral", 
-    "6557895", 
-    1, 
-    "password"
-); 
 
+
+/*
 CALL REGISTER_NEW_CLIENT(
 	"Carlos Humberto Gomez", 
     "37845963", 

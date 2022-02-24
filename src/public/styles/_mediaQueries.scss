@@ -24,7 +24,7 @@
             /*Tiene flex para separar la navegación de los botones de sesión*/
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-evenly;
 
             /*La posición es fija y comienza por fuera de la pantalla*/
             position:fixed; 

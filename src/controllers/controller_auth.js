@@ -9,4 +9,9 @@ controller.login = (req, res) => {
     res.render('auth/login'); 
 }; 
 
+controller.logout = (req, res) => {
+    req.logOut(); //Cierra la sesión
+    res.redirect('/login'); //Lo redirecciona a iniciar sesión
+}
+
 module.exports = controller; 
