@@ -17,4 +17,6 @@ router.post('/signup',  passport.authenticate('local.signup', {
     failureFlash: true,
 })); 
 
+router.get('/logout', controller.logout); 
+
 module.exports = router;

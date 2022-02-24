@@ -35,6 +35,19 @@
 
             list-style: none;
 
+            &__account{
+                padding: 1em;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                text-decoration: none;
+                color: white;
+                text-align: center;
+                font-size: $md;
+                font-weight: 300;
+            }
+
             /*Li dentro del ul*/
             &__item {
                 margin-bottom: 8px;
@@ -57,7 +70,7 @@
                 background-color: $background_color;
             }
 
-            &__icon {
+            &__icon, &__account__icon {
                 color: white;
 
                 /*Centrar el icono dentro del contenedor para normalizar el tamaño*/
@@ -68,6 +81,13 @@
 
                 margin: 0 8px;
             }
+
+            &__account__icon{
+                & i{
+                    font-size: $x_lg;
+                }
+            }
+
         }
 
     }

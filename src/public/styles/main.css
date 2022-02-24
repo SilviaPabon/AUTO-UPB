@@ -246,6 +246,25 @@ label {
   /*Link dentro del li*/
 }
 
+.aside-navigation .menu .navigation__account {
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+}
+
 .aside-navigation .menu .navigation__item {
   margin-bottom: 8px;
 }
@@ -268,7 +287,7 @@ label {
   background-color: #1E1E20;
 }
 
-.aside-navigation .menu .navigation__icon {
+.aside-navigation .menu .navigation__icon, .aside-navigation .menu .navigation__account__icon {
   color: white;
   /*Centrar el icono dentro del contenedor para normalizar el tamaño*/
   display: -webkit-inline-box;
@@ -282,6 +301,10 @@ label {
           justify-content: center;
   min-width: 40px;
   margin: 0 8px;
+}
+
+.aside-navigation .menu .navigation__account__icon i {
+  font-size: 32px;
 }
 
 .aside-navigation .menu-toggle {
@@ -396,8 +419,9 @@ main {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
     /*La posición es fija y comienza por fuera de la pantalla*/
     position: fixed;
     top: 60px;
