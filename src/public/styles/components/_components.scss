@@ -3,7 +3,7 @@
 /*Títulos*/
 .title{
     color: white;
-    margin: 12px 0;
+    margin: 12px 0 16px 0;
 
     &--center{
         text-align: center;
@@ -20,8 +20,8 @@
     text-transform: uppercase;
     border-radius: 4px;
     color: white;
-    width: max-content;
     text-decoration: none;
+    display: inline-block;
     margin: 8px 0;
     text-align: center;
 
@@ -54,6 +54,10 @@
         border: 1px solid $total_white; 
     }
 
+    &--center{
+        margin: 8px auto;
+    }
+
     &--block{
         display: block; 
         width: 100%;
@@ -68,9 +72,13 @@
 .cards_container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 16px;
+
+    &--center-items{
+        justify-content: center;
+    }
 }
+
 
 /*Formularios*/
 .input-form{

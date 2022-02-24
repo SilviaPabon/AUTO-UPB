@@ -2,6 +2,7 @@
 @import './components/components'; 
 @import './layouts/nav'; 
 @import './pages/signup'; 
+@import './pages/inventory_select_accessory_type'; 
 
 /*Global rulesets*/
 *{
@@ -28,7 +29,7 @@ body{
 main{
     margin-left: 200px;
     min-height: 100vh;
-    padding: 16px 8px;
+    padding: 16px 16px;
 }
 
 /*Clase para fijar el body cuando se abre el menú en mobile*/
