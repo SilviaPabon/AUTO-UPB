@@ -17,10 +17,7 @@
         <%- include('../partials/_navbar.ejs') %>
 
         <main>
-            <!--PENDIENTE-->
-            <!--sin apellidos?-->
-            <!-- DUPLICO ESTO?  <script src="/scripts/signup_validate.js"></script> -->
-            <form action="" method="post" class="input-form" id="signup-form">
+            <form action="/admin/create_account" method="post" class="input-form" id="signup-form">
 
                 <%- include('../partials/_messages.ejs') %>
 
@@ -117,11 +114,12 @@
                 <div class="form-group" id="rol-group">
                     <label class="label--block" for="rol">Rol:</label>
                     <div class="form-group__input">
-                        <select class="input input--full-width" required name="Escoja un rol">
+                        <select class="input input--full-width" required name="rol">
                             <option hidden disabled selected value> -- Seleccione un rol -- </option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Empleado</option>
-                            <option value="3">Socio</option>
+                            <option class="option" value="1">Cliente</option>
+                            <option class="option" value="2">Socio</option>
+                            <option class="option" value="3">Trabajador</option>
+                            <option class="option" value="4">Administrador</option>
                           </select>
                         <p class="form-group__error-message"> </p>
                     </div>
