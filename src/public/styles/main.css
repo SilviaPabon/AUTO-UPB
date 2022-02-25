@@ -102,7 +102,7 @@ label {
   margin: 24px 0;
 }
 
-.form-group--correct input {
+.form-group--correct input, .form-group--correct select {
   outline: none;
   border: 2px solid #00e400;
 }
@@ -111,7 +111,7 @@ label {
   color: #00e400;
 }
 
-.form-group--incorrect input {
+.form-group--incorrect input, .form-group--incorrect select {
   outline: none;
   border: 2px solid #ff4646;
 }
@@ -131,6 +131,12 @@ label {
 
 .input--full-width {
   width: 100%;
+}
+
+/* option: menu desplegable */
+.option {
+  color: #303030;
+  padding: 4px 0;
 }
 
 /*Error general del formulario*/

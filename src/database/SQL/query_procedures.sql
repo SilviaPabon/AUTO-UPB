@@ -188,6 +188,30 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA CREACIÓN DE CUENTA POR PARTE DE ADMIN
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE PROCEDURE ADMIN_CREATE_ACCOUNT(
+    nombre VARCHAR(255),
+    identificacion VARCHAR(24) ,
+    correo_electronico VARCHAR(255),
+    direccion VARCHAR(255) ,
+    telefono VARCHAR(12) ,
+    contraseña VARCHAR(255) ,
+    codigo_tipo_usuario TINYINT(1) UNSIGNED
+)
+BEGIN 
+
+	INSERT INTO USUARIOS(nombre, identificacion, correo_electronico, direccion, telefono, contraseña, codigo_tipo_usuario, aceptacion_terminos) VALUES (nombre, identificacion, correo_electronico, direccion, telefono, contraseña, codigo_tipo_usuario, 1); 
+END //
+
+DELIMITER ; 
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE INVENTARIO
 #######################################################
 */
