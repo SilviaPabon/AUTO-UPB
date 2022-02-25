@@ -145,10 +145,17 @@ DELIMITER //
 CREATE TRIGGER user_created AFTER INSERT ON USUARIOS
 FOR EACH ROW
 BEGIN 
+
+	/*Si el usuario creó su cuenta, se añade él mismo como responsable de la creación y última modificación*/
+	IF NEW.id_usuario_creacion IS NULL THEN
+		SET @usuario_creacion = NEW.id_usuario; 
+	ELSE
+		SET @usuario_creacion = NEW.id_usuario_creacion; 
+    END IF; 
     
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_nuevo) 
     VALUES (
-    NEW.id_usuario_creacion,
+    @usuario_creacion,
     1,
     1, 
     JSON_OBJECT(

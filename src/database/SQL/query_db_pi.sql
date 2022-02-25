@@ -18,12 +18,12 @@ CREATE TABLE USUARIOS(
     correo_electronico VARCHAR(255) NOT NULL UNIQUE, 
     direccion VARCHAR(255) NOT NULL, 
     telefono VARCHAR(12) NOT NULL, 
-    aceptacion_terminos TINYINT(1) NOT NULL COMMENT 'Aceptación por parte del usuario del tratamiento de sus datos personales para beneficio de la empresa y el consorcio', 
+    aceptacion_terminos TINYINT(1) NOT NULL DEFAULT 1 COMMENT 'Aceptación por parte del usuario del tratamiento de sus datos personales para beneficio de la empresa y el consorcio', 
     contraseña VARCHAR(255) NOT NULL, 
     codigo_tipo_usuario INT UNSIGNED NOT NULL DEFAULT 1,
     codigo_estado_cuenta INT UNSIGNED NOT NULL DEFAULT 1, 
-    id_usuario_creacion INT UNSIGNED NOT NULL REFERENCES USUARIOS(id_usuario), 
-    id_usuario_ultima_modificacion INT UNSIGNED NOT NULL REFERENCES USUARIOS(id_usuario), 
+    id_usuario_creacion INT UNSIGNED NULL DEFAULT NULL REFERENCES USUARIOS(id_usuario), 
+    id_usuario_ultima_modificacion INT UNSIGNED NULL DEFAULT NULL REFERENCES USUARIOS(id_usuario), 
     
     CONSTRAINT fk_usuarios_tipos_usuarios FOREIGN KEY (codigo_tipo_usuario) REFERENCES TIPOS_USUARIO(codigo_tipo_usuario), 
     CONSTRAINT fk_usuarios_tipos_estado_cuenta FOREIGN KEY (codigo_estado_cuenta) REFERENCES TIPOS_ESTADO_CUENTA(codigo_estado_cuenta),
@@ -78,7 +78,7 @@ CREATE TABLE MENSAJES_INQUIETUDES(
     id_usuario_ultima_modificacion INT UNSIGNED NULL DEFAULT NULL, 
     
     CONSTRAINT fk_mensajes_tipo_estado_mensaje FOREIGN KEY (codigo_estado_mensaje) REFERENCES TIPO_ESTADO_MENSAJE(codigo_estado_mensaje), 
-    CONSTRAINT fk_mensajes_usuario_modificacion FOREIGN KEY (id_usuario_ultima_modificacion) REFERENCES USUARIOS(id_usuario_ultima_modificacion), 
+    CONSTRAINT fk_mensajes_usuario_modificacion FOREIGN KEY (id_usuario_ultima_modificacion) REFERENCES USUARIOS(id_usuario), 
     
     INDEX mensajes_inquietudes_nombre(nombre_remitente), 
     INDEX mensajes_inquietudes_correo(correo_remitente)
@@ -91,6 +91,7 @@ CREATE TABLE TIPO_ESTADO_COMPRA(
 
 CREATE TABLE ACCESORIOS(
 	id_accesorio INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+    is_active TINYINT(1) UNSIGNED NOT NULL DEFAULT 1, 
     nombre VARCHAR(64) NOT NULL, 
     descripcion VARCHAR(324) NOT NULL, 
     stock INT UNSIGNED NOT NULL, 
@@ -107,7 +108,8 @@ CREATE TABLE ACCESORIOS(
     
     INDEX accesorios_nombre(nombre), 
     INDEX accesorios_descuento(descuento), 
-    INDEX accesorios_unidades_vendidas(unidades_vendidas)
+    INDEX accesorios_unidades_vendidas(unidades_vendidas), 
+    INDEX accesorios_isActive(is_active)
 ); 
 
 CREATE TABLE HISTORICO_CAMBIO_PRECIOS(

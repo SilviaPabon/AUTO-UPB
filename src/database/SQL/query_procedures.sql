@@ -28,9 +28,17 @@ END //
 
 DELIMITER ; 
 
-
-
 /*
+CALL REGISTER_NEW_CLIENT(
+	"Pedro Andrés Chaparro", 
+    "1004251788", 
+    "pedro@upb.edu.co", 
+    "Cll 1C #720-440 Piedecuesta", 
+    "3147852233", 
+    0, 
+    "password"
+);
+
 CALL REGISTER_NEW_CLIENT(
 	"Carlos Humberto Gomez", 
     "37845963", 
@@ -51,6 +59,7 @@ CALL REGISTER_NEW_CLIENT(
     "passsssssss"
 ); 
 */
+
 
 /* 
 #######################################################
@@ -260,6 +269,7 @@ DELIMITER //
 CREATE PROCEDURE UPDATE_EXISTING_ACCESSORY(
 	session_user_id INT UNSIGNED, 
 	id_accesorio INT UNSIGNED, 
+    is_active TINYINT(1) UNSIGNED, 
     nombre VARCHAR(64), 
     descripcion VARCHAR(324), 
     precio_base DECIMAL(12,2), 
@@ -273,6 +283,7 @@ BEGIN
     SET @ruta_imagen = CONCAT(CONCAT('/', REPLACE(nombre, ' ', '_')), '.jpg'); 
     
 	UPDATE ACCESORIOS SET 
+		ACCESORIOS.is_active = is_active, 
 		ACCESORIOS.nombre = nombre, 
         ACCESORIOS.descripcion = descripcion, 
         ACCESORIOS.precio_base = precio_base, 
@@ -318,6 +329,32 @@ CALL ADD_INVENTORY_TO_EXISTING_ACCESSORY(
     15
 );  
 */
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA CAMBIAR EL ESTADO DE UN ACCESORIO
+0: False/inactivo 1:True/activo
+OK
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE PROCEDURE CHANGE_ACCESSORY_STATUS(
+	session_user_id INT UNSIGNED, 
+	id_accesorio INT UNSIGNED, 
+    is_active TINYINT(1) UNSIGNED
+)
+BEGIN 
+
+    UPDATE ACCESORIOS SET 
+		ACCESORIOS.is_active = is_active, 
+        ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
+	WHERE ACCESORIOS.id_accesorio = id_accesorio; 
+    
+END //
+
+DELIMITER ;
 
 /* 
 #######################################################
