@@ -18,7 +18,7 @@ CREATE TABLE USUARIOS(
     correo_electronico VARCHAR(255) NOT NULL UNIQUE, 
     direccion VARCHAR(255) NOT NULL, 
     telefono VARCHAR(12) NOT NULL, 
-    aceptacion_terminos TINYINT(1) NOT NULL DEFAULT 1 COMMENT 'Aceptación por parte del usuario del tratamiento de sus datos personales para beneficio de la empresa y el consorcio', 
+    aceptacion_terminos TINYINT(1) NOT NULL COMMENT 'Aceptación por parte del usuario del tratamiento de sus datos personales para beneficio de la empresa y el consorcio', 
     contraseña VARCHAR(255) NOT NULL, 
     codigo_tipo_usuario INT UNSIGNED NOT NULL DEFAULT 1,
     codigo_estado_cuenta INT UNSIGNED NOT NULL DEFAULT 1, 
