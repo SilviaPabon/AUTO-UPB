@@ -93,7 +93,7 @@ label{
     margin: 24px 0; 
 }
 
-.form-group--correct input{
+.form-group--correct input, .form-group--correct select{
     outline: none;
     border: 2px solid rgb(0, 228, 0);
 }
@@ -102,7 +102,7 @@ label{
     color: rgb(0, 228, 0);
 }
 
-.form-group--incorrect input{
+.form-group--incorrect input, .form-group--incorrect select{
     outline: none;
     border: 2px solid rgb(255, 70, 70);
 }
