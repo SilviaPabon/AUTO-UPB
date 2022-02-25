@@ -82,6 +82,55 @@ passport.use(
     })
 );
 
+// ---------------------------------
+//Create Account Admin
+passport.use(
+    'local.adminSignup',
+    new LocalStrategy(
+        {
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true,
+        },
+        async (req, email, password, done) => {
+            //Usuario que se va a insertar en la base de datos
+            const { name, documento, phone, address, rol } = req.body;
+            const newUser = {
+                name,
+                documento,
+                correo_electronico : email,
+                phone,
+                address,
+                password,
+                rol,
+            };
+            newUser.conditions = newUser.conditions == 'on' ? 1 : 0;
+
+            //Verificar que el usuario no exista en la base de datos
+            const userExist = await pool.query('CALL USER_EXIST(?)', [email]);
+
+            //Si el usuario no existe, se procede con la creación
+            if (userExist[0][0]['CONTEO'] == 0) {
+                newUser.password = await helpers.encryptPassword(newUser.password);
+                await pool.query('CALL ADMIN_CREATE_ACCOUNT(?, ?, ?, ?, ?, ?, ?)', [
+                    newUser.name,
+                    newUser.documento,
+                    newUser.correo_electronico,
+                    newUser.address,
+                    newUser.phone,
+                    newUser.password,
+                    newUser.rol,
+                ]);
+                req.flash('success', 'Usuario creado éxitosamente')
+                return done(null, req.user);
+            } else {
+                //Si el usuario existe, se manda un flash
+                return done(null, req.user, req.flash('message', `ERROR: El correo: ${newUser.correo_electronico} ya está en uso.`));
+            }
+        }
+    )
+);
+
 //Serializar el usuario a partir del correo
 passport.serializeUser((user, done) => {
     done(null, user.correo_electronico);

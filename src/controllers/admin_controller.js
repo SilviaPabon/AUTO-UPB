@@ -1,6 +1,10 @@
 const controller = {}; 
 // const pool = require('../database/connection');
 
+controller.createAccount = (req, res) => {
+    res.render('auth/create_acc_admin');
+};
+
 controller.inventory = (req, res) => {
     res.render('admin/inventory_select_accessory_type');   
 }; 
