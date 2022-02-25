@@ -6,7 +6,7 @@ const passport = require('passport');
 router.get('/create_account', controller.createAccount); 
 router.post('/create_account',  passport.authenticate('local.adminSignup', {
     successRedirect: '/',
-    failureRedirect: '/create_account',
+    failureRedirect: '/admin/create_account',
     failureFlash: true,
 })); 
 

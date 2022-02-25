@@ -121,11 +121,11 @@ passport.use(
                     newUser.password,
                     newUser.rol,
                 ]);
-
-                return done(null, newUser);
+                req.flash('success', 'Usuario creado éxitosamente')
+                return done(null, req.user);
             } else {
                 //Si el usuario existe, se manda un flash
-                return done(null, false, req.flash('message', `ERROR: El correo: ${newUser.email} ya está en uso.`));
+                return done(null, req.user, req.flash('message', `ERROR: El correo: ${newUser.correo_electronico} ya está en uso.`));
             }
         }
     )
