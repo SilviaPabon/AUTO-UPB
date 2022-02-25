@@ -8,6 +8,7 @@ Por ahora sin manejo del responsable
 /* 
 #######################################################
 Trigger para registrar ingreso de accesorios (agrega el log y el historial de precios)
+OK
 #######################################################
 */
 
@@ -17,17 +18,12 @@ CREATE TRIGGER product_added AFTER INSERT ON ACCESORIOS
 FOR EACH ROW
 BEGIN 
 
-	-- SELECCIONA EL CÓDIGO DE LA TABLA ACCESORIOS
-	SELECT codigo_tabla INTO @id_tabla_accesorios FROM TABLAS_EXISTENTES WHERE TABLAS_EXISTENTES.tabla = 'ACCESORIOS'; 
-    
-    -- SELECCIONA EL CÓDIGO DE LA TRANSACCIÓN INSERT
-    SELECT codigo_tipo_transaccion INTO @id_insert FROM TIPOS_TRANSACCION WHERE TIPOS_TRANSACCION.tipo_transaccion = 'Insert'; 
     
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_nuevo) 
     VALUES (
-    @session_user_id, 
-    @id_insert, 
-    @id_tabla_accesorios, 
+    NEW.id_usuario_creacion,
+    1,
+    4,
     JSON_OBJECT(
 			"id_accesorio", NEW.id_accesorio,
             "nombre", NEW.nombre, 
@@ -41,10 +37,7 @@ BEGIN
     
     -- También se agrega el registro al histórico de precios
     INSERT INTO HISTORICO_CAMBIO_PRECIOS(precio_asignado, id_accesorio) VALUES (NEW.precio_base, NEW.id_accesorio); 
-    
-    -- Se resetea el id de la sesión al terminar
-    SET @session_user_id = NULL; 
-    
+        
 END //
 
 DELIMITER ; 
@@ -52,6 +45,7 @@ DELIMITER ;
 /* 
 #######################################################
 Trigger para registrar la modificación de accesorios
+OK
 #######################################################
 */
 
@@ -60,19 +54,13 @@ DELIMITER //
 CREATE TRIGGER product_modified AFTER UPDATE ON ACCESORIOS
 FOR EACH ROW
 BEGIN 
-
-	-- SELECCIONA EL CÓDIGO DE LA TABLA ACCESORIOS
-	SELECT codigo_tabla INTO @id_tabla_accesorios FROM TABLAS_EXISTENTES WHERE TABLAS_EXISTENTES.tabla = 'ACCESORIOS'; 
-    
-    -- SELECCIONA EL CÓDIGO DE LA TRANSACCIÓN UPDATE
-    SELECT codigo_tipo_transaccion INTO @id_update FROM TIPOS_TRANSACCION WHERE TIPOS_TRANSACCION.tipo_transaccion = 'Update'; 
     
     -- Guardar el log
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior, estado_nuevo) 
     VALUES (
-		@session_user_id, 
-		@id_update, 
-		@id_tabla_accesorios, 
+		NEW.id_usuario_ultima_modificacion,
+		3,
+		4,
 		JSON_OBJECT(
 			"id_accesorio", OLD.id_accesorio,
             "nombre", OLD.nombre, 
@@ -97,9 +85,7 @@ BEGIN
     IF OLD.precio_base != NEW.precio_base THEN 
 		INSERT INTO HISTORICO_CAMBIO_PRECIOS(precio_asignado, id_accesorio) VALUES (NEW.precio_base, NEW.id_accesorio); 
 	END IF;
-    
-    SET @session_user_id = NULL; 
-    
+        
 END //
 
 DELIMITER ; 
@@ -107,27 +93,23 @@ DELIMITER ;
 /* 
 #######################################################
 Trigger para registrar la eliminación de un accesorio
+PREGUNTAR SOBRE ESTE TRIGGER
 #######################################################
 */
 
+/*
 DELIMITER //
 
 CREATE TRIGGER product_deleted AFTER DELETE ON ACCESORIOS
 FOR EACH ROW
 BEGIN 
 	
-    -- SELECCIONA EL CÓDIGO DE LA TABLA ACCESORIOS
-	SELECT codigo_tabla INTO @id_tabla_accesorios FROM TABLAS_EXISTENTES WHERE TABLAS_EXISTENTES.tabla = 'ACCESORIOS'; 
-    
-    -- SELECCIONA EL CÓDIGO DE LA TRANSACCIÓN delete
-    SELECT codigo_tipo_transaccion INTO @id_delete FROM TIPOS_TRANSACCION WHERE TIPOS_TRANSACCION.tipo_transaccion = 'Delete'; 
-    
     -- Guardar el log
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
     VALUES (
-		@session_user_id, 
-		@id_delete, 
-		@id_tabla_accesorios, 
+		OLD.id_usuario_ultima_modificacion,
+		4,
+		4, 
 		JSON_OBJECT(
 			"id_accesorio", OLD.id_accesorio,
             "nombre", OLD.nombre, 
@@ -143,17 +125,18 @@ BEGIN
 END //
 
 DELIMITER ; 
+*/
 
 /* 
 #######################################################
-TRIGGERS PARA MENAJO DE CUENTAS DE USUARIO
-Por ahora sin manejo del responsable
+TRIGGERS PARA MANEJO DE CUENTAS DE USUARIO
 #######################################################
 */
 
 /* 
 #######################################################
 Trigger para registrar la creación de nuevas cuentas
+Ok
 #######################################################
 */
 
@@ -162,18 +145,12 @@ DELIMITER //
 CREATE TRIGGER user_created AFTER INSERT ON USUARIOS
 FOR EACH ROW
 BEGIN 
-
-	-- SELECCIONA EL CÓDIGO DE LA TABLA USUARIOS
-	SELECT codigo_tabla INTO @id_tabla_usuarios FROM TABLAS_EXISTENTES WHERE TABLAS_EXISTENTES.tabla = 'USUARIOS'; 
-    
-    -- SELECCIONA EL CÓDIGO DE LA TRANSACCIÓN INSERT
-    SELECT codigo_tipo_transaccion INTO @id_insert FROM TIPOS_TRANSACCION WHERE TIPOS_TRANSACCION.tipo_transaccion = 'Insert'; 
     
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_nuevo) 
     VALUES (
-    @session_user_id,
-    @id_insert, 
-    @id_tabla_usuarios,
+    NEW.id_usuario_creacion,
+    1,
+    1, 
     JSON_OBJECT(
 			"id_usuario", NEW.id_usuario, 
             "nombre", NEW.nombre, 
@@ -188,8 +165,6 @@ BEGIN
             )
     ); 
     
-    SET @session_user_id = NULL; 
-
 END //
 
 DELIMITER ; 
@@ -197,6 +172,7 @@ DELIMITER ;
 /* 
 #######################################################
 Trigger para registrar la modificación de un usuario
+OK
 #######################################################
 */
 
@@ -205,20 +181,14 @@ DELIMITER //
 CREATE TRIGGER user_modified AFTER UPDATE ON USUARIOS
 FOR EACH ROW
 BEGIN 
-
-	-- SELECCIONA EL CÓDIGO DE LA TABLA USUARIOS
-	SELECT codigo_tabla INTO @id_tabla_usuarios FROM TABLAS_EXISTENTES WHERE TABLAS_EXISTENTES.tabla = 'USUARIOS'; 
-    
-    -- SELECCIONA EL CÓDIGO DE LA TRANSACCIÓN UPDATE
-    SELECT codigo_tipo_transaccion INTO @id_update FROM TIPOS_TRANSACCION WHERE TIPOS_TRANSACCION.tipo_transaccion = 'Update'; 
     
     -- Guardar el log
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior, estado_nuevo) 
     VALUES (
 		-- el id del usuario responsable se toma de la variable @session_user_id
-		@session_user_id,
-		@id_update, 
-		@id_tabla_usuarios, 
+		NEW.id_usuario_ultima_modificacion,
+		3,
+		1, 
         JSON_OBJECT(
 			"id_usuario", OLD.id_usuario, 
             "nombre", OLD.nombre, 
@@ -245,8 +215,6 @@ BEGIN
             )
 	); 
     
-    SET @session_user_id = NULL; 
-
 END //
 
 DELIMITER ; 
@@ -254,27 +222,23 @@ DELIMITER ;
 /* 
 #######################################################
 Trigger para registrar la eliminación de un usuario
+PREGUNTAR SOBRE ESTE TRIGGER
 #######################################################
 */
 
+/*
 DELIMITER //
 
 CREATE TRIGGER user_removed AFTER DELETE ON USUARIOS
 FOR EACH ROW
 BEGIN 
-
-	-- SELECCIONA EL CÓDIGO DE LA TABLA USUARIOS
-	SELECT codigo_tabla INTO @id_tabla_usuarios FROM TABLAS_EXISTENTES WHERE TABLAS_EXISTENTES.tabla = 'USUARIOS'; 
-    
-    -- SELECCIONA EL CÓDIGO DE LA TRANSACCIÓN UPDATE
-    SELECT codigo_tipo_transaccion INTO @id_delete FROM TIPOS_TRANSACCION WHERE TIPOS_TRANSACCION.tipo_transaccion = 'Delete'; 
     
     -- Guardar el log
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
     VALUES (
 		@session_user_id, 
-		@id_delete, 
-		@id_tabla_usuarios, 
+		4, 
+		1, 
         JSON_OBJECT(
 			"id_usuario", OLD.id_usuario, 
             "nombre", OLD.nombre, 
@@ -294,7 +258,32 @@ BEGIN
 END //
 
 DELIMITER ; 
+*/
 
+/* 
+#######################################################
+TRIGGERS PARA MANEJO DE MENSAJES ENVIADOS POR EL FORMULARIO
+#######################################################
+*/
+
+/* 
+#######################################################
+Trigger para registrar la modificación del estado del mensaje
+Ok
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE TRIGGER message_status_modified AFTER UPDATE ON MENSAJES_INQUIETUDES
+FOR EACH ROW
+BEGIN 
+
+	
+    
+END //
+
+DELIMITER ; 
 
 
 

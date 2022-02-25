@@ -7,6 +7,7 @@ PROCEDIMIENTOS PARA MANEJO DE CUENTAS DE USUARIO
 /* 
 #######################################################
 PROCEDIMIENTO PARA LA CREACIÓN DE UN NUEVO USUARIO
+OK
 #######################################################
 */
 
@@ -22,8 +23,6 @@ CREATE PROCEDURE REGISTER_NEW_CLIENT(
     contraseña VARCHAR(255)
 )
 BEGIN 
-	SET @session_user_id = null; 
-
 	INSERT INTO USUARIOS(nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos, contraseña) VALUES (nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos, contraseña); 
 END //
 
@@ -56,6 +55,7 @@ CALL REGISTER_NEW_CLIENT(
 /* 
 #######################################################
 PROCEDIMIENTO PARA LA MODIFICACIÓN DE UN USUARIO
+OK
 #######################################################
 */
 
@@ -72,14 +72,14 @@ CREATE PROCEDURE UPDATE_EXISTING_USER(
 )
 BEGIN 
 
-	SET @session_user_id = session_user_id; 
-
 	UPDATE USUARIOS SET 
 		USUARIOS.correo_electronico = correo_electronico, 
         USUARIOS.direccion = direccion, 
         USUARIOS.telefono = telefono, 
-        USUARIOS.contraseña = contraseña 
+        USUARIOS.contraseña = contraseña, 
+        USUARIOS.id_usuario_ultima_modificacion = session_user_id
 	WHERE USUARIOS.id_usuario = id_usuario; 
+    
 END //
 
 DELIMITER ; 
@@ -98,6 +98,7 @@ CALL UPDATE_EXISTING_USER(
 /* 
 #######################################################
 PROCEDIMIENTO PARA LA MODIFICACIÓN DEL ESTADO DE CUENTA DE UN USUARIO
+OK
 #######################################################
 */
 
@@ -109,13 +110,14 @@ CREATE PROCEDURE CHANGE_EXISTING_USER_STATUS(
     estado_cuenta VARCHAR(32)
 )
 BEGIN 
-	SET @session_user_id = session_user_id; 
 
 	SELECT codigo_estado_cuenta INTO @codigo_estado_cuenta FROM TIPOS_ESTADO_CUENTA WHERE TIPOS_ESTADO_CUENTA.estado_cuenta = estado_cuenta; 
     
     UPDATE USUARIOS SET 
-		USUARIOS.codigo_estado_cuenta = @codigo_estado_cuenta
+		USUARIOS.codigo_estado_cuenta = @codigo_estado_cuenta, 
+        USUARIOS.id_usuario_ultima_modificacion = session_user_id
 	WHERE USUARIOS.id_usuario = id_usuario; 
+    
 END //
 
 DELIMITER ; 
@@ -131,6 +133,7 @@ CALL CHANGE_EXISTING_USER_STATUS(
 /* 
 #######################################################
 PROCEDIMIENTO PARA LA SABER SU UN USUARIO YA EXISTE
+OK
 #######################################################
 */
 
@@ -151,6 +154,7 @@ DELIMITER ;
 /* 
 #######################################################
 PROCEDIMIENTO PARA OBTENER LOS DATOS DE LA SESIÓN DEL USUARIO A PARTIR DEL ID
+OK
 #######################################################
 */
 
@@ -170,6 +174,7 @@ DELIMITER ;
 /* 
 #######################################################
 PROCEDIMIENTO PARA OBTENER LOS DATOS DE LA SESIÓN DEL USUARIO A PARTIR DEL CORREO
+OK
 #######################################################
 */
 
@@ -195,6 +200,7 @@ PROCEDIMIENTOS PARA MANEJO DE INVENTARIO
 /* 
 #######################################################
 PROCEDIMIENTO PARA AGREGAR NUEVO PRODUCTO AL INVENTARIO
+OK
 #######################################################
 */
 
@@ -209,14 +215,24 @@ CREATE PROCEDURE ADD_NEW_ACCESSORY(
     descuento TINYINT UNSIGNED
 )
 BEGIN 
-    SET @session_user_id = session_user_id; 
 
 	-- Se calcula el precio final a partir del precio base y el descuento 
 	SET @precio_final = precio_base - (precio_base*descuento)/100; 
     -- Se escribe la ruta de la imagen a partir del nombre del accesorio
     SET @ruta_imagen = CONCAT(CONCAT('/', REPLACE(nombre, ' ', '_')), '.jpg'); 
     -- Se inserntan los datos. 
-	INSERT INTO ACCESORIOS(nombre, descripcion, stock, precio_base, descuento, precio_final, ruta_imagen) VALUES (nombre, descripcion, stock, precio_base, descuento, @precio_final, @ruta_imagen); 
+	INSERT INTO ACCESORIOS(nombre, descripcion, stock, precio_base, descuento, precio_final, ruta_imagen, id_usuario_creacion, id_usuario_ultima_modificacion)
+    VALUES (nombre, 
+			descripcion, 
+            stock, 
+            precio_base, 
+            descuento, 
+            @precio_final, 
+            @ruta_imagen, 
+            session_user_id, 
+            session_user_id
+            ); 
+    
 END //
 
 DELIMITER ; 
@@ -235,6 +251,7 @@ CALL ADD_NEW_ACCESSORY(
 /* 
 #######################################################
 PROCEDIMIENTO PARA MODIFICAR LOS DETALLES DE UN ACCESORIO EXISTENTE
+OK
 #######################################################
 */
 
@@ -250,8 +267,6 @@ CREATE PROCEDURE UPDATE_EXISTING_ACCESSORY(
 )
 BEGIN 
 
-	SET @session_user_id = session_user_id; 
-
 	-- Se calcula el precio final a partir del precio base y el descuento 
 	SET @precio_final = precio_base - (precio_base*descuento)/100; 
     -- Se escribe la ruta de la imagen a partir del nombre del accesorio
@@ -263,7 +278,8 @@ BEGIN
         ACCESORIOS.precio_base = precio_base, 
         ACCESORIOS.descuento = descuento, 
         ACCESORIOS.precio_final = @precio_final, 
-        ACCESORIOS.ruta_imagen = @ruta_imagen
+        ACCESORIOS.ruta_imagen = @ruta_imagen, 
+        ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
 	WHERE ACCESORIOS.id_accesorio = id_accesorio; 
     
 END //
@@ -273,6 +289,7 @@ DELIMITER ;
 /* 
 #######################################################
 PROCEDIMIENTO PARA AGREGAR INVENTARIO DE UN PRODUCTO EXISTENTE
+OK
 #######################################################
 */
 
@@ -284,11 +301,10 @@ CREATE PROCEDURE ADD_INVENTORY_TO_EXISTING_ACCESSORY(
     new_units INT UNSIGNED
 )
 BEGIN 
-	
-    SET @session_user_id = session_user_id; 
-    
+
     UPDATE ACCESORIOS SET 
-		ACCESORIOS.stock = ACCESORIOS.stock + new_units
+		ACCESORIOS.stock = ACCESORIOS.stock + new_units, 
+        ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
 	WHERE ACCESORIOS.id_accesorio = id_accesorio; 
     
 END //
@@ -312,18 +328,20 @@ PROCEDIMIENTOS PARA MANEJO DE ÓRDENES DE COMPRA
 /* 
 #######################################################
 PROCEDIMIENTOS PARA MANEJO DE MENSAJES DE CLIENTES (MENSAJES DEL FORMULARIO)
+OK
 #######################################################
 */
 
 DELIMITER //
 
 CREATE PROCEDURE REGISTER_NEW_MESSAGE(
-    texto_mensaje VARCHAR(324),
-    id_usuario INT UNSIGNED
+	nombre_usuario VARCHAR(255), 
+    correo_usuario VARCHAR(255), 
+    texto_mensaje VARCHAR(324)
 )
 BEGIN 
-	
-    INSERT INTO MENSAJES_INQUIETUDES(texto_mensaje, id_usuario) VALUES (texto_mensaje, id_usuario); 
+
+    INSERT INTO MENSAJES_INQUIETUDES(nombre_remitente, correo_remitente, texto_mensaje) VALUES (nombre_usuario, correo_usuario, texto_mensaje); 
     
 END //
 
@@ -339,6 +357,7 @@ CALL REGISTER_NEW_MESSAGE(
 /* 
 #######################################################
 PROCEDIMIENTOS PARA MANEJO MARCAR UN MENSAJE COMO RESUELTO
+Ok
 #######################################################
 */
 
@@ -349,14 +368,10 @@ CREATE PROCEDURE MARK_MESSAGE_AS_RESOLVED(
     id_mensaje INT UNSIGNED
 )
 BEGIN 
-	
-    SET @session_user_id = session_user_id; 
-    
-    -- Select "Resuelto" status_code
-    SELECT codigo_estado_mensaje INTO @codigo_resuelto FROM TIPO_ESTADO_MENSAJE WHERE TIPO_ESTADO_MENSAJE.estado_mensaje = 'Resuelto'; 
-    
+	    
 	UPDATE MENSAJES_INQUIETUDES SET 
-		MENSAJES_INQUIETUDES.codigo_estado_mensaje = @codigo_resuelto
+		MENSAJES_INQUIETUDES.codigo_estado_mensaje = 2, 
+        MENSAJES_INQUIETUDES.id_usuario_ultima_modificacion = session_user_id
 	WHERE MENSAJES_INQUIETUDES.id_mensaje = id_mensaje; 
     
 END //

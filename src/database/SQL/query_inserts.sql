@@ -18,10 +18,10 @@ INSERT INTO TIPO_ESTADO_COMPRA(estado_compra) VALUES
 ("Recibido");  
 
 INSERT INTO TIPOS_TRANSACCION(tipo_transaccion) VALUES 
-("Insert"), 
+("Create"), 
+("Read"), 
 ("Update"), 
-("Delete"), 
-("Read");   
+("Delete");   
 
 INSERT INTO TABLAS_EXISTENTES(tabla) VALUES
 ("USUARIOS"), 
