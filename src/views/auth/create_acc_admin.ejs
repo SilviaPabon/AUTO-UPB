@@ -114,14 +114,13 @@
                 <div class="form-group" id="rol-group">
                     <label class="label--block" for="rol">Rol:</label>
                     <div class="form-group__input">
-                        <select class="input input--full-width" required name="rol">
-                            <option hidden disabled selected value> -- Seleccione un rol -- </option>
-                            <option class="option" value="1">Cliente</option>
+                        <select class="input input--full-width" id="rol_select" name="rol">
+                            <option hidden disabled selected value="0"> -- Seleccione un rol -- </option>
                             <option class="option" value="2">Socio</option>
                             <option class="option" value="3">Trabajador</option>
                             <option class="option" value="4">Administrador</option>
                           </select>
-                        <p class="form-group__error-message"> </p>
+                        <p class="form-group__error-message">Debe seleccionar un rol</p>
                     </div>
                 </div>
                 <!--PENDINTE LA CONDICIÓN PARA QUE ESTO SE CUMPLA-->
@@ -132,7 +131,7 @@
             </form>
         </main>
 
-        <script src="/scripts/signup_validate.js"></script>
+        <script src="/scripts/signup_admin_validate.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>
