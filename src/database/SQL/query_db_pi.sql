@@ -127,15 +127,17 @@ ENGINE = 'MyISAM';
 CREATE TABLE ORDENES_COMPRA(
 	id_orden INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     id_cliente INT UNSIGNED NOT NULL, 
+    id_vendedor INT UNSIGNED NULL DEFAULT NULL, 
     fecha_compra TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-	subtotal DECIMAL(12,2) NOT NULL, 
-    descuento TINYINT UNSIGNED NOT NULL COMMENT 'Porcentaje actual de descuento', 
-    impuestos DECIMAL(12,2) NOT NULL, 
-    total DECIMAL(12,2) NOT NULL, 
-    codigo_estado_compra INT UNSIGNED NOT NULL, 
+    codigo_estado_compra INT UNSIGNED NOT NULL DEFAULT 1, 
+	id_usuario_creacion INT UNSIGNED NOT NULL, 
+    id_usuario_ultima_modificacion INT UNSIGNED NOT NULL, 
     
     CONSTRAINT fk_ordenes_compra_usuarios FOREIGN KEY (id_cliente) REFERENCES USUARIOS(id_usuario), 
+    CONSTRAINT fk_ordenes_compra_vendedor FOREIGN KEY (id_vendedor) REFERENCES USUARIOS(id_usuario), 
     CONSTRAINT fk_ordenes_compra_estado_compra FOREIGN KEY (codigo_estado_compra) REFERENCES TIPO_ESTADO_COMPRA(codigo_estado_compra), 
+	CONSTRAINT FOREIGN KEY fk_ordenes_compra_usuario_creacion (id_usuario_creacion) REFERENCES USUARIOS(id_usuario), 
+    CONSTRAINT FOREIGN KEY fk_ordenes_compra_usuario_modificacion (id_usuario_ultima_modificacion) REFERENCES USUARIOS(id_usuario), 
     
     INDEX ordenes_compra_id_orden(id_orden), 
     INDEX ordenes_compra_codigo_estado(codigo_estado_compra), 
@@ -146,25 +148,52 @@ CREATE TABLE ORDENES_COMPRA(
 CREATE TABLE HISTORICO_FACTURAS(
 	id_factura INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
     id_orden INT UNSIGNED NOT NULL, 
-    accesorios JSON NOT NULL,
     
     CONSTRAINT fk_facturas_ordenes FOREIGN KEY (id_factura) REFERENCES ORDENES_COMPRA(id_orden)
-)
-ENGINE = 'MyISAM'; 
+); 
 
 CREATE TABLE ORDENES_COMPRA_HAS_ACCESORIOS(
 	id_orden INT UNSIGNED NOT NULL, 
     id_accesorio INT UNSIGNED NOT NULL, 
+    cantidad_venta SMALLINT UNSIGNED NOT NULL,
+    precio_base DECIMAL(12,2) NOT NULL COMMENT 'Precio del accesorio en el momento de la venta multiplicado por la cantidad del accesorio comprada', 
+	descuento_venta DECIMAL(12,2) NOT NULL COMMENT 'Descuento, en pesos colombianos, aplicado a la venta del accesorio', 
+    impuestos_venta DECIMAL(12,2) NOT NULL COMMENT 'IVA generado por la venta del accesorio',
+    precio_final DECIMAL(12,2) NOT NULL COMMENT 'Precio final teniendo en cuenta impuestos y descuentos del accesorio',
+    id_usuario_creacion INT UNSIGNED NOT NULL, 
+    id_usuario_ultima_modificacion INT UNSIGNED NOT NULL,
     
     CONSTRAINT fk_ordenes_compra_has_accesorios_id_orden FOREIGN KEY (id_orden) REFERENCES ORDENES_COMPRA(id_orden), 
     CONSTRAINT fk_ordenes_compra_has_accesorios_id_accesorio FOREIGN KEY (id_accesorio) REFERENCES ACCESORIOS(id_accesorio), 
+	CONSTRAINT FOREIGN KEY fk_ordenes_compra_has_accesorios_usuario_creacion (id_usuario_creacion) REFERENCES USUARIOS(id_usuario), 
+    CONSTRAINT FOREIGN KEY fk_ordenes_compra_has_accesorios_usuario_modificacion (id_usuario_ultima_modificacion) REFERENCES USUARIOS(id_usuario), 
     
     INDEX ordenes_compra_has_accesorios_id_orden(id_orden), 
     INDEX ordenes_compra_has_accesorios_id_accesorio(id_accesorio)
 ); 
 
+/*VISTA PARA TOMAR LOS DATOS DE LA SESIÓN DEL USUARIO EN LA APLICACIÓN WEB*/
 CREATE VIEW SESSION_USER_DATA AS
 SELECT id_usuario, nombre, correo_electronico, contraseña, codigo_tipo_usuario, codigo_estado_cuenta
 FROM USUARIOS; 
 
+/*VISTA PARA MOSTRAR EL TOTAL DE LA ÓRDEN DE COMPRA*/
+CREATE VIEW ORDER_SUMMARY AS 
+SELECT oc.id_orden, oc.id_cliente, oc.fecha_compra, oc.codigo_estado_compra, SUM(oca.precio_base) 'Subtotales', SUM(oca.descuento_venta) 'Descuentos aplicados', SUM(oca.impuestos_venta) 'IVA aplicado' ,SUM(oca.precio_final) 'Total'
+FROM ORDENES_COMPRA AS oc, ORDENES_COMPRA_HAS_ACCESORIOS AS oca
+WHERE oc.id_orden = oca.id_orden
+GROUP BY oca.id_orden; 
 
+SELECT oc.id_orden, u.nombre 'Nombre Comprador', u.nombre 'Nombre vendedor', oc.fecha_compra, oc.codigo_estado_compra, SUM(oca.precio_base) 'Subtotales', SUM(oca.descuento_venta) 'Descuentos aplicados', SUM(oca.impuestos_venta) 'IVA aplicado' ,SUM(oca.precio_final) 'Total'
+FROM ORDENES_COMPRA AS oc, ORDENES_COMPRA_HAS_ACCESORIOS AS oca, USUARIOS AS u
+WHERE 	oc.id_orden = oca.id_orden AND
+		oc.id_vendedor = u.id_usuario AND
+		oc.id_cliente = u.id_usuario
+GROUP BY oca.id_orden; 
+
+CREATE VIEW LOGS_PRETTY AS
+SELECT L.fecha_transaccion, JSON_PRETTY(L.estado_anterior) 'Estado anterior', JSON_PRETTY(L.estado_nuevo) 'Estado actual', TT.tipo_transaccion, TB.tabla 'Cambio en', U.nombre 'Responsable' 
+FROM LOGS as L, TIPOS_TRANSACCION as TT, TABLAS_EXISTENTES as TB, USUARIOS AS U
+WHERE 	L.codigo_tipo_transaccion = TT.codigo_tipo_transaccion AND
+		L.codigo_tabla_modificada = TB.codigo_tabla AND
+        L.id_usuario_responsable = U.id_usuario;  

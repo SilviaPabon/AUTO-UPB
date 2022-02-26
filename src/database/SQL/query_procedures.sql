@@ -14,13 +14,13 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE REGISTER_NEW_CLIENT(
-    nombre VARCHAR(255),
-    identificacion VARCHAR(24) ,
-    correo_electronico VARCHAR(255),
-    direccion VARCHAR(255) ,
-    telefono VARCHAR(12) ,
-    aceptacion_terminos TINYINT(1) UNSIGNED,  
-    contraseña VARCHAR(255)
+    IN nombre VARCHAR(255),
+    IN identificacion VARCHAR(24) ,
+    IN correo_electronico VARCHAR(255),
+    IN direccion VARCHAR(255) ,
+    IN telefono VARCHAR(12) ,
+    IN aceptacion_terminos TINYINT(1) UNSIGNED,  
+    IN contraseña VARCHAR(255)
 )
 BEGIN 
 	INSERT INTO USUARIOS(nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos, contraseña) VALUES (nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos, contraseña); 
@@ -28,7 +28,7 @@ END //
 
 DELIMITER ; 
 
-/*
+
 CALL REGISTER_NEW_CLIENT(
 	"Pedro Andrés Chaparro", 
     "1004251788", 
@@ -58,7 +58,7 @@ CALL REGISTER_NEW_CLIENT(
     1, 
     "passsssssss"
 ); 
-*/
+
 
 
 /* 
@@ -71,13 +71,12 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE UPDATE_EXISTING_USER(
-	-- id del usuario que tiene sesión en la aplicación para tomar el id del responsable del cambio
-	session_user_id INT UNSIGNED, 
-	id_usuario INT UNSIGNED, 
-    correo_electronico VARCHAR(255),
-    direccion VARCHAR(255) ,
-    telefono VARCHAR(12) ,
-    contraseña VARCHAR(255) 
+	IN session_user_id INT UNSIGNED, 
+	IN id_usuario INT UNSIGNED, 
+    IN correo_electronico VARCHAR(255),
+    IN direccion VARCHAR(255) ,
+    IN telefono VARCHAR(12) ,
+    IN contraseña VARCHAR(255) 
 )
 BEGIN 
 
@@ -114,9 +113,9 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE CHANGE_EXISTING_USER_STATUS(
-	session_user_id INT UNSIGNED, 
-	id_usuario INT UNSIGNED, 
-    estado_cuenta VARCHAR(32)
+	IN session_user_id INT UNSIGNED, 
+	IN id_usuario INT UNSIGNED, 
+    IN estado_cuenta VARCHAR(32)
 )
 BEGIN 
 
@@ -149,7 +148,7 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE USER_EXIST(
-	correo_electronico VARCHAR(255)
+	IN correo_electronico VARCHAR(255)
 )
 BEGIN 
 	SELECT COUNT(*) 'CONTEO' FROM USUARIOS
@@ -170,7 +169,7 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE GET_USER_SESSION_DATA_FROM_ID(
-	user_id INT UNSIGNED
+	IN user_id INT UNSIGNED
 )
 BEGIN 
 	SELECT * FROM SESSION_USER_DATA WHERE SESSION_USER_DATA.id_usuario = user_id; 
@@ -190,7 +189,7 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE GET_USER_SESSION_DATA_FROM_MAIL(
-	correo_electronico VARCHAR(255)
+	IN correo_electronico VARCHAR(255)
 )
 BEGIN 
 	SELECT * FROM SESSION_USER_DATA WHERE SESSION_USER_DATA.correo_electronico = correo_electronico; 
@@ -216,12 +215,12 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE ADD_NEW_ACCESSORY(
-	session_user_id INT UNSIGNED, 
-	nombre VARCHAR(64), 
-    descripcion VARCHAR(324), 
-    stock INT UNSIGNED,
-    precio_base DECIMAL(12,2), 
-    descuento TINYINT UNSIGNED
+	IN session_user_id INT UNSIGNED, 
+	IN nombre VARCHAR(64), 
+    IN descripcion VARCHAR(324), 
+    IN stock INT UNSIGNED,
+    IN precio_base DECIMAL(12,2), 
+    IN descuento TINYINT UNSIGNED
 )
 BEGIN 
 
@@ -267,13 +266,13 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE UPDATE_EXISTING_ACCESSORY(
-	session_user_id INT UNSIGNED, 
-	id_accesorio INT UNSIGNED, 
-    is_active TINYINT(1) UNSIGNED, 
-    nombre VARCHAR(64), 
-    descripcion VARCHAR(324), 
-    precio_base DECIMAL(12,2), 
-    descuento TINYINT UNSIGNED
+	IN session_user_id INT UNSIGNED, 
+	IN id_accesorio INT UNSIGNED, 
+    IN is_active TINYINT(1) UNSIGNED, 
+    IN nombre VARCHAR(64), 
+    IN descripcion VARCHAR(324), 
+    IN precio_base DECIMAL(12,2), 
+    IN descuento TINYINT UNSIGNED
 )
 BEGIN 
 
@@ -307,9 +306,9 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE ADD_INVENTORY_TO_EXISTING_ACCESSORY(
-	session_user_id INT UNSIGNED, 
-	id_accesorio INT UNSIGNED, 
-    new_units INT UNSIGNED
+	IN session_user_id INT UNSIGNED, 
+	IN id_accesorio INT UNSIGNED, 
+    IN new_units INT UNSIGNED
 )
 BEGIN 
 
@@ -341,9 +340,9 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE CHANGE_ACCESSORY_STATUS(
-	session_user_id INT UNSIGNED, 
-	id_accesorio INT UNSIGNED, 
-    is_active TINYINT(1) UNSIGNED
+	IN session_user_id INT UNSIGNED, 
+	IN id_accesorio INT UNSIGNED, 
+    IN is_active TINYINT(1) UNSIGNED
 )
 BEGIN 
 
@@ -364,6 +363,130 @@ PROCEDIMIENTOS PARA MANEJO DE ÓRDENES DE COMPRA
 
 /* 
 #######################################################
+PROCEDIMIENTOS PARA REGISTRAR UNA NUEVA ORDEN DE COMPRA
+OK
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE PROCEDURE REGISTER_NEW_BUY_ORDER(
+	IN session_user_id INT UNSIGNED,
+	IN id_cliente INT UNSIGNED
+)
+BEGIN 
+
+	IF session_user_id != id_cliente THEN
+		INSERT INTO ORDENES_COMPRA(id_cliente, id_vendedor, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES(id_cliente, session_user_id, session_user_id, session_user_id); 
+    ELSE
+		INSERT INTO ORDENES_COMPRA(id_cliente, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES(id_cliente, session_user_id, session_user_id); 
+    END IF;
+    
+END //
+
+DELIMITER ; 
+
+CALL REGISTER_NEW_BUY_ORDER(
+	1, 
+    1
+); 
+
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA RELACIONAR UN ACCESORIO CON LA ORDEN DE COMPRA
+OK
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE PROCEDURE RELATE_ACCESSORIE_WITH_BUY_ORDER(
+	IN session_user_id INT UNSIGNED,
+    IN id_orden INT UNSIGNED, 
+    IN id_accesorio INT UNSIGNED, 
+    IN cantidad_venta SMALLINT UNSIGNED
+)
+BEGIN 
+
+	/*SE OBTIENE EL PRECIO DEL ACCESORIO Y SU DESCUENTO AL MOMENTO DE LA VENTA*/
+    SELECT precio_base, descuento INTO @precio_base, @descuento
+    FROM ACCESORIOS 
+    WHERE ACCESORIOS.id_accesorio = id_accesorio; 
+    
+    /*SE CALCULAN LOS PRECIOS TOTALES SEGÚN LA CANTIDAD COMPRADA*/
+    SET @precio_base = @precio_base * cantidad_venta; 
+    SET @descuento = ((@precio_base * @descuento)/100); 
+    
+    /*SE CALCULA EL IVA*/
+    SET @taxes = (@precio_base - @descuento)*0.19; 
+    SET @precio_final = @precio_base - @descuento + @taxes; 
+    
+    /*SE INSERTAN TODOS LOS DATOS EN LA TABLA DE LA RELACIÓN M-M*/
+	INSERT INTO ORDENES_COMPRA_HAS_ACCESORIOS(id_orden, id_accesorio, cantidad_venta, precio_base, descuento_venta, impuestos_venta, precio_final, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (
+		id_orden, 
+        id_accesorio, 
+        cantidad_venta, 
+        @precio_base, 
+        @descuento, 
+        @taxes, 
+        @precio_final, 
+        session_user_id, 
+        session_user_id
+    ); 
+    
+    /*SE RESETEAN LAS VARIABLES*/
+    SET @precio_base = NULL; 
+    SET @descuento = NULL; 
+    SET @precio_final = NULL; 
+    SET @taxes = NULL; 
+    
+END //
+
+DELIMITER ; 
+
+
+CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
+	1, 
+    5, 
+    1, 
+    4
+); 
+
+CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
+	1, 
+    5,
+    2, 
+    3
+); 
+
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA MARCAR ORDEN DE COMPRA COMO RECIBIDA
+OK
+#######################################################
+*/
+
+DELIMITER //
+
+CREATE PROCEDURE MARK_ORDER_AS_RECEIVED(
+	IN session_user_id INT UNSIGNED,
+	IN id_orden INT UNSIGNED
+)
+BEGIN 
+
+	UPDATE ORDENES_COMPRA SET 
+		ORDENES_COMPRA.codigo_estado_compra = 2, 
+        ORDENES_COMPRA.id_usuario_ultima_modificacion = session_user_id
+	WHERE ORDENES_COMPRA.id_orden = id_orden; 
+    
+END //
+
+DELIMITER ; 
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE MENSAJES DE CLIENTES (MENSAJES DEL FORMULARIO)
 OK
 #######################################################
@@ -372,9 +495,9 @@ OK
 DELIMITER //
 
 CREATE PROCEDURE REGISTER_NEW_MESSAGE(
-	nombre_usuario VARCHAR(255), 
-    correo_usuario VARCHAR(255), 
-    texto_mensaje VARCHAR(324)
+	IN nombre_usuario VARCHAR(255), 
+    IN correo_usuario VARCHAR(255), 
+    IN texto_mensaje VARCHAR(324)
 )
 BEGIN 
 
@@ -401,8 +524,8 @@ Ok
 DELIMITER //
 
 CREATE PROCEDURE MARK_MESSAGE_AS_RESOLVED(
-	session_user_id INT UNSIGNED, 
-    id_mensaje INT UNSIGNED
+	IN session_user_id INT UNSIGNED, 
+    IN id_mensaje INT UNSIGNED
 )
 BEGIN 
 	    
