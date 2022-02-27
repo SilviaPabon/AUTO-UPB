@@ -8,7 +8,7 @@
 /*Títulos*/
 .title {
   color: white;
-  margin: 12px 0;
+  margin: 12px 0 16px 0;
 }
 
 .title--center {
@@ -24,10 +24,8 @@
   text-transform: uppercase;
   border-radius: 4px;
   color: white;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   text-decoration: none;
+  display: inline-block;
   margin: 8px 0;
   text-align: center;
   -webkit-transition: background-color 0.3s ease;
@@ -51,6 +49,11 @@
   background-color: #00388d;
 }
 
+.btn--card {
+  font-weight: 300;
+  padding: 0.6em 0.8em;
+}
+
 .btn--submit {
   padding: 0.8em 0.6em;
 }
@@ -58,6 +61,10 @@
 .btn--secondary {
   background-color: transparent;
   border: 1px solid #fff;
+}
+
+.btn--center {
+  margin: 8px auto;
 }
 
 .btn--block {
@@ -76,10 +83,18 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cards_container--center-items {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 16px;
+}
+
+.card__title {
+  font-size: 18px;
+  margin: 12px 0;
 }
 
 /*Formularios*/
@@ -131,6 +146,11 @@ label {
 
 .input--full-width {
   width: 100%;
+}
+
+.input--textarea {
+  resize: none;
+  height: 80px;
 }
 
 /* option: menu desplegable */
@@ -351,6 +371,60 @@ label {
   color: #0057FF;
 }
 
+.accessory_type_card {
+  width: 25%;
+  max-width: 340px;
+  min-width: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #100F12;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.accessory_type_card__image img {
+  width: 100%;
+}
+
+.accessory_type_card__body {
+  padding: 4px;
+  text-align: center;
+}
+
+.accessory_type_card:hover {
+  -webkit-box-shadow: #100F12 0 4px 16px;
+          box-shadow: #100F12 0 4px 16px;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.inventory_existing_accessories_card {
+  width: 25%;
+  max-width: 340px;
+  min-width: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #100F12;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.inventory_existing_accessories_card__image img {
+  width: 100%;
+}
+
+.inventory_existing_accessories_card__body {
+  padding: 0px 8px 8px 8px;
+  text-align: center;
+}
+
+.inventory_existing_accessories_card:hover {
+  -webkit-box-shadow: #100F12 0 4px 16px;
+          box-shadow: #100F12 0 4px 16px;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
 /*Global rulesets*/
 * {
   margin: 0;
@@ -378,7 +452,7 @@ body {
 main {
   margin-left: 200px;
   min-height: 100vh;
-  padding: 16px 8px;
+  padding: 16px 16px;
 }
 
 /*Clase para fijar el body cuando se abre el menú en mobile*/

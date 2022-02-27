@@ -3,7 +3,7 @@
 /*Títulos*/
 .title{
     color: white;
-    margin: 12px 0;
+    margin: 12px 0 16px 0;
 
     &--center{
         text-align: center;
@@ -20,8 +20,8 @@
     text-transform: uppercase;
     border-radius: 4px;
     color: white;
-    width: max-content;
     text-decoration: none;
+    display: inline-block;
     margin: 8px 0;
     text-align: center;
 
@@ -45,6 +45,11 @@
         background-color: #00388d;
     }
 
+    &--card{
+        font-weight: 300;
+        padding: 0.6em 0.8em;
+    }
+
     &--submit{
         padding: 0.8em 0.6em;
     }
@@ -52,6 +57,10 @@
     &--secondary{
         background-color: transparent;
         border: 1px solid $total_white; 
+    }
+
+    &--center{
+        margin: 8px auto;
     }
 
     &--block{
@@ -68,8 +77,16 @@
 .cards_container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 16px;
+
+    &--center-items{
+        justify-content: center;
+    }
+}
+
+.card__title{
+    font-size: $md;
+    margin: 12px 0;
 }
 
 /*Formularios*/
@@ -121,6 +138,11 @@ label{
 
     &--full-width{
         width: 100%;
+    }
+
+    &--textarea{
+        resize: none;
+        height: 80px;
     }
 }
 

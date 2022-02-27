@@ -4,13 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/styles/main.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap"
-            rel="stylesheet"
-        />
+        <%- include('../partials/_globalHeaders.ejs') %>
         <title>SIGNUP</title>
     </head>
     <body>
@@ -47,6 +41,7 @@
                             id="documento"
                             name="documento"
                             placeholder="Ingresa tu documento"
+                            min="0"
                         />
                         <p class="form-group__error-message">El número de documento solo puede tener números y debe tener de 6 a 14 números.</p>
                     </div>
@@ -75,6 +70,7 @@
                             type="number"
                             id="phone"
                             name="phone"
+                            min="0"
                             placeholder="Ingresa tu número de celular"
                         />
 
