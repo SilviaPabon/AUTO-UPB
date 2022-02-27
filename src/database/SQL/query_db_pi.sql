@@ -172,6 +172,10 @@ CREATE TABLE ORDENES_COMPRA_HAS_ACCESORIOS(
     INDEX ordenes_compra_has_accesorios_id_accesorio(id_accesorio)
 ); 
 
+/* ########################## */
+/* VISTAS */
+/* ########################## */
+
 /*VISTA PARA TOMAR LOS DATOS DE LA SESIÓN DEL USUARIO EN LA APLICACIÓN WEB*/
 CREATE VIEW SESSION_USER_DATA AS
 SELECT id_usuario, nombre, correo_electronico, contraseña, codigo_tipo_usuario, codigo_estado_cuenta
@@ -184,13 +188,16 @@ FROM ORDENES_COMPRA AS oc, ORDENES_COMPRA_HAS_ACCESORIOS AS oca
 WHERE oc.id_orden = oca.id_orden
 GROUP BY oca.id_orden; 
 
-SELECT oc.id_orden, u.nombre 'Nombre Comprador', u.nombre 'Nombre vendedor', oc.fecha_compra, oc.codigo_estado_compra, SUM(oca.precio_base) 'Subtotales', SUM(oca.descuento_venta) 'Descuentos aplicados', SUM(oca.impuestos_venta) 'IVA aplicado' ,SUM(oca.precio_final) 'Total'
-FROM ORDENES_COMPRA AS oc, ORDENES_COMPRA_HAS_ACCESORIOS AS oca, USUARIOS AS u
-WHERE 	oc.id_orden = oca.id_orden AND
-		oc.id_vendedor = u.id_usuario AND
-		oc.id_cliente = u.id_usuario
+/*VISTA PARA MOSTAR LAS ÓRDENES DE COMPRA DE MANERA "FÁCIL DE ENTENDER"*/
+CREATE VIEW ORDER_SUMMARY_PRETTY AS
+SELECT oc.id_orden, u1.nombre 'Nombre comprador', u2.nombre 'Nombre vendedor', oc.fecha_compra, oc.codigo_estado_compra, SUM(oca.precio_base) 'Subtotales', SUM(oca.descuento_venta) 'Descuentos aplicados', SUM(oca.impuestos_venta) 'IVA aplicado' ,SUM(oca.precio_final) 'Total'
+FROM (ORDENES_COMPRA AS oc, ORDENES_COMPRA_HAS_ACCESORIOS AS oca)
+LEFT JOIN USUARIOS AS u1 ON u1.id_usuario = oc.id_cliente
+LEFT JOIN USUARIOS AS u2 ON u2.id_usuario = oc.id_vendedor
+WHERE oc.id_orden = oca.id_orden 
 GROUP BY oca.id_orden; 
 
+/*VISTA PARA MOSTRAR LOS LOGS DE MANERA "FÁCIL DE ENTENDER"*/
 CREATE VIEW LOGS_PRETTY AS
 SELECT L.fecha_transaccion, JSON_PRETTY(L.estado_anterior) 'Estado anterior', JSON_PRETTY(L.estado_nuevo) 'Estado actual', TT.tipo_transaccion, TB.tabla 'Cambio en', U.nombre 'Responsable' 
 FROM LOGS as L, TIPOS_TRANSACCION as TT, TABLAS_EXISTENTES as TB, USUARIOS AS U

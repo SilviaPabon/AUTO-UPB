@@ -369,6 +369,7 @@ CREATE TRIGGER ORDENES_COMPRA_HAS_ACCESORIOS_entry_added AFTER INSERT ON ORDENES
 FOR EACH ROW
 BEGIN 
 
+	/*Se crea el registro en los logs*/ 
 	INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_nuevo) 
     VALUES (
     NEW.id_usuario_creacion,
@@ -386,7 +387,13 @@ BEGIN
         "id_usuario_ultima_modificacion", NEW.id_usuario_ultima_modificacion
 		)
 	); 
-
+    
+    /*Se actualiza el inventario y el número de artículos vendidos*/
+    UPDATE ACCESORIOS SET 
+		ACCESORIOS.stock = ACCESORIOS.stock - NEW.cantidad_venta,
+		ACCESORIOS.unidades_vendidas = ACCESORIOS.unidades_vendidas + NEW.cantidad_venta
+    WHERE ACCESORIOS.id_accesorio = NEW.id_accesorio; 
+    
 END //
 
 DELIMITER ;

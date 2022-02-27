@@ -386,10 +386,12 @@ END //
 
 DELIMITER ; 
 
+/*
 CALL REGISTER_NEW_BUY_ORDER(
-	1, 
+	3, 
     1
 ); 
+*/
 
 
 /* 
@@ -445,21 +447,21 @@ END //
 
 DELIMITER ; 
 
-
+/*
 CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
 	1, 
-    5, 
+    1, 
     1, 
     4
 ); 
 
 CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
 	1, 
-    5,
+    1,
     2, 
     3
 ); 
-
+*/
 
 /* 
 #######################################################
