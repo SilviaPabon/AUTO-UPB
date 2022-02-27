@@ -11,6 +11,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS REGISTER_NEW_CLIENT; 
 DELIMITER //
 
 CREATE PROCEDURE REGISTER_NEW_CLIENT(
@@ -68,6 +69,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS UPDATE_EXISTING_USER; 
 DELIMITER //
 
 CREATE PROCEDURE UPDATE_EXISTING_USER(
@@ -110,19 +112,18 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS CHANGE_EXISTING_USER_STATUS; 
 DELIMITER //
 
 CREATE PROCEDURE CHANGE_EXISTING_USER_STATUS(
 	IN session_user_id INT UNSIGNED, 
 	IN id_usuario INT UNSIGNED, 
-    IN estado_cuenta VARCHAR(32)
+    IN codigo_estado_cuenta INT UNSIGNED
 )
 BEGIN 
-
-	SELECT codigo_estado_cuenta INTO @codigo_estado_cuenta FROM TIPOS_ESTADO_CUENTA WHERE TIPOS_ESTADO_CUENTA.estado_cuenta = estado_cuenta; 
     
     UPDATE USUARIOS SET 
-		USUARIOS.codigo_estado_cuenta = @codigo_estado_cuenta, 
+		USUARIOS.codigo_estado_cuenta = codigo_estado_cuenta, 
         USUARIOS.id_usuario_ultima_modificacion = session_user_id
 	WHERE USUARIOS.id_usuario = id_usuario; 
     
@@ -134,7 +135,7 @@ DELIMITER ;
 CALL CHANGE_EXISTING_USER_STATUS(
 	2, 
 	1, 
-    "Fuera de servicio"
+    3
 ); 
 */
 
@@ -145,6 +146,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS USER_EXIST; 
 DELIMITER //
 
 CREATE PROCEDURE USER_EXIST(
@@ -166,6 +168,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS GET_USER_SESSION_DATA_FROM_ID; 
 DELIMITER //
 
 CREATE PROCEDURE GET_USER_SESSION_DATA_FROM_ID(
@@ -186,6 +189,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS GET_USER_SESSION_DATA_FROM_MAIL; 
 DELIMITER //
 
 CREATE PROCEDURE GET_USER_SESSION_DATA_FROM_MAIL(
@@ -212,6 +216,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS ADD_NEW_ACCESSORY; 
 DELIMITER //
 
 CREATE PROCEDURE ADD_NEW_ACCESSORY(
@@ -263,6 +268,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS UPDATE_EXISTING_ACCESSORY; 
 DELIMITER //
 
 CREATE PROCEDURE UPDATE_EXISTING_ACCESSORY(
@@ -296,6 +302,18 @@ END //
 
 DELIMITER ;
 
+/*
+CALL UPDATE_EXISTING_ACCESSORY(
+	3, 
+    1, 
+    1, 
+    "Rines de lujo plateados cromados", 
+    "Juego de 4 Rines de 18 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo.", 
+    2600000, 
+    28
+); 
+*/
+
 /* 
 #######################################################
 PROCEDIMIENTO PARA AGREGAR INVENTARIO DE UN PRODUCTO EXISTENTE
@@ -303,6 +321,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS ADD_INVENTORY_TO_EXISTING_ACCESSORY; 
 DELIMITER //
 
 CREATE PROCEDURE ADD_INVENTORY_TO_EXISTING_ACCESSORY(
@@ -321,11 +340,12 @@ END //
 
 DELIMITER ;
 
+
 /*
 CALL ADD_INVENTORY_TO_EXISTING_ACCESSORY(
 	3, 
-	2, 
-    15
+	1, 
+    400
 );  
 */
 
@@ -337,6 +357,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS CHANGE_ACCESSORY_STATUS; 
 DELIMITER //
 
 CREATE PROCEDURE CHANGE_ACCESSORY_STATUS(
@@ -355,6 +376,14 @@ END //
 
 DELIMITER ;
 
+/*
+CALL CHANGE_ACCESSORY_STATUS(
+	2, 
+    2, 
+    0
+); 
+*/
+
 /* 
 #######################################################
 PROCEDIMIENTOS PARA MANEJO DE ÓRDENES DE COMPRA
@@ -368,6 +397,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS REGISTER_NEW_BUY_ORDER; 
 DELIMITER //
 
 CREATE PROCEDURE REGISTER_NEW_BUY_ORDER(
@@ -401,6 +431,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS RELATE_ACCESSORIE_WITH_BUY_ORDER; 
 DELIMITER //
 
 CREATE PROCEDURE RELATE_ACCESSORIE_WITH_BUY_ORDER(
@@ -449,14 +480,14 @@ DELIMITER ;
 
 /*
 CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
-	1, 
+	3, 
     1, 
     1, 
     4
 ); 
 
 CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
-	1, 
+	3, 
     1,
     2, 
     3
@@ -470,6 +501,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS MARK_ORDER_AS_RECEIVED; 
 DELIMITER //
 
 CREATE PROCEDURE MARK_ORDER_AS_RECEIVED(
@@ -487,6 +519,13 @@ END //
 
 DELIMITER ; 
 
+/*
+CALL MARK_ORDER_AS_RECEIVED(
+	1, 
+    1
+); 
+*/
+
 /* 
 #######################################################
 PROCEDIMIENTOS PARA MANEJO DE MENSAJES DE CLIENTES (MENSAJES DEL FORMULARIO)
@@ -494,6 +533,7 @@ OK
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS REGISTER_NEW_MESSAGE; 
 DELIMITER //
 
 CREATE PROCEDURE REGISTER_NEW_MESSAGE(
@@ -511,8 +551,9 @@ DELIMITER ;
 
 /*
 CALL REGISTER_NEW_MESSAGE(
-	"Hola", 
-    2
+	"Carolina Gutierrez", 
+    "caro@gmail.com", 
+    "Hola, me comunico con ustedes para solicitar..."
 );  
 */
 
@@ -523,6 +564,7 @@ Ok
 #######################################################
 */
 
+DROP PROCEDURE IF EXISTS MARK_MESSAGE_AS_RESOLVED; 
 DELIMITER //
 
 CREATE PROCEDURE MARK_MESSAGE_AS_RESOLVED(
