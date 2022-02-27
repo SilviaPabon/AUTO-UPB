@@ -148,6 +148,7 @@ CREATE TABLE ORDENES_COMPRA(
 CREATE TABLE HISTORICO_FACTURAS(
 	id_factura INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
     id_orden INT UNSIGNED NOT NULL, 
+    productos JSON,
     
     CONSTRAINT fk_facturas_ordenes FOREIGN KEY (id_factura) REFERENCES ORDENES_COMPRA(id_orden)
 ); 
@@ -196,6 +197,12 @@ LEFT JOIN USUARIOS AS u1 ON u1.id_usuario = oc.id_cliente
 LEFT JOIN USUARIOS AS u2 ON u2.id_usuario = oc.id_vendedor
 WHERE oc.id_orden = oca.id_orden 
 GROUP BY oca.id_orden; 
+
+/*VISTA PARA VER LOS ACCESORIOS DE LAS ÓRDENES DE COMPRA DE MANERA "FÁCIL DE ENTENDER"*/
+CREATE VIEW BILL_DETAILS_PRETTY AS
+SELECT oca.id_orden, a.nombre 'nombre_accesorio', oca.cantidad_venta 'cantidad_comprada', oca.precio_base, oca.descuento_venta 'descuento_aplicado', oca.impuestos_venta 'impuestos_aplicados', oca.precio_final
+FROM ORDENES_COMPRA_HAS_ACCESORIOS as oca, ACCESORIOS as a
+WHERE oca.id_accesorio = a.id_accesorio; 
 
 /*VISTA PARA MOSTRAR LOS LOGS DE MANERA "FÁCIL DE ENTENDER"*/
 CREATE VIEW LOGS_PRETTY AS

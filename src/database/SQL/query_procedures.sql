@@ -639,6 +639,47 @@ CALL MARK_ORDER_AS_RECEIVED(
 
 /* 
 #######################################################
+PROCEDIMIENTOS PARA MANEJO DE FACTURAS
+#######################################################
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA CREAR EL REGISTRO DE LA FACTURA LUEGO DE CREAR LA ÓRDEN DE COMPRA
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS facture_add; 
+DELIMITER //
+
+CREATE PROCEDURE facture_add(
+	IN id_orden INT UNSIGNED
+)
+BEGIN 
+    
+    /*Insertar el JSON en la tabla de facturas*/
+    INSERT INTO HISTORICO_FACTURAS(id_orden, productos) VALUES (
+		id_orden, 
+        (SELECT JSON_ARRAYAGG(JSON_OBJECT(
+			"Accesorio", nombre_accesorio, 
+			"Cantidad", cantidad_comprada, 
+			"Precio Base", precio_base, 
+			"Descuento Aplicado", descuento_aplicado, 
+			"Impuestos Aplicados", impuestos_aplicados, 
+			"Precio Final", precio_final
+			))
+		FROM BILL_DETAILS_PRETTY
+		WHERE BILL_DETAILS_PRETTY.id_orden = id_orden)
+	);
+ 
+END//
+
+DELIMITER ;
+
+CALL facture_add(1); 
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE MENSAJES DE CLIENTES (MENSAJES DEL FORMULARIO)
 OK
 #######################################################
