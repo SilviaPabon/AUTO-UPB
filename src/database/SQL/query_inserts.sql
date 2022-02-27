@@ -29,7 +29,8 @@ INSERT INTO TABLAS_EXISTENTES(tabla) VALUES
 ("ORDENES_COMPRA"), 
 ("ACCESORIOS"), 
 ("HISTORICO_CAMBIO_PRECIOS"),
-("ORDENES_COMPRA_HAS_ACCESORIOS"); 
+("ORDENES_COMPRA_HAS_ACCESORIOS"),
+("FACTURAS"); 
 
 INSERT INTO ACCESORIOS (id_usuario_creacion, id_usuario_ultima_modificacion, nombre, descripcion, stock, precio_base, descuento, precio_final, ruta_imagen) VALUES
 (1, 1,"Rin cromado plateado 18in","Juego de 4 Rines de 18 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo.",20,2200000,5,2090000,"/Rin_cromado_plateado_18in.jpg"),
@@ -47,6 +48,9 @@ INSERT INTO ACCESORIOS (id_usuario_creacion, id_usuario_ultima_modificacion, nom
 (1, 1,"Asiento mediano para niños","Silla acolchada de tamaño mediano hecha de poliéster para niños. Permite a los niños descansar de manera segura y cómoda en el viaje. Peso máximo recomendado de 40Kg. La silla es fácil de transportar y trasladar gracias a su tamaño y peso.",10,380000,0,380000,"/Asiento_mediano_para_niños.jpg"),
 (1, 1,"Asiento grande para niños","Silla acolchada de tamaño grande hecha de poliéster para niños. Permite a los niños descansar de manera segura y cómoda en el viaje. Peso máximo recomendado de 55Kg",10,400000,0,400000,"/Asiento_grande_para_niños.jpg"); 
 
+SELECT * FROM TIPOS_TRANSACCION; 
+SELECT * FROM TABLAS_EXISTENTES; 
+
 SELECT * FROM ACCESORIOS; 
 SELECT * FROM HISTORICO_CAMBIO_PRECIOS; 
 
@@ -60,7 +64,7 @@ SELECT * FROM MENSAJES_INQUIETUDES;
 SELECT * FROM LOGS; 
 SELECT * FROM LOGS_PRETTY; 
 
-SELECT * FROM ORDENES_COMPRA; 
+SELECT * FROM ORDENES_COMPRA;  
 SELECT * FROM ORDENES_COMPRA_HAS_ACCESORIOS;
 SELECT * FROM ORDER_SUMMARY; 
 SELECT * FROM ORDER_SUMMARY_PRETTY; 

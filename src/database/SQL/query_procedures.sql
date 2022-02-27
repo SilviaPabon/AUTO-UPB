@@ -467,7 +467,9 @@ END//
 
 DELIMITER ;
 
+/*
 CALL SHOW_TOP_SALES(); 
+*/
 
 /* 
 #######################################################
@@ -493,7 +495,9 @@ END//
 
 DELIMITER ;
 
+/*
 CALL SHOW_ACCESSORY_DETAILS(3); 
+*/
 
 /* 
 #######################################################
@@ -589,6 +593,7 @@ END //
 
 DELIMITER ; 
 
+
 /*
 CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
 	3, 
@@ -601,7 +606,7 @@ CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
 	3, 
     1,
     2, 
-    3
+    7
 ); 
 */
 
@@ -653,12 +658,13 @@ DROP PROCEDURE IF EXISTS facture_add;
 DELIMITER //
 
 CREATE PROCEDURE facture_add(
+	IN session_user_id INT UNSIGNED,
 	IN id_orden INT UNSIGNED
 )
 BEGIN 
     
     /*Insertar el JSON en la tabla de facturas*/
-    INSERT INTO HISTORICO_FACTURAS(id_orden, productos) VALUES (
+    INSERT INTO HISTORICO_FACTURAS(id_orden, productos, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (
 		id_orden, 
         (SELECT JSON_ARRAYAGG(JSON_OBJECT(
 			"Accesorio", nombre_accesorio, 
@@ -669,14 +675,18 @@ BEGIN
 			"Precio Final", precio_final
 			))
 		FROM BILL_DETAILS_PRETTY
-		WHERE BILL_DETAILS_PRETTY.id_orden = id_orden)
+		WHERE BILL_DETAILS_PRETTY.id_orden = id_orden), 
+        session_user_id, 
+        session_user_id
 	);
  
 END//
 
 DELIMITER ;
 
-CALL facture_add(1); 
+/*
+CALL facture_add(3, 1); 
+*/
 
 /* 
 #######################################################

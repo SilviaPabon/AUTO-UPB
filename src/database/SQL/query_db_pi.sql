@@ -149,7 +149,11 @@ CREATE TABLE HISTORICO_FACTURAS(
 	id_factura INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
     id_orden INT UNSIGNED NOT NULL, 
     productos JSON,
+	id_usuario_creacion INT UNSIGNED NOT NULL, 
+    id_usuario_ultima_modificacion INT UNSIGNED NOT NULL, 
     
+    CONSTRAINT FOREIGN KEY fk_factura_usuario_creacion (id_usuario_creacion) REFERENCES USUARIOS(id_usuario), 
+    CONSTRAINT FOREIGN KEY fk_factura_usuario_modificacion (id_usuario_ultima_modificacion) REFERENCES USUARIOS(id_usuario), 
     CONSTRAINT fk_facturas_ordenes FOREIGN KEY (id_factura) REFERENCES ORDENES_COMPRA(id_orden)
 ); 
 
@@ -205,9 +209,10 @@ FROM ORDENES_COMPRA_HAS_ACCESORIOS as oca, ACCESORIOS as a
 WHERE oca.id_accesorio = a.id_accesorio; 
 
 /*VISTA PARA MOSTRAR LOS LOGS DE MANERA "FÁCIL DE ENTENDER"*/
+DROP VIEW IF EXISTS LOGS_PRETTY;
 CREATE VIEW LOGS_PRETTY AS
-SELECT L.fecha_transaccion, JSON_PRETTY(L.estado_anterior) 'Estado anterior', JSON_PRETTY(L.estado_nuevo) 'Estado actual', TT.tipo_transaccion, TB.tabla 'Cambio en', U.nombre 'Responsable' 
-FROM LOGS as L, TIPOS_TRANSACCION as TT, TABLAS_EXISTENTES as TB, USUARIOS AS U
+SELECT L.fecha_transaccion, JSON_PRETTY(L.estado_anterior) 'Estado anterior', JSON_PRETTY(L.estado_nuevo) 'Estado actual', TT.tipo_transaccion, TB.tabla 'Cambio en', u.nombre 'Responsable' 
+FROM (LOGS as L, TIPOS_TRANSACCION as TT, TABLAS_EXISTENTES as TB)
+LEFT JOIN USUARIOS AS u ON u.id_usuario = L.id_usuario_responsable
 WHERE 	L.codigo_tipo_transaccion = TT.codigo_tipo_transaccion AND
-		L.codigo_tabla_modificada = TB.codigo_tabla AND
-        L.id_usuario_responsable = U.id_usuario;  
+		L.codigo_tabla_modificada = TB.codigo_tabla;
