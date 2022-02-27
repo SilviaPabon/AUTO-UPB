@@ -386,6 +386,117 @@ CALL CHANGE_ACCESSORY_STATUS(
 
 /* 
 #######################################################
+PROCEDIMIENTOS PARA MOSTRAR LOS ACCESORIOS EXISTENTES
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_ACCESSORIES; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_ACCESSORIES(
+
+)
+BEGIN 
+
+	SELECT id_accesorio, nombre, stock, precio_final, ruta_imagen 
+    FROM ACCESORIOS 
+    WHERE is_active = 1; 
+    
+
+END// 
+
+DELIMITER ;
+
+/*
+CALL SHOW_ACCESSORIES(); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA MOSTRAR LOS 12 ACCESORIOS CON MÁS DESCUENTO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_TOP_DISCOUNT; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_TOP_DISCOUNT(
+
+)
+BEGIN 
+
+	SELECT id_accesorio, nombre, precio_base, descuento, precio_final, ruta_imagen
+    FROM ACCESORIOS 
+    WHERE 
+		is_active = 1 AND 
+		descuento > 0
+    ORDER BY descuento DESC
+    LIMIT 12; 
+    
+
+END// 
+
+DELIMITER ;
+
+/* CALL SHOW_TOP_DISCOUNT(); */
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA MOSTRAR LOS 12 ACCESORIOS MÁS VENDIDOS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_TOP_SALES; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_TOP_SALES(
+
+)
+BEGIN 
+
+	SELECT id_accesorio, nombre, precio_final, unidades_vendidas, ruta_imagen
+    FROM ACCESORIOS 
+    WHERE 
+		is_active = 1 AND
+        unidades_vendidas > 0
+    ORDER BY unidades_vendidas DESC
+    LIMIT 12; 
+    
+
+END// 
+
+DELIMITER ;
+
+CALL SHOW_TOP_SALES(); 
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA MOSTRAR LOS DETALLES DE UN ACCESORIO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_ACCESSORY_DETAILS; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_ACCESSORY_DETAILS(
+	IN id_accesorio INT UNSIGNED
+)
+BEGIN 
+
+	SELECT id_accesorio, nombre, descripcion, stock, precio_base, descuento, precio_final, unidades_vendidas, ruta_imagen
+    FROM ACCESORIOS 
+    WHERE 
+		is_active = 1 AND
+        ACCESORIOS.id_accesorio = id_accesorio; 
+        
+END// 
+
+DELIMITER ;
+
+CALL SHOW_ACCESSORY_DETAILS(3); 
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE ÓRDENES DE COMPRA
 #######################################################
 */
