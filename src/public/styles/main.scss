@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Roboto; 
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+
 @import './base/globals';
 @import './components/components'; 
 @import './layouts/nav'; 
