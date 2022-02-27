@@ -106,11 +106,11 @@ DELIMITER ;
 /* 
 #######################################################
 Trigger para registrar la eliminación de un usuario
-PREGUNTAR SOBRE ESTE TRIGGER
+Desde la aplicación no habrá manera de eliminar usuarios, sin embargo, se registrar el delete
+si se hace por algún otro medio.
 #######################################################
 */
 
-/*
 DELIMITER //
 
 CREATE TRIGGER user_removed AFTER DELETE ON USUARIOS
@@ -118,9 +118,8 @@ FOR EACH ROW
 BEGIN 
     
     -- Guardar el log
-    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
+    INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
     VALUES (
-		@session_user_id, 
 		4, 
 		1, 
         JSON_OBJECT(
@@ -133,16 +132,15 @@ BEGIN
             "aceptación_términos", OLD.aceptacion_terminos, 
             "contraseña", OLD.contraseña, 
             "código_tipo_usuario", OLD.codigo_tipo_usuario, 
-            "código_estado_cuenta", OLD.codigo_estado_cuenta
+            "código_estado_cuenta", OLD.codigo_estado_cuenta, 
+			"id_usuario_creacion", OLD.id_usuario_creacion, 
+			"id_usuario_ultima_modificacion", OLD.id_usuario_ultima_modificacion
         )
 	); 
-    
-    SET @session_user_id = NULL; 
 
 END //
 
 DELIMITER ; 
-*/
 
 /* 
 #######################################################
@@ -246,11 +244,12 @@ DELIMITER ;
 /* 
 #######################################################
 Trigger para registrar la eliminación de un accesorio
-PREGUNTAR SOBRE ESTE TRIGGER
+Desde la aplicación no habrá manera de eliminar accesorios, sin embargo, se registrar el delete
+si se hace por algún otro medio.
 #######################################################
 */
 
-/*
+DROP TRIGGER IF EXISTS product_deleted; 
 DELIMITER //
 
 CREATE TRIGGER product_deleted AFTER DELETE ON ACCESORIOS
@@ -258,27 +257,28 @@ FOR EACH ROW
 BEGIN 
 	
     -- Guardar el log
-    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
+    INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
     VALUES (
-		OLD.id_usuario_ultima_modificacion,
 		4,
 		4, 
 		JSON_OBJECT(
 			"id_accesorio", OLD.id_accesorio,
-            "nombre", OLD.nombre, 
-            "descripcion", OLD.descripcion, 
-            "stock", OLD.stock, 
-            "precio_base", OLD.precio_base, 
-            "descuento", OLD.descuento, 
-            "unidades_vendidas", OLD.unidades_vendidas)
+			"is_active", OLD.is_active, 
+			"nombre", OLD.nombre, 
+			"descripcion", OLD.descripcion, 
+			"stock", OLD.stock, 
+			"precio_base", OLD.precio_base, 
+			"descuento", OLD.descuento, 
+			"unidades_vendidas", OLD.unidades_vendidas, 
+			"id_usuario_creacion", OLD.id_usuario_creacion, 
+			"id_usuario_ultima_modificacion", OLD.id_usuario_ultima_modificacion
+            )
 	); 
-    
-    SET @session_user_id = NULL; 
     
 END //
 
 DELIMITER ; 
-*/
+
 
 /* 
 #######################################################
@@ -350,6 +350,40 @@ BEGIN
         "id_usuario_creacion", NEW.id_usuario_creacion, 
         "id_usuario_ultima_modificacion", NEW.id_usuario_ultima_modificacion
 		)
+	); 
+    
+END //
+
+DELIMITER ; 
+
+/* 
+#######################################################
+Trigger para registrar la eliminación de una orden de compra
+Desde la aplicación no habrá manera de eliminar una orden de compra, sin embargo, se registrar el delete
+si se hace por algún otro medio.
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS order_deleted; 
+DELIMITER //
+
+CREATE TRIGGER order_deleted AFTER DELETE ON ORDENES_COMPRA
+FOR EACH ROW
+BEGIN 
+	
+    -- Guardar el log
+    INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
+    VALUES (
+		4,
+		3, 
+		JSON_OBJECT(
+				"id_orden", OLD.id_orden, 
+				"id_cliente", OLD.id_cliente, 
+				"fecha_compra", OLD.fecha_compra, 
+				"codigo_estado_compra", OLD.codigo_estado_compra, 
+				"id_usuario_creacion", OLD.id_usuario_creacion, 
+				"id_usuario_ultima_modificacion", OLD.id_usuario_ultima_modificacion
+            )
 	); 
     
 END //
@@ -445,9 +479,78 @@ DELIMITER ;
 
 /* 
 #######################################################
+Trigger para registrar la eliminación en la tabla ORDENES_COMPRA_HAS_ACCESORIOS
+Desde la aplicación no habrá manera de eliminar un registro en la tabla ORDENES_COMPRA_HAS_ACCESORIOS, 
+sin embargo, se registrar el delete si se hace por algún otro medio.
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS ORDER_HAS_ACCESSORY_DELETED; 
+DELIMITER //
+
+CREATE TRIGGER ORDER_HAS_ACCESSORY_DELETED AFTER DELETE ON ORDENES_COMPRA_HAS_ACCESORIOS
+FOR EACH ROW
+BEGIN 
+	
+    -- Guardar el log
+    INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
+    VALUES (
+		4,
+		6, 
+		JSON_OBJECT(
+				"id_orden", OLD.id_orden, 
+				"id_accesorio", OLD.id_accesorio, 
+				"cantidad_venta", OLD.cantidad_venta, 
+				"precio_base", OLD.precio_base, 
+				"descuento", OLD.descuento_venta, 
+				"impuestos_venta", OLD.impuestos_venta, 
+				"precio_final", OLD.precio_final, 
+				"id_usuario_creacion", OLD.id_usuario_creacion, 
+				"id_usuario_ultima_modificacion", OLD.id_usuario_ultima_modificacion
+            )
+	); 
+    
+END //
+
+DELIMITER ; 
+
+/* 
+#######################################################
 TRIGGERS PARA MANEJO DE MENSAJES ENVIADOS POR EL FORMULARIO
 #######################################################
 */
+
+/* 
+#######################################################
+TRIGGERS PARA REGISTRAR LA CREACIÓN DE UN MENSAJE DESDE EL FORMULARIO DE CONTACTO
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS MENSAJES_INQUIETUDES_CREATED; 
+DELIMITER //
+
+CREATE TRIGGER MENSAJES_INQUIETUDES_CREATED AFTER INSERT ON MENSAJES_INQUIETUDES
+FOR EACH ROW
+BEGIN 
+
+	/*Se crea el registro en los logs*/ 
+	INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_nuevo) 
+    VALUES (
+    1,
+    2,
+    JSON_OBJECT(
+			"id_mensaje", NEW.id_mensaje, 
+            "nombre_remitente", NEW.nombre_remitente, 
+            "correo_remitente", NEW.correo_remitente, 
+            "texto_mensaje", NEW.texto_mensaje, 
+            "codigo_estado_mensaje", NEW.codigo_estado_mensaje, 
+            "id_usuario_ultima_modificacion", NEW.id_usuario_ultima_modificacion
+		)
+	); 
+	
+END //
+
+DELIMITER ;
 
 /* 
 #######################################################
@@ -490,6 +593,105 @@ END //
 
 DELIMITER ; 
 
+/* 
+#######################################################
+Trigger para registrar la eliminación en la tabla ORDENES_COMPRA_HAS_ACCESORIOS
+Desde la aplicación no habrá manera de eliminar un registro en la tabla ORDENES_COMPRA_HAS_ACCESORIOS, 
+sin embargo, se registrar el delete si se hace por algún otro medio.
+#######################################################
+*/
 
+DROP TRIGGER IF EXISTS message_deleted; 
+DELIMITER //
 
+CREATE TRIGGER message_deleted AFTER DELETE ON MENSAJES_INQUIETUDES
+FOR EACH ROW
+BEGIN 
+	
+    -- Guardar el log
+    INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
+    VALUES (
+		4,
+		2, 
+		JSON_OBJECT(
+				"id_mensaje", OLD.id_mensaje, 
+				"nombre_remitente", OLD.nombre_remitente, 
+				"correo_remitente", OLD.correo_remitente, 
+				"texto_mensaje", OLD.texto_mensaje, 
+				"codigo_estado_mensaje", OLD.codigo_estado_mensaje, 
+				"id_usuario_ultima_modificacion", OLD.id_usuario_ultima_modificacion
+            )
+	); 
+    
+END //
 
+DELIMITER ; 
+
+/* 
+#######################################################
+TRIGGERS PARA MANEJO DE FACTURAS
+#######################################################
+*/
+
+/* 
+#######################################################
+TRIGGERS PARA REGISTRAR LA CREACIÓN DE UNA FACTURA
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS BILL_CREATED; 
+DELIMITER //
+
+CREATE TRIGGER BILL_CREATED AFTER INSERT ON HISTORICO_FACTURAS
+FOR EACH ROW
+BEGIN 
+
+	/*Se crea el registro en los logs*/ 
+	INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_nuevo, id_usuario_responsable) 
+    VALUES (
+    1,
+    7,
+    JSON_OBJECT(
+			"id_factura", NEW.id_factura, 
+            "id_orden", NEW.id_orden, 
+            "productos", NEW.productos, 
+            "id_usuario_creacion", NEW.id_usuario_creacion, 
+            "id_usuario_ultima_modificacion", NEW.id_usuario_ultima_modificacion
+		), 
+	NEW.id_usuario_creacion
+	); 
+	
+END //
+
+DELIMITER ;
+
+/* 
+#######################################################
+TRIGGERS PARA REGISTRAR LA ELIMINACIÓN DE UNA FACTURA
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS BILL_DELETED; 
+DELIMITER //
+
+CREATE TRIGGER BILL_DELETED AFTER DELETE ON HISTORICO_FACTURAS
+FOR EACH ROW
+BEGIN 
+	
+    -- Guardar el log
+    INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
+    VALUES (
+		4,
+		7, 
+		JSON_OBJECT(
+				"id_factura", OLD.id_factura, 
+				"id_orden", OLD.id_orden, 
+				"productos", OLD.productos, 
+				"id_usuario_creacion", OLD.id_usuario_creacion, 
+				"id_usuario_ultima_modificacion", OLD.id_usuario_ultima_modificacion
+            )
+	); 
+    
+END //
+
+DELIMITER ; 
