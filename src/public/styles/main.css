@@ -425,6 +425,55 @@ label {
           transform: scale(1.02);
 }
 
+.accessory-basic-card {
+  width: 30%;
+  max-width: 340px;
+  min-width: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #100F12;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.accessory-basic-card__image img {
+  width: 100%;
+}
+
+.accessory-basic-card__body {
+  padding: 0px 8px 8px 8px;
+  text-align: center;
+}
+
+.accessory-basic-card__body .price {
+  display: inline-block;
+  font-weight: 300;
+  margin: 4px 4px 12px 0;
+}
+
+.accessory-basic-card__body .price span {
+  color: #95A0BB;
+  margin: 4px;
+}
+
+.accessory-basic-card__btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.accessory-basic-card:hover {
+  -webkit-box-shadow: #100F12 0 4px 16px;
+          box-shadow: #100F12 0 4px 16px;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
 /*Global rulesets*/
 * {
   margin: 0;
