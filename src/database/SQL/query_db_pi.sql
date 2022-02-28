@@ -95,6 +95,7 @@ CREATE TABLE ACCESORIOS(
     nombre VARCHAR(64) NOT NULL, 
     descripcion VARCHAR(324) NOT NULL, 
     stock INT UNSIGNED NOT NULL, 
+    precio_ultima_compra DECIMAL(12,2) NOT NULL COMMENT 'Precio al que la emrpesa compró el accesorio a los proveedores', 
     precio_base DECIMAL(12,2) NOT NULL COMMENT 'Precio inicial del artículo sin descuento', 
     descuento TINYINT UNSIGNED NOT NULL COMMENT 'Porcentaje actual de descuento', 
     precio_final DECIMAL(12,2) NOT NULL COMMENT 'Precio_base - precio_base*descuento', 
@@ -164,6 +165,7 @@ CREATE TABLE TIPOS_MOVIMIENTO_FINANCIERO(
 
 CREATE TABLE HISTORICO_INGRESOS_GASTOS(
 	id_registro_ingreso_gasto INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+    fecha_movimiento TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     codigo_tipo_movimiento INT UNSIGNED NOT NULL, 
     valor_movimiento DECIMAL(12,2) NOT NULL, 
 	id_usuario_creacion INT UNSIGNED NOT NULL, 

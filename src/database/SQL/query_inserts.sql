@@ -30,34 +30,36 @@ INSERT INTO TABLAS_EXISTENTES(tabla) VALUES
 ("ACCESORIOS"), 
 ("HISTORICO_CAMBIO_PRECIOS"),
 ("ORDENES_COMPRA_HAS_ACCESORIOS"),
-("FACTURAS"); 
+("FACTURAS"), 
+("HISTORICO_INGRESOS_GASTOS"); 
 
 INSERT INTO TIPOS_MOVIMIENTO_FINANCIERO(movimiento) VALUES
 ('Ingreso por venta'), 
 ('Gasto por pago a proveedores'), 
 ('Gasto por devolución'); 
 
-INSERT INTO ACCESORIOS (id_usuario_creacion, id_usuario_ultima_modificacion, nombre, descripcion, stock, precio_base, descuento, precio_final, ruta_imagen) VALUES
-(1, 1,"Rin cromado plateado 18in","Juego de 4 Rines de 18 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo.",20,2200000,5,2090000,"/Rin_cromado_plateado_18in.jpg"),
-(1, 1,"Rin cromado plateado 24in" ,"Juego de 4 Rines de 24 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20,2350000,5,2232500,"/Rin_cromado_plateado_24in.jpg"),
-(1, 1,"Rin cromado plateado 26in","Juego de 4 Rines de 26 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20,2500000,5,2375000,"/Rin_cromado_plateado_26in.jpg"),
-(1, 1,"Rin cromado dorado 16in","Juego de 4 Rines de 16 pulgadas con cromado de aleación de aluminio de alta resistencia (color dorado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20,1995000,5,1895250,"/Rin_cromado_dorado_16in.jpg"),
-(1, 1,"Rin cromado dorado 24in","Juego de 4 Rines de 24 pulgadas con cromado de aleación de aluminio de alta resistencia (color dorado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20,2300000,5,2185000,"/Rin_cromado_dorado_24in.jpg"),
-(1, 1,"Cubierta negra para carro","Cubierta de tela negra impermeable para carros. Permite prevenir daños por rayos UV, polvo, nieve, escarcha, lluvia, etc. Se incluye estuche para guardar la cubierta. ",40,320000,25,240000,"/Cubierta_negra_para_carro.jpg"),
-(1, 1,"Cubierta gris para carro","Cubierta de tela gris impermeable para carros. Permite prevenir daños por rayos UV, polvo, nieve, escarcha, lluvia, etc. Se incluye estuche para guardar la cubierta. ",40,320000,25,240000,"/Cubierta_gris_para_carro.jpg"),
-(1, 1,"Funda de tela para volante","Funda decorativa de tela para volante. Mejora la experiencia de conducción, añade personalización al interior del vehículo, protege las manos del contacto directo con volantes directos fríos o calientes y protege el volante original del desgaste. ",15,100000,0,100000,"/Funda_de_tela_para_volante.jpg"),
-(1, 1,"Funda negra para volante","Funda decorativa de piel de PVC para volante. Mejora la experiencia de conducción, añade personalización al interior del vehículo, protege las manos del contacto directo con volantes directos fríos o calientes y protege el volante original del desgaste. ",30,140000,0,140000,"/Funda_negra_para_volante.jpg"),
-(1, 1,"Funda de cuero azul para volante","Funda decorativa de cuero tintado azul para volante. Mejora la experiencia de conducción, añade personalización al interior del vehículo, protege las manos del contacto directo con volantes directos fríos o calientes y protege el volante original del desgaste. ",30,180000,0,180000,"/Funda_de_cuero_azul_para_volante.jpg"),
-(1, 1,"Dados decorativos para interior","Dados de peluche decorativos para espejo retrovisor de carro. Hechos de tela de piel sintética suave y con costuras de alta calidad.  ",20,75000,20,60000,"/Dados_decorativios_para_interior.jpg"),
-(1, 1,"Asiento pequeño para bebé","Silla de poliéster acolchada para bebés. Permite a los bebés descansar de manera segura y cómoda en el viaje. Peso máximo recomendado de 30Kg. La silla es fácil de transportar y trasladar gracias a su tamaño y peso.",15,360000,15,306000,"/Asiento_pequeño_para_bebé.jpg"),
-(1, 1,"Asiento mediano para niños","Silla acolchada de tamaño mediano hecha de poliéster para niños. Permite a los niños descansar de manera segura y cómoda en el viaje. Peso máximo recomendado de 40Kg. La silla es fácil de transportar y trasladar gracias a su tamaño y peso.",10,380000,0,380000,"/Asiento_mediano_para_niños.jpg"),
-(1, 1,"Asiento grande para niños","Silla acolchada de tamaño grande hecha de poliéster para niños. Permite a los niños descansar de manera segura y cómoda en el viaje. Peso máximo recomendado de 55Kg",10,400000,0,400000,"/Asiento_grande_para_niños.jpg"); 
+INSERT INTO ACCESORIOS (id_usuario_creacion, id_usuario_ultima_modificacion, nombre, descripcion, stock, precio_ultima_compra, precio_base, descuento, precio_final, ruta_imagen) VALUES
+(1, 1,"Rin cromado plateado 18in","Juego de 4 Rines de 18 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo.",20, 1600000,2200000,5,2090000,"/Rin_cromado_plateado_18in.jpg"),
+(1, 1,"Rin cromado plateado 24in" ,"Juego de 4 Rines de 24 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20, 1600000, 2350000,5,2232500,"/Rin_cromado_plateado_24in.jpg"),
+(1, 1,"Rin cromado plateado 26in","Juego de 4 Rines de 26 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20, 1600000, 2500000,5,2375000,"/Rin_cromado_plateado_26in.jpg"),
+(1, 1,"Rin cromado dorado 16in","Juego de 4 Rines de 16 pulgadas con cromado de aleación de aluminio de alta resistencia (color dorado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20, 1600000, 1995000,5,1895250,"/Rin_cromado_dorado_16in.jpg"),
+(1, 1,"Rin cromado dorado 24in","Juego de 4 Rines de 24 pulgadas con cromado de aleación de aluminio de alta resistencia (color dorado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20, 1600000, 2300000,5,2185000,"/Rin_cromado_dorado_24in.jpg"),
+(1, 1,"Cubierta negra para carro","Cubierta de tela negra impermeable para carros. Permite prevenir daños por rayos UV, polvo, nieve, escarcha, lluvia, etc. Se incluye estuche para guardar la cubierta. ",40, 220000, 320000,25,240000,"/Cubierta_negra_para_carro.jpg"),
+(1, 1,"Cubierta gris para carro","Cubierta de tela gris impermeable para carros. Permite prevenir daños por rayos UV, polvo, nieve, escarcha, lluvia, etc. Se incluye estuche para guardar la cubierta. ",40, 220000,320000,25,240000,"/Cubierta_gris_para_carro.jpg"),
+(1, 1,"Funda de tela para volante","Funda decorativa de tela para volante. Mejora la experiencia de conducción, añade personalización al interior del vehículo, protege las manos del contacto directo con volantes directos fríos o calientes y protege el volante original del desgaste. ",15, 65000,100000,0,100000,"/Funda_de_tela_para_volante.jpg"),
+(1, 1,"Funda negra para volante","Funda decorativa de piel de PVC para volante. Mejora la experiencia de conducción, añade personalización al interior del vehículo, protege las manos del contacto directo con volantes directos fríos o calientes y protege el volante original del desgaste. ",30, 80000,140000,0,140000,"/Funda_negra_para_volante.jpg"),
+(1, 1,"Funda de cuero azul para volante","Funda decorativa de cuero tintado azul para volante. Mejora la experiencia de conducción, añade personalización al interior del vehículo, protege las manos del contacto directo con volantes directos fríos o calientes y protege el volante original del desgaste. ",30, 95000,180000,0,180000,"/Funda_de_cuero_azul_para_volante.jpg"),
+(1, 1,"Dados decorativos para interior","Dados de peluche decorativos para espejo retrovisor de carro. Hechos de tela de piel sintética suave y con costuras de alta calidad.  ",20, 35000,75000,20,60000,"/Dados_decorativios_para_interior.jpg"),
+(1, 1,"Asiento pequeño para bebé","Silla de poliéster acolchada para bebés. Permite a los bebés descansar de manera segura y cómoda en el viaje. Peso máximo recomendado de 30Kg. La silla es fácil de transportar y trasladar gracias a su tamaño y peso.",15, 240000,360000,15,306000,"/Asiento_pequeño_para_bebé.jpg"),
+(1, 1,"Asiento mediano para niños","Silla acolchada de tamaño mediano hecha de poliéster para niños. Permite a los niños descansar de manera segura y cómoda en el viaje. Peso máximo recomendado de 40Kg. La silla es fácil de transportar y trasladar gracias a su tamaño y peso.",10, 260000,380000,0,380000,"/Asiento_mediano_para_niños.jpg"),
+(1, 1,"Asiento grande para niños","Silla acolchada de tamaño grande hecha de poliéster para niños. Permite a los niños descansar de manera segura y cómoda en el viaje. Peso máximo recomendado de 55Kg",10, 280000,400000,0,400000,"/Asiento_grande_para_niños.jpg"); 
 
 SELECT * FROM TIPOS_TRANSACCION; 
 SELECT * FROM TABLAS_EXISTENTES; 
 
 SELECT * FROM ACCESORIOS; 
 SELECT * FROM HISTORICO_CAMBIO_PRECIOS; 
+SELECT * FROM HISTORICO_INGRESOS_GASTOS; 
 
 SELECT * FROM USUARIOS; 
 SELECT * FROM SESSION_USER_DATA; 
