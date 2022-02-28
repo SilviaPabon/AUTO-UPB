@@ -32,6 +32,11 @@ INSERT INTO TABLAS_EXISTENTES(tabla) VALUES
 ("ORDENES_COMPRA_HAS_ACCESORIOS"),
 ("FACTURAS"); 
 
+INSERT INTO TIPOS_MOVIMIENTO_FINANCIERO(movimiento) VALUES
+('Ingreso por venta'), 
+('Gasto por pago a proveedores'), 
+('Gasto por devolución'); 
+
 INSERT INTO ACCESORIOS (id_usuario_creacion, id_usuario_ultima_modificacion, nombre, descripcion, stock, precio_base, descuento, precio_final, ruta_imagen) VALUES
 (1, 1,"Rin cromado plateado 18in","Juego de 4 Rines de 18 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo.",20,2200000,5,2090000,"/Rin_cromado_plateado_18in.jpg"),
 (1, 1,"Rin cromado plateado 24in" ,"Juego de 4 Rines de 24 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo. ",20,2350000,5,2232500,"/Rin_cromado_plateado_24in.jpg"),
