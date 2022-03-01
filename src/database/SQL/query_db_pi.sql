@@ -118,7 +118,9 @@ CREATE TABLE HISTORICO_CAMBIO_PRECIOS(
     fecha_cambio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     precio_asignado DECIMAL(12,2) NOT NULL COMMENT 'Nuevo precio asignado al artículo', 
     id_accesorio INT UNSIGNED NOT NULL, 
+	id_usuario_responsable INT UNSIGNED NOT NULL,
     
+    CONSTRAINT FOREIGN KEY fk_historico_precios_modificador (id_usuario_responsable) REFERENCES USUARIOS(id_usuario), 
     CONSTRAINT fk_historico_cambio_precios_accesorios FOREIGN KEY (id_accesorio) REFERENCES ACCESORIOS(id_accesorio), 
     
     INDEX historico_cambio_precios_id_accesorio(id_accesorio)
