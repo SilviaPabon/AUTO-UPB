@@ -172,6 +172,7 @@ BEGIN
 		"nombre", NEW.nombre, 
 		"descripcion", NEW.descripcion, 
 		"stock", NEW.stock, 
+        "precio_ultima_compra", NEW.precio_ultima_compra,
 		"precio_base", NEW.precio_base, 
 		"descuento", NEW.descuento, 
 		"unidades_vendidas", NEW.unidades_vendidas, 
@@ -181,7 +182,15 @@ BEGIN
     ); 
     
     -- También se agrega el registro al histórico de precios
-    INSERT INTO HISTORICO_CAMBIO_PRECIOS(precio_asignado, id_accesorio) VALUES (NEW.precio_base, NEW.id_accesorio); 
+    INSERT INTO HISTORICO_CAMBIO_PRECIOS(precio_asignado, id_accesorio, id_usuario_responsable) VALUES (NEW.precio_base, NEW.id_accesorio, NEW.id_usuario_creacion); 
+    
+        -- Se añade el registro a la tabla de ingresos y gastos
+    INSERT INTO HISTORICO_INGRESOS_GASTOS (codigo_tipo_movimiento, valor_movimiento, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (
+		2, 
+        NEW.precio_ultima_compra * NEW.stock,
+        NEW.id_usuario_creacion, 
+        NEW.id_usuario_ultima_modificacion
+    ); 
         
 END //
 
@@ -194,6 +203,7 @@ OK
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS product_modified; 
 DELIMITER //
 
 CREATE TRIGGER product_modified AFTER UPDATE ON ACCESORIOS
@@ -234,8 +244,18 @@ BEGIN
     
      -- Si el nuevo precio es diferente, se añade al histórico de precios
     IF OLD.precio_base != NEW.precio_base THEN 
-		INSERT INTO HISTORICO_CAMBIO_PRECIOS(precio_asignado, id_accesorio) VALUES (NEW.precio_base, NEW.id_accesorio); 
+		INSERT INTO HISTORICO_CAMBIO_PRECIOS(precio_asignado, id_accesorio, id_usuario_responsable) VALUES (NEW.precio_base, NEW.id_accesorio, NEW.id_usuario_ultima_modificacion); 
 	END IF;
+    
+    -- Si el stock es diferente, se añade al registro de gastos
+    IF  (CAST(NEW.stock AS SIGNED) - CAST(OLD.stock AS SIGNED))  > OLD.STOCK THEN 
+		    INSERT INTO HISTORICO_INGRESOS_GASTOS (codigo_tipo_movimiento, valor_movimiento, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (
+				2, 
+				NEW.precio_ultima_compra * (NEW.stock - OLD.stock),
+				NEW.id_usuario_creacion, 
+				NEW.id_usuario_ultima_modificacion
+			); 
+    END IF; 
         
 END //
 
@@ -312,7 +332,7 @@ BEGIN
         "id_usuario_ultima_modificacion", NEW.id_usuario_ultima_modificacion
 		)
 	); 
-    
+        
 END //
 
 DELIMITER ; 
@@ -427,6 +447,14 @@ BEGIN
 		ACCESORIOS.stock = ACCESORIOS.stock - NEW.cantidad_venta,
 		ACCESORIOS.unidades_vendidas = ACCESORIOS.unidades_vendidas + NEW.cantidad_venta
     WHERE ACCESORIOS.id_accesorio = NEW.id_accesorio; 
+
+	/*Se añade el ingreso a la tabla de histórico*/
+	INSERT INTO HISTORICO_INGRESOS_GASTOS (codigo_tipo_movimiento, valor_movimiento, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (
+		1, 
+		NEW.precio_final, 
+		NEW.id_usuario_creacion, 
+		NEW.id_usuario_ultima_modificacion
+	); 
     
 END //
 
@@ -695,3 +723,158 @@ BEGIN
 END //
 
 DELIMITER ; 
+
+/* 
+#######################################################
+TRIGGERS PARA MANEJO DE INGIRESOS Y GASTOS
+#######################################################
+*/
+
+/* 
+#######################################################
+TRIGGERS PARA REGISTRAR LA CREACIÓN DE UNA ENTRADA
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS incomes_expenses_row_added; 
+DELIMITER //
+
+CREATE TRIGGER  incomes_expenses_row_added AFTER INSERT ON HISTORICO_INGRESOS_GASTOS
+FOR EACH ROW
+BEGIN 
+
+	/*Se crea el registro en los logs*/ 
+	INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_nuevo, id_usuario_responsable) 
+    VALUES (
+    1,
+    8,
+    JSON_OBJECT(
+			"id_registro_ingreso_gasto", NEW.id_registro_ingreso_gasto, 
+            "codigo_tipo_movimiento", NEW.codigo_tipo_movimiento, 
+            "valor_movimiento", NEW.valor_movimiento, 
+            "id_usuario_creacion", NEW.id_usuario_creacion, 
+            "id_usuario_ultima_modificacion", NEW.id_usuario_ultima_modificacion
+		), 
+	NEW.id_usuario_creacion
+	); 
+	
+END //
+
+DELIMITER ;
+
+/* 
+#######################################################
+TRIGGERS PARA REGISTRAR LA MODIFICACIÓN DE UNA ENTRADA
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS incomes_expenses_row_modified; 
+DELIMITER //
+
+CREATE TRIGGER  incomes_expenses_row_modified AFTER UPDATE ON HISTORICO_INGRESOS_GASTOS
+FOR EACH ROW
+BEGIN 
+
+	/*Se crea el registro en los logs*/ 
+	INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior, estado_nuevo, id_usuario_responsable) 
+    VALUES (
+    3,
+    8,
+    JSON_OBJECT(
+			"id_registro_ingreso_gasto", OLD.id_registro_ingreso_gasto, 
+            "codigo_tipo_movimiento", OLD.codigo_tipo_movimiento, 
+            "valor_movimiento", OLD.valor_movimiento, 
+            "id_usuario_creacion", OLD.id_usuario_creacion, 
+            "id_usuario_ultima_modificacion", OLD.id_usuario_ultima_modificacion
+		), 
+    JSON_OBJECT(
+			"id_registro_ingreso_gasto", NEW.id_registro_ingreso_gasto, 
+            "codigo_tipo_movimiento", NEW.codigo_tipo_movimiento, 
+            "valor_movimiento", NEW.valor_movimiento, 
+            "id_usuario_creacion", NEW.id_usuario_creacion, 
+            "id_usuario_ultima_modificacion", NEW.id_usuario_ultima_modificacion
+		), 
+	NEW.id_usuario_ultima_modificacion
+	); 
+	
+END //
+
+DELIMITER ;
+
+/* 
+#######################################################
+TRIGGERS PARA MANEJO DE LA TABLA DE HISTÓRICO DE PRECIOS
+#######################################################
+*/
+
+/* 
+#######################################################
+TRIGGERS PARA REGISTRAR LA CREACIÓN DE UNA NUEVA ENTRADA EN LA TABLA DE HISTÓRICO DE PRECIOS
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS HISTORICO_PRECIOS_ADDED; 
+DELIMITER //
+
+CREATE TRIGGER HISTORICO_PRECIOS_ADDED AFTER INSERT ON HISTORICO_CAMBIO_PRECIOS
+FOR EACH ROW
+BEGIN 
+
+	/*Se crea el registro en los logs*/ 
+	INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_nuevo, id_usuario_responsable) 
+    VALUES (
+    1,
+    9,
+    JSON_OBJECT(
+			"id_registro_cambio", NEW.id_registro_cambio, 
+            "fecha_cambio", NEW.fecha_cambio, 
+            "precio_asignado", NEW.precio_asignado, 
+            "id_accesorio", NEW.id_accesorio, 
+            "id_usuario_responsable", NEW.id_usuario_responsable
+		), 
+	NEW.id_usuario_responsable
+	); 
+        
+END //
+
+DELIMITER ;
+
+/* 
+#######################################################
+TRIGGERS PARA REGISTRAR LA MODIFICACIÓN DE UNA ENTRADA EN LA TABLA DE HISTÓRICO DE PRECIOS
+#######################################################
+*/
+
+DROP TRIGGER IF EXISTS HISTORICO_PRECIOS_MODIFIED; 
+DELIMITER //
+
+CREATE TRIGGER  HISTORICO_PRECIOS_MODIFIED AFTER UPDATE ON HISTORICO_CAMBIO_PRECIOS
+FOR EACH ROW
+BEGIN 
+
+	/*Se crea el registro en los logs*/ 
+	INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior, estado_nuevo, id_usuario_responsable) 
+    VALUES (
+    3,
+    9,
+    JSON_OBJECT(
+			"id_registro_cambio", OLD.id_registro_cambio, 
+            "fecha_cambio", OLD.fecha_cambio, 
+            "precio_asignado", OLD.precio_asignado, 
+            "id_accesorio", OLD.id_accesorio, 
+            "id_usuario_responsable", OLD.id_usuario_responsable
+		), 
+    JSON_OBJECT(
+			"id_registro_cambio", NEW.id_registro_cambio, 
+            "fecha_cambio", NEW.fecha_cambio, 
+            "precio_asignado", NEW.precio_asignado, 
+            "id_accesorio", NEW.id_accesorio, 
+            "id_usuario_responsable", NEW.id_usuario_responsable
+		), 
+	NEW.id_usuario_responsable
+	); 
+	
+END //
+
+DELIMITER ;
+
