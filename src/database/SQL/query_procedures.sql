@@ -248,6 +248,7 @@ CREATE PROCEDURE ADD_NEW_ACCESSORY(
 	IN nombre VARCHAR(64), 
     IN descripcion VARCHAR(324), 
     IN stock INT UNSIGNED,
+    IN precio_compra DECIMAL(12,2), 
     IN precio_base DECIMAL(12,2), 
     IN descuento TINYINT UNSIGNED
 )
@@ -258,10 +259,11 @@ BEGIN
     -- Se escribe la ruta de la imagen a partir del nombre del accesorio
     SET @ruta_imagen = CONCAT(CONCAT('/', REPLACE(nombre, ' ', '_')), '.jpg'); 
     -- Se inserntan los datos. 
-	INSERT INTO ACCESORIOS(nombre, descripcion, stock, precio_base, descuento, precio_final, ruta_imagen, id_usuario_creacion, id_usuario_ultima_modificacion)
+	INSERT INTO ACCESORIOS(nombre, descripcion, stock, precio_ultima_compra, precio_base, descuento, precio_final, ruta_imagen, id_usuario_creacion, id_usuario_ultima_modificacion)
     VALUES (nombre, 
 			descripcion, 
             stock, 
+            precio_compra, 
             precio_base, 
             descuento, 
             @precio_final, 
@@ -280,6 +282,7 @@ CALL ADD_NEW_ACCESSORY(
 	"Rin cromado plateado 18in", 
 	"Juego de 4 Rines de 18 pulgadas con cromado de aleación de aluminio de alta resistencia (color plateado). Proporciona frenadas más eficiente, mejora la refrigeración de los discos de frenado, protege las suspensión del vehículo y mejora la apariencia del vehículo.", 
 	20, 
+    1600000,
     2200000, 
     5
 ); 
@@ -351,13 +354,15 @@ DELIMITER //
 CREATE PROCEDURE ADD_INVENTORY_TO_EXISTING_ACCESSORY(
 	IN session_user_id INT UNSIGNED, 
 	IN id_accesorio INT UNSIGNED, 
+    IN precio_compra DECIMAL(12,2), 
     IN new_units INT UNSIGNED
 )
 BEGIN 
 
     UPDATE ACCESORIOS SET 
 		ACCESORIOS.stock = ACCESORIOS.stock + new_units, 
-        ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
+        ACCESORIOS.id_usuario_ultima_modificacion = session_user_id, 
+        ACCESORIOS.precio_ultima_compra = precio_compra
 	WHERE ACCESORIOS.id_accesorio = id_accesorio; 
     
 END //
@@ -368,8 +373,9 @@ DELIMITER ;
 /*
 CALL ADD_INVENTORY_TO_EXISTING_ACCESSORY(
 	3, 
-	1, 
-    400
+	11, 
+    20000, 
+    80
 );  
 */
 

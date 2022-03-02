@@ -95,6 +95,7 @@ CREATE TABLE ACCESORIOS(
     nombre VARCHAR(64) NOT NULL, 
     descripcion VARCHAR(324) NOT NULL, 
     stock INT UNSIGNED NOT NULL, 
+    precio_ultima_compra DECIMAL(12,2) NOT NULL COMMENT 'Precio al que la emrpesa compró el accesorio a los proveedores', 
     precio_base DECIMAL(12,2) NOT NULL COMMENT 'Precio inicial del artículo sin descuento', 
     descuento TINYINT UNSIGNED NOT NULL COMMENT 'Porcentaje actual de descuento', 
     precio_final DECIMAL(12,2) NOT NULL COMMENT 'Precio_base - precio_base*descuento', 
@@ -117,7 +118,9 @@ CREATE TABLE HISTORICO_CAMBIO_PRECIOS(
     fecha_cambio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     precio_asignado DECIMAL(12,2) NOT NULL COMMENT 'Nuevo precio asignado al artículo', 
     id_accesorio INT UNSIGNED NOT NULL, 
+	id_usuario_responsable INT UNSIGNED NOT NULL,
     
+    CONSTRAINT FOREIGN KEY fk_historico_precios_modificador (id_usuario_responsable) REFERENCES USUARIOS(id_usuario), 
     CONSTRAINT fk_historico_cambio_precios_accesorios FOREIGN KEY (id_accesorio) REFERENCES ACCESORIOS(id_accesorio), 
     
     INDEX historico_cambio_precios_id_accesorio(id_accesorio)
@@ -155,6 +158,27 @@ CREATE TABLE HISTORICO_FACTURAS(
     CONSTRAINT FOREIGN KEY fk_factura_usuario_creacion (id_usuario_creacion) REFERENCES USUARIOS(id_usuario), 
     CONSTRAINT FOREIGN KEY fk_factura_usuario_modificacion (id_usuario_ultima_modificacion) REFERENCES USUARIOS(id_usuario), 
     CONSTRAINT fk_facturas_ordenes FOREIGN KEY (id_factura) REFERENCES ORDENES_COMPRA(id_orden)
+); 
+
+CREATE TABLE TIPOS_MOVIMIENTO_FINANCIERO(
+	codigo_movimiento INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+    movimiento VARCHAR(255) NOT NULL COMMENT 'Los movimientos pueden ser Ingreso por venta, Gasto por pago a proveedores o Gasto por devolución'
+); 
+
+CREATE TABLE HISTORICO_INGRESOS_GASTOS(
+	id_registro_ingreso_gasto INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+    fecha_movimiento TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    codigo_tipo_movimiento INT UNSIGNED NOT NULL, 
+    valor_movimiento DECIMAL(12,2) NOT NULL, 
+	id_usuario_creacion INT UNSIGNED NOT NULL, 
+    id_usuario_ultima_modificacion INT UNSIGNED NOT NULL, 
+    
+    INDEX historico_ingresos_gastos_tipo_movimiento(codigo_tipo_movimiento),
+    INDEX historico_ingresos_gastos_valor_movimiento(valor_movimiento), 
+    
+	CONSTRAINT FOREIGN KEY fk_historico_ingresos_gastos_usuario_creacion (id_usuario_creacion) REFERENCES USUARIOS(id_usuario), 
+    CONSTRAINT FOREIGN KEY fk_historico_ingresos_gastos_usuario_modificacion (id_usuario_ultima_modificacion) REFERENCES USUARIOS(id_usuario), 
+    CONSTRAINT FOREIGN KEY fk_historico_ingresos_gastos_tipo_movimiento (codigo_tipo_movimiento) REFERENCES TIPOS_MOVIMIENTO_FINANCIERO(codigo_movimiento)
 ); 
 
 CREATE TABLE ORDENES_COMPRA_HAS_ACCESORIOS(
