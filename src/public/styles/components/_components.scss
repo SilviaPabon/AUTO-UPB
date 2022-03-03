@@ -24,6 +24,7 @@
     display: inline-block;
     margin: 8px 0;
     text-align: center;
+    font-weight: bold;
 
     transition: background-color 0.3s ease;
 
@@ -210,13 +211,3 @@ label{
     background-color: #00ff22;
 }
 
-.alert__close {
-    border: transparent;
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    padding: 2px;
-    background-color: $very_dark;
-    border-radius: 4px;
-    padding: 0.2em 0.6em;
-}

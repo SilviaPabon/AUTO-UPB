@@ -70,8 +70,8 @@
         .menu-toggle {
             display: block; 
 
-            i{
-                font-size: $lg;
+            .icon img{
+                width: 20px;
             }
         }
     }
