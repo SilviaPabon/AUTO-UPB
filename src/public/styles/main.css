@@ -4,6 +4,12 @@
   src: url("../fonts/Roboto-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: Roboto-Thin;
+  src: url("../fonts/Roboto-Thin.ttf") format("truetype");
+  font-weight: lighter;
+}
+
 /* ######## Colors ########*/
 /*Primary colors*/
 /*Secondary colors*/
@@ -14,6 +20,7 @@
 .title {
   color: white;
   margin: 12px 0 16px 0;
+  font-size: 32px;
 }
 
 .title--center {
@@ -375,6 +382,79 @@ label {
   color: #0057FF;
 }
 
+.hero-services {
+  /*Contenedor principal, contiene la imágen del vehículo*/
+  min-height: 65vh;
+  padding: 8px 16px 16px 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-image: url("/images/home_header.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-services__services-container {
+  /*Contenedor inferior de los servicios*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 50%;
+}
+
+.hero-services__service {
+  /*Contenedor de cada servicio*/
+  width: 30%;
+  min-width: 240px;
+  max-width: 360px;
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /*El segundo elemento tiene bordes para indicar separación*/
+}
+
+.hero-services__service:nth-child(2) {
+  border-left: 1px solid rgba(255, 255, 255, 0.774);
+  border-right: 1px solid rgba(255, 255, 255, 0.774);
+}
+
+.hero-services__service h3 {
+  text-align: center;
+  margin: 8px;
+}
+
+.hero-services__service p {
+  text-align: center;
+  font-family: Roboto-Thin;
+}
+
 .accessory_type_card {
   width: 25%;
   max-width: 340px;
@@ -514,6 +594,7 @@ main {
   position: sticky;
 }
 
+/*PARA CELULARES*/
 @media (max-width: 768px) {
   main {
     margin-left: 0px;
@@ -594,6 +675,65 @@ main {
   }
   .aside-navigation .menu-toggle .icon img {
     width: 20px;
+  }
+  /*#########*/
+  /*CONTENEDOR DE LOS SERVICIOS EN EL HOME*/
+  /*#########*/
+  .hero-services {
+    /*Contenedor principal, contiene la imágen del vehículo*/
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    min-height: 100vh;
+    padding: 8px 24px 24px 24px;
+  }
+  .hero-services__title-container {
+    height: 45vh;
+  }
+  .hero-services__services-container {
+    /*Contenedor inferior de los servicios*/
+    gap: 8px;
+  }
+  .hero-services__service {
+    width: 100%;
+    /*Contenedor de cada servicio*/
+    border-bottom: 1px solid rgba(255, 255, 255, 0.774);
+    /*El segundo elemento tiene bordes para indicar separación*/
+  }
+  .hero-services__service:nth-child(2) {
+    border-left: 1px transparent;
+    border-right: 1px transparent;
+  }
+  .hero-services__service h3 {
+    font-size: 16px;
+  }
+  .hero-services__service p {
+    font-size: 14px;
+  }
+}
+
+/* PARA TABLETS*/
+@media (max-width: 992px) {
+  /*#########*/
+  /*CONTENEDOR DE LOS SERVICIOS EN EL HOME*/
+  /*#########*/
+  .hero-services {
+    /*Contenedor principal, contiene la imágen del vehículo*/
+    min-height: 80vh;
+    background-image: url("/images/home_header--medium.jpg");
+  }
+  .hero-services__services-container {
+    /*Contenedor inferior de los servicios*/
+    gap: 8px;
+  }
+  .hero-services__service {
+    /*Contenedor de cada servicio*/
+    border-bottom: 1px solid rgba(255, 255, 255, 0.774);
+    /*El segundo elemento tiene bordes para indicar separación*/
+  }
+  .hero-services__service:nth-child(2) {
+    border-left: 1px transparent;
+    border-right: 1px transparent;
   }
 }
 /*# sourceMappingURL=main.css.map */
