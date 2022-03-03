@@ -19,7 +19,7 @@
 
                     <form action="#" method="post">
                         <input class="input input--search" type="text" id="clientName" name="clientName" placeholder="Buscar un usuario por su nombre">
-                        <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO">
+                        <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO" disabled>
                     </form>
                 </div>
 
@@ -34,34 +34,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>XXXXXXXXX</th>
-                            <th>Pedro Andrés Chaparro Quintero</th>
-                            <th>pedroandreschaparro@gmail.com</th>
-                            <th>Activo.</th>
-                            <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
-                        </tr>
-                        <tr>
-                            <th>XXXXXXXXX</th>
-                            <th>Pedro Andrés Chaparro Quintero</th>
-                            <th>pedroandreschaparro@gmail.com</th>
-                            <th>Activo.</th>
-                            <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
-                        </tr>
-                        <tr>
-                            <th>XXXXXXXXX</th>
-                            <th>Pedro Andrés Chaparro Quintero</th>
-                            <th>pedroandreschaparro@gmail.com</th>
-                            <th>Activo.</th>
-                            <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
-                        </tr>
-                        <tr>
-                            <th>XXXXXXXXX</th>
-                            <th>Pedro Andrés Chaparro Quintero</th>
-                            <th>pedroandreschaparro@gmail.com</th>
-                            <th>Activo.</th>
-                            <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
-                        </tr>
+                        <% if(data.users[0].length != 0) {%>
+                            <% for(var i=0; i < data.users[0].length; i++) { %>
+                                <tr>
+                                    <th><%= data.users[0][i].identificacion %></th>
+                                    <th><%= data.users[0][i].nombre %></th>
+                                    <th><%= data.users[0][i].correo_electronico %></th>
+                                    <th><%= data.users[0][i].estado_cuenta %></th>
+                                    <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
+                                </tr>
+                            <% } %>
+                        <% } %>
                     </tbody>
                 </table>
                 
