@@ -25,4 +25,8 @@ controller.inventory_add_existing_id = (req, res) => {
     res.render('admin/existing_accessory');   
 }; 
 
+controller.accounts = (req, res) => {
+    res.render('admin/existing_accounts'); 
+}
+
 module.exports = controller; 

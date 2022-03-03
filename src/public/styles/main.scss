@@ -33,6 +33,10 @@ body{
     border-right: 1px solid $very_dark;
 }
 
+.body--light{
+    background-color: $total_white;
+}
+
 main{
     margin-left: 200px;
     min-height: 100vh;

@@ -20,6 +20,10 @@
   text-align: center;
 }
 
+.title--black {
+  color: #000;
+}
+
 /*Botones*/
 .btn {
   border: 1px solid transparent;
@@ -76,6 +80,12 @@
 .btn--block {
   display: block;
   width: 100%;
+}
+
+.btn--full-width {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .btn--no-radius {
@@ -159,6 +169,11 @@ label {
   height: 80px;
 }
 
+.input--search {
+  min-width: 240px;
+  margin-right: 8px;
+}
+
 /* option: menu desplegable */
 .option {
   color: #303030;
@@ -212,6 +227,36 @@ label {
 
 .alert--success {
   background-color: #00ff22;
+}
+
+/*CONTAINER PARA MOSTRAR TÍTULO E INPUT DE BÚSQUEDA EN EL TOP*/
+.title-search-peer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+/*TABLA GENÉRICA*/
+.generic-table {
+  border-collapse: collapse;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.generic-table th {
+  color: black;
+  padding: 12px 32px;
+}
+
+.generic-table th, .generic-table td {
+  border: 1px solid #B1B1B1;
+}
+
+.generic-table tbody tr:nth-child(odd) {
+  background-color: #ccd2db;
 }
 
 .aside-navigation {
@@ -500,6 +545,10 @@ body {
   margin: 0px auto;
   border-left: 1px solid #100F12;
   border-right: 1px solid #100F12;
+}
+
+.body--light {
+  background-color: #fff;
 }
 
 main {
