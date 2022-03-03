@@ -1,3 +1,4 @@
+/* HERO DE SERVICIOS OFRECIDOS POR LA EMPRESA*/
 .hero-services{
     /*Contenedor principal, contiene la imágen del vehículo*/
     min-height: 65vh;
@@ -50,6 +51,7 @@
     }
 }
 
+/*SECTIONS DE PRODUCTOS MÁS VENDIDOS Y PRODUCTOS CON DESCUENTO*/
 .featured-product-card, 
 .disscount-products-card {
     
@@ -102,7 +104,6 @@
 
 }
 
-
 .disscount-products-card{
 
     position: relative;
@@ -120,3 +121,40 @@
     }
 }
 
+/*SECTION DE CONTACTO*/
+.contact-us{
+
+    background-color: $partial_grey;
+    padding: 32px;
+    border-radius: 16px;
+
+    .contact-card{
+        width: 30%;
+        min-width: 240px;
+        max-width: 360px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        margin: 8px 0;
+
+        &__icon{
+            width: 100%;
+            text-align: center;
+            & img{
+                max-width: 40px;
+            }
+        }
+
+        &__body{
+            text-align: center;
+            & p{
+                font-family: Roboto-Thin;
+                font-weight: lighter;
+            }
+        }
+    }
+
+}

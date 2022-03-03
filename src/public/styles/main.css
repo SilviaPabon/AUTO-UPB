@@ -386,6 +386,7 @@ label {
   color: #0057FF;
 }
 
+/* HERO DE SERVICIOS OFRECIDOS POR LA EMPRESA*/
 .hero-services {
   /*Contenedor principal, contiene la imágen del vehículo*/
   min-height: 65vh;
@@ -459,6 +460,7 @@ label {
   font-family: Roboto-Thin;
 }
 
+/*SECTIONS DE PRODUCTOS MÁS VENDIDOS Y PRODUCTOS CON DESCUENTO*/
 .featured-product-card,
 .disscount-products-card {
   width: 30%;
@@ -534,6 +536,51 @@ label {
   background-color: #E60118;
   padding: 4px 8px;
   border-radius: 4px;
+}
+
+/*SECTION DE CONTACTO*/
+.contact-us {
+  background-color: #22252C;
+  padding: 32px;
+  border-radius: 16px;
+}
+
+.contact-us .contact-card {
+  width: 30%;
+  min-width: 240px;
+  max-width: 360px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 8px 0;
+}
+
+.contact-us .contact-card__icon {
+  width: 100%;
+  text-align: center;
+}
+
+.contact-us .contact-card__icon img {
+  max-width: 40px;
+}
+
+.contact-us .contact-card__body {
+  text-align: center;
+}
+
+.contact-us .contact-card__body p {
+  font-family: Roboto-Thin;
+  font-weight: lighter;
 }
 
 .accessory_type_card {

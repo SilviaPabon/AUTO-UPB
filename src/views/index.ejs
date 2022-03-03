@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <%- include('partials/_globalHeaders.ejs') %>
-        <title>SIGNUP</title>
+        <title>HOME</title>
     </head>
     <body>
         <%- include('partials/_navbar.ejs') %>
@@ -52,7 +52,7 @@
                                 <img src="/images/<%= data.featuredProducts[0][0].ruta_imagen %>" alt="<%= data.featuredProducts[0][0].nombre %>">
                             </div>
                             <div class="featured-product-card__body">
-                                <h3 class="card__title"><%= data.featuredProducts[0][0].nombre %></h2>
+                                <h3 class="card__title"><%= data.featuredProducts[0][0].nombre %></h3>
     
                                 <p><span>Precio actual: </span> $<%= data.featuredProducts[0][0].precio_final %></p>
                                 <p><span>Unidades vendidas: </span> <%= data.featuredProducts[0][0].unidades_vendidas %></p>
@@ -92,7 +92,7 @@
                                 <img src="/images/<%=  data.disccountProducts[0][i].ruta_imagen %>" alt="<%= data.disccountProducts[0][i].nombre %>">
                             </div>
                             <div class="disscount-products-card__body">
-                                <h3 class="card__title"><%= data.disccountProducts[0][i].nombre %></h2>
+                                <h3 class="card__title"><%= data.disccountProducts[0][i].nombre %></h3>
     
                                 <p><span>Precio sin descuento: </span> $<%= data.disccountProducts[0][i].precio_base %></p>
                                 <p><span>Precio actual: </span> $<%= data.disccountProducts[0][i].precio_final %></p>
@@ -111,6 +111,45 @@
                 </section>
 
             <% } %>
+
+            <section class="contact-us">
+
+                <div class="cards_container cards_container--center-items">
+                    
+                    <article class="contact-card">
+                        <div class="contact-card__icon">
+                            <img src="/icons/map-marked-solid.svg" alt="">
+                        </div>
+                        <div class="contact-card__body">
+                            <h3 class="card__title">NUESTRO LOCAL</h3>
+                            <p>Estamos ubicados en el Kilómetro 7 de la vía Piedecuesta-Floridablanca.</p>
+                        </div>
+                    </article>
+
+                    <article class="contact-card">
+                        <div class="contact-card__icon">
+                            <img src="/icons/phone-solid.svg" alt="">
+                        </div>
+                        <div class="contact-card__body">
+                            <h3 class="card__title">LLAMÁNOS</h3>
+                            <p>655 98 60</p>
+                            <p>390 14 56 986</p>
+                        </div>
+                    </article>
+
+                    <article class="contact-card">
+                        <div class="contact-card__icon">
+                            <img src="/icons/hashtag-solid.svg" alt="">
+                        </div>
+                        <div class="contact-card__body">
+                            <h3 class="card__title">NUESTRAS REDES SOCIALES</h3>
+                            <p>Puedes encontrarnos como @auto_upb_accesorios en Facebook, instagram y Twitter</p>
+                        </div>
+                    </article>
+
+                </div>
+
+            </section>
 
         </main>
 
