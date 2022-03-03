@@ -46,7 +46,7 @@ passport.use(
                 return done(null, newUser);
             } else {
                 //Si el usuario existe, se manda un flash
-                return done(null, false, req.flash('message', `ERROR: El correo: ${newUser.email} ya está en uso.`));
+                return done(null, false, req.flash('message', `ERROR: El correo: ${newUser.correo_electronico} ya está en uso.`));
             }
         }
     )
