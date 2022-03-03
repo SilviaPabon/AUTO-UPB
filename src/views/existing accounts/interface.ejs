@@ -1,31 +1,25 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <%- include('../partials/_globalHeaders.ejs') %>
-        <title>AGREGAR NUEVO ACCESORIO</title>
-    </head>
-    <body>
-        <%- include('../partials/_navbar.ejs') %>
-
-        <main>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="accountinterface" content="width=device-width, initial-scale=1.0">
+    <title>Cuentas Existentes</title>
+</head>
+<main>
             
-            <form action="" method="post" class="input-form" id="signup-form">
-                <%- include('../partials/_messages.ejs') %>
+            <form action="" method="list" class="input-form" >
+                <h1 class="existing accounts">Cuentas Existentes</h1>
 
-                <h1 class="title title--center">REGISTRAR NUEVAS UNIDADES DE PRODUCTO EXISTENTE</h1>
-
-                <div class="form-group" id="name-group">
-                    <label class="label--block" for="name">Nombre del producto:</label>
-                    <div class="form-group__input">
+                <div class="accounts" id="name-group">
+                    <label class="label--block" for="name">cuenta: </label>
+                    <div class="accounts-group__input">
                         <input
                             class="input input--full-width"
                             type="text"
                             id="name"
                             name="name"
-                            placeholder="Ingresa el nombre del nuevo accesorio"
+                            placeholder="Ingresa el nombre de la cuenta que buscas"
                             value="NOMBRE DEL PRODUCTO TRAÍDO DESDE LA BD"
                             readonly
                         />
@@ -85,7 +79,7 @@
                             id="new-ammount"
                             name="new-ammount"
                             min="0"
-                            placeholder="numero de unidades en el inventario"
+                            placeholder="Nuevas unidades para agregar al inventario"
                         />
                     </div>
                 </div>
@@ -96,12 +90,9 @@
 
                 <input
                     type="submit"
-                    value="Modificar INVENTARIO"
+                    value="AGREGAR AL INVENTARIO"
                     class="btn btn--submit btn--primary btn--block btn--no-radius"
                 />
             </form>
         </main>
-
-        <%- include('../partials/_globalScripts.ejs') %>
-    </body>
 </html>

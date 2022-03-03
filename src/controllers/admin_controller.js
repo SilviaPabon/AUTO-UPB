@@ -17,6 +17,11 @@ controller.inventory_add_existing = (req, res) => {
     res.render('admin/inventory_select_existing_accessory');   
 }; 
 
+// acá hay un pequeño error
+controller.inventory_details = (req, res) => {
+    res.render('/admin/details');   
+}; 
+
 controller.inventory_add_existing_id = (req, res) => {
 
     const { id } = req.body; 

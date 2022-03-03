@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>Detalles del accesorio</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            <form action="" method="post" class="input-form" id="signup-form">
+                <%- include('../partials/_messages.ejs') %>
+
+                <h1 class="title title--center">Editar producto existente</h1>
+
+                <div class="form-group" id="name-group">
+                    <label class="label--block" for="name">Nombre del producto:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Ingresa el nombre del nuevo accesorio"
+                            value="NOMBRE DEL PRODUCTO TRAÍDO DESDE LA BD"
+                            readonly
+                        />
+                    </div>
+                </div>
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>
