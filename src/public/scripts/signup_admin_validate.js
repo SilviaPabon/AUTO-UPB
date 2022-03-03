@@ -8,7 +8,7 @@ const regEx = {
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$!%*#?&/%])[A-Za-z\d$!%*#?&/%]{8,}$/, // Mínimo 8 dígitos, con una letra, un número y un caracter especial
     phone: /^\d{7,10}$/, // 7 a 10 numeros.
-    address: /^.{15,100}$/ //Ce 15 a 100 caracteres
+    address: /^.{15,100}$/ //15 a 100 caracteres
 };
 
 const fields = {
