@@ -7,7 +7,7 @@
 
             <div class="navigation__account">
                 <div class="navigation__account__icon"><i class="fas fa-user-circle"></i></div>
-                <p><%= user.nombre %></p>
+                <p><%= user.nombre.split(' ')[0] %></p>
             </div>
 
             <% if(user.codigo_tipo_usuario == 1) { %>
