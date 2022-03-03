@@ -6,8 +6,8 @@
         <ul class="navigation">
 
             <div class="navigation__account">
-                <div class="navigation__account__icon"><span class="icon--bigger"><img src="/icons/user-circle-solid.svg"></span></div>
-                <p><%= user.nombre %></p>
+                <div class="navigation__account__icon"><span class="icon--bigger"><img src="/icons/user-circle-solid.svg"></span></div></div>
+                <p><%= user.nombre.split(' ')[0] %></p>
             </div>
 
             <% if(user.codigo_tipo_usuario == 1) { %>
@@ -119,7 +119,7 @@
             <li class="navigation__item">
                 <a href="/admin/inventory" class="navigation__link"
                     ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg"></span></div>
-                    Gestión de inventario</a
+                    Gestión de accesorios</a
                 >
             </li>
             <li class="navigation__item">

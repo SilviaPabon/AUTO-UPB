@@ -105,6 +105,8 @@
 label{
     color: white;
     font-weight: 300;
+    display: block;
+    text-align: justify;
 }
 
 .form-group{
@@ -130,12 +132,16 @@ label{
 }
 
 .input{
-    background-color: $input_bg;
+    background-color: $total_white;
     outline: none;
     border: 1px transparent;
     padding: 0.6em 0.2em;
     margin-top: 4px;
-    color: #959595;
+    color: $total_black; 
+
+    &::placeholder{
+        color: rgb(83, 83, 83);
+    }
 
     &--full-width{
         width: 100%;

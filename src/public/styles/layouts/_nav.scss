@@ -62,11 +62,18 @@
                 color: white;
                 font-size: $md;
                 font-weight: 300;
+                border-right: 2px transparent;
 
-                transition: background-color 0.2s ease-in;
+                transition: all 0.2s ease-in;
+                transition-property: background-color, border-right;
             }
 
             &__link:hover {
+                background-color: $background_color;
+                border-right: 2px solid $total_white;
+            }
+
+            &_link:target{
                 background-color: $background_color;
             }
 
