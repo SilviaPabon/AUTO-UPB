@@ -30,6 +30,75 @@
                         />
                     </div>
                 </div>
+                <div class="form-group" id="description-group">
+                    <label class="label--block" for="description">Descripción del producto:</label>
+                    <div class="form-group__input">
+                        <textarea
+                            class="input input--textarea input--full-width"
+                            name="description"
+                            id="description"
+                            placeholder="Ingresa los detalles del nuevo accesorio."
+                            wrap="soft"
+                            readonly
+                        >DESCRIPTCIÓN DEL PRODUCTO TRAÍDA DESDE LA BASE DE DATOS</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" id="price-group">
+                    <label class="label--block" for="price">Precio del accesorio:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="price"
+                            name="price"
+                            placeholder="Precio base del accesorio"
+                            value=""
+                            readonly
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="inventory-group">
+                    <label class="label--block" for="inventory">Inventario actual del accesorio: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="inventory"
+                            name="inventory"
+                            placeholder="Inventario actual del accesorio"
+                            value=""
+                            readonly
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="inventory-group">
+                    <label class="label--block" for="new-ammount">Número de unidades unidades: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="new-ammount"
+                            name="new-ammount"
+                            min="0"
+                            placeholder="unidades para agregar al inventario" 
+                        />
+                    </div>
+                </div>
+
+                <p class="form__error-message">
+                    Por favor, rellene el formulario correctamente antes de realizar el envío.
+                </p>
+
+                <input
+                    type="submit"
+                    value="NUMERO DE UNIDADES EN EL INVENTARIO"
+                    class="btn btn--submit btn--primary btn--block btn--no-radius"
+                />
+            </form>
+        </main>
         <%- include('../partials/_globalScripts.ejs') %>
     </body>
 </html>
