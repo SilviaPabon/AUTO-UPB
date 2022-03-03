@@ -45,15 +45,29 @@
                     </div>
                 </div>
 
-                <div class="form-group" id="price-group">
-                    <label class="label--block" for="price">Precio del accesorio:</label>
+                <div class="form-group" id="buy-price-group">
+                    <label class="label--block" for="buy-price">Precio de compra a proveedores:</label>
                     <div class="form-group__input">
                         <input
                             class="input input--full-width"
                             type="number"
-                            id="price"
-                            name="price"
-                            placeholder="Precio base del accesorio"
+                            id="buy-price"
+                            name="buy-price"
+                            placeholder="Precio de compra a proveedores"
+                        />
+                        <p class="form-group__error-message">MENSAJE DE ERROR</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="sell-price-group">
+                    <label class="label--block" for="sell-price">Precio de venta del accesorio:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="sell-price"
+                            name="sell-price"
+                            placeholder="Precio de venta a clientes"
                         />
                         <p class="form-group__error-message">MENSAJE DE ERROR</p>
                     </div>
