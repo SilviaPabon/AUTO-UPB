@@ -9,9 +9,6 @@ controller.home = async(req, res) => {
     // Se obtienen los productos top más vendidos
     const featuredProducts = await pool.query('CALL SHOW_TOP_SALES()'); 
 
-    console.log(featuredProducts); 
-    console.log(featuredProducts[0][0]['nombre']); 
-
     const data = {
         disccountProducts, 
         featuredProducts

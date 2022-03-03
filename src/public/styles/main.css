@@ -89,6 +89,10 @@
   border-radius: 0;
 }
 
+section {
+  margin-top: 32px;
+}
+
 /*Contenedor de cards responsive */
 .cards_container {
   display: -webkit-box;
@@ -502,6 +506,72 @@ label {
 }
 
 .featured-product-card:hover {
+  -webkit-box-shadow: #100F12 0 4px 16px;
+          box-shadow: #100F12 0 4px 16px;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.disscount-products-card {
+  width: 30%;
+  max-width: 340px;
+  min-width: 240px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #100F12;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.disscount-products-card__disscount {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.disscount-products-card__disscount span {
+  background-color: #E60118;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.disscount-products-card__image img {
+  width: 100%;
+}
+
+.disscount-products-card__body {
+  padding: 0px 8px 8px 8px;
+  text-align: center;
+}
+
+.disscount-products-card__body h3 {
+  text-transform: uppercase;
+}
+
+.disscount-products-card__body p {
+  display: inline-block;
+  font-weight: 300;
+  margin: 4px 4px 12px 0;
+}
+
+.disscount-products-card__body p span {
+  color: #95A0BB;
+  margin: 4px;
+}
+
+.disscount-products-card__btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.disscount-products-card:hover {
   -webkit-box-shadow: #100F12 0 4px 16px;
           box-shadow: #100F12 0 4px 16px;
   -webkit-transform: scale(1.02);
