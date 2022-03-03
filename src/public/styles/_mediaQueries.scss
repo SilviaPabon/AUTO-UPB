@@ -54,6 +54,10 @@
                     line-height: 1.5;
                     border-bottom: 1px solid rgb(255, 255, 255);
                 }
+
+                &__link:hover {
+                    border-right: 2px transparent;
+                }
             }
         }
 

@@ -608,6 +608,9 @@ main {
     line-height: 1.5;
     border-bottom: 1px solid white;
   }
+  .aside-navigation .menu .navigation__link:hover {
+    border-right: 2px transparent;
+  }
   .aside-navigation .menu-visible {
     left: 0;
   }
