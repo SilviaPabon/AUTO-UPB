@@ -119,6 +119,25 @@
             }
         }
     }
+
+    /*########*/
+    /*SECCIÓN DE sobre nosotros*/
+    /* ###### */
+    .about-us{
+        gap: 0;
+    
+        &__image-container{
+            grid-column: 1/-1;
+            grid-row: 1;
+            padding: 12px;
+        }
+    
+        &__text-container{
+            grid-column: 1/-1;
+            grid-row: 2;
+            padding: 8px 24px 24px 24px;
+        }
+    }
 }
 
 /* PARA TABLETS*/

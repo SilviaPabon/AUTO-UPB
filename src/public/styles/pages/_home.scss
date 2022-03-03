@@ -158,3 +158,39 @@
     }
 
 }
+
+/*sección de sobre nosotros*/
+.about-us{
+    background-color: $very_dark;
+    border-radius: 16px;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    &__image-container, 
+    &__text-container{
+
+        padding: 16px;
+
+        display: flex; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__image-container{
+        grid-column: 1;
+
+        & img{
+            width: 100%;
+            border-radius: 16px;
+        }
+    }
+
+    &__text-container{
+        grid-column: 2;
+        text-align: center;
+    }
+}
