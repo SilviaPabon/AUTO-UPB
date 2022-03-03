@@ -37,6 +37,41 @@
 
             </header>
 
+            <% if(data.featuredProducts) {%>
+
+                <section class="featured-products">
+
+                    <h2 class="title title--center">PRODUCTOS DESTACADOS</h2>
+    
+                    <div class="cards_container cards_container--center-items">
+    
+                        <% for(var i=0; i < data.featuredProducts.length -1; i++) { %>
+
+                        <article class="featured-product-card">
+                            <div class="featured-product-card__image">
+                                <img src="/images/<%= data.featuredProducts[0][0].ruta_imagen %>" alt="<%= data.featuredProducts[0][0].nombre %>">
+                            </div>
+                            <div class="featured-product-card__body">
+                                <h3 class="card__title"><%= data.featuredProducts[0][0].nombre %></h2>
+    
+                                <p><span>Precio actual: </span> $<%= data.featuredProducts[0][0].precio_final %></p>
+                                <p><span>Unidades vendidas: </span> <%= data.featuredProducts[0][0].unidades_vendidas %></p>
+    
+                                <div class="accessory-basic-card__btns">
+                                    <a href="#" class="btn btn--primary btn--card btn--center">AÑADIR AL CARRITO</a>
+                                    <a href="#" class="btn btn--secondary btn--card btn--center">VER DETALLES</a>
+                                </div>
+                            </div>
+                        </article>
+        
+                        <% } %> 
+
+                    </div>
+    
+                </section>
+
+            <% } %>
+
         </main>
 
         <%- include('partials/_globalScripts.ejs') %>
