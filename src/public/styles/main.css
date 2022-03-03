@@ -459,7 +459,8 @@ label {
   font-family: Roboto-Thin;
 }
 
-.featured-product-card {
+.featured-product-card,
+.disscount-products-card {
   width: 30%;
   max-width: 340px;
   min-width: 240px;
@@ -470,31 +471,37 @@ label {
   transition: all 0.4s ease-in-out;
 }
 
-.featured-product-card__image img {
+.featured-product-card__image img,
+.disscount-products-card__image img {
   width: 100%;
 }
 
-.featured-product-card__body {
+.featured-product-card__body,
+.disscount-products-card__body {
   padding: 0px 8px 8px 8px;
   text-align: center;
 }
 
-.featured-product-card__body h3 {
+.featured-product-card__body h3,
+.disscount-products-card__body h3 {
   text-transform: uppercase;
 }
 
-.featured-product-card__body p {
+.featured-product-card__body p,
+.disscount-products-card__body p {
   display: inline-block;
   font-weight: 300;
   margin: 4px 4px 12px 0;
 }
 
-.featured-product-card__body p span {
+.featured-product-card__body p span,
+.disscount-products-card__body p span {
   color: #95A0BB;
   margin: 4px;
 }
 
-.featured-product-card__btns {
+.featured-product-card__btns,
+.disscount-products-card__btns {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -505,7 +512,8 @@ label {
       flex-wrap: wrap;
 }
 
-.featured-product-card:hover {
+.featured-product-card:hover,
+.disscount-products-card:hover {
   -webkit-box-shadow: #100F12 0 4px 16px;
           box-shadow: #100F12 0 4px 16px;
   -webkit-transform: scale(1.02);
@@ -513,15 +521,7 @@ label {
 }
 
 .disscount-products-card {
-  width: 30%;
-  max-width: 340px;
-  min-width: 240px;
   position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #100F12;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
 }
 
 .disscount-products-card__disscount {
@@ -534,48 +534,6 @@ label {
   background-color: #E60118;
   padding: 4px 8px;
   border-radius: 4px;
-}
-
-.disscount-products-card__image img {
-  width: 100%;
-}
-
-.disscount-products-card__body {
-  padding: 0px 8px 8px 8px;
-  text-align: center;
-}
-
-.disscount-products-card__body h3 {
-  text-transform: uppercase;
-}
-
-.disscount-products-card__body p {
-  display: inline-block;
-  font-weight: 300;
-  margin: 4px 4px 12px 0;
-}
-
-.disscount-products-card__body p span {
-  color: #95A0BB;
-  margin: 4px;
-}
-
-.disscount-products-card__btns {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.disscount-products-card:hover {
-  -webkit-box-shadow: #100F12 0 4px 16px;
-          box-shadow: #100F12 0 4px 16px;
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
 }
 
 .accessory_type_card {
