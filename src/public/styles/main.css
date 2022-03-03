@@ -1,4 +1,9 @@
 @charset "UTF-8";
+@font-face {
+  font-family: Roboto;
+  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
 /* ######## Colors ########*/
 /*Primary colors*/
 /*Secondary colors*/
@@ -28,6 +33,7 @@
   display: inline-block;
   margin: 8px 0;
   text-align: center;
+  font-weight: bold;
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 }
@@ -208,17 +214,6 @@ label {
   background-color: #00ff22;
 }
 
-.alert__close {
-  border: transparent;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  padding: 2px;
-  background-color: #100F12;
-  border-radius: 4px;
-  padding: 0.2em 0.6em;
-}
-
 .aside-navigation {
   /*Columa contenedora de la barra de navegación*/
   width: 200px;
@@ -270,6 +265,7 @@ label {
   list-style: none;
   /*Li dentro del ul*/
   /*Link dentro del li*/
+  /*CONTENEDOR DE LOS ICONOS*/
 }
 
 .aside-navigation .menu .navigation__account {
@@ -314,7 +310,6 @@ label {
 }
 
 .aside-navigation .menu .navigation__icon, .aside-navigation .menu .navigation__account__icon {
-  color: white;
   /*Centrar el icono dentro del contenedor para normalizar el tamaño*/
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -327,6 +322,15 @@ label {
           justify-content: center;
   min-width: 40px;
   margin: 0 8px;
+  /*ICONOS*/
+}
+
+.aside-navigation .menu .navigation__icon .icon img, .aside-navigation .menu .navigation__account__icon .icon img {
+  width: 20px;
+}
+
+.aside-navigation .menu .navigation__icon .icon--bigger img, .aside-navigation .menu .navigation__account__icon .icon--bigger img {
+  width: 30px;
 }
 
 .aside-navigation .menu .navigation__account__icon i {
@@ -588,8 +592,8 @@ main {
   .aside-navigation .menu-toggle {
     display: block;
   }
-  .aside-navigation .menu-toggle i {
-    font-size: 22px;
+  .aside-navigation .menu-toggle .icon img {
+    width: 20px;
   }
 }
 /*# sourceMappingURL=main.css.map */

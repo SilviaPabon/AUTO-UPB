@@ -70,9 +70,8 @@
                 background-color: $background_color;
             }
 
+            /*CONTENEDOR DE LOS ICONOS*/
             &__icon, &__account__icon {
-                color: white;
-
                 /*Centrar el icono dentro del contenedor para normalizar el tamaño*/
                 display: inline-flex;
                 align-items: center;
@@ -80,6 +79,15 @@
                 min-width: 40px;
 
                 margin: 0 8px;
+
+                /*ICONOS*/
+                & .icon img{
+                    width: 20px;
+                }
+
+                & .icon--bigger img{
+                    width: 30px;
+                }
             }
 
             &__account__icon{
