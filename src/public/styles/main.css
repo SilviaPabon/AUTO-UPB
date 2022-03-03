@@ -543,8 +543,8 @@ body {
   max-width: 1440px;
   background-color: #1E1E20;
   margin: 0px auto;
-  border-left: 1px solid #100F12;
-  border-right: 1px solid #100F12;
+  border-left: 1px solid #e2e2e2;
+  border-right: 1px solid #e2e2e2;
 }
 
 .body--light {
