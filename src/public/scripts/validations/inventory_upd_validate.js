@@ -54,7 +54,7 @@ form.addEventListener('submit', (e) => {
     console.log(fields);
     if (
         fields.buyprice &&
-        fields.inventory
+        fields.newAmmount
     ) {
         this.submit();
     } else {
