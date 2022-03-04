@@ -9,6 +9,10 @@
     &--center{
         text-align: center;
     }
+
+    &--black{
+        color: $total_black;
+    }
 }
 
 /*Botones*/
@@ -68,6 +72,10 @@
     &--block{
         display: block; 
         width: 100%;
+    }
+
+    &--full-width{
+        width: max-content;
     }
 
     &--no-radius{
@@ -156,6 +164,11 @@ label{
         resize: none;
         height: 80px;
     }
+
+    &--search{
+        min-width: 240px;
+        margin-right: 8px;
+    }
 }
 
 /* option: menu desplegable */
@@ -216,3 +229,31 @@ label{
     background-color: #00ff22;
 }
 
+/*CONTAINER PARA MOSTRAR TÍTULO E INPUT DE BÚSQUEDA EN EL TOP*/
+.title-search-peer{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*TABLA GENÉRICA*/
+.generic-table{
+
+    border-collapse: collapse;
+    overflow-x: auto;
+    white-space: nowrap; 
+
+    & th{
+        color: black;
+        padding: 12px 32px;
+
+    }
+
+    & th, & td{
+        border: 1px solid #B1B1B1; 
+    }
+
+    & tbody tr:nth-child(odd){
+        background-color: $odd_table_row_color;
+    }
+
+}

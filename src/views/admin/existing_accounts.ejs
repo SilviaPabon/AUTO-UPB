@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>GESTIÓN DE CUENTAS</title>
+    </head>
+    <body class="body--light">
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+
+            <section class="admin-accounts">
+
+                <div class="title-search-peer">
+                    <h1 class="title title--black">CUENTAS EXISTENTES</h1>
+
+                    <form action="#" method="post">
+                        <input class="input input--search" type="text" id="clientName" name="clientName" placeholder="Buscar un usuario por su nombre">
+                        <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO" disabled>
+                    </form>
+                </div>
+
+                <table class="generic-table">
+                    <thead>
+                        <tr>
+                            <th>Cédula o NIT</th>
+                            <th>Nombre o Razón social</th>
+                            <th>Correo electrónico</th>
+                            <th>Estado actual</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(data.users[0].length != 0) {%>
+                            <% for(var i=0; i < data.users[0].length; i++) { %>
+                                <tr>
+                                    <th><%= data.users[0][i].identificacion %></th>
+                                    <th><%= data.users[0][i].nombre %></th>
+                                    <th><%= data.users[0][i].correo_electronico %></th>
+                                    <th><%= data.users[0][i].estado_cuenta %></th>
+                                    <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
+                                </tr>
+                            <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+                
+            </section>
+
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>
