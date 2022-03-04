@@ -4,6 +4,7 @@
 .title{
     color: white;
     margin: 12px 0 16px 0;
+    font-size: $x_lg;
 
     &--center{
         text-align: center;
@@ -72,6 +73,10 @@
     &--no-radius{
         border-radius: 0;
     }
+}
+
+section{
+    margin-top: 32px;
 }
 
 /*Contenedor de cards responsive */

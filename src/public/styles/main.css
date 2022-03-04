@@ -4,6 +4,12 @@
   src: url("../fonts/Roboto-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: Roboto-Thin;
+  src: url("../fonts/Roboto-Thin.ttf") format("truetype");
+  font-weight: lighter;
+}
+
 /* ######## Colors ########*/
 /*Primary colors*/
 /*Secondary colors*/
@@ -14,6 +20,7 @@
 .title {
   color: white;
   margin: 12px 0 16px 0;
+  font-size: 32px;
 }
 
 .title--center {
@@ -80,6 +87,10 @@
 
 .btn--no-radius {
   border-radius: 0;
+}
+
+section {
+  margin-top: 32px;
 }
 
 /*Contenedor de cards responsive */
@@ -401,6 +412,248 @@ label {
   color: #0057FF;
 }
 
+/* HERO DE SERVICIOS OFRECIDOS POR LA EMPRESA*/
+.hero-services {
+  /*Contenedor principal, contiene la imágen del vehículo*/
+  min-height: 65vh;
+  padding: 8px 16px 16px 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-image: url("/images/home_header.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-services__services-container {
+  /*Contenedor inferior de los servicios*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 50%;
+}
+
+.hero-services__service {
+  /*Contenedor de cada servicio*/
+  width: 30%;
+  min-width: 240px;
+  max-width: 360px;
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /*El segundo elemento tiene bordes para indicar separación*/
+}
+
+.hero-services__service:nth-child(2) {
+  border-left: 1px solid rgba(255, 255, 255, 0.774);
+  border-right: 1px solid rgba(255, 255, 255, 0.774);
+}
+
+.hero-services__service h3 {
+  text-align: center;
+  margin: 8px;
+}
+
+.hero-services__service p {
+  text-align: center;
+  font-family: Roboto-Thin;
+}
+
+/*SECTIONS DE PRODUCTOS MÁS VENDIDOS Y PRODUCTOS CON DESCUENTO*/
+.featured-product-card,
+.disscount-products-card {
+  width: 30%;
+  max-width: 340px;
+  min-width: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #100F12;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.featured-product-card__image img,
+.disscount-products-card__image img {
+  width: 100%;
+}
+
+.featured-product-card__body,
+.disscount-products-card__body {
+  padding: 0px 8px 8px 8px;
+  text-align: center;
+}
+
+.featured-product-card__body h3,
+.disscount-products-card__body h3 {
+  text-transform: uppercase;
+}
+
+.featured-product-card__body p,
+.disscount-products-card__body p {
+  display: inline-block;
+  font-weight: 300;
+  margin: 4px 4px 12px 0;
+}
+
+.featured-product-card__body p span,
+.disscount-products-card__body p span {
+  color: #95A0BB;
+  margin: 4px;
+}
+
+.featured-product-card__btns,
+.disscount-products-card__btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.featured-product-card:hover,
+.disscount-products-card:hover {
+  -webkit-box-shadow: #100F12 0 4px 16px;
+          box-shadow: #100F12 0 4px 16px;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.disscount-products-card {
+  position: relative;
+}
+
+.disscount-products-card__disscount {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.disscount-products-card__disscount span {
+  background-color: #E60118;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/*SECTION DE CONTACTO*/
+.contact-us {
+  background-color: #22252C;
+  padding: 32px;
+  border-radius: 16px;
+}
+
+.contact-us .contact-card {
+  width: 30%;
+  min-width: 240px;
+  max-width: 360px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 8px 0;
+}
+
+.contact-us .contact-card__icon {
+  width: 100%;
+  text-align: center;
+}
+
+.contact-us .contact-card__icon img {
+  max-width: 40px;
+}
+
+.contact-us .contact-card__body {
+  text-align: center;
+}
+
+.contact-us .contact-card__body p {
+  font-family: Roboto-Thin;
+  font-weight: lighter;
+}
+
+/*sección de sobre nosotros*/
+.about-us {
+  background-color: #100F12;
+  border-radius: 16px;
+  overflow: hidden;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.about-us__image-container, .about-us__text-container {
+  padding: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.about-us__image-container {
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+
+.about-us__image-container img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.about-us__text-container {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  text-align: center;
+}
+
 .accessory_type_card {
   width: 30%;
   max-width: 340px;
@@ -540,6 +793,7 @@ main {
   position: sticky;
 }
 
+/*PARA CELULARES*/
 @media (max-width: 768px) {
   main {
     margin-left: 0px;
@@ -623,6 +877,83 @@ main {
   }
   .aside-navigation .menu-toggle .icon img {
     width: 20px;
+  }
+  /*#########*/
+  /*CONTENEDOR DE LOS SERVICIOS EN EL HOME*/
+  /*#########*/
+  .hero-services {
+    /*Contenedor principal, contiene la imágen del vehículo*/
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    min-height: 100vh;
+    padding: 8px 24px 24px 24px;
+  }
+  .hero-services__title-container {
+    height: 45vh;
+  }
+  .hero-services__services-container {
+    /*Contenedor inferior de los servicios*/
+    gap: 8px;
+  }
+  .hero-services__service {
+    width: 100%;
+    /*Contenedor de cada servicio*/
+    border-bottom: 1px solid rgba(255, 255, 255, 0.774);
+    /*El segundo elemento tiene bordes para indicar separación*/
+  }
+  .hero-services__service:nth-child(2) {
+    border-left: 1px transparent;
+    border-right: 1px transparent;
+  }
+  .hero-services__service h3 {
+    font-size: 16px;
+  }
+  .hero-services__service p {
+    font-size: 14px;
+  }
+  /*########*/
+  /*SECCIÓN DE sobre nosotros*/
+  /* ###### */
+  .about-us {
+    gap: 0;
+  }
+  .about-us__image-container {
+    grid-column: 1/-1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+    padding: 12px;
+  }
+  .about-us__text-container {
+    grid-column: 1/-1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+    padding: 8px 24px 24px 24px;
+  }
+}
+
+/* PARA TABLETS*/
+@media (max-width: 992px) {
+  /*#########*/
+  /*CONTENEDOR DE LOS SERVICIOS EN EL HOME*/
+  /*#########*/
+  .hero-services {
+    /*Contenedor principal, contiene la imágen del vehículo*/
+    min-height: 80vh;
+    background-image: url("/images/home_header--medium.jpg");
+  }
+  .hero-services__services-container {
+    /*Contenedor inferior de los servicios*/
+    gap: 8px;
+  }
+  .hero-services__service {
+    /*Contenedor de cada servicio*/
+    border-bottom: 1px solid rgba(255, 255, 255, 0.774);
+    /*El segundo elemento tiene bordes para indicar separación*/
+  }
+  .hero-services__service:nth-child(2) {
+    border-left: 1px transparent;
+    border-right: 1px transparent;
   }
 }
 /*# sourceMappingURL=main.css.map */
