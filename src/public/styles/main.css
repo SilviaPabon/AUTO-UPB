@@ -146,7 +146,9 @@ label {
   margin: 24px 0;
 }
 
-.form-group--correct input, .form-group--correct select {
+.form-group--correct input,
+.form-group--correct textarea,
+.form-group--correct select {
   outline: none;
   border: 2px solid #00e400;
 }
@@ -155,7 +157,9 @@ label {
   color: #00e400;
 }
 
-.form-group--incorrect input, .form-group--incorrect select {
+.form-group--incorrect input,
+.form-group--incorrect textarea,
+.form-group--incorrect select {
   outline: none;
   border: 2px solid #ff4646;
 }

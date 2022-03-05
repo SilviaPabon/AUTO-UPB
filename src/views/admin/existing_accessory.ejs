@@ -12,7 +12,7 @@
 
         <main>
             
-            <form action="" method="post" class="input-form" id="signup-form">
+            <form action="/admin/inventory/add_existing/<%= accesorios[0][0].id_accesorio %>" method="post" class="input-form" id="signup-form">
                 <%- include('../partials/_messages.ejs') %>
 
                 <h1 class="title title--center">REGISTRAR NUEVAS UNIDADES DE PRODUCTO EXISTENTE</h1>
@@ -26,7 +26,7 @@
                             id="name"
                             name="name"
                             placeholder="Ingresa el nombre del nuevo accesorio"
-                            value="NOMBRE DEL PRODUCTO TRAÍDO DESDE LA BD"
+                            value="<%= accesorios[0][0].nombre %>"
                             readonly
                         />
                     </div>
@@ -42,7 +42,7 @@
                             placeholder="Ingresa los detalles del nuevo accesorio."
                             wrap="soft"
                             readonly
-                        >DESCRIPTCIÓN DEL PRODUCTO TRAÍDA DESDE LA BASE DE DATOS</textarea>
+                        ><%= accesorios[0][0].descripcion %></textarea>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                             id="price"
                             name="price"
                             placeholder="Precio base del accesorio"
-                            value=""
+                            value="<%= accesorios[0][0].precio_base %>"
                             readonly
                         />
                     </div>
@@ -69,24 +69,43 @@
                             type="number"
                             id="inventory"
                             name="inventory"
-                            placeholder="Inventario actual del accesorio"
+                            placeholder="<%= accesorios[0][0].stock %>"
                             value=""
                             readonly
                         />
                     </div>
                 </div>
 
-                <div class="form-group" id="inventory-group">
-                    <label class="label--block" for="new-ammount">Nuevas unidades: </label>
+                <div class="form-group" id="buyprice-group">
+                    <label class="label--block" for="buyprice">Precio de compra a proveedores nuevo:</label>
                     <div class="form-group__input">
                         <input
                             class="input input--full-width"
                             type="number"
-                            id="new-ammount"
-                            name="new-ammount"
+                            id="buyprice"
+                            name="buyprice"
+                            placeholder="Precio de compra"
+                        />
+                        <p class="form-group__error-message">
+                            Sólo se admiten entre 2 y 12 números.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="newAmmount-group">
+                    <label class="label--block" for="newAmmount">Nuevas unidades: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="newAmmount"
+                            name="newAmmount"
                             min="0"
                             placeholder="Nuevas unidades para agregar al inventario"
                         />
+                        <p class="form-group__error-message">
+                            Sólo se admiten entre 1 y 4 números.
+                        </p>
                     </div>
                 </div>
 
@@ -101,7 +120,7 @@
                 />
             </form>
         </main>
-
+        <script src="/scripts/validations/inventory_upd_validate.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
     </body>
 </html>

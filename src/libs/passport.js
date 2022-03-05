@@ -135,7 +135,7 @@ passport.use(
                     newUser.password,
                     newUser.rol,
                 ]);
-                req.flash('success', 'Usuario creado éxitosamente')
+                req.flash('success', 'Usuario creado exitosamente')
                 return done(null, req.user);
             } else {
                 //Si el usuario existe, se manda un flash
