@@ -1,0 +1,196 @@
+/* HERO DE SERVICIOS OFRECIDOS POR LA EMPRESA*/
+.hero-services{
+    /*Contenedor principal, contiene la imágen del vehículo*/
+    min-height: 65vh;
+    padding: 8px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    background-image: url('/images/home_header.jpg');
+    background-size: cover;
+    background-position: center;
+
+    &__services-container{
+        /*Contenedor inferior de los servicios*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        height: 50%;
+    }
+
+    &__service{
+        /*Contenedor de cada servicio*/
+        width: 30%;
+        min-width: 240px;
+        max-width: 360px;
+        padding: 12px;
+
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        /*El segundo elemento tiene bordes para indicar separación*/
+        &:nth-child(2){
+            border-left: 1px solid rgba(255, 255, 255, 0.774);
+            border-right: 1px solid rgba(255, 255, 255, 0.774);
+        }
+
+        & h3{
+            text-align: center;
+            margin: 8px;
+        }
+
+        & p{
+            text-align: center;
+            font-family: Roboto-Thin;
+        }
+    }
+}
+
+/*SECTIONS DE PRODUCTOS MÁS VENDIDOS Y PRODUCTOS CON DESCUENTO*/
+.featured-product-card, 
+.disscount-products-card {
+    
+    width: 30%;
+    max-width: 340px;
+    min-width: 240px;
+    
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: $very_dark;
+
+    transition: all 0.4s ease-in-out;
+
+    &__image img {
+        width: 100%;
+    }
+
+    &__body{
+        padding: 0px 8px 8px 8px;
+        text-align: center;
+
+        & h3{
+            text-transform: uppercase;
+        }
+
+        & p{
+
+            display: inline-block;
+            font-weight: 300;
+            margin: 4px 4px 12px 0;
+
+            & span {
+                color: $card_span; 
+                margin: 4px;
+            }
+
+        }
+    }
+
+    &__btns{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &:hover{
+        box-shadow: $very_dark 0 4px 16px;
+        transform: scale(1.02);
+    }
+
+}
+
+.disscount-products-card{
+
+    position: relative;
+
+    &__disscount{
+        position: absolute;
+        top: 8px;
+        right: 8px;
+
+        & span{
+            background-color: $bright_red;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    }
+}
+
+/*SECTION DE CONTACTO*/
+.contact-us{
+
+    background-color: $partial_grey;
+    padding: 32px;
+    border-radius: 16px;
+
+    .contact-card{
+        width: 30%;
+        min-width: 240px;
+        max-width: 360px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        margin: 8px 0;
+
+        &__icon{
+            width: 100%;
+            text-align: center;
+            & img{
+                max-width: 40px;
+            }
+        }
+
+        &__body{
+            text-align: center;
+            & p{
+                font-family: Roboto-Thin;
+                font-weight: lighter;
+            }
+        }
+    }
+
+}
+
+/*sección de sobre nosotros*/
+.about-us{
+    background-color: $very_dark;
+    border-radius: 16px;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    &__image-container, 
+    &__text-container{
+
+        padding: 16px;
+
+        display: flex; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__image-container{
+        grid-column: 1;
+
+        & img{
+            width: 100%;
+            border-radius: 16px;
+        }
+    }
+
+    &__text-container{
+        grid-column: 2;
+        text-align: center;
+    }
+}

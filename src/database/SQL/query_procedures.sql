@@ -229,6 +229,25 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA MOSTRAR AL ADMINISTRADOR LAS CUENTAS EXISTENTES
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS ADMIN_SHOW_ACCOUNTS; 
+DELIMITER //
+
+CREATE PROCEDURE ADMIN_SHOW_ACCOUNTS(
+)
+BEGIN 
+	SELECT id_usuario, nombre, identificacion, correo_electronico, estado_cuenta FROM USERS_PRETTY; 
+END //
+
+DELIMITER ; 
+
+CALL ADMIN_SHOW_ACCOUNTS(); 
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE INVENTARIO
 #######################################################
 */
