@@ -89,4 +89,15 @@ controller.inventory_add_existing_id_post = async (req, res) => {
     res.redirect('/admin/inventory/add_existing');
 }
 
+controller.accounts = async (req, res) => {
+
+    const users = await pool.query('CALL ADMIN_SHOW_ACCOUNTS()');
+    
+    const data = {
+        users
+    }
+
+    res.render('admin/existing_accounts', {data}); 
+}
+
 module.exports = controller; 
