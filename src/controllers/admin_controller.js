@@ -45,7 +45,7 @@ controller.inventory_add_new_post = async (req, res) => {
         newAcc.discount,
     ]);
 
-    req.flash('success', 'Transacción éxitosa: Accesorio Añadido'); 
+    req.flash('success', 'Transacción exitosa: Accesorio Añadido'); 
     res.redirect('/admin/inventory/add_existing');
 };
 
@@ -85,7 +85,7 @@ controller.inventory_add_existing_id_post = async (req, res) => {
         addInventory.newAmmount,  
     ]); 
 
-    req.flash('success', 'Transacción éxitosa: Accesorio actualizado'); 
+    req.flash('success', 'Transacción exitosa: Accesorio actualizado'); 
     res.redirect('/admin/inventory/add_existing');
 }
 
