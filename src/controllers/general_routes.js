@@ -17,8 +17,10 @@ controller.home = async(req, res) => {
     res.render('index', {data}); 
 }; 
 
-controller.accessories = (req, res) => {
-    res.render('products'); 
+controller.accessories = async(req, res) => {
+
+    const products = await pool.query('CALL SHOW_ACCESSORIES')
+    res.render('products', {products}); 
 }
 
 module.exports = controller; 
