@@ -163,6 +163,28 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA OBTENER LA CONTRASEÑA DEL USUARIO A PARTIR DE SU ID
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GET_USER_PASSWORD; 
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_PASSWORD(
+	IN correo_electronico VARCHAR(255)
+)
+BEGIN
+	
+    SELECT contraseña FROM SESSION_USER_DATA 
+    WHERE SESSION_USER_DATA.correo_electronico = correo_electronico; 
+    
+END// 
+
+DELIMITER ; 
+
+CALL GET_USER_PASSWORD('carlos@upb.edu.co'); 
+
+/* 
+#######################################################
 PROCEDIMIENTO PARA OBTENER LOS DATOS DE LA SESIÓN DEL USUARIO A PARTIR DEL ID
 OK
 #######################################################
@@ -175,7 +197,7 @@ CREATE PROCEDURE GET_USER_SESSION_DATA_FROM_ID(
 	IN user_id INT UNSIGNED
 )
 BEGIN 
-	SELECT * FROM SESSION_USER_DATA WHERE SESSION_USER_DATA.id_usuario = user_id; 
+	SELECT id_usuario, nombre, correo_electronico, codigo_tipo_usuario, codigo_estado_cuenta FROM SESSION_USER_DATA WHERE SESSION_USER_DATA.id_usuario = user_id; 
 END //
 
 DELIMITER ; 
@@ -196,7 +218,7 @@ CREATE PROCEDURE GET_USER_SESSION_DATA_FROM_MAIL(
 	IN correo_electronico VARCHAR(255)
 )
 BEGIN 
-	SELECT * FROM SESSION_USER_DATA WHERE SESSION_USER_DATA.correo_electronico = correo_electronico; 
+	SELECT id_usuario, nombre, correo_electronico, codigo_tipo_usuario, codigo_estado_cuenta FROM SESSION_USER_DATA WHERE UPPER(SESSION_USER_DATA.correo_electronico) = UPPER(correo_electronico); 
 END //
 
 DELIMITER ; 
