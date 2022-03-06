@@ -270,6 +270,32 @@ CALL ADMIN_SHOW_ACCOUNTS();
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA BUSCAR UN USUARIO A PARTIR DE UN CRITERIO DADO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS ADMIN_SEARCH_USER_FROM_CRITERIA; 
+DELIMITER //
+
+CREATE PROCEDURE ADMIN_SEARCH_USER_FROM_CRITERIA(
+	IN criteria VARCHAR(255)
+) 
+BEGIN 
+
+	SELECT id_usuario, nombre, identificacion, correo_electronico, estado_cuenta FROM USERS_PRETTY
+    WHERE UPPER(USERS_PRETTY.nombre) LIKE (CONCAT(UPPER(criteria), '%')) OR
+		UPPER(USERS_PRETTY.correo_electronico) LIKE (CONCAT(UPPER(criteria), '%')) OR 
+		USERS_PRETTY.identificacion LIKE (CONCAT(criteria, '%')); 
+
+END//
+
+DELIMITER ; 
+
+CALL ADMIN_SEARCH_USER_FROM_CRITERIA('C'); 
+SELECT * FROM USERS_PRETTY;
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE INVENTARIO
 #######################################################
 */

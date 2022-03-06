@@ -26,6 +26,10 @@
     &--light{
         color: $total_white;
     }
+
+    &--soft{
+        color: rgb(194, 194, 194);
+    }
 }
 
 /*Botones*/
@@ -47,7 +51,6 @@
     &--primary{
         background-color: $main_green;
         border: $main_green;
-
         transition: background-color 0.3s ease-in;
 
         &--transparent{
@@ -85,6 +88,8 @@
     }
 
     &--center{
+        display: block;
+        width: max-content;
         margin: 8px auto;
     }
 
@@ -99,6 +104,10 @@
 
     &--no-radius{
         border-radius: 0;
+    }
+
+    &--extra-margin{
+        margin: 16px auto;
     }
 }
 
@@ -194,7 +203,7 @@ label{
 .input{
     background-color: rgb(233, 233, 233);
     outline: none;
-    border: 1px transparent;
+    border: 1px solid rgb(177, 177, 177);
     padding: 0.6em 0.2em;
     margin-top: 4px;
     color: $total_black; 
@@ -284,14 +293,18 @@ label{
 .title-search-peer{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /*TABLA GENÉRICA*/
 .generic-table{
 
+    display: block;
     border-collapse: collapse;
     overflow-x: auto;
     white-space: nowrap; 
+    table-layout: fixed;
+    margin-top: 8px;
 
     & th{
         color: black;
@@ -309,6 +322,12 @@ label{
     
     & tbody tr:nth-child(even){
         background-color: $even_table_row_color;
+    }
+
+    & tbody th{
+        font-family: Roboto-Thin;
+        max-width: 370px;
+        overflow-x: auto;
     }
 
 }

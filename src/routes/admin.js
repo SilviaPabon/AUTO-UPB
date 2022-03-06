@@ -19,5 +19,8 @@ router.get('/inventory/add_existing/:id', protect.isLoggedIn, protect.isAdmin, c
 router.post('/inventory/add_existing/:id', protect.isLoggedIn, protect.isAdmin, controller.inventory_add_existing_id_post); 
 
 router.get('/accounts', protect.isLoggedIn, protect.isAdmin, controller.accounts); 
+router.post('/accounts', protect.isLoggedIn, protect.isAdmin, controller.searchAccounts); 
+router.get('/accounts/:criteria', protect.isLoggedIn, protect.isAdmin, controller.searchAccountsResult)
+
 
 module.exports = router;
