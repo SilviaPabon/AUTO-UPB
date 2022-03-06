@@ -15,36 +15,48 @@
             <div class="title-search-peer">
                 <h1 class="title title--black">CUENTAS EXISTENTES</h1>
 
-                <form action="#" method="post">
-                    <input class="input input--search" type="text" id="clientName" name="clientName" placeholder="Buscar un usuario por su nombre">
-                    <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO" disabled>
+                <form action="/admin/accounts" method="post">
+                    <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" required>
+                    <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO">
                 </form>
             </div>
 
-            <table class="generic-table">
-                <thead>
-                    <tr>
-                        <th>Cédula o NIT</th>
-                        <th>Nombre o Razón social</th>
-                        <th>Correo electrónico</th>
-                        <th>Estado actual</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if(data.users[0].length != 0) {%>
-                        <% for(var i=0; i < data.users[0].length; i++) { %>
-                            <tr>
-                                <th><%= data.users[0][i].identificacion %></th>
-                                <th><%= data.users[0][i].nombre %></th>
-                                <th><%= data.users[0][i].correo_electronico %></th>
-                                <th><%= data.users[0][i].estado_cuenta %></th>
-                                <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
-                            </tr>
+            <% if(data.users[0].length != 0) {%>
+
+                <table class="generic-table">
+                    <thead>
+                        <tr>
+                            <th>Cédula o NIT</th>
+                            <th>Nombre o Razón social</th>
+                            <th>Correo electrónico</th>
+                            <th>Estado actual</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(data.users[0].length != 0) {%>
+                            <% for(var i=0; i < data.users[0].length; i++) { %>
+                                <tr>
+                                    <th><%= data.users[0][i].identificacion %></th>
+                                    <th><%= data.users[0][i].nombre %></th>
+                                    <th><%= data.users[0][i].correo_electronico %></th>
+                                    <th><%= data.users[0][i].estado_cuenta %></th>
+                                    <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
+                                </tr>
+                            <% } %>
                         <% } %>
-                    <% } %>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+
+            <% } else {%>
+
+                <h2 class="title title--center title--soft">NO SE ENCONTRARON USUARIOS</h2>
+
+            <% } %>
+
+            <% if(data.isFiltered == true) {%>
+                <a href="/admin/accounts" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER A TODAS LAS CUENTAS</a>
+            <% } %>
 
         </main>
 
