@@ -18,5 +18,7 @@ router.get('/inventory/add_existing/:id', controller.inventory_add_existing_id);
 router.post('/inventory/add_existing/:id', controller.inventory_add_existing_id_post); 
 
 router.get('/accounts', controller.accounts); 
+router.post('/accounts', controller.searchAccounts); 
+router.get('/accounts/:criteria', controller.searchAccountsResult)
 
 module.exports = router;
