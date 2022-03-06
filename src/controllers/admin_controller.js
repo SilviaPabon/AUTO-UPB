@@ -104,7 +104,8 @@ controller.searchAccountsResult = async (req, res) => {
 
     const data = {
         users,
-        isFiltered : true
+        isFiltered : true,
+        criteria
     };
 
     res.render('admin/existing_accounts', { data });

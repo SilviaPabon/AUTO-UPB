@@ -16,7 +16,12 @@
                 <h1 class="title title--black">CUENTAS EXISTENTES</h1>
 
                 <form action="/admin/accounts" method="post">
-                    <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" required>
+                    <% if(data.isFiltered == true) {%>
+                        <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" value="<%= data.criteria %>" required>
+                    <% } else {%>
+                        <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" required>
+                    <% } %>
+                    
                     <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO">
                 </form>
             </div>
