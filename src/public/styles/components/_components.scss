@@ -151,7 +151,7 @@ label{
 .input{
     background-color: $total_white;
     outline: none;
-    border: 1px transparent;
+    border: 1px solid rgb(177, 177, 177);
     padding: 0.6em 0.2em;
     margin-top: 4px;
     color: $total_black; 
@@ -242,9 +242,12 @@ label{
 /*TABLA GENÉRICA*/
 .generic-table{
 
+    display: block;
     border-collapse: collapse;
     overflow-x: auto;
     white-space: nowrap; 
+    table-layout: fixed;
+    width: 100%;
 
     & th{
         color: black;
@@ -258,6 +261,12 @@ label{
 
     & tbody tr:nth-child(odd){
         background-color: $odd_table_row_color;
+    }
+
+    & tbody th{
+        font-family: Roboto-Thin;
+        max-width: 370px;
+        overflow-x: auto;
     }
 
 }
