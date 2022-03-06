@@ -1,10 +1,11 @@
 #signup-conditions{
     font-weight: 300;
     text-align: justify;
+    color: black;
 
     a{
         font-weight: bold;
-        color: #0057FF;
+        color: $main_green_bright;
     }
 }
 
@@ -18,10 +19,11 @@
 .auth_redirect_message{
     text-align: center;
     font-weight: 300;
-    margin: 24px 0 16px 0;  
+    margin: 24px 0 16px 0; 
+    color: black; 
 
     a{
         font-weight: bold;
-        color: #0057FF;
+        color: $main_green_bright;
     }
 }

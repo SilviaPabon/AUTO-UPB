@@ -167,11 +167,21 @@ section {
   margin: 0 auto;
   padding: 16px;
   border-radius: 16px;
-  background-color: #0d141c;
+  background-color: #fff;
+  border: 1px solid #dfdfdf;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.input-form:hover {
+  -webkit-box-shadow: #d4d4d4 0 4px 16px;
+          box-shadow: #d4d4d4 0 4px 16px;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
 }
 
 label {
-  color: white;
+  color: #000;
   font-weight: 300;
   display: block;
   text-align: justify;
@@ -204,7 +214,7 @@ label {
 }
 
 .input {
-  background-color: #fff;
+  background-color: #e9e9e9;
   outline: none;
   border: 1px transparent;
   padding: 0.6em 0.2em;
@@ -213,19 +223,19 @@ label {
 }
 
 .input::-webkit-input-placeholder {
-  color: #535353;
+  color: #3f3f3f;
 }
 
 .input:-ms-input-placeholder {
-  color: #535353;
+  color: #3f3f3f;
 }
 
 .input::-ms-input-placeholder {
-  color: #535353;
+  color: #3f3f3f;
 }
 
 .input::placeholder {
-  color: #535353;
+  color: #3f3f3f;
 }
 
 .input--full-width {
@@ -288,15 +298,16 @@ label {
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   border: 2px solid;
+  text-align: center;
 }
 
 .alert--ward {
-  border-color: #771006;
+  border-color: #dd2b1b;
   background-color: #e84c3d;
 }
 
 .alert--success {
-  border-color: #077520;
+  border-color: #1bc943;
   background-color: #2dcc70;
 }
 
@@ -327,7 +338,11 @@ label {
 }
 
 .generic-table tbody tr:nth-child(odd) {
-  background-color: #ccd2db;
+  background-color: #ececec;
+}
+
+.generic-table tbody tr:nth-child(even) {
+  background-color: #fff;
 }
 
 .aside-navigation {
@@ -467,11 +482,12 @@ label {
 #signup-conditions {
   font-weight: 300;
   text-align: justify;
+  color: black;
 }
 
 #signup-conditions a {
   font-weight: bold;
-  color: #0057FF;
+  color: #2ae0cb;
 }
 
 .form-group__check {
@@ -491,11 +507,12 @@ label {
   text-align: center;
   font-weight: 300;
   margin: 24px 0 16px 0;
+  color: black;
 }
 
 .auth_redirect_message a {
   font-weight: bold;
-  color: #0057FF;
+  color: #2ae0cb;
 }
 
 /*SECTION DE SERVICIOS OFRECIDOS*/
@@ -672,42 +689,14 @@ label {
   text-align: center;
 }
 
-.accessory_type_card {
-  width: 30%;
-  max-width: 340px;
-  min-width: 240px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #0d141c;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-}
-
 .accessory_type_card__image img {
   width: 100%;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .accessory_type_card__body {
   padding: 4px;
   text-align: center;
-}
-
-.accessory_type_card:hover {
-  -webkit-box-shadow: #0d141c 0 4px 16px;
-          box-shadow: #0d141c 0 4px 16px;
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
-}
-
-.inventory_existing_accessories_card {
-  width: 25%;
-  max-width: 340px;
-  min-width: 240px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #0d141c;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
 }
 
 .inventory_existing_accessories_card__image img {
@@ -717,13 +706,6 @@ label {
 .inventory_existing_accessories_card__body {
   padding: 0px 8px 8px 8px;
   text-align: center;
-}
-
-.inventory_existing_accessories_card:hover {
-  -webkit-box-shadow: #0d141c 0 4px 16px;
-          box-shadow: #0d141c 0 4px 16px;
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
 }
 
 .accessory-basic-card__image img {
