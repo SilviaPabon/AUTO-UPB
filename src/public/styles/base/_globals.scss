@@ -3,14 +3,15 @@
 /*Primary colors*/
 $background_color: #fafafa; 
 
-$main_green: hsl(173, 58%, 50%); 
+$main_green: #36c9b8; 
 $main_green_bright: #2ae0cb; 
 
 $very_dark: #0d141c; 
 
 /*Secondary colors*/
 $bright_red: #E60118;
-$odd_table_row_color: #ccd2db;  
+$even_table_row_color: #fff; 
+$odd_table_row_color: #ececec;  
 $input_bg: #dcdcdc; 
 $placeholder_color: #959595; 
 $partial_grey: #22252C; 
