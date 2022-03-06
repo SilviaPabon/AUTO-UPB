@@ -245,6 +245,7 @@ label{
 .title-search-peer{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /*TABLA GENÉRICA*/
@@ -255,6 +256,7 @@ label{
     overflow-x: auto;
     white-space: nowrap; 
     table-layout: fixed;
+    margin-top: 8px;
 
     & th{
         color: black;

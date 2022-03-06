@@ -280,6 +280,8 @@ label {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 /*TABLA GENÉRICA*/
@@ -289,6 +291,7 @@ label {
   overflow-x: auto;
   white-space: nowrap;
   table-layout: fixed;
+  margin-top: 8px;
 }
 
 .generic-table th {
