@@ -31,6 +31,10 @@
   color: #000;
 }
 
+.title--soft {
+  color: #c2c2c2;
+}
+
 /*Botones*/
 .btn {
   border: 1px solid transparent;
@@ -45,15 +49,13 @@
   margin: 8px 0;
   text-align: center;
   font-weight: bold;
-  -webkit-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .btn--primary {
   background-color: #003078;
   border: #003078;
-  -webkit-transition: background-color 0.2s ease-in;
-  transition: background-color 0.2s ease-in;
 }
 
 .btn--primary--transparent {
@@ -81,6 +83,10 @@
 }
 
 .btn--center {
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   margin: 8px auto;
 }
 
@@ -97,6 +103,10 @@
 
 .btn--no-radius {
   border-radius: 0;
+}
+
+.btn--extra-margin {
+  margin: 16px auto;
 }
 
 section {
@@ -171,7 +181,7 @@ label {
 .input {
   background-color: #fff;
   outline: none;
-  border: 1px transparent;
+  border: 1px solid #b1b1b1;
   padding: 0.6em 0.2em;
   margin-top: 4px;
   color: #000;
@@ -273,13 +283,18 @@ label {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 /*TABLA GENÉRICA*/
 .generic-table {
+  display: block;
   border-collapse: collapse;
   overflow-x: auto;
   white-space: nowrap;
+  table-layout: fixed;
+  margin-top: 8px;
 }
 
 .generic-table th {
@@ -293,6 +308,12 @@ label {
 
 .generic-table tbody tr:nth-child(odd) {
   background-color: #ccd2db;
+}
+
+.generic-table tbody th {
+  font-family: Roboto-Thin;
+  max-width: 370px;
+  overflow-x: auto;
 }
 
 .aside-navigation {
