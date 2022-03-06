@@ -69,12 +69,11 @@
             }
 
             &__link:hover {
-                background-color: $background_color;
-                border-right: 2px solid $total_white;
+                background-color: $main_green;
             }
 
             &_link:target{
-                background-color: $background_color;
+                background-color: $main_green;
             }
 
             /*CONTENEDOR DE LOS ICONOS*/

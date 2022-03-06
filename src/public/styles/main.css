@@ -18,17 +18,28 @@
 /*Global components (USING BEM METODOLOGY)*/
 /*Títulos*/
 .title {
-  color: white;
+  color: #000;
   margin: 12px 0 16px 0;
   font-size: 32px;
+  font-weight: bolder;
 }
 
 .title--center {
   text-align: center;
 }
 
-.title--black {
+.title--light {
+  color: #fff;
+}
+
+.card__title {
   color: #000;
+  font-size: 18px;
+  margin: 12px 0;
+}
+
+.card__title--light {
+  color: #fff;
 }
 
 /*Botones*/
@@ -45,25 +56,23 @@
   margin: 8px 0;
   text-align: center;
   font-weight: bold;
-  -webkit-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
 }
 
 .btn--primary {
-  background-color: #003078;
-  border: #003078;
-  -webkit-transition: background-color 0.2s ease-in;
-  transition: background-color 0.2s ease-in;
+  background-color: #36c9b8;
+  border: #36c9b8;
+  -webkit-transition: background-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in;
 }
 
 .btn--primary--transparent {
   background-color: transparent;
-  border: 1px solid #003078;
-  color: #003078;
+  border: 1px solid #36c9b8;
+  color: #36c9b8;
 }
 
 .btn--primary:hover {
-  background-color: #00388d;
+  background-color: #2ae0cb;
 }
 
 .btn--card {
@@ -76,8 +85,16 @@
 }
 
 .btn--secondary {
+  color: #36c9b8;
   background-color: transparent;
-  border: 1px solid #fff;
+  border: 1px solid #36c9b8;
+  -webkit-transition: background-color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
+}
+
+.btn--secondary:hover {
+  background-color: #36c9b8;
+  color: white;
 }
 
 .btn--center {
@@ -103,6 +120,10 @@ section {
   margin-top: 32px;
 }
 
+.section--no-top-margin {
+  margin-top: 0;
+}
+
 /*Contenedor de cards responsive */
 .cards_container {
   display: -webkit-box;
@@ -119,9 +140,23 @@ section {
           justify-content: center;
 }
 
-.card__title {
-  font-size: 18px;
-  margin: 12px 0;
+.generic-card {
+  width: 30%;
+  max-width: 340px;
+  min-width: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid #dfdfdf;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.generic-card:hover {
+  -webkit-box-shadow: #d4d4d4 0 4px 16px;
+          box-shadow: #d4d4d4 0 4px 16px;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
 }
 
 /*Formularios*/
@@ -132,7 +167,7 @@ section {
   margin: 0 auto;
   padding: 16px;
   border-radius: 16px;
-  background-color: #100F12;
+  background-color: #0d141c;
 }
 
 label {
@@ -299,7 +334,7 @@ label {
   /*Columa contenedora de la barra de navegación*/
   width: 200px;
   height: 100vh;
-  background-color: #100F12;
+  background-color: #0d141c;
   /*Display flex para poner el logo encima de las opciones de navegación*/
   display: -webkit-box;
   display: -ms-flexbox;
@@ -390,12 +425,11 @@ label {
 }
 
 .aside-navigation .menu .navigation__link:hover {
-  background-color: #1E1E20;
-  border-right: 2px solid #fff;
+  background-color: #36c9b8;
 }
 
 .aside-navigation .menu .navigation_link:target {
-  background-color: #1E1E20;
+  background-color: #36c9b8;
 }
 
 .aside-navigation .menu .navigation__icon, .aside-navigation .menu .navigation__account__icon {
@@ -464,89 +498,28 @@ label {
   color: #0057FF;
 }
 
-/* HERO DE SERVICIOS OFRECIDOS POR LA EMPRESA*/
-.hero-services {
-  /*Contenedor principal, contiene la imágen del vehículo*/
-  min-height: 65vh;
-  padding: 8px 16px 16px 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  background-image: url("/images/home_header.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.hero-services__services-container {
-  /*Contenedor inferior de los servicios*/
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  height: 50%;
-}
-
-.hero-services__service {
-  /*Contenedor de cada servicio*/
-  width: 30%;
-  min-width: 240px;
-  max-width: 360px;
-  padding: 12px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  /*El segundo elemento tiene bordes para indicar separación*/
-}
-
-.hero-services__service:nth-child(2) {
-  border-left: 1px solid rgba(255, 255, 255, 0.774);
-  border-right: 1px solid rgba(255, 255, 255, 0.774);
-}
-
-.hero-services__service h3 {
+/*SECTION DE SERVICIOS OFRECIDOS*/
+.service-card__title {
+  width: 100%;
+  background-color: #36c9b8;
+  padding: 0.6em;
   text-align: center;
-  margin: 8px;
 }
 
-.hero-services__service p {
+.service-card__title img {
+  margin: 24px;
+  max-height: 60px;
+}
+
+.service-card__text {
   text-align: center;
-  font-family: Roboto-Thin;
+  color: #000;
+  padding: 24px 12px;
 }
 
 /*SECTIONS DE PRODUCTOS MÁS VENDIDOS Y PRODUCTOS CON DESCUENTO*/
 .featured-product-card,
 .disscount-products-card {
-  width: 30%;
-  max-width: 340px;
-  min-width: 240px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #100F12;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -569,6 +542,7 @@ label {
 
 .featured-product-card__body p,
 .disscount-products-card__body p {
+  color: #36c9b8;
   display: inline-block;
   font-weight: 300;
   margin: 4px 4px 12px 0;
@@ -576,7 +550,7 @@ label {
 
 .featured-product-card__body p span,
 .disscount-products-card__body p span {
-  color: #95A0BB;
+  color: #0d141c;
   margin: 4px;
 }
 
@@ -590,14 +564,6 @@ label {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-}
-
-.featured-product-card:hover,
-.disscount-products-card:hover {
-  -webkit-box-shadow: #100F12 0 4px 16px;
-          box-shadow: #100F12 0 4px 16px;
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
 }
 
 .disscount-products-card {
@@ -663,7 +629,7 @@ label {
 
 /*sección de sobre nosotros*/
 .about-us {
-  background-color: #100F12;
+  background-color: #0d141c;
   border-radius: 16px;
   overflow: hidden;
   display: -ms-grid;
@@ -712,7 +678,7 @@ label {
   min-width: 240px;
   border-radius: 12px;
   overflow: hidden;
-  background-color: #100F12;
+  background-color: #0d141c;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -727,8 +693,8 @@ label {
 }
 
 .accessory_type_card:hover {
-  -webkit-box-shadow: #100F12 0 4px 16px;
-          box-shadow: #100F12 0 4px 16px;
+  -webkit-box-shadow: #0d141c 0 4px 16px;
+          box-shadow: #0d141c 0 4px 16px;
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
 }
@@ -739,7 +705,7 @@ label {
   min-width: 240px;
   border-radius: 12px;
   overflow: hidden;
-  background-color: #100F12;
+  background-color: #0d141c;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -754,21 +720,10 @@ label {
 }
 
 .inventory_existing_accessories_card:hover {
-  -webkit-box-shadow: #100F12 0 4px 16px;
-          box-shadow: #100F12 0 4px 16px;
+  -webkit-box-shadow: #0d141c 0 4px 16px;
+          box-shadow: #0d141c 0 4px 16px;
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
-}
-
-.accessory-basic-card {
-  width: 30%;
-  max-width: 340px;
-  min-width: 240px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #100F12;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
 }
 
 .accessory-basic-card__image img {
@@ -787,7 +742,7 @@ label {
 }
 
 .accessory-basic-card__body .price span {
-  color: #95A0BB;
+  color: #2ae0cb;
   margin: 4px;
 }
 
@@ -800,13 +755,6 @@ label {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-}
-
-.accessory-basic-card:hover {
-  -webkit-box-shadow: #100F12 0 4px 16px;
-          box-shadow: #100F12 0 4px 16px;
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
 }
 
 /*Global rulesets*/
@@ -827,14 +775,10 @@ html {
 body {
   min-height: 100vh;
   max-width: 1440px;
-  background-color: #1E1E20;
+  background-color: #fafafa;
   margin: 0px auto;
   border-left: 1px solid #e2e2e2;
   border-right: 1px solid #e2e2e2;
-}
-
-.body--light {
-  background-color: #fff;
 }
 
 main {
@@ -900,7 +844,7 @@ main {
     flex-direction: column;
     overflow-y: hidden;
     z-index: 10;
-    background-color: #100F12;
+    background-color: #0d141c;
     /*Padding a los laterales*/
     padding: 0px 16px;
     /*Transición para efecto smooth al abrir en celulares*/

@@ -14,32 +14,47 @@
 
             <%- include('partials/_messages.ejs') %>
 
-            <header class="hero-services">
-
-                <div class="hero-services__title-container">
-                    <h1 class="title title--center">NUESTROS SERVICIOS</h1>
-                </div>
-
-                <section class="hero-services__services-container">
-                    <article class="hero-services__service">
-                        <h3>ACCESORIOS EXCLUSIVOS</h3>
-                        <p>En nuestra tienda física y nuestra página web, podrás encontrar accesorios exlusivos y originales para las marcas premium A1 y A2.</p>
-                    </article>
-
-                    <article class="hero-services__service">
-                        <h3>INSTALACIÓN</h3>
-                        <p>Contamos con personal altamente capacitado para instalar tus accesorios.</p>
-                    </article>
-
-                    <article class="hero-services__service">
-                        <h3>PRODUCTOS IMPORTADOS</h3>
-                        <p>Importamos los productos de más alta calidad desde el exterios.</p>
-                    </article>
-                </section>
-
-            </header>
-
             <% if(data.featuredProducts) {%>
+
+                <section class="section--no-top-margin">
+
+                    <h2 class="title title--center">NUESTROS SERVICIOS</h2>
+
+                    <div class="cards_container cards_container--center-items">
+
+                        <article class="generic-card generic-card service-card">
+                            <div class="service-card__title">
+                                <h3>ACCESORIOS EXSLUSIVOS</h3>
+                                <img src="/icons/gem-solid.svg" alt="Icono de accesorio exxlusivo">
+                            </div>
+                            <div class="service-card__text">
+                                En nuestra tienda física y nuestra página web, podrás encontrar accesorios exlusivos y originales para las marcas premium A1 y A2. 
+                            </div>
+                        </article>
+
+                        <article class="generic-card generic-card service-card">
+                            <div class="service-card__title">
+                                <h3>INSTALACIÓN</h3>
+                                <img src="/icons/tools-solid.svg" alt="Icono de instalación">
+                            </div>
+                            <div class="service-card__text">
+                                Contamos con personal altamente capacitado para instalar tus accesorios.
+                            </div>
+                        </article>
+
+                        <article class="generic-card generic-card service-card">
+                            <div class="service-card__title">
+                                <h3>PRODUCTOS IMPORTADOS</h3>
+                                <img src="/icons/plane-arrival-solid.svg" alt="Icono de accesorios importados">
+                            </div>
+                            <div class="service-card__text">
+                                Importamos los productos de más alta calidad desde el exterios.
+                            </div>
+                        </article>
+
+                    </div>
+
+                </section>
 
                 <section class="featured-products">
 
@@ -49,7 +64,7 @@
     
                         <% for(var i=0; i < data.featuredProducts[0].length; i++) { %>
 
-                        <article class="featured-product-card">
+                        <article class="generic-card featured-product-card">
                             <div class="featured-product-card__image">
                                 <img src="/images/<%= data.featuredProducts[0][0].ruta_imagen %>" alt="<%= data.featuredProducts[0][0].nombre %>">
                             </div>
@@ -84,7 +99,7 @@
     
                         <% for(var i=0; i < data.disccountProducts[0].length -1; i++) { %>
 
-                        <article class="disscount-products-card">
+                        <article class="generic-card disscount-products-card">
 
                             <div class="disscount-products-card__disscount">
                                 <span><%= data.disccountProducts[0][i].descuento %>%</span>
@@ -123,7 +138,7 @@
                             <img src="/icons/map-marked-solid.svg" alt="">
                         </div>
                         <div class="contact-card__body">
-                            <h3 class="card__title">NUESTRO LOCAL</h3>
+                            <h3 class="card__title card__title--light">NUESTRO LOCAL</h3>
                             <p>Estamos ubicados en el Kilómetro 7 de la vía Piedecuesta-Floridablanca.</p>
                         </div>
                     </article>
@@ -133,7 +148,7 @@
                             <img src="/icons/phone-solid.svg" alt="">
                         </div>
                         <div class="contact-card__body">
-                            <h3 class="card__title">LLAMÁNOS</h3>
+                            <h3 class="card__title card__title--light">LLAMÁNOS</h3>
                             <p>655 98 60</p>
                             <p>390 14 56 986</p>
                         </div>
@@ -144,7 +159,7 @@
                             <img src="/icons/hashtag-solid.svg" alt="">
                         </div>
                         <div class="contact-card__body">
-                            <h3 class="card__title">NUESTRAS REDES SOCIALES</h3>
+                            <h3 class="card__title card__title--light">NUESTRAS REDES SOCIALES</h3>
                             <p>Puedes encontrarnos como @auto_upb_accesorios en Facebook, instagram y Twitter</p>
                         </div>
                     </article>
@@ -160,7 +175,7 @@
                 </div>
 
                 <div class="about-us__text-container">
-                    <h2 class="title title--center">SOBRE NOSOTROS</h2>
+                    <h2 class="title title--center title--light">SOBRE NOSOTROS</h2>
                     <p>En WEARCAR, somos especialistas en la comercialización de accesorios para todo tipo de vehículo automotriz. Buscamos, coordinar y mejorar el proceso de compra para aquellos clientes del consorcio AUTO-UPB que quieren darle un aspecto único y personalizado a su automóvil, permitiendo que encuentren accesorios de la más alta calidad fabricados en la industria nacional y también importados desde el exterior, según sus necesidades específicas. </p>
                 </div>
 
