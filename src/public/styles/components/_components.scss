@@ -2,16 +2,29 @@
 
 /*Títulos*/
 .title{
-    color: white;
+    color: $total_black;
     margin: 12px 0 16px 0;
     font-size: $x_lg;
+    font-weight: bolder;
 
     &--center{
         text-align: center;
     }
 
-    &--black{
-        color: $total_black;
+    &--light{
+        color: $total_white;
+    }
+
+
+}
+
+.card__title{
+    color: $total_black;
+    font-size: $md;
+    margin: 12px 0;
+
+    &--light{
+        color: $total_white;
     }
 
     &--soft{
@@ -35,22 +48,21 @@
     text-align: center;
     font-weight: bold;
 
-    transition: all 0.4s ease-in-out;
-
     &--primary{
-        background-color: $main_blue;
-        border: $main_blue;
+        background-color: $main_green;
+        border: $main_green;
+        transition: background-color 0.3s ease-in;
 
         &--transparent{
             background-color: transparent;
-            border: 1px solid $main_blue;
-            color: $main_blue;
+            border: 1px solid $main_green;
+            color: $main_green;
         }
 
     }
 
     &--primary:hover{
-        background-color: #00388d;
+        background-color: $main_green_bright;
     }
 
     &--card{
@@ -63,8 +75,16 @@
     }
 
     &--secondary{
+        color: $main_green;
         background-color: transparent;
-        border: 1px solid $total_white; 
+        border: 1px solid $main_green; 
+
+        transition: background-color 0.4s ease-in-out;
+    }
+
+    &--secondary:hover{
+        background-color: $main_green;
+        color: white;
     }
 
     &--center{
@@ -95,6 +115,10 @@ section{
     margin-top: 32px;
 }
 
+.section--no-top-margin{
+    margin-top: 0;
+}
+
 /*Contenedor de cards responsive */
 .cards_container{
     display: flex;
@@ -106,9 +130,22 @@ section{
     }
 }
 
-.card__title{
-    font-size: $md;
-    margin: 12px 0;
+.generic-card{
+    width: 30%;
+    max-width: 340px;
+    min-width: 240px;
+    
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid #dfdfdf;
+
+    transition: all 0.4s ease-in-out;
+
+    &:hover{
+        box-shadow: $card_hover 0 4px 16px;
+        transform: scale(1.02);
+    }
 }
 
 /*Formularios*/
@@ -120,11 +157,18 @@ section{
     padding: 16px;
     border-radius: 16px;
 
-    background-color: $very_dark;
+    background-color: $total_white;
+    border: 1px solid rgb(223, 223, 223);
+    transition: all 0.3s ease-in-out;
+
+    &:hover{
+        box-shadow: $card_hover 0 4px 16px;
+        transform: scale(1.01);
+    }
 }
 
 label{
-    color: white;
+    color: $total_black;
     font-weight: 300;
     display: block;
     text-align: justify;
@@ -157,7 +201,7 @@ label{
 }
 
 .input{
-    background-color: $total_white;
+    background-color: rgb(233, 233, 233);
     outline: none;
     border: 1px solid rgb(177, 177, 177);
     padding: 0.6em 0.2em;
@@ -165,7 +209,7 @@ label{
     color: $total_black; 
 
     &::placeholder{
-        color: rgb(83, 83, 83);
+        color: rgb(63, 63, 63);
     }
 
     &--full-width{
@@ -232,15 +276,16 @@ label{
     background-color: white;
     transition: all 0.4s ease;
     border: 2px solid;
+    text-align: center;
 }
 
 .alert--ward {
-    border-color: #771006;
+    border-color: #dd2b1b;
     background-color: #e84c3d;
 }
 
 .alert--success {
-    border-color: rgb(7, 117, 32);
+    border-color: rgb(27, 201, 67);
     background-color: #2dcc70;
 }
 
@@ -273,6 +318,10 @@ label{
 
     & tbody tr:nth-child(odd){
         background-color: $odd_table_row_color;
+    }
+    
+    & tbody tr:nth-child(even){
+        background-color: $even_table_row_color;
     }
 
     & tbody th{

@@ -12,14 +12,14 @@
 
         <main>
         
-            <section class="select_accessory_type">
+            <section class="section--no-top-margin select_accessory_type">
                 <h1 class="title title--center">PRODUCTOS EN VENTA: </h1>
     
                 <div class="cards_container cards_container--center-items">
 
                     <% for(var i = 0; i < products[0].length; i++) { %>
                     
-                        <article class="accessory-basic-card">
+                        <article class="generic-card accessory-basic-card">
                             <div class="accessory-basic-card__image">
                                 <img src="/images/<%=products[0][i].ruta_imagen%>" alt="<%=products[0][i].nombre %>">
                             </div>
