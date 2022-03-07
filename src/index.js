@@ -49,11 +49,15 @@ app.use((req, res, next) => {
     next();
 });
 
+// -- Carrito de compras --
+app.locals.cart = []; 
+
 // -- Routes --
 const router = require('./routes/router.js'); 
 app.use('/', router.authentication); 
 app.use('/', router.general); 
 app.use('/admin', router.admin); 
+app.use('/cart', router.cart); 
 
 // -- Starting the server --
 app.listen(app.get('port'), ()=> {
