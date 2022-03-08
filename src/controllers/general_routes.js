@@ -14,7 +14,7 @@ controller.home = async(req, res) => {
         featuredProducts
     }
 
-    console.table(req.app.locals.cart); 
+    console.table(req.session.cart); 
     
     res.render('index', {data}); 
 }; 

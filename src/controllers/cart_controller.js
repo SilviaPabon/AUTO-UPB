@@ -13,7 +13,7 @@ controller.cartAdd = async (req, res) => {
     let itemIndexOnCart = -1;
 
     // Se obtiene la variable global del carrito
-    const cart = req.app.locals.cart;
+    const cart = req.session.cart;;
 
     // Revisa si ya existe el accesorio en el carrito
     for (let index = 0; index < cart.length; index++) {

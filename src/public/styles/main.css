@@ -335,6 +335,7 @@ label {
       -ms-flex-direction: column;
           flex-direction: column;
   position: fixed;
+  top: 0;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
