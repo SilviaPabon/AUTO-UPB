@@ -9,8 +9,8 @@ router.post('/create_account',  passport.authenticate('local.adminSignup', {
     failureRedirect: '/admin/create_account',
     failureFlash: true,
 }));
-router.get('/state_account/:id', controller.state_acc);
-router.post('/state_account/:id', controller.state_acc_post);
+router.get('/account_status/:id', controller.state_acc);
+router.post('/account_status/:id', controller.state_acc_post);
 
 router.get('/inventory', controller.inventory); 
 router.get('/inventory/add_new', controller.inventory_add_new); 
