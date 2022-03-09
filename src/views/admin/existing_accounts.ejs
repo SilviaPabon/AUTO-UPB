@@ -41,7 +41,7 @@
                                     <th><%= data.users[0][i].nombre %></th>
                                     <th><%= data.users[0][i].correo_electronico %></th>
                                     <th><%= data.users[0][i].estado_cuenta %></th>
-                                    <th><a href="#" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
+                                    <th><a href="/admin/state_account/<%= data.users[0][i].id_usuario %>" class="btn btn--primary btn--full-width">Cambiar estado</a></th>
                                 </tr>
                             <% } %>
                         <% } %>
