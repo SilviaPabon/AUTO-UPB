@@ -13,12 +13,16 @@ controller.home = async(req, res) => {
         disccountProducts, 
         featuredProducts
     }
+
+    console.table(req.session.cart); 
     
     res.render('index', {data}); 
 }; 
 
-controller.accessories = (req, res) => {
-    res.render('products'); 
+controller.accessories = async(req, res) => {
+
+    const products = await pool.query('CALL SHOW_ACCESSORIES')
+    res.render('products', {products}); 
 }
 
 module.exports = controller; 

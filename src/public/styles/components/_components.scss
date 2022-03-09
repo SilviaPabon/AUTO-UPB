@@ -2,16 +2,33 @@
 
 /*Títulos*/
 .title{
-    color: white;
+    color: $total_black;
     margin: 12px 0 16px 0;
     font-size: $x_lg;
+    font-weight: bolder;
 
     &--center{
         text-align: center;
     }
 
-    &--black{
-        color: $total_black;
+    &--light{
+        color: $total_white;
+    }
+
+
+}
+
+.card__title{
+    color: $total_black;
+    font-size: $md;
+    margin: 12px 0;
+
+    &--light{
+        color: $total_white;
+    }
+
+    &--soft{
+        color: rgb(194, 194, 194);
     }
 }
 
@@ -31,24 +48,21 @@
     text-align: center;
     font-weight: bold;
 
-    transition: background-color 0.3s ease;
-
     &--primary{
-        background-color: $main_blue;
-        border: $main_blue;
-
-        transition: background-color 0.2s ease-in;
+        background-color: $main_green;
+        border: $main_green;
+        transition: background-color 0.3s ease-in;
 
         &--transparent{
             background-color: transparent;
-            border: 1px solid $main_blue;
-            color: $main_blue;
+            border: 1px solid $main_green;
+            color: $main_green;
         }
 
     }
 
     &--primary:hover{
-        background-color: #00388d;
+        background-color: $main_green_bright;
     }
 
     &--card{
@@ -61,11 +75,21 @@
     }
 
     &--secondary{
+        color: $main_green;
         background-color: transparent;
-        border: 1px solid $total_white; 
+        border: 1px solid $main_green; 
+
+        transition: background-color 0.4s ease-in-out;
+    }
+
+    &--secondary:hover{
+        background-color: $main_green;
+        color: white;
     }
 
     &--center{
+        display: block;
+        width: max-content;
         margin: 8px auto;
     }
 
@@ -81,10 +105,18 @@
     &--no-radius{
         border-radius: 0;
     }
+
+    &--extra-margin{
+        margin: 16px auto;
+    }
 }
 
 section{
     margin-top: 32px;
+}
+
+.section--no-top-margin{
+    margin-top: 0;
 }
 
 /*Contenedor de cards responsive */
@@ -98,9 +130,22 @@ section{
     }
 }
 
-.card__title{
-    font-size: $md;
-    margin: 12px 0;
+.generic-card{
+    width: 30%;
+    max-width: 340px;
+    min-width: 240px;
+    
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid #dfdfdf;
+
+    transition: all 0.4s ease-in-out;
+
+    &:hover{
+        box-shadow: $card_hover 0 4px 16px;
+        transform: scale(1.02);
+    }
 }
 
 /*Formularios*/
@@ -112,11 +157,18 @@ section{
     padding: 16px;
     border-radius: 16px;
 
-    background-color: $very_dark;
+    background-color: $total_white;
+    border: 1px solid rgb(223, 223, 223);
+    transition: all 0.3s ease-in-out;
+
+    &:hover{
+        box-shadow: $card_hover 0 4px 16px;
+        transform: scale(1.01);
+    }
 }
 
 label{
-    color: white;
+    color: $total_black;
     font-weight: 300;
     display: block;
     text-align: justify;
@@ -126,7 +178,9 @@ label{
     margin: 24px 0; 
 }
 
-.form-group--correct input, .form-group--correct select{
+.form-group--correct input, 
+.form-group--correct textarea, 
+.form-group--correct select{
     outline: none;
     border: 2px solid rgb(0, 228, 0);
 }
@@ -135,7 +189,9 @@ label{
     color: rgb(0, 228, 0);
 }
 
-.form-group--incorrect input, .form-group--incorrect select{
+.form-group--incorrect input, 
+.form-group--incorrect textarea, 
+.form-group--incorrect select{
     outline: none;
     border: 2px solid rgb(255, 70, 70);
 }
@@ -145,15 +201,15 @@ label{
 }
 
 .input{
-    background-color: $total_white;
+    background-color: rgb(233, 233, 233);
     outline: none;
-    border: 1px transparent;
+    border: 1px solid rgb(177, 177, 177);
     padding: 0.6em 0.2em;
     margin-top: 4px;
     color: $total_black; 
 
     &::placeholder{
-        color: rgb(83, 83, 83);
+        color: rgb(63, 63, 63);
     }
 
     &--full-width{
@@ -216,31 +272,90 @@ label{
     position: relative;
     background-color: transparent;
     padding: 32px 8px;
-    margin: 12px 0px 4px 0px;
+    margin: 12px 0;
     background-color: white;
     transition: all 0.4s ease;
+    border: 2px solid;
+    text-align: center;
 }
 
 .alert--ward {
-    background-color: #FF0000;
+    border-color: #dd2b1b;
+    background-color: #e84c3d;
 }
 
 .alert--success {
-    background-color: #00ff22;
+    border-color: rgb(27, 201, 67);
+    background-color: #2dcc70;
+}
+
+/* Mensajes laterales */
+
+.aside-popup-container{
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 16;
+
+    & :nth-child(1){
+        margin: 0 0 4px auto;
+    }
+}
+
+.popup{
+    display: block;
+    padding: 16px 4px;
+    margin: 4px 0;
+    background-color: transparent;
+    border: 2px transparent;
+    text-align: center;
+
+    width: 30%;
+    min-width: 240px;
+    max-width: 460px;
+
+    margin-left: auto;
+
+
+    transition: all 0.4s ease;
+
+    &--success{
+        border-color: rgb(27, 201, 67);
+        background-color: #2dcc70;
+    }
+
+    &--ward{
+        border-color: #dd2b1b;
+        background-color: #e84c3d;
+    }
+
+    & p{
+        margin: 0px !important;
+    }
 }
 
 /*CONTAINER PARA MOSTRAR TÍTULO E INPUT DE BÚSQUEDA EN EL TOP*/
 .title-search-peer{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /*TABLA GENÉRICA*/
 .generic-table{
 
+    display: block;
     border-collapse: collapse;
     overflow-x: auto;
     white-space: nowrap; 
+    table-layout: fixed;
+    margin-top: 8px;
 
     & th{
         color: black;
@@ -254,6 +369,16 @@ label{
 
     & tbody tr:nth-child(odd){
         background-color: $odd_table_row_color;
+    }
+    
+    & tbody tr:nth-child(even){
+        background-color: $even_table_row_color;
+    }
+
+    & tbody th{
+        font-family: Roboto-Thin;
+        max-width: 370px;
+        overflow-x: auto;
     }
 
 }

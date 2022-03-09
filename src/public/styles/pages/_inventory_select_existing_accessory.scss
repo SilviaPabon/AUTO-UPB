@@ -1,14 +1,4 @@
 .inventory_existing_accessories_card {
-    width: 25%;
-    max-width: 340px;
-    min-width: 240px;
-    
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: $very_dark;
-
-    transition: all 0.4s ease-in-out;
-
     &__image img {
         width: 100%;
     }
@@ -16,10 +6,5 @@
     &__body{
         padding: 0px 8px 8px 8px;
         text-align: center;
-    }
-
-    &:hover{
-        box-shadow: $very_dark 0 4px 16px;
-        transform: scale(1.02);
     }
 }

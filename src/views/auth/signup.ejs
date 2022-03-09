@@ -12,9 +12,9 @@
 
         <main>
 
-            <form action="/signup" method="post" class="input-form" id="signup-form">
+            <%- include('../partials/_messages.ejs') %>
 
-                <%- include('../partials/_messages.ejs') %>
+            <form action="/signup" method="post" class="input-form" id="signup-form">
 
                 <h1 class="title title--center">CREACIÓN DE CUENTA</h1>
 
@@ -130,7 +130,7 @@
             </form>
         </main>
 
-        <script src="/scripts/signup_validate.js"></script>
+        <script src="/scripts/validations/signup_validate.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>

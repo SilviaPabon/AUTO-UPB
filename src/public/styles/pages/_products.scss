@@ -1,14 +1,5 @@
 .accessory-basic-card {
-    width: 30%;
-    max-width: 340px;
-    min-width: 240px;
     
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: $very_dark;
-
-    transition: all 0.4s ease-in-out;
-
     &__image img {
         width: 100%;
     }
@@ -17,14 +8,19 @@
         padding: 0px 8px 8px 8px;
         text-align: center;
 
+        & h3{
+            text-transform: uppercase;
+        }
+
         & .price{
 
+            color: $main_green;
             display: inline-block;
             font-weight: 300;
             margin: 4px 4px 12px 0;
 
             & span {
-                color: $card_span; 
+                color: $very_dark;
                 margin: 4px;
             }
 
@@ -35,10 +31,5 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-    }
-
-    &:hover{
-        box-shadow: $very_dark 0 4px 16px;
-        transform: scale(1.02);
     }
 }
