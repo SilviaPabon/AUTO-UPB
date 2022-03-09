@@ -4,5 +4,6 @@ const router = {};
 router.authentication = require('./router_authentication'); 
 router.general = require('./general_routes'); 
 router.admin = require('./admin'); 
+router.cart = require('./cart_api'); 
 
 module.exports = router; 

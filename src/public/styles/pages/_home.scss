@@ -1,68 +1,28 @@
-/* HERO DE SERVICIOS OFRECIDOS POR LA EMPRESA*/
-.hero-services{
-    /*Contenedor principal, contiene la imágen del vehículo*/
-    min-height: 65vh;
-    padding: 8px 16px 16px 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    
-    background-image: url('/images/home_header.jpg');
-    background-size: cover;
-    background-position: center;
+/*SECTION DE SERVICIOS OFRECIDOS*/
+.service-card{
+    &__title{
+        width: 100%;
+        background-color: $main_green;
+        padding: 0.6em;
+        text-align: center;
 
-    &__services-container{
-        /*Contenedor inferior de los servicios*/
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-
-        height: 50%;
-    }
-
-    &__service{
-        /*Contenedor de cada servicio*/
-        width: 30%;
-        min-width: 240px;
-        max-width: 360px;
-        padding: 12px;
-
-        display: flex; 
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        /*El segundo elemento tiene bordes para indicar separación*/
-        &:nth-child(2){
-            border-left: 1px solid rgba(255, 255, 255, 0.774);
-            border-right: 1px solid rgba(255, 255, 255, 0.774);
-        }
-
-        & h3{
-            text-align: center;
-            margin: 8px;
-        }
-
-        & p{
-            text-align: center;
-            font-family: Roboto-Thin;
+        & img{
+            margin: 24px;
+            max-height: 60px;
         }
     }
+
+    &__text{
+        text-align: center;
+        color: $total_black;
+        padding: 24px 12px;
+    }
+
 }
 
 /*SECTIONS DE PRODUCTOS MÁS VENDIDOS Y PRODUCTOS CON DESCUENTO*/
 .featured-product-card, 
 .disscount-products-card {
-    
-    width: 30%;
-    max-width: 340px;
-    min-width: 240px;
-    
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: $very_dark;
-
     transition: all 0.4s ease-in-out;
 
     &__image img {
@@ -79,12 +39,13 @@
 
         & p{
 
+            color: $main_green;
             display: inline-block;
             font-weight: 300;
             margin: 4px 4px 12px 0;
 
             & span {
-                color: $card_span; 
+                color: $very_dark;
                 margin: 4px;
             }
 
@@ -95,11 +56,6 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-    }
-
-    &:hover{
-        box-shadow: $very_dark 0 4px 16px;
-        transform: scale(1.02);
     }
 
 }
@@ -124,7 +80,7 @@
 /*SECTION DE CONTACTO*/
 .contact-us{
 
-    background-color: $partial_grey;
+    background-color: $very_dark;
     padding: 32px;
     border-radius: 16px;
 

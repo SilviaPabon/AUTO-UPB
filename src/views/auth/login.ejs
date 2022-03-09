@@ -12,9 +12,9 @@
 
         <main>
 
-            <form method="post" class="input-form" id="login-form">
+            <%- include('../partials/_messages.ejs') %>
 
-                <%- include('../partials/_messages.ejs') %>
+            <form method="post" class="input-form" id="login-form">
 
                 <h1 class="title title--center">INICIO DE SESIÓN</h1>
 
@@ -58,7 +58,7 @@
         </main>
 
 
-        <script src="/scripts/login_validate.js"></script>
+        <script src="/scripts/validations/login_validate.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>

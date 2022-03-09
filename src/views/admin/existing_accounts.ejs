@@ -7,21 +7,26 @@
         <%- include('../partials/_globalHeaders.ejs') %>
         <title>GESTIÓN DE CUENTAS</title>
     </head>
-    <body class="body--light">
+    <body>
         <%- include('../partials/_navbar.ejs') %>
 
         <main>
 
-            <section class="admin-accounts">
+            <div class="title-search-peer">
+                <h1 class="title title--black">CUENTAS EXISTENTES</h1>
 
-                <div class="title-search-peer">
-                    <h1 class="title title--black">CUENTAS EXISTENTES</h1>
+                <form action="/admin/accounts" method="post">
+                    <% if(data.isFiltered == true) {%>
+                        <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" value="<%= data.criteria %>" required>
+                    <% } else {%>
+                        <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" required>
+                    <% } %>
+                    
+                    <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO">
+                </form>
+            </div>
 
-                    <form action="#" method="post">
-                        <input class="input input--search" type="text" id="clientName" name="clientName" placeholder="Buscar un usuario por su nombre">
-                        <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO" disabled>
-                    </form>
-                </div>
+            <% if(data.users[0].length != 0) {%>
 
                 <table class="generic-table">
                     <thead>
@@ -47,8 +52,16 @@
                         <% } %>
                     </tbody>
                 </table>
-                
-            </section>
+
+            <% } else {%>
+
+                <h2 class="title title--center title--soft">NO SE ENCONTRARON USUARIOS</h2>
+
+            <% } %>
+
+            <% if(data.isFiltered == true) {%>
+                <a href="/admin/accounts" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER A TODAS LAS CUENTAS</a>
+            <% } %>
 
         </main>
 

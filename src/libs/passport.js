@@ -4,6 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../database/connection'); //cambiar la base de datos
 const helpers = require('./helpers');
 
+// ---------------------------------
 //Signup
 passport.use(
     'local.signup',
@@ -52,6 +53,7 @@ passport.use(
     )
 );
 
+// ---------------------------------
 //Login
 passport.use(
     'local.login',
@@ -64,20 +66,32 @@ passport.use(
         //Comprobar que exista el usuario en la bae de datos
         const userExist = await pool.query('CALL USER_EXIST(?)', [email]);
 
-            //Si el usuario no existe, se procede con la verificación
+            //Si el usuario existe, se procede con la verificación
             if (userExist[0][0]['CONTEO'] == 1) {
                 
+                //Se traen los datos del usuario desde la base de datos
                 const user = await pool.query('CALL GET_USER_SESSION_DATA_FROM_MAIL(?)', [email]);
-                const passwordIsValid = await helpers.matchPassword(password, user[0][0].contraseña);
 
-                if(passwordIsValid){
-                    done(null, user[0][0]); 
+                //Se verifica que la cuenta se encuentre activa
+                if(user[0][0].codigo_estado_cuenta = 1){
+
+                    const userPassword = await pool.query('CALL GET_USER_PASSWORD(?)', [email]); 
+                    
+                    const passwordIsValid = await helpers.matchPassword(password, userPassword[0][0].contraseña);
+
+                    if(passwordIsValid){
+                        done(null, user[0][0]); 
+                    }else{
+                        done(null, false, req.flash('message','ERROR: Contraseña incorrecta.')); 
+                    }
+
+
                 }else{
-                    done(null, false, req.flash('message','ERROR: Contraseña incorrecta.')); 
+                    done(null, false, req.flash('message',`ERROR: El usuario identificado con el correo ${email} no se encuentra activo.`)); 
                 }
 
             }else{
-                done(null, false, req.flash('message','ERROR: El usuario ingresado no existe')); 
+                done(null, false, req.flash('message',`ERROR: No se encontró un usuario con el correo ${email}`)); 
             }
     })
 );
@@ -121,7 +135,7 @@ passport.use(
                     newUser.password,
                     newUser.rol,
                 ]);
-                req.flash('success', 'Usuario creado éxitosamente')
+                req.flash('success', 'Usuario creado exitosamente')
                 return done(null, req.user);
             } else {
                 //Si el usuario existe, se manda un flash
@@ -131,11 +145,13 @@ passport.use(
     )
 );
 
+// ---------------------------------
 //Serializar el usuario a partir del correo
 passport.serializeUser((user, done) => {
     done(null, user.correo_electronico);
 });
 
+// ---------------------------------
 //Deserializar el usuario a partir del correo
 passport.deserializeUser(async (correo_electronico, done) => {
     const rows = await pool.query('CALL GET_USER_SESSION_DATA_FROM_MAIL(?)', [correo_electronico]);  

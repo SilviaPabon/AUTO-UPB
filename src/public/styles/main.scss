@@ -40,11 +40,8 @@ body{
     border-right: 1px solid rgb(226, 226, 226);
 }
 
-.body--light{
-    background-color: $total_white;
-}
-
 main{
+    position: relative;
     margin-left: 200px;
     min-height: 100vh;
     padding: 16px 16px;
