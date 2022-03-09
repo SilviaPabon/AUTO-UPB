@@ -312,6 +312,11 @@ label{
 
     }
 
+    & td {
+        color: black;
+        padding: 12px 32px;
+    }
+
     & th, & td{
         border: 1px solid #B1B1B1; 
     }
@@ -328,6 +333,10 @@ label{
         font-family: Roboto-Thin;
         max-width: 370px;
         overflow-x: auto;
+    }
+
+    & tbody tr:hover{
+        background-color: #c3e9e4;
     }
 
 }

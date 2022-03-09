@@ -42,7 +42,7 @@
   color: #fff;
 }
 
-.title--soft {
+.card__title--soft {
   color: #c2c2c2;
 }
 
@@ -67,10 +67,7 @@
   border: #36c9b8;
   -webkit-transition: background-color 0.3s ease-in;
   transition: background-color 0.3s ease-in;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
 }
-
 
 .btn--primary--transparent {
   background-color: transparent;
@@ -353,6 +350,11 @@ label {
   padding: 12px 32px;
 }
 
+.generic-table td {
+  color: black;
+  padding: 12px 32px;
+}
+
 .generic-table th, .generic-table td {
   border: 1px solid #B1B1B1;
 }
@@ -369,6 +371,10 @@ label {
   font-family: Roboto-Thin;
   max-width: 370px;
   overflow-x: auto;
+}
+
+.generic-table tbody tr:hover {
+  background-color: #c3e9e4;
 }
 
 .aside-navigation {
@@ -763,6 +769,79 @@ label {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.accessory_details_card {
+  width: 60%;
+  margin: 0px auto;
+  max-width: 480px;
+  min-width: 360px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid #dfdfdf;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.accessory_details_card:hover {
+  -webkit-box-shadow: #d4d4d4 0 4px 16px;
+          box-shadow: #d4d4d4 0 4px 16px;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.accessory_details_card__img img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.accessory_details_card__head {
+  padding: 0px 8px 16px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.accessory_details_card__head .card__title {
+  text-transform: uppercase;
+}
+
+.accessory_details_card__head .price {
+  color: black;
+}
+
+.accessory_details_card__head .price span {
+  background-color: #2ae0cb;
+  padding: 4px;
+  margin-right: 4px;
+  font-weight: bold;
+}
+
+.accessory_details_card__body {
+  padding: 12px 16px 24px 16px;
+}
+
+.accessory_details_card__body .accessory-description {
+  color: black;
+  margin: 12px 0;
+  text-align: justify;
+}
+
+.accessory_details_card__body .accessory-description span {
+  color: #2ae0cb;
+  font-weight: bold;
+}
+
+.accessory_details_card__body .accessory-details-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 /*Global rulesets*/
