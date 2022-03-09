@@ -248,6 +248,67 @@ CALL ADMIN_SHOW_ACCOUNTS();
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA MOSTRAR USUARIOS A ADMIN Y ANEXAR LOGS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_ACCOUNT_DETAILS; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_ACCOUNT_DETAILS(
+	IN id_usuario INT UNSIGNED,
+    IN session_user_id INT UNSIGNED
+)
+BEGIN
+	SELECT id_usuario, nombre, identificacion, telefono, correo_electronico, direccion, tipo_usuario, estado_cuenta
+	FROM USERS_PRETTY 
+	WHERE 
+		id_usuario = USERS_PRETTY.id_usuario;
+        
+	INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 1);
+END //
+DELIMITER ;
+
+/* 
+CALL SHOW_ACCOUNT_DETAILS(
+	2, 3
+);
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA MOSTRAR USUARIOS A UN SOCIO, SOLO QUIENES ACEPTARON TÉRMINOS, ANEXAR LOGS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_ACCOUNTS_DETAILS_PARTNERS; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_ACCOUNTS_DETAILS_PARTNERS(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	SELECT id_usuario, nombre, identificacion, telefono, correo_electronico, direccion
+	FROM USERS_PRETTY 
+	WHERE 
+		id_usuario = USERS_PRETTY.id_usuario
+        AND aceptacion_terminos = 1
+        AND tipo_usuario = "Cliente"
+        AND estado_cuenta = "Activo";
+	INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 1);
+END //
+DELIMITER ;
+
+/*
+CALL SHOW_ACCOUNTS_DETAILS_PARTNERS(
+	1
+);
+*/
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE INVENTARIO
 #######################################################
 */
