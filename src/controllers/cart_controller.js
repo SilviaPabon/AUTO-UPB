@@ -13,7 +13,7 @@ controller.cartAdd = async (req, res) => {
     let itemIndexOnCart = -1;
 
     // Se obtiene la variable global del carrito
-    const cart = req.session.cart;;
+    const cart = req.session.cart;
 
     // Revisa si ya existe el accesorio en el carrito
     for (let index = 0; index < cart.length; index++) {
@@ -29,7 +29,7 @@ controller.cartAdd = async (req, res) => {
             // Consulta a la base de datos para obtener el accesorio
             const queryResponse = await connection.query('CALL SHOW_ACCESSORY_DETAILS(?)', [id]);
 
-            if(queryResponse[0][0].stock >= 1){
+            if (queryResponse[0][0].stock >= 1) {
                 item.id_accesorio = queryResponse[0][0].id_accesorio;
                 item.nombre = queryResponse[0][0].nombre;
                 item.stock = queryResponse[0][0].stock;
@@ -43,16 +43,15 @@ controller.cartAdd = async (req, res) => {
 
                 success = true;
             }
-
         } catch (error) {
             success = false;
         }
     } else {
         //Si el accesorio ya existe en el carrito, le agrega una unidad
         item = cart[itemIndexOnCart];
-        
+
         //Revisa que aún tenga stock
-        if(item.stock > item.cantidad){
+        if (item.stock > item.cantidad) {
             item.cantidad += 1;
             success = true;
         }
@@ -61,11 +60,39 @@ controller.cartAdd = async (req, res) => {
     // Se envía la respuesta según si la operación fue exitosa o no
     success == true
         ? res.status(200).json({
-            status: 'El accesorio fue agregado exitosamente',
-        })
+              status: 'El accesorio fue agregado exitosamente',
+          })
         : res.status(404).json({
-            status: 'No se econtró el accesorio dado',
-        });
+              status: 'No se econtró el accesorio dado',
+          });
+};
+
+// ------
+// Ruta get usada por los botones para remover un accesorio del carrito
+controller.cartRemoveGet = async (req, res) => {
+    const { id } = req.params;
+    const cart = req.session.cart;
+    let accessoryName = ''; 
+    let success = false;
+
+    // Buscar si el elemento existe en en carrito de compras
+    for (let index = 0; index < cart.length; index++) {
+        // Si encuentra el accesorio lo remueve del array y cambia la variable de control success a true
+        if (cart[index].id_accesorio == id) {
+            accessoryName = cart[index].nombre; 
+            cart.splice(index, 1);
+            success = true;
+            break;
+        }
+    }
+
+    if (success) {
+        req.flash('success', `Operación exitosa: El accesorio: ${accessoryName}, fue removido del carrito`);
+        res.redirect('/');
+    } else {
+        req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
+        res.redirect('/');
+    }
 };
 
 module.exports = controller;
