@@ -4,7 +4,7 @@ const protect = require('../libs/protect_middlewares')
 const connection = require('../database/connection'); 
 const controller = require('../controllers/cart_controller'); 
 
-router.post('/add', controller.cartAdd); 
+router.post('/add', protect.isLoggedIn, controller.cartAdd); 
 
 
 module.exports = router;

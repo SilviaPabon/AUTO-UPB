@@ -792,14 +792,19 @@ label {
   text-align: center;
 }
 
+.accessory-basic-card__body h3 {
+  text-transform: uppercase;
+}
+
 .accessory-basic-card__body .price {
+  color: #36c9b8;
   display: inline-block;
   font-weight: 300;
   margin: 4px 4px 12px 0;
 }
 
 .accessory-basic-card__body .price span {
-  color: #2ae0cb;
+  color: #0d141c;
   margin: 4px;
 }
 

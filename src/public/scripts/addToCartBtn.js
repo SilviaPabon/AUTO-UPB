@@ -1,7 +1,5 @@
 const alertsContainer = document.querySelector('.aside-popup-container');
 const btns = document.querySelectorAll('#addToCartBtn');
-const featuredSection = document.getElementById('featured');
-const disscountSection = document.getElementById('disscount');
 
 // -----
 // Función para recargar nuevas alertas
