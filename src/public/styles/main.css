@@ -323,6 +323,58 @@ label {
   background-color: #2dcc70;
 }
 
+/* Mensajes laterales */
+.aside-popup-container {
+  width: 100%;
+  max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 16;
+}
+
+.aside-popup-container :nth-child(1) {
+  margin: 0 0 4px auto;
+}
+
+.popup {
+  display: block;
+  padding: 16px 4px;
+  margin: 4px 0;
+  background-color: transparent;
+  border: 2px transparent;
+  text-align: center;
+  width: 30%;
+  min-width: 240px;
+  max-width: 460px;
+  margin-left: auto;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.popup--success {
+  border-color: #1bc943;
+  background-color: #2dcc70;
+}
+
+.popup--ward {
+  border-color: #dd2b1b;
+  background-color: #e84c3d;
+}
+
+.popup p {
+  margin: 0px !important;
+}
+
 /*CONTAINER PARA MOSTRAR TÍTULO E INPUT DE BÚSQUEDA EN EL TOP*/
 .title-search-peer {
   display: -webkit-box;
@@ -749,14 +801,19 @@ label {
   text-align: center;
 }
 
+.accessory-basic-card__body h3 {
+  text-transform: uppercase;
+}
+
 .accessory-basic-card__body .price {
+  color: #36c9b8;
   display: inline-block;
   font-weight: 300;
   margin: 4px 4px 12px 0;
 }
 
 .accessory-basic-card__body .price span {
-  color: #2ae0cb;
+  color: #0d141c;
   margin: 4px;
 }
 
@@ -870,6 +927,7 @@ body {
 }
 
 main {
+  position: relative;
   margin-left: 200px;
   min-height: 100vh;
   padding: 16px 16px;

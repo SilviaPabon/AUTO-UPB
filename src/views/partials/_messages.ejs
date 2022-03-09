@@ -1,12 +1,11 @@
-
 <% if(message != "") { %>
-    <div class="alert alert--ward">
-        <p class="alert__message"><%= message %></p>
-    </div>
+<div class="alert alert--ward">
+    <p class="alert__message"><%= message %></p>
+</div>
+<% } %> <% if(success != "") { %>
+<div class="alert alert--success">
+    <p class="alert__message"><%= success %></p>
+</div>
 <% } %>
 
-<% if(success != "") { %>
-    <div class="alert alert--success">
-        <p class="alert__message"><%= success %></p>
-    </div>
-<% } %>
+<div class="aside-popup-container"></div>
