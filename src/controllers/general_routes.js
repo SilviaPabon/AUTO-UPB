@@ -13,6 +13,8 @@ controller.home = async(req, res) => {
         disccountProducts, 
         featuredProducts
     }
+
+    console.table(req.session.cart); 
     
     res.render('index', {data}); 
 }; 

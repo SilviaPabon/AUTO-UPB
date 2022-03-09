@@ -8,14 +8,19 @@
         padding: 0px 8px 8px 8px;
         text-align: center;
 
+        & h3{
+            text-transform: uppercase;
+        }
+
         & .price{
 
+            color: $main_green;
             display: inline-block;
             font-weight: 300;
             margin: 4px 4px 12px 0;
 
             & span {
-                color: $main_green_bright;
+                color: $very_dark;
                 margin: 4px;
             }
 

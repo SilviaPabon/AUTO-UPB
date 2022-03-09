@@ -46,6 +46,11 @@ app.use((req, res, next) => {
     app.locals.success = req.flash('success'); 
     app.locals.message = req.flash('message');
     app.locals.user = req.user;
+    
+    if(!req.session.cart){
+        req.session.cart = []; 
+    }
+    
     next();
 });
 
@@ -54,6 +59,7 @@ const router = require('./routes/router.js');
 app.use('/', router.authentication); 
 app.use('/', router.general); 
 app.use('/admin', router.admin); 
+app.use('/cart', router.cart); 
 
 // -- Starting the server --
 app.listen(app.get('port'), ()=> {

@@ -7,7 +7,7 @@ module.exports = {
 
         // Si no está logueado se le enía un mensaje informando
         req.flash('message', 'ERROR: Debes iniciar sesión para realizar la acción deseada');
-        res.redirect('/login');
+        res.status(401).redirect('/login');
     },
 
     /*FUNCIÓN PARA VERIFICAR QUE NO ESTÉ LOGUEADO*/
@@ -18,7 +18,7 @@ module.exports = {
 
         // Si está logueado, se envía un mensaje informando
         req.flash('message', 'ERROR: Ya tienes sesión iniciada.');
-        res.redirect('/');
+        res.status(401).redirect('/');
     },
 
     isAdmin(req, res, next) {
@@ -28,7 +28,7 @@ module.exports = {
 
         //Si no es admin, muestra el aviso y lo redirije al home
         req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
-        res.redirect('/');
+        res.status(401).redirect('/');
     },
 
     isPartner(req, res, next) {
@@ -38,7 +38,7 @@ module.exports = {
 
         //Si no es socio, muestra el aviso y lo redirije al home
         req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
-        res.redirect('/');
+        res.status(401).redirect('/');
     },
 
     isWorker(req, res, next){
@@ -48,6 +48,6 @@ module.exports = {
 
         //Si no es trabajador, muestra el aviso y lo redirije al home
         req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
-        res.redirect('/');
+        res.status(401).redirect('/');
     }
 };

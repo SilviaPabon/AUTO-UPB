@@ -289,6 +289,57 @@ label{
     background-color: #2dcc70;
 }
 
+/* Mensajes laterales */
+
+.aside-popup-container{
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 16;
+
+    & :nth-child(1){
+        margin: 0 0 4px auto;
+    }
+}
+
+.popup{
+    display: block;
+    padding: 16px 4px;
+    margin: 4px 0;
+    background-color: transparent;
+    border: 2px transparent;
+    text-align: center;
+
+    width: 30%;
+    min-width: 240px;
+    max-width: 460px;
+
+    margin-left: auto;
+
+
+    transition: all 0.4s ease;
+
+    &--success{
+        border-color: rgb(27, 201, 67);
+        background-color: #2dcc70;
+    }
+
+    &--ward{
+        border-color: #dd2b1b;
+        background-color: #e84c3d;
+    }
+
+    & p{
+        margin: 0px !important;
+    }
+}
+
 /*CONTAINER PARA MOSTRAR TÍTULO E INPUT DE BÚSQUEDA EN EL TOP*/
 .title-search-peer{
     display: flex;
