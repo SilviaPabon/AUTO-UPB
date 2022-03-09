@@ -818,7 +818,7 @@ label {
 }
 
 .accessory_details_card__body {
-  padding: 12px 16px 24px 16px;
+  padding: 12px 16px 16px 16px;
 }
 
 .accessory_details_card__body .accessory-description {
@@ -842,6 +842,7 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 16px;
 }
 
 /*Global rulesets*/
