@@ -9,6 +9,7 @@ const validateForm = (e) => {
     switch (e.target.name) {
         case 'state':
             validateOption(e.target, e.target.name)
+            console.log(e.target)
         break;
     }
 };
@@ -36,7 +37,7 @@ selection.addEventListener("change", validateForm);
 form.addEventListener('submit', (e) => {
 
     if (
-        fields.rol == True
+        fields.state
     ) {
         this.submit();
     } else {
