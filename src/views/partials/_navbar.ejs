@@ -6,131 +6,131 @@
         <ul class="navigation">
 
             <div class="navigation__account">
-                <div class="navigation__account__icon"><span class="icon--bigger"><img src="/icons/user-circle-solid.svg"></span></div>
+                <div class="navigation__account__icon"><span class="icon--bigger"><img src="/icons/user-circle-solid.svg" alt="Ícono usuario"></span></div>
                 <p><%= user.nombre.split(' ')[0] %></p>
             </div>
 
             <% if(user.codigo_tipo_usuario == 1) { %>
             <li class="navigation__item">
                 <a href="/accessories" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
                     Ver productos</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg" alt="Ícono carrito de compras"></span></div>
                     Carrito de compras</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra"></span></div>
                     Mis órdenes de compra</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg" alt="Ícono formulario de contacto"></span></div>
                     Escríbenos</a
                 >
             </li>
             <% } else if (user.codigo_tipo_usuario == 2){ %>
             <li class="navigation__item">
                 <a href="/accessories" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
                     Ver productos</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg" alt="Ícono carrito de compras"></span></div>
                     Carrito de compras</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra"></span></div>
                     Mis órdenes de compra</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/users-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/users-solid.svg" alt="Ícono cuentas de clientes"></span></div>
                     Consulta de clientes</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg" alt="Ícono inventario"></span></div>
                     Consulta de inventario</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg" alt="Ícono formulario de contacto"></span></div>
                     Escríbenos</a
                 >
             </li>
             <% } else if (user.codigo_tipo_usuario == 3){ %>
             <li class="navigation__item">
                 <a href="/accessories" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
                     Ver productos</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg" alt="Ícono carrito de compras"></span></div>
                     Carrito de compras</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra de clientes"></span></div>
                     Órdenes de compra de los clientes</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg" alt="Ícono inventario"></span></div>
                     Consulta de inventario</a
                 >
             </li>
             <% } else if (user.codigo_tipo_usuario == 4){ %>
             <li class="navigation__item">
                 <a href="/accessories" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
                     Ver productos</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra"></span></div>
                     Órdenes de los clientes</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="/admin/accounts" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/users-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/users-solid.svg" alt="Ícono gestión de cuentas"></span></div>
                     Gestión de cuentas existentes</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="/admin/inventory" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg" alt="Ícono gestión de accesorios"></span></div>
                     Gestión de accesorios</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/money-bill-wave-alt-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/money-bill-wave-alt-solid.svg" alt="Ícono detalles financieros"></span></div>
                     Detalles financieros</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/user-cog-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/user-cog-solid.svg" class="Ícono gestión de cuentas internas"></span></div>
                     Gestión de cuentas internas</a
                 >
             </li>
@@ -143,7 +143,7 @@
         </div>
     </div>
 
-    <div class="menu-toggle"><span class="icon"><img src="/icons/bars-solid.svg"></span></div>
+    <div class="menu-toggle"><span class="icon"><img src="/icons/bars-solid.svg" alt="Ícono memú"></span></div>
 </nav>
 <% }else{ %>
 <nav class="aside-navigation">
@@ -153,13 +153,13 @@
         <ul class="navigation">
             <li class="navigation__item">
                 <a href="/accessories" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
                     Ver productos</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg" alt="Ícono formulario de contacto"></span></div>
                     Escríbenos</a
                 >
             </li>
