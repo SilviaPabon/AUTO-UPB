@@ -5,10 +5,10 @@
     <div class="menu">
         <ul class="navigation">
 
-            <div class="navigation__account">
+            <li class="navigation__account">
                 <div class="navigation__account__icon"><span class="icon--bigger"><img src="/icons/user-circle-solid.svg" alt="Ícono usuario"></span></div>
                 <p><%= user.nombre.split(' ')[0] %></p>
-            </div>
+            </li>
 
             <% if(user.codigo_tipo_usuario == 1) { %>
             <li class="navigation__item">
@@ -130,7 +130,7 @@
             </li>
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
-                    ><div class="navigation__icon"><span class="icon"><img src="/icons/user-cog-solid.svg" class="Ícono gestión de cuentas internas"></span></div>
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/user-cog-solid.svg" alt="Ícono gestión de cuentas internas"></span></div>
                     Gestión de cuentas internas</a
                 >
             </li>
