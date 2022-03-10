@@ -51,7 +51,6 @@ inputs.forEach((input) => {
 
 form.addEventListener('submit', (e) => {
     //Verificar que todos los campos sean correctos
-    console.log(fields);
     if (
         fields.buyprice &&
         fields.newAmmount

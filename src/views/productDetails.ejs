@@ -12,6 +12,8 @@
 
         <main>
     
+            <%- include('partials/_messages.ejs') %>
+
             <article class="accessory_details_card">
                 
                 <div class="accessory_details_card__img">
@@ -42,7 +44,9 @@
                         </table>
                     </div>
 
-                    <a class="btn btn--primary btn--block btn--block btn--no-radius">Añadir al carrito</a>
+                    <% if(user) {%>
+                        <a class="btn btn--primary btn--block btn--block btn--no-radius" data-id="<%= product[0][0].id_accesorio %>" id="addToCartBtn">Añadir al carrito</a>
+                    <% } %>
 
                 </div>
 
@@ -51,6 +55,7 @@
         </main>
 
         <%- include('partials/_globalScripts.ejs') %>
+        <script src="/scripts/addToCartBtn.js"></script>
 
     </body>
 </html>

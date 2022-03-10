@@ -5,7 +5,6 @@ const connection = require('../database/connection');
 // Ruta para añadir un accesorio al carrito
 controller.cartAdd = async (req, res) => {
     const { id } = req.body;
-    console.log(id);
 
     // Inicializa el objeto y las variables de control
     let item = {};

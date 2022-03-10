@@ -73,7 +73,7 @@ passport.use(
                 const user = await pool.query('CALL GET_USER_SESSION_DATA_FROM_MAIL(?)', [email]);
 
                 //Se verifica que la cuenta se encuentre activa
-                if(user[0][0].codigo_estado_cuenta = 1){
+                if(user[0][0].codigo_estado_cuenta == 1){
 
                     const userPassword = await pool.query('CALL GET_USER_PASSWORD(?)', [email]); 
                     
