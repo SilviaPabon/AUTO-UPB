@@ -211,8 +211,9 @@ SELECT id_usuario, nombre, correo_electronico, contraseña, codigo_tipo_usuario,
 FROM USUARIOS; 
 
 /*VISTA PARA MOSTRAR LA INFORMACIÓN DEL USUARIO DE UN MOOD FACIL DE LEER*/
+DROP VIEW IF EXISTS USERS_PRETTY;
 CREATE VIEW USERS_PRETTY AS
-SELECT u.id_usuario, u.nombre, u.identificacion, u.direccion, u.aceptacion_terminos, tu.tipo_usuario, u.correo_electronico, e.estado_cuenta
+SELECT u.id_usuario, u.nombre, u.identificacion, u.direccion, u.aceptacion_terminos, tu.tipo_usuario, u.telefono, u.correo_electronico, e.estado_cuenta
 FROM USUARIOS as u, TIPOS_ESTADO_CUENTA as e, TIPOS_USUARIO as tu
 WHERE 	u.codigo_estado_cuenta = e.codigo_estado_cuenta AND
 		u.codigo_tipo_usuario = tu.codigo_tipo_usuario; 

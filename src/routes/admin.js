@@ -10,6 +10,8 @@ router.post('/create_account', protect.isLoggedIn, protect.isAdmin, passport.aut
     failureRedirect: '/admin/create_account',
     failureFlash: true,
 }));
+router.get('/account_status/:id', controller.state_acc);
+router.post('/account_status/:id', controller.state_acc_post);
 
 router.get('/inventory', protect.isLoggedIn, protect.isAdmin, controller.inventory); 
 router.get('/inventory/add_new', protect.isLoggedIn, protect.isAdmin, controller.inventory_add_new); 

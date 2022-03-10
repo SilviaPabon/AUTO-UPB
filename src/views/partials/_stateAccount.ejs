@@ -1,0 +1,23 @@
+<% if(data.user[0][0].estado_cuenta == "Activo") { %>
+    <select class="input input--full-width" id="state_select" name="state">
+        <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
+        <option class="option" value="2">Inactivo</option>
+        <option class="option" value="3">Fuera de servicio</option>
+    </select>
+<% } %>
+
+<% if(data.user[0][0].estado_cuenta == "Inactivo") { %>
+    <select class="input input--full-width" id="state_select" name="state">
+        <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
+        <option class="option" value="1">Activo</option>
+        <option class="option" value="3">Fuera de servicio</option>
+    </select>
+<% } %>
+
+<% if(data.user[0][0].estado_cuenta == "Fuera de servicio") { %>
+    <select class="input input--full-width" id="state_select" name="state">
+        <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
+        <option class="option" value="1">Activo</option>
+        <option class="option" value="2">Inactivo</option>
+    </select>
+<% } %>
