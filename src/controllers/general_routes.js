@@ -29,7 +29,6 @@ controller.accessoryDetails = async (req, res) => {
     const product = await pool.query('CALL SHOW_ACCESSORY_DETAILS(?)', [id]);
 
     if(product[0].length != 0){
-        console.table(product[0]); 
         res.render('productDetails', { product }); 
     }else{
         req.flash('message', 'ERROR: No se encontró el accesorio solicitado'); 

@@ -9,7 +9,6 @@ const validateForm = (e) => {
     switch (e.target.name) {
         case 'state':
             validateOption(e.target, e.target.name)
-            console.log(e.target)
         break;
     }
 };
