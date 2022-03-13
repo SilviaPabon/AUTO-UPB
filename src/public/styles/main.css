@@ -79,6 +79,23 @@
   background-color: #2ae0cb;
 }
 
+.btn--alert {
+  background-color: #E60118;
+  border: #E60118;
+  -webkit-transition: background-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in;
+}
+
+.btn--alert--transparent {
+  background-color: transparent;
+  border: 1px solid #E60118;
+  color: #E60118;
+}
+
+.btn--alert:hover {
+  background-color: #e74051;
+}
+
 .btn--card {
   font-weight: 300;
   padding: 0.6em 0.8em;
@@ -134,6 +151,13 @@ section {
 
 .section--no-top-margin {
   margin-top: 0;
+}
+
+.grid-1fr-1fr {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 }
 
 /*Contenedor de cards responsive */
@@ -900,6 +924,55 @@ label {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 16px;
+}
+
+.resume-form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.resume-form-container .shopping_resume {
+  width: auto;
+}
+
+.card_cant {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: white;
+  border: 1px solid #dadada;
+}
+
+.input_cart_amount {
+  max-width: 80px;
+  padding: 4px;
+  border: none;
+  color: black;
+}
+
+.input_cart_amount:focus {
+  outline: none;
+}
+
+.btn--amount {
+  border: 1px solid transparent;
+  padding: 0.8em 1em;
+  cursor: pointer;
+  background-color: #36c9b8;
+  text-transform: uppercase;
 }
 
 /*Global rulesets*/
