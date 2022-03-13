@@ -50,7 +50,8 @@ main{
 
 /*Clase para fijar el body cuando se abre el menú en mobile*/
 .body--fixed{
-    position: sticky; 
+    top: 68px; /*Valor calculado a partir de los márgenes y padding existentes*/
+    position: fixed; 
 }
 
 @import './mediaQueries'; 

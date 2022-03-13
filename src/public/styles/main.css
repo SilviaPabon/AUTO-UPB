@@ -433,6 +433,7 @@ label {
   /*Columa contenedora de la barra de navegación*/
   width: 200px;
   height: 100vh;
+  z-index: 100;
   background-color: #0d141c;
   /*Display flex para poner el logo encima de las opciones de navegación*/
   display: -webkit-box;
@@ -935,8 +936,9 @@ main {
 
 /*Clase para fijar el body cuando se abre el menú en mobile*/
 .body--fixed {
-  position: -webkit-sticky;
-  position: sticky;
+  top: 68px;
+  /*Valor calculado a partir de los márgenes y padding existentes*/
+  position: fixed;
 }
 
 /*PARA CELULARES*/
