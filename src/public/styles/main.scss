@@ -50,7 +50,8 @@ main{
 
 /*Clase para fijar el body cuando se abre el menú en mobile*/
 .body--fixed{
-    top: 68px; /*Valor calculado a partir de los márgenes y padding existentes*/
+    top: 70px; /*Valor calculado a partir de los márgenes y padding existentes*/
+    width: 100%;
     position: fixed; 
 }
 
