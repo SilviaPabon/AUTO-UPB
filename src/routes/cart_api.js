@@ -12,5 +12,6 @@ router.post('/add', protect.isLoggedIn, controller.cartAdd);
 // Ruta para eliminar elemento del carrito
 router.get('/remove/:id', protect.isLoggedIn, controller.cartRemoveGet); 
 
+router.get('/', controller.showCart); 
 
 module.exports = router;

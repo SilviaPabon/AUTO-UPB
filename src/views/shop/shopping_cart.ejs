@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>GESTIÓN DE CUENTAS</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+
+            <div class="title-search-peer">
+                <h1 class="title title--black">CARRITO DE COMPRAS</h1>
+            </div>
+
+            <table class="generic-table">
+                <thead>
+                    <tr>
+                        <th>  </th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Descuento/Unidad</th>
+                        <th>Cantidad</th>
+                        <th>Precio final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < cart.length; i++) { %>
+                        <tr>
+                            <th> <button class="btn btn--alert btn--no-radius" name="reserveNow">X</button> </th>
+                            <th><%= cart[i].nombre %></th>
+                            <th><%= cart[i].precio_base %></th>
+                            <th><%= cart[i].descuento %></th>
+                            <th> 
+                                <div class="card_cant">
+                                    <button class="btn--amount" >-</button>
+                                    <input class="input_cart_amount" type="number" min="0" max="12">
+                                    <button class="btn--amount" >+</button>
+                                </div>
+                            </th>
+                            <th><%= cart[i].precio_final %></th>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <div class="resume-form-container">
+                <section class="shopping_resume">
+                    <h1 class="title title--black">RESÚMEN</h1>
+    
+                    <table class="generic-table">
+                        <tbody>
+                                <tr>
+                                    <th>Subtotal </th>
+                                    <th><%= resume.subtotal %> </th>
+                                </tr>
+                                <tr>
+                                    <th>Impuestos </th>
+                                    <th><%= resume.impuestos %> </th>
+                                </tr>
+                                <tr>
+                                    <th>Descuentos </th>
+                                    <th> <%= resume.descuentos %>  </th>
+                                </tr>
+                                <tr>
+                                    <th>Total </th>
+                                    <th><%= resume.total %> </th>
+                                </tr>
+                        </tbody>
+                    </table>
+                    <input
+                            type="submit"
+                            value="REALIZAR COMPRA"
+                            class="btn btn--submit btn--primary btn--block btn--no-radius"
+                        />
+                </section>
+            </div>
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

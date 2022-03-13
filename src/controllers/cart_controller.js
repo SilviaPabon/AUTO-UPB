@@ -94,4 +94,29 @@ controller.cartRemoveGet = async (req, res) => {
     }
 };
 
+controller.showCart = (req, res) => {
+    const cOrig = req.session.cart;
+    const cart = [];
+    const resume = {};
+    resume.descuentos = 0;
+    for (let index = 0; index < cOrig.length; index++) {
+        cart[index] = {};
+        cart[index].id_accesorio = cOrig[index].id_accesorio;
+        cart[index].nombre = cOrig[index].nombre;
+        cart[index].precio_base = cOrig[index].precio_base;
+        cart[index].descuento = cOrig[index].descuento;
+        cart[index].precio_final = cOrig[index].precio_final * cOrig[index].cantidad;
+        cart[index].cantidad = cOrig[index].cantidad
+        if (cart[index].descuento > 0) {
+            resume.descuentos += ((cart[index].precio_base * cart[index].cantidad) - cart[index].precio_final);
+        }
+    }
+    resume.subtotal = cart.map(item => item.precio_final).reduce((prev, curr) => prev + curr, 0);
+    resume.impuestos = resume.subtotal * 0.19;
+    resume.total = resume.subtotal + resume.impuestos;
+    console.table(resume);
+    
+    res.render('shop/shopping_cart', {cart, resume});
+};
+
 module.exports = controller;
