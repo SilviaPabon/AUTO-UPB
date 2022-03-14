@@ -272,7 +272,7 @@ END //
 
 DELIMITER ; 
 
-CALL ADMIN_SHOW_ACCOUNTS(); 
+CALL ADMIN_SHOW_ACCOUNTS(1); 
 
 /* 
 #######################################################
@@ -345,6 +345,7 @@ DROP PROCEDURE IF EXISTS ADMIN_SEARCH_USER_FROM_CRITERIA;
 DELIMITER //
 
 CREATE PROCEDURE ADMIN_SEARCH_USER_FROM_CRITERIA(
+	IN session_user_id INT UNSIGNED,
 	IN criteria VARCHAR(255)
 ) 
 BEGIN 
@@ -353,6 +354,9 @@ BEGIN
     WHERE UPPER(USERS_PRETTY.nombre) LIKE (CONCAT(UPPER(criteria), '%')) OR
 		UPPER(USERS_PRETTY.correo_electronico) LIKE (CONCAT(UPPER(criteria), '%')) OR 
 		USERS_PRETTY.identificacion LIKE (CONCAT(criteria, '%')); 
+        
+	INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 1);
 
 END//
 

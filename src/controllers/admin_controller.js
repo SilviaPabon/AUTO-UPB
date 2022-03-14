@@ -100,7 +100,7 @@ controller.searchAccounts = async (req, res) => {
 controller.searchAccountsResult = async (req, res) => {
     const { criteria } = req.params;
 
-    const users = await pool.query('CALL ADMIN_SEARCH_USER_FROM_CRITERIA(?)', [criteria]);
+    const users = await pool.query('CALL ADMIN_SEARCH_USER_FROM_CRITERIA(?, ?)', [req.user.id_usuario ,criteria]);
 
     const data = {
         users,
