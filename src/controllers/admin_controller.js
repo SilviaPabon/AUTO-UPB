@@ -79,7 +79,7 @@ controller.inventory_add_existing_id_post = async (req, res) => {
 
 // Ruta para mostrar las cuentas existentes
 controller.accounts = async (req, res) => {
-    const users = await pool.query('CALL ADMIN_SHOW_ACCOUNTS()');
+    const users = await pool.query('CALL ADMIN_SHOW_ACCOUNTS(?)', [req.user.id_usuario]);
 
     const data = {
         users,
