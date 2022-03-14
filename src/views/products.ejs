@@ -32,9 +32,9 @@
                                 <div class="accessory-basic-card__btns">
 
                                     <% if(user) {%>
-                                        <a class="btn btn--primary btn--card btn--center" data-id="<%= products[0][i].id_accesorio %>" id="addToCartBtn">AÑADIR AL CARRITO</a>
+                                        <a role="button" tabindex="0" class="btn btn--primary btn--card btn--center" data-id="<%= products[0][i].id_accesorio %>" id="addToCartBtn" aria-label="Añadir <%=products[0][i].nombre %> al carrito de compras">AÑADIR AL CARRITO</a>
                                     <% } %>
-                                    <a href="/accessories/<%= products[0][i].id_accesorio %>" class="btn btn--secondary btn--card btn--center">VER DETALLES</a>
+                                    <a href="/accessories/<%= products[0][i].id_accesorio %>" class="btn btn--secondary btn--card btn--center" aria-label="Ver detalles de <%=products[0][i].nombre %>">VER DETALLES</a>
 
                                 </div>
                             </div>
