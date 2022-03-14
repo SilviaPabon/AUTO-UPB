@@ -2,6 +2,7 @@
     /*Columa contenedora de la barra de navegación*/
     width: 200px;
     height: 100vh;
+    z-index: 100;
     background-color: $very_dark;
     
     /*Display flex para poner el logo encima de las opciones de navegación*/
