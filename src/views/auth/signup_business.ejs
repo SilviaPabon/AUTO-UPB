@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <%- include('../partials/_globalHeaders.ejs') %>
-        <title>CREACIÓN DE CUENTA PERSONAS</title>
+        <title>CREACIÓN DE CUENTA EMPRESAS</title>
     </head>
     <body>
         <%- include('../partials/_navbar.ejs') %>
@@ -14,36 +14,36 @@
 
             <%- include('../partials/_messages.ejs') %>
 
-            <form action="/signup" method="post" class="input-form" id="signup-form">
+            <form action="/signupBusiness" method="post" class="input-form" id="signup-form">
 
-                <h1 class="title title--center">CREACIÓN DE CUENTA</h1>
+                <h1 class="title title--center">CREACIÓN DE CUENTA PARA EMPRESAS</h1>
 
                 <div class="form-group" id="name-group">
-                    <label class="label--block" for="name">Nombre Completo</label>
+                    <label class="label--block" for="name">Razón Social:</label>
                     <div class="form-group__input">
                         <input
                             class="input input--full-width"
                             type="text"
                             id="name"
                             name="name"
-                            placeholder="Ingresa tu nombre completo"
+                            placeholder="Razón social de la empresa"
                         />
-                        <p class="form-group__error-message">El nombre solo puede contener letras.</p>
+                        <p class="form-group__error-message">La razón social debe tener un largo mínimo de 2 letras.</p>
                     </div>
                 </div>
 
                 <div class="form-group" id="documento-group">
-                    <label class="label--block" for="documento">Número de documento:</label>
+                    <label class="label--block" for="documento">NIT:</label>
                     <div class="form-group__input">
                         <input
                             class="input input--full-width"
-                            type="number"
+                            type="text"
                             id="documento"
                             name="documento"
-                            placeholder="Ingresa tu documento"
+                            placeholder="NIT de la empresa"
                             min="0"
                         />
-                        <p class="form-group__error-message">El número de documento solo puede tener números y debe tener de 6 a 14 números.</p>
+                        <p class="form-group__error-message">El NIT debe respetar la forma XXXXXXXXX-Y (Omita los puntos e incluya el guión)</p>
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
                             id="phone"
                             name="phone"
                             min="0"
-                            placeholder="Ingresa tu número de celular"
+                            placeholder="Número de teléfono o fijo de la empresa"
                         />
 
                         <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
@@ -86,7 +86,7 @@
                             type="text"
                             id="address"
                             name="address"
-                            placeholder="Ingresa tu dirección"
+                            placeholder="Dirección de la empresa"
                         />
 
                         <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
@@ -125,13 +125,13 @@
 
                 <input type="submit" value="CREAR CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
             
-                <p class="auth_redirect_message">¿No es una persona natural? <a href="/signupBusiness">Crea una cuenta para empresas.</a></p>
+                <p class="auth_redirect_message">¿No es una empresa? <a href="/signup">Crea una cuenta para personas naturales.</a></p>
                 <p class="auth_redirect_message">¿Ya tienes una cuenta? <a href="/login">Inicia sesión ahora.</a></p>
 
             </form>
         </main>
 
-        <script src="/scripts/validations/signup_validate.js"></script>
+        <script src="/scripts/validations/signupBusiness_validaje.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>

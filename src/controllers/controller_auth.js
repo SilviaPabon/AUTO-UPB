@@ -5,6 +5,10 @@ controller.signup = (req, res) => {
     res.render('auth/signup');  
 }; 
 
+controller.businessSignup = (req, res) => {
+    res.render('auth/signup_business'); 
+}
+
 controller.login = (req, res) => {
     res.render('auth/login'); 
 }; 
