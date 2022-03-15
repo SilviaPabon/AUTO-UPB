@@ -27,13 +27,6 @@ router.post(
 );
 
 router.get('/signupBusiness', protect.isNotLoggedIn, controller.businessSignup); 
-router.post('/signupBusiness', protect.isNotLoggedIn, passport.authenticate(
-    'local.signupBusiness', {
-        successRedirect: '/', 
-        failureRedirect: '/signupBusiness', 
-        failureFlash: true, 
-    }
-))
 
 router.get('/logout', protect.isLoggedIn, controller.logout);
 
