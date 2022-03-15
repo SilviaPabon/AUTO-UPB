@@ -163,6 +163,28 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA LA SABER SU UN USUARIO YA EXISTE A PARTIR DEL DOCUMENTO
+OK
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS USER_EXIST_FROM_DOCUMENT; 
+DELIMITER //
+
+CREATE PROCEDURE USER_EXIST_FROM_DOCUMENT(
+	IN documento VARCHAR(24)
+)
+BEGIN 
+	SELECT COUNT(*) 'CONTEO' FROM USUARIOS
+    WHERE USUARIOS.identificacion = documento; 
+END //
+
+DELIMITER ; 
+
+-- CALL USER_EXIST_FROM_DOCUMENT('1004251788'); 
+
+/* 
+#######################################################
 PROCEDIMIENTO PARA OBTENER LA CONTRASEÑA DEL USUARIO A PARTIR DE SU ID
 #######################################################
 */
