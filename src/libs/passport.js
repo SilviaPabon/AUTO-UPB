@@ -126,7 +126,8 @@ passport.use(
             //Si el usuario no existe, se procede con la creación
             if (userExist[0][0]['CONTEO'] == 0) {
                 newUser.password = await helpers.encryptPassword(newUser.password);
-                await pool.query('CALL ADMIN_CREATE_ACCOUNT(?, ?, ?, ?, ?, ?, ?)', [
+                await pool.query('CALL ADMIN_CREATE_ACCOUNT(?, ?, ?, ?, ?, ?, ?, ?)', [
+                    req.user.id_usuario,
                     newUser.name,
                     newUser.documento,
                     newUser.correo_electronico,

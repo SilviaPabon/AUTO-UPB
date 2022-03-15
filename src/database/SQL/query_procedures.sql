@@ -234,6 +234,7 @@ PROCEDIMIENTO PARA CREACIÓN DE CUENTA POR PARTE DE ADMIN
 DELIMITER //
 
 CREATE PROCEDURE ADMIN_CREATE_ACCOUNT(
+	session_user_id INT UNSIGNED, 
     nombre VARCHAR(255),
     identificacion VARCHAR(24) ,
     correo_electronico VARCHAR(255),
@@ -244,7 +245,7 @@ CREATE PROCEDURE ADMIN_CREATE_ACCOUNT(
 )
 BEGIN 
 
-	INSERT INTO USUARIOS(nombre, identificacion, correo_electronico, direccion, telefono, contraseña, codigo_tipo_usuario, aceptacion_terminos) VALUES (nombre, identificacion, correo_electronico, direccion, telefono, contraseña, codigo_tipo_usuario, 1); 
+	INSERT INTO USUARIOS(nombre, identificacion, correo_electronico, direccion, telefono, contraseña, codigo_tipo_usuario, aceptacion_terminos, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (nombre, identificacion, correo_electronico, direccion, telefono, contraseña, codigo_tipo_usuario, 1, session_user_id, session_user_id); 
 END //
 
 DELIMITER ; 
@@ -259,14 +260,19 @@ DROP PROCEDURE IF EXISTS ADMIN_SHOW_ACCOUNTS;
 DELIMITER //
 
 CREATE PROCEDURE ADMIN_SHOW_ACCOUNTS(
+	IN session_user_id INT UNSIGNED
 )
 BEGIN 
-	SELECT id_usuario, nombre, identificacion, correo_electronico, estado_cuenta FROM USERS_PRETTY; 
+	SELECT id_usuario, nombre, identificacion, correo_electronico, estado_cuenta
+    FROM USERS_PRETTY; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 1);
 END //
 
 DELIMITER ; 
 
-CALL ADMIN_SHOW_ACCOUNTS(); 
+CALL ADMIN_SHOW_ACCOUNTS(1); 
 
 /* 
 #######################################################
@@ -304,32 +310,34 @@ PROCEDIMIENTO PARA MOSTRAR USUARIOS A UN SOCIO, SOLO QUIENES ACEPTARON TÉRMINOS
 #######################################################
 */
 
-DROP PROCEDURE IF EXISTS SHOW_ACCOUNTS_DETAILS_PARTNERS; 
+DROP PROCEDURE IF EXISTS SHOW_ACCOUNTS_PARTNERS; 
 DELIMITER //
 
-CREATE PROCEDURE SHOW_ACCOUNTS_DETAILS_PARTNERS(
+CREATE PROCEDURE SHOW_ACCOUNTS_PARTNERS(
 	IN session_user_id INT UNSIGNED
 )
 BEGIN
 	SELECT id_usuario, nombre, identificacion, telefono, correo_electronico, direccion
 	FROM USERS_PRETTY 
 	WHERE 
-		id_usuario = USERS_PRETTY.id_usuario
-        AND aceptacion_terminos = 1
+		aceptacion_terminos = 1
         AND tipo_usuario = "Cliente"
         AND estado_cuenta = "Activo";
+        
 	INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
     VALUES (session_user_id, 2, 1);
 END //
 DELIMITER ;
 
 /*
-CALL SHOW_ACCOUNTS_DETAILS_PARTNERS(
+CALL SHOW_ACCOUNTS_PARTNERS(
 	1
 );
 */
+
+/*
 #######################################################
-PROCEDIMIENTO PARA BUSCAR UN USUARIO A PARTIR DE UN CRITERIO DADO
+PROCEDIMIENTO PARA QUE UN ADMINISTRADOR PUEDA BUSCAR UN USUARIO A PARTIR DE UN CRITERIO DADO
 #######################################################
 */
 
@@ -337,6 +345,7 @@ DROP PROCEDURE IF EXISTS ADMIN_SEARCH_USER_FROM_CRITERIA;
 DELIMITER //
 
 CREATE PROCEDURE ADMIN_SEARCH_USER_FROM_CRITERIA(
+	IN session_user_id INT UNSIGNED,
 	IN criteria VARCHAR(255)
 ) 
 BEGIN 
@@ -345,14 +354,52 @@ BEGIN
     WHERE UPPER(USERS_PRETTY.nombre) LIKE (CONCAT(UPPER(criteria), '%')) OR
 		UPPER(USERS_PRETTY.correo_electronico) LIKE (CONCAT(UPPER(criteria), '%')) OR 
 		USERS_PRETTY.identificacion LIKE (CONCAT(criteria, '%')); 
+        
+	INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 1);
 
 END//
 
 DELIMITER ; 
 
 CALL ADMIN_SEARCH_USER_FROM_CRITERIA('C'); 
-SELECT * FROM USERS_PRETTY;
 
+/*
+#######################################################
+PROCEDIMIENTO PARA QUE UN SOCIO PUEDA BUSCAR UN USUARIO A PARTIR DE UN CRITERIO DADO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS PARTNER_SEARCH_USER_FROM_CRITERIA; 
+DELIMITER //
+
+CREATE PROCEDURE PARTNER_SEARCH_USER_FROM_CRITERIA(
+	IN session_user_id INT UNSIGNED,
+	IN criteria VARCHAR(255)
+) 
+BEGIN 
+
+	SELECT id_usuario, nombre, identificacion, telefono, correo_electronico, direccion
+	FROM USERS_PRETTY 
+	WHERE 
+		aceptacion_terminos = 1 AND
+		tipo_usuario = "Cliente" AND
+		estado_cuenta = "Activo" AND
+        (
+        UPPER(USERS_PRETTY.nombre) LIKE (CONCAT(UPPER(criteria), '%')) OR
+		UPPER(USERS_PRETTY.correo_electronico) LIKE (CONCAT(UPPER(criteria), '%')) OR 
+		USERS_PRETTY.identificacion LIKE (CONCAT(criteria, '%'))
+        ); 
+        
+	INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 1);
+
+END//
+
+DELIMITER ; 
+
+SELECT * FROM  USERS_PRETTY; 
+CALL PARTNER_SEARCH_USER_FROM_CRITERIA(1, 'J'); 
 
 /* 
 #######################################################
@@ -543,7 +590,7 @@ CALL CHANGE_ACCESSORY_STATUS(
 
 /* 
 #######################################################
-PROCEDIMIENTOS PARA MOSTRAR LOS ACCESORIOS EXISTENTES
+PROCEDIMIENTOS PARA MOSTRAR LOS ACCESORIOS EXISTENTES A CUALQUIER USUARIO
 #######################################################
 */
 
@@ -567,6 +614,33 @@ DELIMITER ;
 /*
 CALL SHOW_ACCESSORIES(); 
 */
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA MOSTRAR AL PERSONAL INTERNO LOS ACCESORIOS EXISTENTES 
+Y GENERAL LOG
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_ACCESSORIES_INTERNAL; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_ACCESSORIES_INTERNAL(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+	/*SELECCIÓN A MOSTRAR*/
+	SELECT id_accesorio, nombre, stock, precio_final 
+    FROM ACCESORIOS 
+    WHERE is_active = 1; 
+    
+    /*REGISTRO DEL LOG DE LA CONSULTA*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 4);
+    
+END//
+
+DELIMITER ; 
 
 /* 
 #######################################################
