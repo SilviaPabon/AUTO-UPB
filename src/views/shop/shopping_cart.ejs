@@ -35,6 +35,7 @@
                                 href="cart/remove/<%= cart[i].id_accesorio %>"
                                 class="btn btn--alert btn--no-radius"
                                 name="reserveNow"
+                                aria-label="Eliminar <%= cart[i].nombre %> del carrito de compras"
                                 >X</a
                             >
                         </th>
@@ -43,7 +44,7 @@
                         <th><%= cart[i].descuento %></th>
                         <th>
                             <div class="card_cant">
-                                <button class="btn--amount btn--amount-a">-</button>
+                                <button class="btn--amount btn--amount-a" aria-label="Disminuir en uno la cantidad actual del accesorio <%= cart[i].nombre %>">-</button>
                                 <input
                                     class="input_cart_amount"
                                     type="number"
@@ -55,7 +56,7 @@
                                     data-id = "<%= cart[i].id_accesorio %>"
                                     data-index = "<%= i %>"
                                 />
-                                <button class="btn--amount btn--amount-b">+</button>
+                                <button class="btn--amount btn--amount-b" aria-label="Aumentar en uno la cantidad actual del accesorio <%= cart[i].nombre %>">+</button>
                             </div>
                         </th>
                         <th><%= cart[i].precio_final %></th>
