@@ -106,7 +106,8 @@ controller.showCart = (req, res) => {
         cart[index].precio_base = cOrig[index].precio_base;
         cart[index].descuento = cOrig[index].descuento;
         cart[index].precio_final = cOrig[index].precio_final * cOrig[index].cantidad;
-        cart[index].cantidad = cOrig[index].cantidad
+        cart[index].cantidad = cOrig[index].cantidad;
+        cart[index].stock = cOrig[index].stock;
         if (cart[index].descuento > 0) {
             resume.descuentos += ((cart[index].precio_base * cart[index].cantidad) - cart[index].precio_final);
         }

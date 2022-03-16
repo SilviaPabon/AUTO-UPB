@@ -1,33 +1,47 @@
-const container = document.querySelector('.generic-table').children[1].children
-const table = document.getElementById('input')
-let contador = 0
+const container = document.querySelector('.generic-table').children[1].children;
+const table = document.getElementById('input');
+
+const postChange = (inputField) => {
+    console.log(inputField.value);
+};
 
 for (let i = 0; i < container.length; i++) {
-    container[i].addEventListener('click', e => {
-        if (e.target.classList.contains('btn--amount-b')){
-            container[i].getElementsByTagName('input')[0].value = parseInt(container[i].getElementsByTagName('input')[0].value) + 1;
-        } 
-        if (e.target.classList.contains('btn--amount-a')){
-            container[i].getElementsByTagName('input')[0].value = container[i].getElementsByTagName('input')[0].value - 1;
+    container[i].querySelector('.btn--amount-b').addEventListener('click', (e) => {
+        if (
+            container[i].getElementsByTagName('input')[0].value <
+            parseInt(container[i].getElementsByTagName('input')[0].attributes['max'].value)
+        ) {
+            console.log(container[i].getElementsByTagName('input')[0].value);
+            container[i].getElementsByTagName('input')[0].value =
+                parseInt(container[i].getElementsByTagName('input')[0].value) + 1;
+            postChange(container[i].getElementsByTagName('input')[0]);
         }
+
         e.stopPropagation();
     });
+    container[i].querySelector('.btn--amount-a').addEventListener('click', (e) => {
+        if (
+            container[i].getElementsByTagName('input')[0].value >
+            parseInt(container[i].getElementsByTagName('input')[0].max)
+        ) {
+            container[i].getElementsByTagName('input')[0].value = parseInt(
+                container[i].getElementsByTagName('input')[0].max
+            );
+        } else if (container[i].getElementsByTagName('input')[0].value > 1) {
+            container[i].getElementsByTagName('input')[0].value =
+                parseInt(container[i].getElementsByTagName('input')[0].value) - 1;
+            postChange(container[i].getElementsByTagName('input')[0]);
+        }
+    });
+    container[i].getElementsByTagName('input')[0].addEventListener('input', (e) => {
+        if (
+            container[i].getElementsByTagName('input')[0].value >
+            parseInt(container[i].getElementsByTagName('input')[0].max)
+        ) {
+            container[i].getElementsByTagName('input')[0].value = parseInt(
+                container[i].getElementsByTagName('input')[0].max
+            );
+        }
+        postChange(e.target);
+    });
 }
-
-
-// e evento
-/* container.addEventListener('click', e => {
-     //el evento que contenga la clase tal
-    if (e.target.classList.contains('btn--amount-b')){
-        contador++
-        table.value = contador
-    } 
-    if (e.target.classList.contains('btn--amount-a')){
-        contador--
-        table.value = contador
-    }
-    e.stopPropagation() //para evitar conteos en otras partes, por propagación
-}) */
-
-
-    
