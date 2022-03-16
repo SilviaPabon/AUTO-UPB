@@ -87,10 +87,10 @@ controller.cartRemoveGet = async (req, res) => {
 
     if (success) {
         req.flash('success', `Operación exitosa: El accesorio: ${accessoryName}, fue removido del carrito`);
-        res.redirect('/');
+        res.redirect('/cart');
     } else {
         req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
-        res.redirect('/');
+        res.redirect('/cart');
     }
 };
 
@@ -118,6 +118,32 @@ controller.showCart = (req, res) => {
     console.table(resume);
     
     res.render('shop/shopping_cart', {cart, resume});
+};
+
+controller.cartUpdate = async (req, res) => {
+    const { id, amount, index } = req.body;
+
+    // Inicializa la variable de control
+    let success = false;
+
+    // Se obtiene la variable global del carrito
+    const cart = req.session.cart;
+
+    try {
+        cart[index].cantidad = amount;
+        success = true;
+    } catch (error) {
+        success = false;
+    }
+
+    // Se envía la respuesta según si la operación fue exitosa o no
+    success == true
+        ? res.status(200).json({
+              status: 'La cantidad fue modificada exitosamente',
+          })
+        : res.status(401).json({
+              status: 'La cantidad no pudo ser modificada',
+          });
 };
 
 module.exports = controller;

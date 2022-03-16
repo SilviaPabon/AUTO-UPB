@@ -14,4 +14,6 @@ router.get('/remove/:id', protect.isLoggedIn, controller.cartRemoveGet);
 
 router.get('/', controller.showCart); 
 
+router.post('/update', controller.cartUpdate); 
+
 module.exports = router;
