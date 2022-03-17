@@ -37,4 +37,9 @@ controller.accessoryDetails = async (req, res) => {
 
 };
 
+controller.userUpdate = async (req, res) => {
+    
+    res.render('userUpdate'); //poner la consulta del usuario actual
+}
+
 module.exports = controller;
