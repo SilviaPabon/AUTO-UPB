@@ -666,6 +666,31 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTOS PARA MOSTRAR AL ADMIN LOS ACCESORIOS EXISTENTES ACTIVOS E INACTIVOS
+Y GENERAR LOG
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_ACCESSORIES_ADMIN; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_ACCESSORIES_ADMIN(
+    IN session_user_id INT UNSIGNED
+)
+BEGIN 
+
+	SELECT id_accesorio, nombre, precio_final, ruta_imagen
+    FROM ACCESORIOS; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 4);
+
+END// 
+
+DELIMITER ; 
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MOSTRAR LOS 12 ACCESORIOS CON MÁS DESCUENTO
 #######################################################
 */
@@ -751,6 +776,29 @@ DELIMITER ;
 /*
 CALL SHOW_ACCESSORY_DETAILS(3); 
 */
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA MOSTRAR LOS DETALLES DE UN ACCESORIO PARA ADMIN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SHOW_ACCESSORY_DETAILS_ADMIN; 
+DELIMITER //
+
+CREATE PROCEDURE SHOW_ACCESSORY_DETAILS_ADMIN(
+	IN id_accesorio INT UNSIGNED
+)
+BEGIN 
+
+	SELECT id_accesorio, nombre, is_active, descripcion, stock, precio_base, descuento, precio_final, unidades_vendidas, ruta_imagen
+    FROM ACCESORIOS 
+    WHERE 
+        ACCESORIOS.id_accesorio = id_accesorio; 
+        
+END// 
+
+DELIMITER ;
 
 /* 
 #######################################################
