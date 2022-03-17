@@ -40,6 +40,7 @@ CALL REGISTER_NEW_CLIENT(
     "password"
 );
 
+/*
 CALL REGISTER_NEW_CLIENT(
 	"Carlos Humberto Gomez", 
     "37845963", 
@@ -59,7 +60,7 @@ CALL REGISTER_NEW_CLIENT(
     1, 
     "passsssssss"
 ); 
-
+*/
 
 
 /* 
@@ -384,7 +385,7 @@ END//
 
 DELIMITER ; 
 
-CALL ADMIN_SEARCH_USER_FROM_CRITERIA('C'); 
+CALL ADMIN_SEARCH_USER_FROM_CRITERIA(1, 'C'); 
 
 /*
 #######################################################
@@ -418,7 +419,9 @@ BEGIN
 
 END//
 
-DELIMITER ; 
+DELIMITER ;  
+
+CALL WORKER_SEARCH_ACCESORIOS_FROM_CRITERIA('C');
 
 SELECT * FROM  USERS_PRETTY; 
 CALL PARTNER_SEARCH_USER_FROM_CRITERIA(1, 'J'); 
@@ -1003,3 +1006,48 @@ CALL MARK_MESSAGE_AS_RESOLVED(
 	1
 );  
 */
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA EL MANEJO DEL CARRITO DE COMPRAS
+#######################################################
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA AÑADIR UN ELEMENTO AL CARRITO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS ADD_ACCESSORY_CART; 
+
+DELIMITER //
+
+CREATE PROCEDURE ADD_ACCESSORY_CART(
+	IN session_user_id INT UNSIGNED,
+    IN id_accesorio INT UNSIGNED
+)
+BEGIN 
+
+	/*Revisa si el accesorio ya existe*/
+    SELECT COUNT(*) INTO @count_exists FROM CARRITO_COMPRAS 
+	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+	
+    /*Procede según si existe el accesorio en el carrito o no*/
+    IF @count_exists  != 0 THEN 
+		/*Si no existe, lo agrega*/
+        INSERT INTO CARRITO_COMPRAS(id_)
+			/*
+        	id_carrito INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+			id_usuario INT UNSIGNED NOT NULL, 
+			id_accesorio INT UNSIGNED NOT NULL, 
+			cantidad_accesorio INT UNSIGNED NOT NULL,
+            */
+    ELSE THEN
+    
+    END IF
+
+END //
+
+DELIMITER ; 

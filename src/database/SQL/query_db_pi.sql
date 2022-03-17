@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS INTEGRADOR_LOCAL; 
 CREATE DATABASE INTEGRADOR_LOCAL; 
 USE INTEGRADOR_LOCAL; 
 
@@ -200,6 +201,18 @@ CREATE TABLE ORDENES_COMPRA_HAS_ACCESORIOS(
     INDEX ordenes_compra_has_accesorios_id_orden(id_orden), 
     INDEX ordenes_compra_has_accesorios_id_accesorio(id_accesorio)
 ); 
+
+CREATE TABLE CARRITO_COMPRAS(
+	id_carrito INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    id_usuario INT UNSIGNED NOT NULL, 
+    id_accesorio INT UNSIGNED NOT NULL, 
+    cantidad_accesorio INT UNSIGNED NOT NULL,
+    
+    CONSTRAINT fk_carrito_usuarios FOREIGN KEY (id_usuario) REFERENCES USUARIOS(id_usuario), 
+    CONSTRAINT fk_carrito_accesorio FOREIGN KEY (id_accesorio) REFERENCES ACCESORIOS(id_accesorio), 
+    
+    INDEX carrito_user(id_usuario)
+)COMMENT = 'TABLA PARA EL MANEJO DEL CARRITO DE COMPRAS DESDE EL APLICATIVO WEB'; 
 
 /* ########################## */
 /* VISTAS */
