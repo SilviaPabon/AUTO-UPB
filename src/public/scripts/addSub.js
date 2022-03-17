@@ -64,12 +64,12 @@ const postChange = async (inputField) => {
 
     // Envía el post para actualizar el carrito
     const value = inputField.value;
-    const { id, index } = inputField.dataset;
+    const { id } = inputField.dataset;
 
     const response = await fetch('/cart/update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: id, index: index, amount: value }),
+        body: JSON.stringify({ id: id, amount: value }),
     });
 
     const alert = document.createElement('div');

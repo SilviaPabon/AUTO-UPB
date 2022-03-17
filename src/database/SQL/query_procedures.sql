@@ -40,6 +40,7 @@ CALL REGISTER_NEW_CLIENT(
     "password"
 );
 
+/*
 CALL REGISTER_NEW_CLIENT(
 	"Carlos Humberto Gomez", 
     "37845963", 
@@ -59,7 +60,7 @@ CALL REGISTER_NEW_CLIENT(
     1, 
     "passsssssss"
 ); 
-
+*/
 
 
 /* 
@@ -249,6 +250,29 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA OBTENER TODOS LOS DATOS DE UN USUARIO A PARTIR DE SU ID
+(PARA LA ACTUALIZACIÓN DE DATOS)
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS GET_USER_DATA_FROM_ID
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_DATA_FROM_ID(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+
+	SELECT nombre, identificacion, correo_electronico, direccion, telefono FROM USUARIOS
+    WHERE USUARIOS.id_usuario = session_user_id; 
+    
+END //
+
+DELIMITER ; 
+
+
+/* 
+#######################################################
 PROCEDIMIENTO PARA CREACIÓN DE CUENTA POR PARTE DE ADMIN
 #######################################################
 */
@@ -384,7 +408,7 @@ END//
 
 DELIMITER ; 
 
-CALL ADMIN_SEARCH_USER_FROM_CRITERIA('C'); 
+CALL ADMIN_SEARCH_USER_FROM_CRITERIA(1, 'C'); 
 
 /*
 #######################################################
@@ -418,7 +442,7 @@ BEGIN
 
 END//
 
-DELIMITER ; 
+DELIMITER ;  
 
 SELECT * FROM  USERS_PRETTY; 
 CALL PARTNER_SEARCH_USER_FROM_CRITERIA(1, 'J'); 
@@ -691,6 +715,33 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTOS PARA QUE EL PERSONAL INTERNO PUEDA BUSCAR ACCESORIOS (SOCIO Y TRABAJADORES) 
+Y GENERAL LOG
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL; 
+
+DELIMITER //
+
+CREATE PROCEDURE SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(	
+	IN session_user_id INT UNSIGNED,
+	IN criteria VARCHAR(255)
+)
+BEGIN 
+	SELECT  id_accesorio, nombre, precio_final, stock FROM ACCESORIOS
+    WHERE 	UPPER(ACCESORIOS.nombre) LIKE (CONCAT(UPPER(criteria), '%')) AND
+			ACCESORIOS.is_active = 1; 
+
+	/*REGISTRO DEL LOG DE LA CONSULTA*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 4);
+END // 
+
+CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(1, 'C');
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MOSTRAR LOS 12 ACCESORIOS CON MÁS DESCUENTO
 #######################################################
 */
@@ -699,7 +750,8 @@ DROP PROCEDURE IF EXISTS SHOW_TOP_DISCOUNT;
 DELIMITER //
 
 CREATE PROCEDURE SHOW_TOP_DISCOUNT(
-
+	IN session_user_id INT UNSIGNED,
+    
 )
 BEGIN 
 
@@ -1051,3 +1103,135 @@ CALL MARK_MESSAGE_AS_RESOLVED(
 	1
 );  
 */
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA EL MANEJO DEL CARRITO DE COMPRAS
+#######################################################
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA AÑADIR UN ELEMENTO AL CARRITO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS ADD_ACCESSORY_CART; 
+
+DELIMITER //
+
+CREATE PROCEDURE ADD_ACCESSORY_CART(
+	IN session_user_id INT UNSIGNED,
+    IN id_accesorio INT UNSIGNED
+)
+BEGIN 
+
+	/*Revisa si el accesorio ya existe*/
+    SELECT COUNT(*) INTO @count_exists FROM CARRITO_COMPRAS 
+	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+	
+    /*Procede según si existe el accesorio en el carrito o no*/
+    IF @count_exists = 0 THEN 
+		/*Si no existe, lo agrega*/
+        INSERT INTO CARRITO_COMPRAS(id_usuario, id_accesorio, cantidad_accesorio)
+		VALUES(session_user_id, id_accesorio, 1); 
+    ELSE
+		/*Si existe, le suma una unidad*/
+        UPDATE CARRITO_COMPRAS
+        SET cantidad_accesorio = cantidad_accesorio + 1
+		WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+				CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+    END IF; 
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL ADD_ACCESSORY_CART(1, 15); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA MODIFICAR LA CANTIDAD DE UN ACCESORIO EN EL CARRITO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS MODIFY_AMOUNT_ACCESSORY_CART; 
+
+DELIMITER //
+
+CREATE PROCEDURE MODIFY_AMOUNT_ACCESSORY_CART(
+	IN session_user_id INT UNSIGNED,
+    IN id_accesorio INT UNSIGNED, 
+    IN amount INT UNSIGNED
+)
+BEGIN 
+	
+    /*Asigna al accesorio en el carrito la cantidad pasada como argumento*/
+	UPDATE CARRITO_COMPRAS
+	SET cantidad_accesorio = amount
+	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL MODIFY_AMOUNT_ACCESSORY_CART(1, 15, 15); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA ELIMINAR UN ACCESORIO DEL CARRITO DE COMPRAS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS REMOVE_ACCESSORY_CART; 
+
+DELIMITER //
+
+CREATE PROCEDURE REMOVE_ACCESSORY_CART(
+	IN session_user_id INT UNSIGNED,
+    IN id_accesorio INT UNSIGNED
+)
+BEGIN 
+	
+    /*Eliminar el accesorio del usuario según el id de ambos*/
+	DELETE FROM CARRITO_COMPRAS
+	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+
+END //
+
+DELIMITER ; 
+
+CALL REMOVE_ACCESSORY_CART(1,15); 
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER EL CARRITO DE COMPRAS DE UN USUARIO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS GET_ACCESSORY_CART; 
+
+DELIMITER //
+
+CREATE PROCEDURE GET_ACCESSORY_CART(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+	
+    SELECT * FROM CART_PRETTY 
+    WHERE CART_PRETTY.id_usuario = session_user_id; 
+
+END //
+
+DELIMITER ; 
+
+CALL GET_ACCESSORY_CART(1); 
+
+SELECT * FROM CARRITO_COMPRAS; 
