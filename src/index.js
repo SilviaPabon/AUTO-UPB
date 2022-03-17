@@ -55,6 +55,7 @@ const router = require('./routes/router.js');
 app.use('/', router.authentication); 
 app.use('/', router.general); 
 app.use('/admin', router.admin); 
+app.use('/employee', router.employee)
 app.use('/cart', router.cart); 
 
 // -- Starting the server --
