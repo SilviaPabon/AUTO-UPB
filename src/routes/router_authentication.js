@@ -26,6 +26,8 @@ router.post(
     })
 );
 
+router.get('/signupBusiness', protect.isNotLoggedIn, controller.businessSignup); 
+
 router.get('/logout', protect.isLoggedIn, controller.logout);
 
 module.exports = router;

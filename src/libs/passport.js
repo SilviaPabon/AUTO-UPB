@@ -5,7 +5,8 @@ const pool = require('../database/connection'); //cambiar la base de datos
 const helpers = require('./helpers');
 
 // ---------------------------------
-//Signup
+
+// SIGNUP (Sirve tanto para empresas como para personas)
 passport.use(
     'local.signup',
     new LocalStrategy(
@@ -31,20 +32,33 @@ passport.use(
             //Verificar que el usuario no exista en la base de datos
             const userExist = await pool.query('CALL USER_EXIST(?)', [email]);
 
-            //Si el usuario no existe, se procede con la creación
+            //Si el usuario no existe (a partir del correo), se procede 
             if (userExist[0][0]['CONTEO'] == 0) {
-                newUser.password = await helpers.encryptPassword(newUser.password);
-                await pool.query('CALL REGISTER_NEW_CLIENT(?, ?, ?, ?, ?, ?, ?)', [
-                    newUser.name,
-                    newUser.documento,
-                    newUser.correo_electronico,
-                    newUser.address,
-                    newUser.phone,
-                    newUser.conditions,
-                    newUser.password,
-                ]);
 
-                return done(null, newUser);
+                const userExistDocument = await pool.query('CALL USER_EXIST_FROM_DOCUMENT(?)', [newUser.documento]); 
+
+                //Si el usuario no existe (A partir del documento, se procede)
+                if(userExistDocument[0][0]['CONTEO'] == 0){
+
+                    
+                    newUser.password = await helpers.encryptPassword(newUser.password);
+                    await pool.query('CALL REGISTER_NEW_CLIENT(?, ?, ?, ?, ?, ?, ?)', [
+                        newUser.name,
+                        newUser.documento,
+                        newUser.correo_electronico,
+                        newUser.address,
+                        newUser.phone,
+                        newUser.conditions,
+                        newUser.password,
+                    ]);
+
+                    return done(null, newUser);
+
+                }else{
+                    //Si el usuario existe, se manda un flash
+                    return done(null, false, req.flash('message', `ERROR: Ya existe un usuario asociado al documento: ${newUser.documento}`));
+                }
+
             } else {
                 //Si el usuario existe, se manda un flash
                 return done(null, false, req.flash('message', `ERROR: El correo: ${newUser.correo_electronico} ya está en uso.`));
@@ -123,21 +137,32 @@ passport.use(
             //Verificar que el usuario no exista en la base de datos
             const userExist = await pool.query('CALL USER_EXIST(?)', [email]);
 
-            //Si el usuario no existe, se procede con la creación
+            //Si el usuario no existe, se procede 
             if (userExist[0][0]['CONTEO'] == 0) {
-                newUser.password = await helpers.encryptPassword(newUser.password);
-                await pool.query('CALL ADMIN_CREATE_ACCOUNT(?, ?, ?, ?, ?, ?, ?, ?)', [
-                    req.user.id_usuario,
-                    newUser.name,
-                    newUser.documento,
-                    newUser.correo_electronico,
-                    newUser.address,
-                    newUser.phone,
-                    newUser.password,
-                    newUser.rol,
-                ]);
-                req.flash('success', 'Usuario creado exitosamente')
-                return done(null, req.user);
+
+                const userExistDocument = await pool.query('CALL USER_EXIST_FROM_DOCUMENT(?)', [newUser.documento]); 
+                //Si el usuario no existe (A partir del documento, se procede)
+                if(userExistDocument[0][0]['CONTEO'] == 0){
+                    
+                    newUser.password = await helpers.encryptPassword(newUser.password);
+                    await pool.query('CALL ADMIN_CREATE_ACCOUNT(?, ?, ?, ?, ?, ?, ?, ?)', [
+                        req.user.id_usuario,
+                        newUser.name,
+                        newUser.documento,
+                        newUser.correo_electronico,
+                        newUser.address,
+                        newUser.phone,
+                        newUser.password,
+                        newUser.rol,
+                    ]);
+
+                    req.flash('success', 'Usuario creado exitosamente')
+                    return done(null, req.user);
+                }else{
+                    //Si el usuario existe, se manda un flash
+                    return done(null, false, req.flash('message', `ERROR: Ya existe un usuario asociado al documento: ${newUser.documento}`));
+                }
+
             } else {
                 //Si el usuario existe, se manda un flash
                 return done(null, req.user, req.flash('message', `ERROR: El correo: ${newUser.correo_electronico} ya está en uso.`));
