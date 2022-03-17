@@ -65,6 +65,23 @@
         background-color: $main_green_bright;
     }
 
+    &--alert{
+        background-color: $bright_red;
+        border: $bright_red;
+        transition: background-color 0.3s ease-in;
+
+        &--transparent{
+            background-color: transparent;
+            border: 1px solid $bright_red;
+            color: $bright_red;
+        }
+
+    }
+
+    &--alert:hover{
+        background-color: $bright_red_soft;
+    }
+
     &--card{
         font-weight: 300;
         padding: 0.6em 0.8em;
@@ -117,6 +134,11 @@ section{
 
 .section--no-top-margin{
     margin-top: 0;
+}
+
+.grid-1fr-1fr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 /*Contenedor de cards responsive */

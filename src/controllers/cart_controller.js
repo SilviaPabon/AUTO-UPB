@@ -87,11 +87,63 @@ controller.cartRemoveGet = async (req, res) => {
 
     if (success) {
         req.flash('success', `Operación exitosa: El accesorio: ${accessoryName}, fue removido del carrito`);
-        res.redirect('/');
+        res.redirect('/cart');
     } else {
         req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
-        res.redirect('/');
+        res.redirect('/cart');
     }
+};
+
+controller.showCart = (req, res) => {
+    const cOrig = req.session.cart;
+    const cart = [];
+    const resume = {};
+    resume.descuentos = 0;
+    for (let index = 0; index < cOrig.length; index++) {
+        cart[index] = {};
+        cart[index].id_accesorio = cOrig[index].id_accesorio;
+        cart[index].nombre = cOrig[index].nombre;
+        cart[index].precio_base = cOrig[index].precio_base;
+        cart[index].descuento = cOrig[index].descuento;
+        cart[index].precio_final = cOrig[index].precio_final * cOrig[index].cantidad;
+        cart[index].cantidad = cOrig[index].cantidad;
+        cart[index].stock = cOrig[index].stock;
+        if (cart[index].descuento > 0) {
+            resume.descuentos += ((cart[index].precio_base * cart[index].cantidad) - cart[index].precio_final);
+        }
+    }
+    resume.subtotal = cart.map(item => item.precio_final).reduce((prev, curr) => prev + curr, 0);
+    resume.impuestos = resume.subtotal * 0.19;
+    resume.total = resume.subtotal + resume.impuestos;
+    console.table(resume);
+    
+    res.render('shop/shopping_cart', {cart, resume});
+};
+
+controller.cartUpdate = async (req, res) => {
+    const { id, amount, index } = req.body;
+
+    // Inicializa la variable de control
+    let success = false;
+
+    // Se obtiene la variable global del carrito
+    const cart = req.session.cart;
+
+    try {
+        cart[index].cantidad = amount;
+        success = true;
+    } catch (error) {
+        success = false;
+    }
+
+    // Se envía la respuesta según si la operación fue exitosa o no
+    success == true
+        ? res.status(200).json({
+              status: 'La cantidad fue modificada exitosamente',
+          })
+        : res.status(401).json({
+              status: 'La cantidad no pudo ser modificada',
+          });
 };
 
 module.exports = controller;

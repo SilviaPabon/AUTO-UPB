@@ -1,0 +1,36 @@
+.resume-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    & .shopping_resume {
+        width: auto;
+    }
+}
+
+.card_cant {
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid rgb(218, 218, 218);
+}
+
+.input_cart_amount {
+    max-width: 80px;
+    padding: 4px;
+    border: none;
+    color: black;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn--amount {
+    border: 1px solid transparent;
+    padding: 0.8em 1em;
+    cursor: pointer;
+    background-color: $main_green;
+    text-transform: uppercase;
+}
