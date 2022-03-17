@@ -713,7 +713,7 @@ BEGIN
     VALUES (session_user_id, 2, 4);
 END // 
 
-CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL('C');
+CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(1, 'C');
 
 /* 
 #######################################################
