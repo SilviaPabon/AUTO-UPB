@@ -201,7 +201,7 @@
         
                         <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
         
-                        <button class="btn btn--submit btn--primary btn--block btn--no-radius">BUSCAR CLIENTE</button>
+                        <button type="button" class="btn btn--submit btn--primary btn--block btn--no-radius" id="searchClientBTN">BUSCAR CLIENTE</button>
                         <input type="submit" value="REGISTRAR COMPRA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
         
                     </form>
@@ -210,7 +210,9 @@
             </div>
 
         </main>
+        
         <script src="/scripts/addSub.js"></script>
+        <script src="/scripts/cart_order_search_client.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
     </body>
 </html>

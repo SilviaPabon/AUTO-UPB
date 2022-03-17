@@ -112,7 +112,7 @@ controller.cartUpdate = async (req, res) => {
         ? res.status(200).json({
             status: 'La cantidad fue modificada exitosamente',
         })
-        : res.status(401).json({
+        : res.status(500).json({
             status: 'La cantidad no pudo ser modificada',
         });
 };
