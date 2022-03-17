@@ -15,7 +15,6 @@ controller.login = (req, res) => {
 
 controller.logout = (req, res) => {
     req.logOut(); //Cierra la sesión
-    req.session.cart = []; 
     res.redirect('/login'); //Lo redirecciona a iniciar sesión
 }
 
