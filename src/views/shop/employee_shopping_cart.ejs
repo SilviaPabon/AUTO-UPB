@@ -65,6 +65,122 @@
             </table>
 
             <div class="resume-form-container">
+
+                <section class="shopping_user_info">
+                    <form action="/signup" method="post" class="input-form" id="signup-form">
+
+                        <h1 class="title title--center">INFORMACIÓN DEL CLIENTE</h1>
+        
+                        <div class="form-group" id="name-group">
+                            <label class="label--block" for="name">Nombre Completo</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Nombre completo del cliente"
+                                />
+                                <p class="form-group__error-message">El nombre solo puede contener letras.</p>
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="documento-group">
+                            <label class="label--block" for="documento">Número de documento:</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="documento"
+                                    name="documento"
+                                    placeholder="Documento del cliente"
+                                    min="0"
+                                />
+                                <p class="form-group__error-message">El número de documento solo puede tener números y debe tener de 6 a 14 números.</p>
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="email-group">
+                            <label class="label--block" for="email">Correo electrónico (Nombre de usuario):</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="ejemplo@dominio.com"
+                                />
+        
+                                <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="phone-group">
+                            <label class="label--block" for="phone">Número de celular o teléfono fijo:</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="phone"
+                                    name="phone"
+                                    min="0"
+                                    placeholder="Teléfono del cliente"
+                                />
+        
+                                <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="address-group">
+                            <label class="label--block" for="address">Dirección:</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="text"
+                                    id="address"
+                                    name="address"
+                                    placeholder="Dirección del cliente"
+                                />
+        
+                                <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="password-group">
+                            <label class="label--block" for="password">Contraseña:</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="********"
+                                />
+        
+                                <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluír un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="">
+                            <div class="form-group__check">
+                                <input type="checkbox" name="conditions" id="conditions" checked/>
+                                <label for="conditions" id="signup-conditions">
+                                    Aceptación de las
+                                    <a href="https://docs.google.com/document/d/1lkSgK_iAXZdK-EptJkuBCzRlpc-mul48/edit?usp=sharing&ouid=101338403893575823190&rtpof=true&sd=true"
+                                    target="_blank" rel="noopener noreferrer"
+                                        >políticas de seguridad y tratamiento de datos personales de la empresa.</a
+                                    >
+                                </label>
+                            </div>
+                        </div>
+        
+                        <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
+        
+                        <input type="submit" value="REGISTRAR COMPRA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
+        
+                    </form>
+                </section>
+
                 <section class="shopping_resume">
                     <h1 class="title title--black">RESÚMEN</h1>
 
@@ -88,13 +204,10 @@
                             </tr>
                         </tbody>
                     </table>
-                    <input
-                        type="submit"
-                        value="REALIZAR COMPRA"
-                        class="btn btn--submit btn--primary btn--block btn--no-radius"
-                    />
                 </section>
+
             </div>
+
         </main>
         <script src="/scripts/addSub.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
