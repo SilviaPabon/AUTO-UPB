@@ -12,7 +12,7 @@
 
         <main>
             
-            <form action="/admin/inventory/edit_existing/<%= accesorios[0][0].id_accesorio %>" method="post" class="input-form" id="signup-form">
+            <form action="/admin/inventory/edit_existing/<%= accesorios[0][0].id_accesorio %>" method="post" class="input-form" id="modify-form">
                 <%- include('../partials/_messages.ejs') %>
 
                 <h1 class="title title--center">MODIFICAR DETALLES DE PRODUCTO EXISTENTE</h1>
@@ -30,7 +30,7 @@
                             
                         />
                         <p class="form-group__error-message">
-                            Sólo se admiten entre 1 y 4 números.
+                            Sólo se admiten entre 3 y 64 carácteres.
                         </p>
                     </div>
                 </div>
@@ -38,23 +38,23 @@
                 <div class="form-group" id="status-group">
                     <label class="label--block" for="status">Estado actual:</label>
                     <div class="form-group__input">
-                        <input
-                            class="input input--full-width"
-                            type="text"
-                            id="status"
-                            name="status"
-                            placeholder="Ingresa el estado del accesorio"
-                            value="Activo"
-                            readonly
-                        />
+                        <%- include('../partials/_statusAccesory.ejs') %>
                     </div>
                 </div>
 
-                <label class="label--block" for="statusUpd">Actualizar el estado del accesorio:</label>
-                <select class="input input--full-width" id="status_select" name="status">
-                    <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
-                    <option class="option" value="2">Inactivo</option>
-                </select>
+                <div class="form-group" id="status_select-group">
+                    <label class="label--block" for="status_select">Actualizar el estado del accesorio:</label>
+                    <div class="form-group__input">
+                        <select class="input input--full-width" id="status_select" name="status_select">
+                            <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
+                            <option class="option" value="1">Activo</option>
+                            <option class="option" value="2">Inactivo</option>
+                        </select>
+                        <p class="form-group__error-message">
+                            Debe seleccionar una opción.
+                        </p>
+                    </div>
+                </div>
 
                 <div class="form-group" id="description-group">
                     <label class="label--block" for="description">Descripción del producto:</label>
@@ -68,7 +68,7 @@
                             
                         ><%= accesorios[0][0].descripcion %></textarea>
                         <p class="form-group__error-message">
-                            Sólo se admiten entre 1 y 4 números.
+                            Sólo se admiten entre 10 y 324 carácteres.
                         </p>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                             
                         />
                         <p class="form-group__error-message">
-                            Sólo se admiten entre 1 y 4 números.
+                            Sólo se admiten entre 2 y 12 números.
                         </p>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                             value="<%= accesorios[0][0].descuento %>"
                         />
                         <p class="form-group__error-message">
-                            Sólo se admiten entre 1 y 4 números.
+                            Sólo se admiten entre 1 y 3 números.
                         </p>
                     </div>
                 </div>
