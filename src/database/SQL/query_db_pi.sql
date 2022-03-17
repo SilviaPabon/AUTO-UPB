@@ -203,7 +203,6 @@ CREATE TABLE ORDENES_COMPRA_HAS_ACCESORIOS(
 ); 
 
 CREATE TABLE CARRITO_COMPRAS(
-	id_carrito INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     id_usuario INT UNSIGNED NOT NULL, 
     id_accesorio INT UNSIGNED NOT NULL, 
     cantidad_accesorio INT UNSIGNED NOT NULL,
@@ -213,6 +212,7 @@ CREATE TABLE CARRITO_COMPRAS(
     
     INDEX carrito_user(id_usuario)
 )COMMENT = 'TABLA PARA EL MANEJO DEL CARRITO DE COMPRAS DESDE EL APLICATIVO WEB'; 
+
 
 /* ########################## */
 /* VISTAS */
@@ -261,3 +261,10 @@ FROM (LOGS as L, TIPOS_TRANSACCION as TT, TABLAS_EXISTENTES as TB)
 LEFT JOIN USUARIOS AS u ON u.id_usuario = L.id_usuario_responsable
 WHERE 	L.codigo_tipo_transaccion = TT.codigo_tipo_transaccion AND
 		L.codigo_tabla_modificada = TB.codigo_tabla;
+
+/*VISTA PARA EL MANEJO DEL CARRITO DE COMPRAS*/
+DROP VIEW IF EXISTS CART_PRETTY; 
+CREATE VIEW CART_PRETTY AS
+SELECT cart.id_usuario, cart.id_accesorio, a.nombre, a.stock, a.precio_base, a.descuento, a.precio_final, a.ruta_imagen, cart.cantidad_accesorio
+FROM CARRITO_COMPRAS AS cart, ACCESORIOS as a
+WHERE cart.id_accesorio = a.id_accesorio; 

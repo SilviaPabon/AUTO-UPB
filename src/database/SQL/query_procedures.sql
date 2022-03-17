@@ -1058,19 +1058,106 @@ BEGIN
 			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
 	
     /*Procede según si existe el accesorio en el carrito o no*/
-    IF @count_exists  != 0 THEN 
+    IF @count_exists = 0 THEN 
 		/*Si no existe, lo agrega*/
-        INSERT INTO CARRITO_COMPRAS(id_)
-			/*
-        	id_carrito INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-			id_usuario INT UNSIGNED NOT NULL, 
-			id_accesorio INT UNSIGNED NOT NULL, 
-			cantidad_accesorio INT UNSIGNED NOT NULL,
-            */
-    ELSE THEN
-    
-    END IF
+        INSERT INTO CARRITO_COMPRAS(id_usuario, id_accesorio, cantidad_accesorio)
+		VALUES(session_user_id, id_accesorio, 1); 
+    ELSE
+		/*Si existe, le suma una unidad*/
+        UPDATE CARRITO_COMPRAS
+        SET cantidad_accesorio = cantidad_accesorio + 1
+		WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+				CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+    END IF; 
 
 END //
 
 DELIMITER ; 
+
+/*
+CALL ADD_ACCESSORY_CART(1, 15); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA MODIFICAR LA CANTIDAD DE UN ACCESORIO EN EL CARRITO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS MODIFY_AMOUNT_ACCESSORY_CART; 
+
+DELIMITER //
+
+CREATE PROCEDURE MODIFY_AMOUNT_ACCESSORY_CART(
+	IN session_user_id INT UNSIGNED,
+    IN id_accesorio INT UNSIGNED, 
+    IN amount INT UNSIGNED
+)
+BEGIN 
+	
+    /*Asigna al accesorio en el carrito la cantidad pasada como argumento*/
+	UPDATE CARRITO_COMPRAS
+	SET cantidad_accesorio = amount
+	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL MODIFY_AMOUNT_ACCESSORY_CART(1, 15, 15); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA ELIMINAR UN ACCESORIO DEL CARRITO DE COMPRAS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS REMOVE_ACCESSORY_CART; 
+
+DELIMITER //
+
+CREATE PROCEDURE REMOVE_ACCESSORY_CART(
+	IN session_user_id INT UNSIGNED,
+    IN id_accesorio INT UNSIGNED
+)
+BEGIN 
+	
+    /*Eliminar el accesorio del usuario según el id de ambos*/
+	DELETE FROM CARRITO_COMPRAS
+	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+
+END //
+
+DELIMITER ; 
+
+CALL REMOVE_ACCESSORY_CART(1,15); 
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER EL CARRITO DE COMPRAS DE UN USUARIO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS GET_ACCESSORY_CART; 
+
+DELIMITER //
+
+CREATE PROCEDURE GET_ACCESSORY_CART(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+	
+    SELECT * FROM CART_PRETTY 
+    WHERE CART_PRETTY.id_usuario = session_user_id; 
+
+END //
+
+DELIMITER ; 
+
+CALL GET_ACCESSORY_CART(1); 
+
+SELECT * FROM CARRITO_COMPRAS; 
