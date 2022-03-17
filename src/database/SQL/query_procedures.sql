@@ -725,8 +725,7 @@ DROP PROCEDURE IF EXISTS SHOW_TOP_DISCOUNT;
 DELIMITER //
 
 CREATE PROCEDURE SHOW_TOP_DISCOUNT(
-	IN session_user_id INT UNSIGNED,
-    
+	IN session_user_id INT UNSIGNED
 )
 BEGIN 
 
@@ -809,6 +808,20 @@ CALL SHOW_ACCESSORY_DETAILS(3);
 PROCEDIMIENTOS PARA MANEJO DE ÓRDENES DE COMPRA
 #######################################################
 */
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA OBTENER DATOS DE UN USUARIO EXISTENTE PARA EL FORMULARIO DE LA
+ORDEN DE COMPRA (DESDE LA CAJA).
+OK
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GET_USER_DATA_BUY_ORDER;
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_DATA_BUY_ORDER(
+	IN 
+);  
 
 /* 
 #######################################################

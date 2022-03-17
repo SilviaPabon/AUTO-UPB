@@ -39,5 +39,17 @@ controller.showCart = async (req, res) => {
     res.render('shop/employee_shopping_cart', {cart, resume});
 };
 
+// ----
+// Ruta para enviar los datos del cliente y proceder con la orden
+controller.postOrder = async (req, res) => {
+
+    const { name, documento, email, phone, address, password, conditions } = req.body; 
+    
+    // Si ya existe el usuario en la base de datos toma su id (Revisa si ya existe el correo o el documento)
+    
+
+    res.send('Received'); 
+
+}; 
 
 module.exports = controller;
