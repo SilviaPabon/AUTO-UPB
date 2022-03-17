@@ -1,22 +1,21 @@
-const inputs = document.querySelectorAll('#signup-form .input--full-width');
-const form = document.getElementById('signup-form');
+const inputs = document.querySelectorAll('#modify-form .input--full-width');
+const form = document.getElementById('modify-form');
+const selection = document.getElementById('status_select');
 
 
 const regEx = {
-    name: /^.{3,64}$/, //15 a 64 caracteres
-    description: /^.{10,324}$/, //15 a 64 caracteres
-    buyprice: /^\d{2,12}$/,
-    sellprice: /^\d{2,12}$/,
-    inventory: /^\d{1,4}$/,
+    name: /^.{3,64}$/, 
+    description: /^.{10,324}$/, 
+    price: /^\d{2,12}$/,
     discount: /^\d{1,3}$/
 };
 
 const fields = {
     name: false,
     description: false,
-    buyprice: false,
+    price: false,
     discount: false, 
-    
+    status_select: false
 };
 
 const validateForm = (e) => {
@@ -29,15 +28,15 @@ const validateForm = (e) => {
             validateField(regEx.description, e.target, e.target.name);
             break;
 
-        case 'buyprice':
-            validateField(regEx.buyprice, e.target, e.target.name);
+        case 'price':
+            validateField(regEx.price, e.target, e.target.name);
             break;
 
         case 'discount':
             validateField(regEx.discount, e.target, e.target.name);
         break;
 
-        case 'state':
+        case 'status_select':
             validateOption(e.target, e.target.name)
         break;
     }
@@ -84,15 +83,16 @@ inputs.forEach((input) => {
     input.addEventListener('blur', validateForm);
 });
 
+selection.addEventListener("change", validateForm);
+
 form.addEventListener('submit', (e) => {
     //Verificar que todos los campos sean correctos
     if (
         fields.name &&
         fields.description &&
-        fields.buyprice &&
-        fields.sellprice &&
+        fields.price &&
         fields.discount &&
-        fields.inventory
+        fields.status_select
     ) {
         this.submit();
     } else {
