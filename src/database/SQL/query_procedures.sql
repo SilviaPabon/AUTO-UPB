@@ -444,8 +444,6 @@ END//
 
 DELIMITER ;  
 
-CALL WORKER_SEARCH_ACCESORIOS_FROM_CRITERIA('C');
-
 SELECT * FROM  USERS_PRETTY; 
 CALL PARTNER_SEARCH_USER_FROM_CRITERIA(1, 'J'); 
 
@@ -692,6 +690,33 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTOS PARA QUE EL PERSONAL INTERNO PUEDA BUSCAR ACCESORIOS (SOCIO Y TRABAJADORES) 
+Y GENERAL LOG
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL; 
+
+DELIMITER //
+
+CREATE PROCEDURE SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(	
+	IN session_user_id INT UNSIGNED,
+	IN criteria VARCHAR(255)
+)
+BEGIN 
+	SELECT  id_accesorio, nombre, precio_final, stock FROM ACCESORIOS
+    WHERE 	UPPER(ACCESORIOS.nombre) LIKE (CONCAT(UPPER(criteria), '%')) AND
+			ACCESORIOS.is_active = 1; 
+
+	/*REGISTRO DEL LOG DE LA CONSULTA*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 4);
+END // 
+
+CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL('C');
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MOSTRAR LOS 12 ACCESORIOS CON MÁS DESCUENTO
 #######################################################
 */
@@ -700,7 +725,8 @@ DROP PROCEDURE IF EXISTS SHOW_TOP_DISCOUNT;
 DELIMITER //
 
 CREATE PROCEDURE SHOW_TOP_DISCOUNT(
-
+	IN session_user_id INT UNSIGNED,
+    
 )
 BEGIN 
 
