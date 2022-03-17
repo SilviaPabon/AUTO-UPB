@@ -38,8 +38,13 @@ controller.accessoryDetails = async (req, res) => {
 };
 
 controller.userUpdate = async (req, res) => {
-    
-    res.render('userUpdate'); //poner la consulta del usuario actual
+    console.log(req.user);
+    const user = await pool.query('CALL GET_USER_DATA_FROM_ID (?)',[req.user.id_usuario])
+    res.render('userUpdate', { user }); 
 }
+/**controller.userUpdate_post= async (req, res) => {
+    const {email, phone, address, password} = req.body;
+
+}*/
 
 module.exports = controller;
