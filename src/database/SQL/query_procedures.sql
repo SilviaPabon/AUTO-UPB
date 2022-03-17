@@ -250,6 +250,29 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA OBTENER TODOS LOS DATOS DE UN USUARIO A PARTIR DE SU ID
+(PARA LA ACTUALIZACIÓN DE DATOS)
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS GET_USER_DATA_FROM_ID
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_DATA_FROM_ID(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+
+	SELECT nombre, identificacion, correo_electronico, direccion, telefono FROM USUARIOS
+    WHERE USUARIOS.id_usuario = session_user_id; 
+    
+END //
+
+DELIMITER ; 
+
+
+/* 
+#######################################################
 PROCEDIMIENTO PARA CREACIÓN DE CUENTA POR PARTE DE ADMIN
 #######################################################
 */
