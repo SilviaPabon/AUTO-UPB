@@ -820,8 +820,19 @@ DROP PROCEDURE IF EXISTS GET_USER_DATA_BUY_ORDER;
 DELIMITER //
 
 CREATE PROCEDURE GET_USER_DATA_BUY_ORDER(
-	IN 
-);  
+	IN documento VARCHAR(24)
+)
+BEGIN 
+	
+    SELECT id_usuario, nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos 
+    FROM USUARIOS
+    WHERE USUARIOS.identificacion = documento; 
+    
+END //
+
+DELIMITER ;   
+
+CALL GET_USER_DATA_BUY_ORDER('1004251788'); 
 
 /* 
 #######################################################
@@ -1091,23 +1102,45 @@ CREATE PROCEDURE ADD_ACCESSORY_CART(
 )
 BEGIN 
 
+	SET @success = 0; 
+
 	/*Revisa si el accesorio ya existe*/
     SELECT COUNT(*) INTO @count_exists FROM CARRITO_COMPRAS 
 	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
 			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+            
+	/*Almacena la MÁXIMA CANTIDAD a partir del STOCK del accesorio*/
+	SELECT CART_PRETTY.stock into @maxAllowed
+        FROM CART_PRETTY WHERE
+        CART_PRETTY.id_usuario = session_user_id AND
+        CART_PRETTY.id_accesorio = id_accesorio; 
 	
     /*Procede según si existe el accesorio en el carrito o no*/
     IF @count_exists = 0 THEN 
-		/*Si no existe, lo agrega*/
-        INSERT INTO CARRITO_COMPRAS(id_usuario, id_accesorio, cantidad_accesorio)
-		VALUES(session_user_id, id_accesorio, 1); 
+		/*Si no existe y hay sufiente stock lo agrega*/
+        IF @maxAllowed >= 1 THEN 
+			INSERT INTO CARRITO_COMPRAS(id_usuario, id_accesorio, cantidad_accesorio)
+			VALUES(session_user_id, id_accesorio, 1); 
+            SET @success = 1; 
+        END IF; 
     ELSE
-		/*Si existe, le suma una unidad*/
-        UPDATE CARRITO_COMPRAS
-        SET cantidad_accesorio = cantidad_accesorio + 1
-		WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
-				CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+		/*Si existe revisa que haya sufiente stock para agregar una unidad*/
+        SELECT cart.cantidad_accesorio into @actualAmount
+		FROM CARRITO_COMPRAS as cart WHERE
+        cart.id_usuario = session_user_id AND
+        cart.id_accesorio = id_accesorio; 
+        
+        IF @maxAllowed > @actualAmount THEN
+			UPDATE CARRITO_COMPRAS
+			SET cantidad_accesorio = cantidad_accesorio + 1
+			WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+					CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+			SET @success = 1; 
+        END IF;
+        
     END IF; 
+    
+    SELECT @success; 
 
 END //
 
@@ -1134,11 +1167,20 @@ CREATE PROCEDURE MODIFY_AMOUNT_ACCESSORY_CART(
 )
 BEGIN 
 	
-    /*Asigna al accesorio en el carrito la cantidad pasada como argumento*/
-	UPDATE CARRITO_COMPRAS
-	SET cantidad_accesorio = amount
-	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
-			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+	/*Almacena la MÁXIMA CANTIDAD a partir del STOCK del accesorio*/
+	SELECT CART_PRETTY.stock into @maxAllowed
+        FROM CART_PRETTY WHERE
+        CART_PRETTY.id_usuario = session_user_id AND
+        CART_PRETTY.id_accesorio = id_accesorio; 
+	
+    /*Si hay suficiente stock, resaliza el cambio*/
+    IF @maxAllowed >= amount THEN 
+		/*Asigna al accesorio en el carrito la cantidad pasada como argumento*/
+		UPDATE CARRITO_COMPRAS
+		SET cantidad_accesorio = amount
+		WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+				CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+    END IF; 
 
 END //
 
@@ -1147,6 +1189,8 @@ DELIMITER ;
 /*
 CALL MODIFY_AMOUNT_ACCESSORY_CART(1, 15, 15); 
 */
+
+SELECT * FROM CART_PRETTY; 
 
 /* 
 #######################################################
