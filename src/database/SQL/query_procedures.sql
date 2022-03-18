@@ -444,7 +444,6 @@ END//
 
 DELIMITER ;  
 
-SELECT * FROM  USERS_PRETTY; 
 CALL PARTNER_SEARCH_USER_FROM_CRITERIA(1, 'J'); 
 
 /* 
@@ -592,10 +591,10 @@ DELIMITER ;
 
 /*
 CALL ADD_INVENTORY_TO_EXISTING_ACCESSORY(
-	3, 
-	11, 
-    20000, 
-    80
+	1, 
+	15, 
+    1600000, 
+    6
 );  
 */
 
@@ -862,81 +861,118 @@ DELIMITER ;
 
 /*
 CALL REGISTER_NEW_BUY_ORDER(
-	3, 
+	1, 
     1
 ); 
 */
 
-
 /* 
 #######################################################
-PROCEDIMIENTOS PARA RELACIONAR UN ACCESORIO CON LA ORDEN DE COMPRA
+PROCEDIMIENTOS PARA ASOCIAR LOS ACCESORIOS CON LA ORDEN DE COMPRA
+Se usa una transacción para asegurarse de que todos los accesorios son agregados
+correctamente
 OK
 #######################################################
 */
 
-DROP PROCEDURE IF EXISTS RELATE_ACCESSORIE_WITH_BUY_ORDER; 
+DROP PROCEDURE IF EXISTS register_buy_order_from_cart; 
+
 DELIMITER //
 
-CREATE PROCEDURE RELATE_ACCESSORIE_WITH_BUY_ORDER(
+CREATE PROCEDURE register_buy_order_from_cart
+(
 	IN session_user_id INT UNSIGNED,
-    IN id_orden INT UNSIGNED, 
-    IN id_accesorio INT UNSIGNED, 
-    IN cantidad_venta SMALLINT UNSIGNED
+    IN buy_order_id INT UNSIGNED
 )
-BEGIN 
+BEGIN     
+    -- Creación de la condición de parada
+    DECLARE done INT DEFAULT FALSE; 
+    
+    -- Creación de las variables usadas por el cursor
+    DECLARE accessory_id, accessory_amount, accessory_disscount INT; 
+    DECLARE accessory_base_price, accessory_final_price DECIMAL(12,2); 
+    
+    -- Creación del cursor
+    DECLARE cart_cursor CURSOR FOR 
+		SELECT id_accesorio, precio_base, descuento, precio_final, cantidad_accesorio FROM CART_PRETTY
+        WHERE 	CART_PRETTY.id_usuario = session_user_id; 
 
-	/*SE OBTIENE EL PRECIO DEL ACCESORIO Y SU DESCUENTO AL MOMENTO DE LA VENTA*/
-    SELECT precio_base, descuento INTO @precio_base, @descuento
-    FROM ACCESORIOS 
-    WHERE ACCESORIOS.id_accesorio = id_accesorio; 
+    -- Creación del handler para la condición de parada
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
     
-    /*SE CALCULAN LOS PRECIOS TOTALES SEGÚN LA CANTIDAD COMPRADA*/
-    SET @precio_base = @precio_base * cantidad_venta; 
-    SET @descuento = ((@precio_base * @descuento)/100); 
+    -- Creación del handler por si algo sale mal
+    DECLARE EXIT HANDLER FOR sqlexception
+		ROLLBACK; 
+        
+	-- Evitar que la base de datos haga commits de las etapas de la transacción
+	SET autocommit = 0; 
     
-    /*SE CALCULA EL IVA*/
-    SET @taxes = (@precio_base - @descuento)*0.19; 
-    SET @precio_final = @precio_base - @descuento + @taxes; 
+	START TRANSACTION; 
     
-    /*SE INSERTAN TODOS LOS DATOS EN LA TABLA DE LA RELACIÓN M-M*/
-	INSERT INTO ORDENES_COMPRA_HAS_ACCESORIOS(id_orden, id_accesorio, cantidad_venta, precio_base, descuento_venta, impuestos_venta, precio_final, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (
-		id_orden, 
-        id_accesorio, 
-        cantidad_venta, 
-        @precio_base, 
-        @descuento, 
-        @taxes, 
-        @precio_final, 
-        session_user_id, 
-        session_user_id
-    ); 
+        -- Inicializa el cursor
+		OPEN cart_cursor; 
+		
+		-- Loop para iterar el carrito y añadir a la orden de compra
+		
+		order_loop: LOOP 
+			FETCH cart_cursor INTO accessory_id, accessory_base_price, accessory_disscount, accessory_final_price, accessory_amount; 
+			
+			IF done THEN 
+				LEAVE order_loop; 
+			END IF;
+			
+			-- Variables para facilitar cálculos
+			SET @base_price_amount = accessory_base_price * accessory_amount; 
+			SET @disscount_amount = ((accessory_base_price * accessory_disscount)/100) * accessory_amount; 
+			SET @taxes_amount = (@base_price_amount - @disscount_amount)*0.19; 
+			SET @final_price_amount = @base_price_amount - @disscount_amount + @taxes_amount; 
+            			
+			-- Resta el accesorio de la tabla de inventario
+            UPDATE ACCESORIOS
+            SET 	ACCESORIOS.stock = ACCESORIOS.stock - accessory_amount, 
+					ACCESORIOS.unidades_vendidas = ACCESORIOS.unidades_vendidas + accessory_amount, 
+                    ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
+			WHERE ACCESORIOS.id_accesorio = accessory_id; 
+			
+			-- Añade el accesorio a la orden de compra
+			INSERT INTO ORDENES_COMPRA_HAS_ACCESORIOS (
+			id_orden, 
+			id_accesorio, 
+			cantidad_venta, 
+			precio_base,
+			descuento_venta, 
+			impuestos_venta, 
+			precio_final, 
+			id_usuario_creacion, 
+			id_usuario_ultima_modificacion) VALUES (
+				buy_order_id, 
+				accessory_id,
+				accessory_amount, 
+				@base_price_amount, 
+				@disscount_amount, 
+				@taxes_amount, 
+				@final_price_amount,
+				session_user_id, 
+				session_user_id
+			); 
+					
+		END LOOP;
+		CLOSE cart_cursor; 
+        
+        -- Vacía el carrito de compras
+        DELETE FROM CARRITO_COMPRAS 
+        WHERE CARRITO_COMPRAS.id_usuario = session_user_id; 
+        
+    COMMIT; 
     
-    /*SE RESETEAN LAS VARIABLES*/
-    SET @precio_base = NULL; 
-    SET @descuento = NULL; 
-    SET @precio_final = NULL; 
-    SET @taxes = NULL; 
+    SET autocommit = 1; 
     
-END //
+END//
 
 DELIMITER ; 
 
-
 /*
-CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
-	3, 
-    1, 
-    1, 
-    4
-); 
-
-CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
-	3, 
-    1,
-    2, 
-    7
-); 
+CALL register_buy_order_from_cart(1, 1); 
 */
 
 /* 
@@ -1190,8 +1226,6 @@ DELIMITER ;
 CALL MODIFY_AMOUNT_ACCESSORY_CART(1, 15, 15); 
 */
 
-SELECT * FROM CART_PRETTY; 
-
 /* 
 #######################################################
 PROCEDIMIENTO PARA ELIMINAR UN ACCESORIO DEL CARRITO DE COMPRAS
@@ -1242,5 +1276,3 @@ END //
 DELIMITER ; 
 
 CALL GET_ACCESSORY_CART(1); 
-
-SELECT * FROM CARRITO_COMPRAS; 
