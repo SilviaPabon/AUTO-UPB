@@ -9,7 +9,7 @@
     </head>
     <body>
         <%- include('partials/_navbar.ejs') %>
-        
+
         <main>
 
             <%- include('partials/_messages.ejs') %>
@@ -26,7 +26,8 @@
                             type="text"
                             id="name"
                             name="name"
-                            placeholder="Ingresa tu nombre completo"
+                            value="<%=userd[0][0].nombre %>"
+                            readonly
                         />
                         <p class="form-group__error-message">El nombre o razón social solo puede contener letras.</p>
                     </div>
@@ -40,8 +41,8 @@
                             type="number"
                             id="documento"
                             name="documento"
-                            placeholder="Ingresa tu documento"
-                            min="0"
+                            value="<%=userd[0][0].identificacion %>"                        
+                            readonly
                         />
                         <p class="form-group__error-message">El número de documento solo puede tener números y debe tener de 6 a 14 números. En el caso del NIT, omitir el guión.</p>
                     </div>
@@ -55,7 +56,7 @@
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="ejemplo@dominio.com"
+                            placeholder="<%=userd[0][0].correo_electronico %>"
                         />
 
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
@@ -71,7 +72,7 @@
                             id="phone"
                             name="phone"
                             min="0"
-                            placeholder="Ingresa tu número de celular"
+                            placeholder="<%=userd[0][0].telefono %>"
                         />
 
                         <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
@@ -86,7 +87,7 @@
                             type="text"
                             id="address"
                             name="address"
-                            placeholder="Ingresa tu dirección"
+                            placeholder="<%=userd[0][0].direccion %>"
                         />
 
                         <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
