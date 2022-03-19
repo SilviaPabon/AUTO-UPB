@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>INVENTARIO EXISTENTE</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+        <main>
+
+            <div class="title-search-peer">
+                <h1 class="title title--black">INVENTARIO</h1>
+
+                <form action="/workers/inventory" method="post">
+                    <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" required>
+                    
+                    <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR ACCESORIO">
+                </form>
+            </div>
+
+            <table class="generic-table">
+                <thead>
+                    <tr>
+                        <th>Id accesorio</th>
+                        <th>Nombre accesorio</th>
+                        <th>precio de venta</th>
+                        <th>Stock disponible</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data.ACCESORIOS ) { %>
+                        <% for(var i = 0; i<data.ACCESORIOS.length; i++ ) {%>
+                            <tr>
+                                <td><%= data.ACCESORIOS[i].id_accesorio%></td>
+                                <td><%= data.ACCESORIOS[i].nombre%></td>
+                                <td><%= data.ACCESORIOS[i].precio_final%></td>
+                                <td><%= data.ACCESORIOS[i].stock%></td>
+                            </tr>
+                        <%} %>
+                    <%} %>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
+
+
+
+
