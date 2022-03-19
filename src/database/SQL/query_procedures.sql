@@ -24,7 +24,11 @@ CREATE PROCEDURE REGISTER_NEW_CLIENT(
     IN contraseña VARCHAR(255)
 )
 BEGIN 
+	/*Inserta el usuario*/
 	INSERT INTO USUARIOS(nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos, contraseña) VALUES (nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos, contraseña); 
+    
+    /*Regresa el id del nuevo usuario*/
+    SELECT id_usuario from USUARIOS where USUARIOS.correo_electronico = correo_electronico; 
 END //
 
 DELIMITER ; 
@@ -32,8 +36,8 @@ DELIMITER ;
 
 CALL REGISTER_NEW_CLIENT(
 	"Pedro Andrés Chaparro", 
-    "1004251788", 
-    "pedro@upb.edu.co", 
+    "1004251780", 
+    "pedroaaaa@upb.edu.co", 
     "Cll 1C #720-440 Piedecuesta", 
     "3147852233", 
     0, 
@@ -849,11 +853,19 @@ CREATE PROCEDURE REGISTER_NEW_BUY_ORDER(
 )
 BEGIN 
 
+	/*CREA EL REGISTRO DE LA ORDEN DE COMPRA*/
 	IF session_user_id != id_cliente THEN
 		INSERT INTO ORDENES_COMPRA(id_cliente, id_vendedor, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES(id_cliente, session_user_id, session_user_id, session_user_id); 
     ELSE
 		INSERT INTO ORDENES_COMPRA(id_cliente, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES(id_cliente, session_user_id, session_user_id); 
     END IF;
+    
+    /*REGRESA EL ID DE LA ORDEN DE COMPRA*/
+    SELECT id_orden, fecha_compra FROM ORDENES_COMPRA
+    WHERE ORDENES_COMPRA.id_cliente = id_cliente
+	ORDER BY fecha_compra DESC
+    LIMIT 1; 
+    
     
 END //
 
@@ -902,7 +914,14 @@ BEGIN
     
     -- Creación del handler por si algo sale mal
     DECLARE EXIT HANDLER FOR sqlexception
-		ROLLBACK; 
+    BEGIN
+    
+		SELECT id_accesorio, nombre, stock FROM ACCESORIOS 
+		WHERE ACCESORIOS.id_accesorio = accessory_id; 
+		ROLLBACK;
+        
+    END;
+		 
         
 	-- Evitar que la base de datos haga commits de las etapas de la transacción
 	SET autocommit = 0; 
@@ -972,6 +991,7 @@ END//
 DELIMITER ; 
 
 /*
+SELECT * FROM CARRITO_COMPRAS; 
 CALL register_buy_order_from_cart(1, 1); 
 */
 
@@ -1146,10 +1166,9 @@ BEGIN
 			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
             
 	/*Almacena la MÁXIMA CANTIDAD a partir del STOCK del accesorio*/
-	SELECT CART_PRETTY.stock into @maxAllowed
-        FROM CART_PRETTY WHERE
-        CART_PRETTY.id_usuario = session_user_id AND
-        CART_PRETTY.id_accesorio = id_accesorio; 
+	SELECT ACCESORIOS.stock into @maxAllowed
+        FROM ACCESORIOS WHERE
+        ACCESORIOS.id_accesorio = id_accesorio; 
 	
     /*Procede según si existe el accesorio en el carrito o no*/
     IF @count_exists = 0 THEN 
@@ -1183,7 +1202,7 @@ END //
 DELIMITER ; 
 
 /*
-CALL ADD_ACCESSORY_CART(1, 15); 
+CALL ADD_ACCESSORY_CART(1, 28); 
 */
 
 /* 
@@ -1223,7 +1242,9 @@ END //
 DELIMITER ; 
 
 /*
-CALL MODIFY_AMOUNT_ACCESSORY_CART(1, 15, 15); 
+CALL MODIFY_AMOUNT_ACCESSORY_CART(1, 28, 10); 
+SELECT * FROM CART_PRETTY; 
+UPDATE CART_PRETTY SET cantidad_accesorio = 11 WHERE id_accesorio = 28; 
 */
 
 /* 

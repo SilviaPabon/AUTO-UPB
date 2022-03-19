@@ -24,7 +24,7 @@ GROUP BY oca.id_orden;
 
 /*VISTA PARA MOSTAR LAS ÓRDENES DE COMPRA DE MANERA "FÁCIL DE ENTENDER"*/
 CREATE VIEW ORDER_SUMMARY_PRETTY AS
-SELECT oc.id_orden, u1.nombre 'Nombre comprador', u2.nombre 'Nombre vendedor', oc.fecha_compra, oc.codigo_estado_compra, SUM(oca.precio_base) 'Subtotales', SUM(oca.descuento_venta) 'Descuentos aplicados', SUM(oca.impuestos_venta) 'IVA aplicado' ,SUM(oca.precio_final) 'Total'
+SELECT oc.id_orden, u1.nombre 'Nombre comprador', u2.nombre 'Nombre vendedor', oc.fecha_compra, oc.codigo_estado_compra, SUM(oca.precio_base) 'Total Precios Base', SUM(oca.descuento_venta) 'Descuentos aplicados', SUM(oca.impuestos_venta) 'IVA aplicado' ,SUM(oca.precio_final) 'Total'
 FROM (ORDENES_COMPRA AS oc, ORDENES_COMPRA_HAS_ACCESORIOS AS oca)
 LEFT JOIN USUARIOS AS u1 ON u1.id_usuario = oc.id_cliente
 LEFT JOIN USUARIOS AS u2 ON u2.id_usuario = oc.id_vendedor
