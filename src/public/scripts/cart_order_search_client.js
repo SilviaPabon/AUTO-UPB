@@ -1,5 +1,6 @@
 const btnSearch = document.getElementById('searchClientBTN'); 
 
+const inputId = document.getElementById('id_usuario'); 
 const inputCedula = document.getElementById('documento'); 
 const inputNombre = document.getElementById('name');
 const inputMail = document.getElementById('email');
@@ -19,6 +20,7 @@ btnSearch.addEventListener('click', async e => {
 
     // Pasa la respuesta al formato JSON
     const responseFormated = await response.json();  
+    console.log(responseFormated); 
 
     const alert = document.createElement('div');
     alert.classList.add('popup');
@@ -43,6 +45,7 @@ btnSearch.addEventListener('click', async e => {
         //Si encontró un usuario
 
         //Reemplaza los campos del formulario
+        inputId.value = responseFormated[0].id_usuario; 
         inputNombre.value = responseFormated[0].nombre; 
         inputDireccion.value = responseFormated[0].direccion; 
         inputMail.value = responseFormated[0].correo_electronico; 
