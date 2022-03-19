@@ -916,6 +916,10 @@ BEGIN
     DECLARE EXIT HANDLER FOR sqlexception
     BEGIN
     
+		/*Elimina la orden de compra, ya que fue fallida*/
+        CALL REMOVE_BUY_ORDER(session_user_id, buy_order); 
+    
+		/*Si algo sale mal muestra informaciónd el accesorio en el que falló*/
 		SELECT id_accesorio, nombre, stock FROM ACCESORIOS 
 		WHERE ACCESORIOS.id_accesorio = accessory_id; 
 		ROLLBACK;
@@ -1022,6 +1026,44 @@ DELIMITER ;
 
 /*
 CALL MARK_ORDER_AS_RECEIVED(
+	1, 
+    1
+); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA ELIMINAR UNA ORDEN DE COMPRA
+OK
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS REMOVE_BUY_ORDER; 
+DELIMITER //
+
+CREATE PROCEDURE REMOVE_BUY_ORDER(
+	IN session_user_id INT UNSIGNED,
+	IN order_id INT UNSIGNED
+)
+BEGIN 
+
+	/* ACTUALIZA EL CAMPO DE ÚLTIMA MODIFICACIÓN PARA EL REGISTRO DEL LOG */
+	UPDATE ORDENES_COMPRA 
+    SET id_usuario_ultima_modificacion = session_user_id
+    WHERE ORDENES_COMPRA.id_orden = order_id; 
+    
+    
+    /*REALIZA LA ELIMINACIÓN DE LA ORDEN*/
+	DELETE FROM ORDENES_COMPRA
+    WHERE ORDENES_COMPRA.id_orden = order_id;
+    
+    
+END //
+
+DELIMITER ; 
+
+/*
+CALL REGISTER_NEW_BUY_ORDER(
 	1, 
     1
 ); 
