@@ -1,4 +1,4 @@
-const inputs = document.querySelectorAll('#signup-form .input--full-width');
+const inputs = document.querySelectorAll('#update-form .input--full-width');
 const form = document.getElementById('update-form');
 
 const regEx = {
