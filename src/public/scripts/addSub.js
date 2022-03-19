@@ -19,7 +19,7 @@ function updateResume(){
     for(let i=0; i < container.length; i++){
         let row = container[i]; 
         subtotalAcum += parseInt(row.children[5].innerText);
-        initialPricesAcum +=  parseInt(row.children[2].innerText) * parseInt(row.children[4].children[0].children[1].value);
+        initialPricesAcum +=  parseInt(row.children[2].innerText) * parseInt(row.children[4].children[0].children[2].value);
     }
 
     subtotal.innerText = subtotalAcum; 
