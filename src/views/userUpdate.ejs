@@ -14,7 +14,7 @@
 
             <%- include('partials/_messages.ejs') %>
 
-            <form action="/update_account" method="post" class="input-form" id="update-form">
+            <form action="/update" method="post" class="input-form" id="update-form">
 
                 <h1 class="title title--center">ACTUALIZAR DATOS</h1>
 
@@ -56,7 +56,7 @@
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="<%=userd[0][0].correo_electronico %>"
+                            value="<%=userd[0][0].correo_electronico %>"
                         />
 
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
@@ -72,7 +72,7 @@
                             id="phone"
                             name="phone"
                             min="0"
-                            placeholder="<%=userd[0][0].telefono %>"
+                            value="<%=userd[0][0].telefono %>"
                         />
 
                         <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
@@ -87,7 +87,7 @@
                             type="text"
                             id="address"
                             name="address"
-                            placeholder="<%=userd[0][0].direccion %>"
+                            value="<%=userd[0][0].direccion %>"
                         />
 
                         <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>

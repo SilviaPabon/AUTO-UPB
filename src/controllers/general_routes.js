@@ -1,5 +1,6 @@
 const controller = {};
 const pool = require('../database/connection');
+const helpers = require('../libs/helpers');
 
 controller.home = async (req, res) => {
     // Se obtienen los productos en descuento
@@ -42,9 +43,21 @@ controller.userUpdate = async (req, res) => {
     const userd = await pool.query('CALL GET_USER_DATA_FROM_ID (?)',[req.user.id_usuario])
     res.render('userUpdate', { userd }); 
 }
-/*controller.userUpdate_post= async (req, res) => {
+controller.userUpdate_post = async (req, res) => {
     const {email, phone, address, password} = req.body;
+    const encPassword = await helpers.encryptPassword(password);
+    await pool.query('CALL UPDATE_EXISTING_USER(?,?,?,?,?,?)',
+    [
+        req.user.id_usuario,
+        req.user.id_usuario,
+        email,
+        address,
+        phone,
+        encPassword
+    ]);
+    req.flash('success','Datos actualizados exitosamente');
+    res.redirect('/');
 
-}*/
+}
 
 module.exports = controller;
