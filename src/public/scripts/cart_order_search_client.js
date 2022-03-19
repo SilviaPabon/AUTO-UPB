@@ -20,7 +20,6 @@ btnSearch.addEventListener('click', async e => {
 
     // Pasa la respuesta al formato JSON
     const responseFormated = await response.json();  
-    console.log(responseFormated); 
 
     const alert = document.createElement('div');
     alert.classList.add('popup');

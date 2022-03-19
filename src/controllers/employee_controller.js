@@ -129,7 +129,6 @@ controller.postOrder = async (req, res) => {
     //Una vez se cree la orden de compra, se comienza la transacción de registro de la orden
     if(orderStepSuccess){
         const transactionQuery = await connection.query('CALL register_buy_order_from_cart(?, ?)', [req.user.id_usuario, order.id_orden]); 
-        console.log(transactionQuery); 
 
         if(transactionQuery[0] == undefined){
             req.flash('success', 'Proceso exitoso: Se generó la orden de compra de manera exitosa');
