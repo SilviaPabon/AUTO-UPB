@@ -12,7 +12,10 @@ controller.cartAdd = async (req, res) => {
     try {
         // Ejecuta la llamada al procedimiento almacenado para añadir el accesorio al carrito
         const query = await connection.query('CALL ADD_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
-        success = true;
+        
+        if(query[0][0]['@success'] == 1){
+            success = true; 
+        }
         
     } catch (error) {
         success = false;

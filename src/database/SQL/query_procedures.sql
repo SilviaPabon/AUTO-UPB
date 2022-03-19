@@ -917,7 +917,7 @@ BEGIN
     BEGIN
     
 		/*Elimina la orden de compra, ya que fue fallida*/
-        CALL REMOVE_BUY_ORDER(session_user_id, buy_order); 
+        CALL REMOVE_BUY_ORDER(session_user_id, buy_order_id); 
     
 		/*Si algo sale mal muestra informaciónd el accesorio en el que falló*/
 		SELECT id_accesorio, nombre, stock FROM ACCESORIOS 
