@@ -5,6 +5,8 @@ const protect = require('../libs/protect_middlewares')
 
 //Ruta del carrito para trabajadores
 router.get('/cart', protect.isLoggedIn, protect.isWorker,controller.showCart); 
+//Ruta para eliminar un accesorio del carrito
+router.get('/cart/remove/:id', protect.isLoggedIn, protect.isWorker, controller.cartRemoveGet)
 //Ruta para obtener los datos del usuario apartir de su cédula
 router.post('/cart/user_exists', protect.isLoggedIn, protect.isWorker, controller.user_exists); 
 //Ruta que se encarga de procesar la compra

@@ -38,6 +38,31 @@ controller.showCart = async (req, res) => {
     res.render('shop/employee_shopping_cart', { cart, resume });
 };
 
+// ------
+// Ruta get usada por los botones para remover un accesorio del carrito
+controller.cartRemoveGet = async (req, res) => {
+    const { id } = req.params;
+    let success = false;
+
+    try {
+        // Ejecuta la llamada al procedimiento almacenado para eliminar el accesorio del carrito
+
+        const query = await connection.query('CALL REMOVE_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
+        success = true;
+        
+    } catch (error) {
+        success = false;
+    }
+
+    if (success) {
+        req.flash('success', `Operación exitosa: El accesorio fue removido del carrito`);
+        res.redirect('/employee/cart');
+    } else {
+        req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
+        res.redirect('/employee/cart');
+    }
+};
+
 // ----
 // Ruta para obtener los datos de un usuario si existe
 controller.user_exists = async (req, res) => {
