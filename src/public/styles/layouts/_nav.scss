@@ -37,7 +37,7 @@
             list-style: none;
 
             &__account{
-                padding: 1em;
+                padding: 8px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -51,7 +51,7 @@
 
             /*Li dentro del ul*/
             &__item {
-                margin-bottom: 8px;
+                margin-bottom: 4px;
             }
 
             /*Link dentro del li*/
