@@ -33,7 +33,7 @@ END //
 
 DELIMITER ; 
 
-
+/*
 CALL REGISTER_NEW_CLIENT(
 	"Pedro Andrés Chaparro", 
     "1004251780", 
@@ -44,7 +44,6 @@ CALL REGISTER_NEW_CLIENT(
     "password"
 );
 
-/*
 CALL REGISTER_NEW_CLIENT(
 	"Carlos Humberto Gomez", 
     "37845963", 
@@ -208,7 +207,9 @@ END//
 
 DELIMITER ; 
 
+/*
 CALL GET_USER_PASSWORD('carlos@upb.edu.co'); 
+*/
 
 /* 
 #######################################################
@@ -322,7 +323,9 @@ END //
 
 DELIMITER ; 
 
+/*
 CALL ADMIN_SHOW_ACCOUNTS(1); 
+*/
 
 /* 
 #######################################################
@@ -412,7 +415,9 @@ END//
 
 DELIMITER ; 
 
+/*
 CALL ADMIN_SEARCH_USER_FROM_CRITERIA(1, 'C'); 
+*/
 
 /*
 #######################################################
@@ -448,7 +453,9 @@ END//
 
 DELIMITER ;  
 
+/*
 CALL PARTNER_SEARCH_USER_FROM_CRITERIA(1, 'J'); 
+*/
 
 /* 
 #######################################################
@@ -741,7 +748,9 @@ BEGIN
     VALUES (session_user_id, 2, 4);
 END // 
 
+/*
 CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(1, 'C');
+*/
 
 /* 
 #######################################################
@@ -883,7 +892,9 @@ END //
 
 DELIMITER ;   
 
+/*
 CALL GET_USER_DATA_BUY_ORDER('1004251788'); 
+*/
 
 /* 
 #######################################################
@@ -1362,7 +1373,9 @@ END //
 
 DELIMITER ; 
 
+/*
 CALL REMOVE_ACCESSORY_CART(1,15); 
+*/
 
 /* 
 #######################################################
@@ -1386,4 +1399,6 @@ END //
 
 DELIMITER ; 
 
+/*
 CALL GET_ACCESSORY_CART(1); 
+*/

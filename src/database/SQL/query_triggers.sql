@@ -11,6 +11,7 @@ Ok
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS user_created; 
 DELIMITER //
 
 CREATE TRIGGER user_created AFTER INSERT ON USUARIOS
@@ -56,6 +57,7 @@ OK
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS user_modified; 
 DELIMITER //
 
 CREATE TRIGGER user_modified AFTER UPDATE ON USUARIOS
@@ -111,6 +113,7 @@ si se hace por algún otro medio.
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS user_removed; 
 DELIMITER //
 
 CREATE TRIGGER user_removed AFTER DELETE ON USUARIOS
@@ -155,6 +158,7 @@ OK
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS product_added; 
 DELIMITER //
 
 CREATE TRIGGER product_added AFTER INSERT ON ACCESORIOS
@@ -312,6 +316,7 @@ TRIGGERS PARA REGISTRAR LA CREACIÓN DE UNA ORDEN DE COMPRA
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS order_added; 
 DELIMITER //
 
 CREATE TRIGGER order_added AFTER INSERT ON ORDENES_COMPRA
@@ -343,6 +348,7 @@ TRIGGERS PARA REGISTRAR LA MODIFICACIÓN DE UNA ORDEN DE COMPRA
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS order_modified; 
 DELIMITER //
 
 CREATE TRIGGER order_modified AFTER UPDATE ON ORDENES_COMPRA
@@ -418,7 +424,7 @@ TRIGGERS PARA REGISTRAR LA CREACIÓN DE UN RESGISTRO EN LA TABLA ORDENES_COMPRA_
 #######################################################
 */
 
-DROP TRIGGER ORDENES_COMPRA_HAS_ACCESORIOS_entry_added; 
+DROP TRIGGER IF EXISTS ORDENES_COMPRA_HAS_ACCESORIOS_entry_added; 
 DELIMITER //
 
 CREATE TRIGGER ORDENES_COMPRA_HAS_ACCESORIOS_entry_added AFTER INSERT ON ORDENES_COMPRA_HAS_ACCESORIOS
@@ -462,6 +468,7 @@ TRIGGERS PARA REGISTRAR LA MODIFICACIÓN DE UN REGISTRO EN LA TABLA ORDENES_COMP
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS ORDENES_COMPRA_HAS_ACCESORIOS_entry_modified; 
 DELIMITER //
 
 CREATE TRIGGER ORDENES_COMPRA_HAS_ACCESORIOS_entry_modified AFTER UPDATE ON ORDENES_COMPRA_HAS_ACCESORIOS
@@ -583,6 +590,7 @@ Ok
 #######################################################
 */
 
+DROP TRIGGER IF EXISTS message_status_modified; 
 DELIMITER //
 
 CREATE TRIGGER message_status_modified AFTER UPDATE ON MENSAJES_INQUIETUDES
