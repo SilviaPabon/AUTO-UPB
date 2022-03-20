@@ -509,7 +509,7 @@ label {
 }
 
 .aside-navigation .menu .navigation__account {
-  padding: 1em;
+  padding: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -528,7 +528,7 @@ label {
 }
 
 .aside-navigation .menu .navigation__item {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .aside-navigation .menu .navigation__link {
