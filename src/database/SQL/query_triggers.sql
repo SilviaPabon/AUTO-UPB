@@ -392,7 +392,7 @@ FOR EACH ROW
 BEGIN 
 	
     -- Guardar el log
-    INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior) 
+    INSERT INTO LOGS(codigo_tipo_transaccion, codigo_tabla_modificada, estado_anterior, id_usuario_responsable) 
     VALUES (
 		4,
 		3, 
@@ -403,7 +403,8 @@ BEGIN
 				"codigo_estado_compra", OLD.codigo_estado_compra, 
 				"id_usuario_creacion", OLD.id_usuario_creacion, 
 				"id_usuario_ultima_modificacion", OLD.id_usuario_ultima_modificacion
-            )
+            ), 
+		OLD.id_usuario_ultima_modificacion
 	); 
     
 END //
@@ -417,6 +418,7 @@ TRIGGERS PARA REGISTRAR LA CREACIÓN DE UN RESGISTRO EN LA TABLA ORDENES_COMPRA_
 #######################################################
 */
 
+DROP TRIGGER ORDENES_COMPRA_HAS_ACCESORIOS_entry_added; 
 DELIMITER //
 
 CREATE TRIGGER ORDENES_COMPRA_HAS_ACCESORIOS_entry_added AFTER INSERT ON ORDENES_COMPRA_HAS_ACCESORIOS
@@ -442,12 +444,6 @@ BEGIN
 		)
 	); 
     
-    /*Se actualiza el inventario y el número de artículos vendidos*/
-    UPDATE ACCESORIOS SET 
-		ACCESORIOS.stock = ACCESORIOS.stock - NEW.cantidad_venta,
-		ACCESORIOS.unidades_vendidas = ACCESORIOS.unidades_vendidas + NEW.cantidad_venta
-    WHERE ACCESORIOS.id_accesorio = NEW.id_accesorio; 
-
 	/*Se añade el ingreso a la tabla de histórico*/
 	INSERT INTO HISTORICO_INGRESOS_GASTOS (codigo_tipo_movimiento, valor_movimiento, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (
 		1, 

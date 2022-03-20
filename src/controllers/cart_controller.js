@@ -12,7 +12,10 @@ controller.cartAdd = async (req, res) => {
     try {
         // Ejecuta la llamada al procedimiento almacenado para añadir el accesorio al carrito
         const query = await connection.query('CALL ADD_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
-        success = true;
+        
+        if(query[0][0]['@success'] == 1){
+            success = true; 
+        }
         
     } catch (error) {
         success = false;
@@ -112,7 +115,7 @@ controller.cartUpdate = async (req, res) => {
         ? res.status(200).json({
             status: 'La cantidad fue modificada exitosamente',
         })
-        : res.status(401).json({
+        : res.status(500).json({
             status: 'La cantidad no pudo ser modificada',
         });
 };

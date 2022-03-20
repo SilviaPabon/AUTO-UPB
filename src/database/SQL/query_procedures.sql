@@ -24,7 +24,11 @@ CREATE PROCEDURE REGISTER_NEW_CLIENT(
     IN contraseña VARCHAR(255)
 )
 BEGIN 
+	/*Inserta el usuario*/
 	INSERT INTO USUARIOS(nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos, contraseña) VALUES (nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos, contraseña); 
+    
+    /*Regresa el id del nuevo usuario*/
+    SELECT id_usuario from USUARIOS where USUARIOS.correo_electronico = correo_electronico; 
 END //
 
 DELIMITER ; 
@@ -32,8 +36,8 @@ DELIMITER ;
 
 CALL REGISTER_NEW_CLIENT(
 	"Pedro Andrés Chaparro", 
-    "1004251788", 
-    "pedro@upb.edu.co", 
+    "1004251780", 
+    "pedroaaaa@upb.edu.co", 
     "Cll 1C #720-440 Piedecuesta", 
     "3147852233", 
     0, 
@@ -444,7 +448,6 @@ END//
 
 DELIMITER ;  
 
-SELECT * FROM  USERS_PRETTY; 
 CALL PARTNER_SEARCH_USER_FROM_CRITERIA(1, 'J'); 
 
 /* 
@@ -592,10 +595,10 @@ DELIMITER ;
 
 /*
 CALL ADD_INVENTORY_TO_EXISTING_ACCESSORY(
-	3, 
-	11, 
-    20000, 
-    80
+	1, 
+	15, 
+    1600000, 
+    6
 );  
 */
 
@@ -750,8 +753,7 @@ DROP PROCEDURE IF EXISTS SHOW_TOP_DISCOUNT;
 DELIMITER //
 
 CREATE PROCEDURE SHOW_TOP_DISCOUNT(
-	IN session_user_id INT UNSIGNED,
-    
+	IN session_user_id INT UNSIGNED
 )
 BEGIN 
 
@@ -860,6 +862,31 @@ PROCEDIMIENTOS PARA MANEJO DE ÓRDENES DE COMPRA
 
 /* 
 #######################################################
+PROCEDIMIENTOS PARA OBTENER DATOS DE UN USUARIO EXISTENTE PARA EL FORMULARIO DE LA
+ORDEN DE COMPRA (DESDE LA CAJA).
+OK
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GET_USER_DATA_BUY_ORDER;
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_DATA_BUY_ORDER(
+	IN documento VARCHAR(24)
+)
+BEGIN 
+	
+    SELECT id_usuario, nombre, identificacion, correo_electronico, direccion, telefono, aceptacion_terminos 
+    FROM USUARIOS
+    WHERE USUARIOS.identificacion = documento; 
+    
+END //
+
+DELIMITER ;   
+
+CALL GET_USER_DATA_BUY_ORDER('1004251788'); 
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA REGISTRAR UNA NUEVA ORDEN DE COMPRA
 OK
 #######################################################
@@ -874,11 +901,19 @@ CREATE PROCEDURE REGISTER_NEW_BUY_ORDER(
 )
 BEGIN 
 
+	/*CREA EL REGISTRO DE LA ORDEN DE COMPRA*/
 	IF session_user_id != id_cliente THEN
 		INSERT INTO ORDENES_COMPRA(id_cliente, id_vendedor, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES(id_cliente, session_user_id, session_user_id, session_user_id); 
     ELSE
 		INSERT INTO ORDENES_COMPRA(id_cliente, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES(id_cliente, session_user_id, session_user_id); 
     END IF;
+    
+    /*REGRESA EL ID DE LA ORDEN DE COMPRA*/
+    SELECT id_orden, fecha_compra FROM ORDENES_COMPRA
+    WHERE ORDENES_COMPRA.id_cliente = id_cliente
+	ORDER BY fecha_compra DESC
+    LIMIT 1; 
+    
     
 END //
 
@@ -886,81 +921,130 @@ DELIMITER ;
 
 /*
 CALL REGISTER_NEW_BUY_ORDER(
-	3, 
+	1, 
     1
 ); 
 */
 
-
 /* 
 #######################################################
-PROCEDIMIENTOS PARA RELACIONAR UN ACCESORIO CON LA ORDEN DE COMPRA
+PROCEDIMIENTOS PARA ASOCIAR LOS ACCESORIOS CON LA ORDEN DE COMPRA
+Se usa una transacción para asegurarse de que todos los accesorios son agregados
+correctamente
 OK
 #######################################################
 */
 
-DROP PROCEDURE IF EXISTS RELATE_ACCESSORIE_WITH_BUY_ORDER; 
+DROP PROCEDURE IF EXISTS register_buy_order_from_cart; 
+
 DELIMITER //
 
-CREATE PROCEDURE RELATE_ACCESSORIE_WITH_BUY_ORDER(
+CREATE PROCEDURE register_buy_order_from_cart
+(
 	IN session_user_id INT UNSIGNED,
-    IN id_orden INT UNSIGNED, 
-    IN id_accesorio INT UNSIGNED, 
-    IN cantidad_venta SMALLINT UNSIGNED
+    IN buy_order_id INT UNSIGNED
 )
-BEGIN 
+BEGIN     
+    -- Creación de la condición de parada
+    DECLARE done INT DEFAULT FALSE; 
+    
+    -- Creación de las variables usadas por el cursor
+    DECLARE accessory_id, accessory_amount, accessory_disscount INT; 
+    DECLARE accessory_base_price, accessory_final_price DECIMAL(12,2); 
+    
+    -- Creación del cursor
+    DECLARE cart_cursor CURSOR FOR 
+		SELECT id_accesorio, precio_base, descuento, precio_final, cantidad_accesorio FROM CART_PRETTY
+        WHERE 	CART_PRETTY.id_usuario = session_user_id; 
 
-	/*SE OBTIENE EL PRECIO DEL ACCESORIO Y SU DESCUENTO AL MOMENTO DE LA VENTA*/
-    SELECT precio_base, descuento INTO @precio_base, @descuento
-    FROM ACCESORIOS 
-    WHERE ACCESORIOS.id_accesorio = id_accesorio; 
+    -- Creación del handler para la condición de parada
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
     
-    /*SE CALCULAN LOS PRECIOS TOTALES SEGÚN LA CANTIDAD COMPRADA*/
-    SET @precio_base = @precio_base * cantidad_venta; 
-    SET @descuento = ((@precio_base * @descuento)/100); 
+    -- Creación del handler por si algo sale mal
+    DECLARE EXIT HANDLER FOR sqlexception
+    BEGIN
     
-    /*SE CALCULA EL IVA*/
-    SET @taxes = (@precio_base - @descuento)*0.19; 
-    SET @precio_final = @precio_base - @descuento + @taxes; 
+		/*Elimina la orden de compra, ya que fue fallida*/
+        CALL REMOVE_BUY_ORDER(session_user_id, buy_order_id); 
     
-    /*SE INSERTAN TODOS LOS DATOS EN LA TABLA DE LA RELACIÓN M-M*/
-	INSERT INTO ORDENES_COMPRA_HAS_ACCESORIOS(id_orden, id_accesorio, cantidad_venta, precio_base, descuento_venta, impuestos_venta, precio_final, id_usuario_creacion, id_usuario_ultima_modificacion) VALUES (
-		id_orden, 
-        id_accesorio, 
-        cantidad_venta, 
-        @precio_base, 
-        @descuento, 
-        @taxes, 
-        @precio_final, 
-        session_user_id, 
-        session_user_id
-    ); 
+		/*Si algo sale mal muestra informaciónd el accesorio en el que falló*/
+		SELECT id_accesorio, nombre, stock FROM ACCESORIOS 
+		WHERE ACCESORIOS.id_accesorio = accessory_id; 
+		ROLLBACK;
+        
+    END;
+		 
+        
+	-- Evitar que la base de datos haga commits de las etapas de la transacción
+	SET autocommit = 0; 
     
-    /*SE RESETEAN LAS VARIABLES*/
-    SET @precio_base = NULL; 
-    SET @descuento = NULL; 
-    SET @precio_final = NULL; 
-    SET @taxes = NULL; 
+	START TRANSACTION; 
     
-END //
+        -- Inicializa el cursor
+		OPEN cart_cursor; 
+		
+		-- Loop para iterar el carrito y añadir a la orden de compra
+		
+		order_loop: LOOP 
+			FETCH cart_cursor INTO accessory_id, accessory_base_price, accessory_disscount, accessory_final_price, accessory_amount; 
+			
+			IF done THEN 
+				LEAVE order_loop; 
+			END IF;
+			
+			-- Variables para facilitar cálculos
+			SET @base_price_amount = accessory_base_price * accessory_amount; 
+			SET @disscount_amount = ((accessory_base_price * accessory_disscount)/100) * accessory_amount; 
+			SET @taxes_amount = (@base_price_amount - @disscount_amount)*0.19; 
+			SET @final_price_amount = @base_price_amount - @disscount_amount + @taxes_amount; 
+            			
+			-- Resta el accesorio de la tabla de inventario
+            UPDATE ACCESORIOS
+            SET 	ACCESORIOS.stock = ACCESORIOS.stock - accessory_amount, 
+					ACCESORIOS.unidades_vendidas = ACCESORIOS.unidades_vendidas + accessory_amount, 
+                    ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
+			WHERE ACCESORIOS.id_accesorio = accessory_id; 
+			
+			-- Añade el accesorio a la orden de compra
+			INSERT INTO ORDENES_COMPRA_HAS_ACCESORIOS (
+			id_orden, 
+			id_accesorio, 
+			cantidad_venta, 
+			precio_base,
+			descuento_venta, 
+			impuestos_venta, 
+			precio_final, 
+			id_usuario_creacion, 
+			id_usuario_ultima_modificacion) VALUES (
+				buy_order_id, 
+				accessory_id,
+				accessory_amount, 
+				@base_price_amount, 
+				@disscount_amount, 
+				@taxes_amount, 
+				@final_price_amount,
+				session_user_id, 
+				session_user_id
+			); 
+					
+		END LOOP;
+		CLOSE cart_cursor; 
+        
+        -- Vacía el carrito de compras
+        DELETE FROM CARRITO_COMPRAS 
+        WHERE CARRITO_COMPRAS.id_usuario = session_user_id; 
+        
+    COMMIT; 
+    
+    SET autocommit = 1; 
+    
+END//
 
 DELIMITER ; 
 
-
 /*
-CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
-	3, 
-    1, 
-    1, 
-    4
-); 
-
-CALL RELATE_ACCESSORIE_WITH_BUY_ORDER(
-	3, 
-    1,
-    2, 
-    7
-); 
+SELECT * FROM CARRITO_COMPRAS; 
+CALL register_buy_order_from_cart(1, 1); 
 */
 
 /* 
@@ -990,6 +1074,44 @@ DELIMITER ;
 
 /*
 CALL MARK_ORDER_AS_RECEIVED(
+	1, 
+    1
+); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA ELIMINAR UNA ORDEN DE COMPRA
+OK
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS REMOVE_BUY_ORDER; 
+DELIMITER //
+
+CREATE PROCEDURE REMOVE_BUY_ORDER(
+	IN session_user_id INT UNSIGNED,
+	IN order_id INT UNSIGNED
+)
+BEGIN 
+
+	/* ACTUALIZA EL CAMPO DE ÚLTIMA MODIFICACIÓN PARA EL REGISTRO DEL LOG */
+	UPDATE ORDENES_COMPRA 
+    SET id_usuario_ultima_modificacion = session_user_id
+    WHERE ORDENES_COMPRA.id_orden = order_id; 
+    
+    
+    /*REALIZA LA ELIMINACIÓN DE LA ORDEN*/
+	DELETE FROM ORDENES_COMPRA
+    WHERE ORDENES_COMPRA.id_orden = order_id;
+    
+    
+END //
+
+DELIMITER ; 
+
+/*
+CALL REGISTER_NEW_BUY_ORDER(
 	1, 
     1
 ); 
@@ -1126,30 +1248,51 @@ CREATE PROCEDURE ADD_ACCESSORY_CART(
 )
 BEGIN 
 
+	SET @success = 0; 
+
 	/*Revisa si el accesorio ya existe*/
     SELECT COUNT(*) INTO @count_exists FROM CARRITO_COMPRAS 
 	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
 			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+            
+	/*Almacena la MÁXIMA CANTIDAD a partir del STOCK del accesorio*/
+	SELECT ACCESORIOS.stock into @maxAllowed
+        FROM ACCESORIOS WHERE
+        ACCESORIOS.id_accesorio = id_accesorio; 
 	
     /*Procede según si existe el accesorio en el carrito o no*/
     IF @count_exists = 0 THEN 
-		/*Si no existe, lo agrega*/
-        INSERT INTO CARRITO_COMPRAS(id_usuario, id_accesorio, cantidad_accesorio)
-		VALUES(session_user_id, id_accesorio, 1); 
+		/*Si no existe y hay sufiente stock lo agrega*/
+        IF @maxAllowed >= 1 THEN 
+			INSERT INTO CARRITO_COMPRAS(id_usuario, id_accesorio, cantidad_accesorio)
+			VALUES(session_user_id, id_accesorio, 1); 
+            SET @success = 1; 
+        END IF; 
     ELSE
-		/*Si existe, le suma una unidad*/
-        UPDATE CARRITO_COMPRAS
-        SET cantidad_accesorio = cantidad_accesorio + 1
-		WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
-				CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+		/*Si existe revisa que haya sufiente stock para agregar una unidad*/
+        SELECT cart.cantidad_accesorio into @actualAmount
+		FROM CARRITO_COMPRAS as cart WHERE
+        cart.id_usuario = session_user_id AND
+        cart.id_accesorio = id_accesorio; 
+        
+        IF @maxAllowed > @actualAmount THEN
+			UPDATE CARRITO_COMPRAS
+			SET cantidad_accesorio = cantidad_accesorio + 1
+			WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+					CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+			SET @success = 1; 
+        END IF;
+        
     END IF; 
+    
+    SELECT @success; 
 
 END //
 
 DELIMITER ; 
 
 /*
-CALL ADD_ACCESSORY_CART(1, 15); 
+CALL ADD_ACCESSORY_CART(1, 28); 
 */
 
 /* 
@@ -1169,18 +1312,29 @@ CREATE PROCEDURE MODIFY_AMOUNT_ACCESSORY_CART(
 )
 BEGIN 
 	
-    /*Asigna al accesorio en el carrito la cantidad pasada como argumento*/
-	UPDATE CARRITO_COMPRAS
-	SET cantidad_accesorio = amount
-	WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
-			CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+	/*Almacena la MÁXIMA CANTIDAD a partir del STOCK del accesorio*/
+	SELECT CART_PRETTY.stock into @maxAllowed
+        FROM CART_PRETTY WHERE
+        CART_PRETTY.id_usuario = session_user_id AND
+        CART_PRETTY.id_accesorio = id_accesorio; 
+	
+    /*Si hay suficiente stock, resaliza el cambio*/
+    IF @maxAllowed >= amount THEN 
+		/*Asigna al accesorio en el carrito la cantidad pasada como argumento*/
+		UPDATE CARRITO_COMPRAS
+		SET cantidad_accesorio = amount
+		WHERE 	CARRITO_COMPRAS.id_usuario = session_user_id AND
+				CARRITO_COMPRAS.id_accesorio = id_accesorio; 
+    END IF; 
 
 END //
 
 DELIMITER ; 
 
 /*
-CALL MODIFY_AMOUNT_ACCESSORY_CART(1, 15, 15); 
+CALL MODIFY_AMOUNT_ACCESSORY_CART(1, 28, 10); 
+SELECT * FROM CART_PRETTY; 
+UPDATE CART_PRETTY SET cantidad_accesorio = 11 WHERE id_accesorio = 28; 
 */
 
 /* 
@@ -1233,5 +1387,3 @@ END //
 DELIMITER ; 
 
 CALL GET_ACCESSORY_CART(1); 
-
-SELECT * FROM CARRITO_COMPRAS; 

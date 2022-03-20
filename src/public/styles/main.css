@@ -927,6 +927,10 @@ label {
   margin-bottom: 16px;
 }
 
+label[for="input"] {
+  display: none;
+}
+
 .resume-form-container {
   display: -webkit-box;
   display: -ms-flexbox;
