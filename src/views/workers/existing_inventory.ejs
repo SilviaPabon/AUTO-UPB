@@ -15,34 +15,52 @@
                 <h1 class="title title--black">INVENTARIO</h1>
 
                 <form action="/workers/inventory" method="post">
-                    <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" required>
-                    
+                    <% if(data.isFiltered == true) {%>
+                        <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un accesorio" value="<%= data.criteria %>" required>
+                    <% } else {%>
+                        <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un accesorio" required>
+                    <% } %>
                     <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR ACCESORIO">
                 </form>
             </div>
 
-            <table class="generic-table">
-                <thead>
-                    <tr>
-                        <th>Id accesorio</th>
-                        <th>Nombre accesorio</th>
-                        <th>precio de venta</th>
-                        <th>Stock disponible</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if (data.ACCESORIOS ) { %>
-                        <% for(var i = 0; i<data.ACCESORIOS.length; i++ ) {%>
-                            <tr>
-                                <td><%= data.ACCESORIOS[i].id_accesorio%></td>
-                                <td><%= data.ACCESORIOS[i].nombre%></td>
-                                <td><%= data.ACCESORIOS[i].precio_final%></td>
-                                <td><%= data.ACCESORIOS[i].stock%></td>
-                            </tr>
+            <% if(data.ACCESORIOS.length != 0) {%>
+
+                <table class="generic-table">
+                    <thead>
+                        <tr>
+                            <th>Id accesorio</th>
+                            <th>Nombre accesorio</th>
+                            <th>precio de venta</th>
+                            <th>Stock disponible</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (data.ACCESORIOS ) { %>
+                            <% for(var i = 0; i<data.ACCESORIOS.length; i++ ) {%>
+                                <tr>
+                                    <td><%= data.ACCESORIOS[i].id_accesorio%></td>
+                                    <td><%= data.ACCESORIOS[i].nombre%></td>
+                                    <td><%= data.ACCESORIOS[i].precio_final%></td>
+                                    <td><%= data.ACCESORIOS[i].stock%></td>
+                                </tr>
+                            <%} %>
                         <%} %>
-                    <%} %>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+
+            <% } else {%>
+
+                <div class="result-empty">
+                    <p class="result-empty__text">NO SE ENCONTRARON ACCESORIOS EN EL INVENTARIO CON EL CRITERIO DE BÚSQUEDA: <span><%= data.criteria %></span> </p>
+                </div>
+
+            <% } %>
+
+            <% if(data.isFiltered == true) {%>
+                <a href="/workers/inventory" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER A TODOS LOS ACCESORIOS</a>
+            <% } %>
+
         </main>
     </body>
 </html>
