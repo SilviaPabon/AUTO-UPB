@@ -1,4 +1,4 @@
- const helpers = {};
+const helpers = {};
 const bcrypt = require('bcryptjs');
 
 helpers.encryptPassword = async (password) => {
