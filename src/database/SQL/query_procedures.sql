@@ -33,7 +33,7 @@ END //
 
 DELIMITER ; 
 
-
+/*
 CALL REGISTER_NEW_CLIENT(
 	"Pedro Andrés Chaparro", 
     "1004251780", 
@@ -44,7 +44,6 @@ CALL REGISTER_NEW_CLIENT(
     "password"
 );
 
-/*
 CALL REGISTER_NEW_CLIENT(
 	"Carlos Humberto Gomez", 
     "37845963", 
