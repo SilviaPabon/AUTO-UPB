@@ -6,5 +6,6 @@ router.general = require('./general_routes');
 router.admin = require('./admin'); 
 router.employee = require('./employee');
 router.cart = require('./cart_api'); 
+router.partner = require('./partner'); 
 
 module.exports = router; 

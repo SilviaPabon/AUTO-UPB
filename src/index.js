@@ -57,6 +57,7 @@ app.use('/', router.general);
 app.use('/admin', router.admin); 
 app.use('/employee', router.employee)
 app.use('/cart', router.cart); 
+app.use('/partner', router.partner); 
 
 // -- Starting the server --
 app.listen(app.get('port'), ()=> {
