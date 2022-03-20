@@ -12,14 +12,14 @@ controller.inventory=async(req,res)=>{
     });
 }
 
-// Ruta para cuando se busca un usuario
+
 controller.searchinventory = async (req, res) => {
-    //La ruta solo toma lo que se pasó en el formulario y lo redirige a la vista
+    //se toma como "criteria" la busqueda que se haga desde la barra de navegacion
     const { criteria } = req.body;
     res.redirect(`/workers/inventory/${criteria}`);
 };
 
-// Ruta para mostrar los usuarios resultantes de la búsqueda
+// Se hace el llamado al proceso de la base de datos para la barra de busqueda
 controller.searchinventoryResult = async (req, res) => {
     const { criteria } = req.params;
 
