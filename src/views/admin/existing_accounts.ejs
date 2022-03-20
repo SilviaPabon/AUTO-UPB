@@ -55,7 +55,9 @@
 
             <% } else {%>
 
-                <h2 class="title title--center title--soft">NO SE ENCONTRARON USUARIOS</h2>
+                <div class="result-empty">
+                    <p class="result-empty__text">NO SE ENCONTRARON USUARIOS CON EL CRITERIO DE BÚSQUEDA: <span><%= data.criteria %></span> </p>
+                </div>
 
             <% } %>
 
