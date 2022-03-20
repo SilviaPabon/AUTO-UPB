@@ -6,92 +6,118 @@ const connection = require('../database/connection');
 controller.cartAdd = async (req, res) => {
     const { id } = req.body;
 
-    // Inicializa el objeto y las variables de control
-    let item = {};
+    // Inicializa la variable de control
     let success = false;
-    let itemIndexOnCart = -1;
 
-    // Se obtiene la variable global del carrito
-    const cart = req.session.cart;
-
-    // Revisa si ya existe el accesorio en el carrito
-    for (let index = 0; index < cart.length; index++) {
-        if (cart[index].id_accesorio == id) {
-            itemIndexOnCart = index;
-            break;
+    try {
+        // Ejecuta la llamada al procedimiento almacenado para añadir el accesorio al carrito
+        const query = await connection.query('CALL ADD_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
+        
+        if(query[0][0]['@success'] == 1){
+            success = true; 
         }
-    }
-
-    if (itemIndexOnCart == -1) {
-        //Si el accesorio no existe en el carrito, lo agrega
-        try {
-            // Consulta a la base de datos para obtener el accesorio
-            const queryResponse = await connection.query('CALL SHOW_ACCESSORY_DETAILS(?)', [id]);
-
-            if (queryResponse[0][0].stock >= 1) {
-                item.id_accesorio = queryResponse[0][0].id_accesorio;
-                item.nombre = queryResponse[0][0].nombre;
-                item.stock = queryResponse[0][0].stock;
-                item.precio_base = queryResponse[0][0].precio_base;
-                item.descuento = queryResponse[0][0].descuento;
-                item.precio_final = queryResponse[0][0].precio_final;
-                item.ruta_imagen = queryResponse[0][0].ruta_imagen;
-                item.cantidad = 1;
-
-                cart.push(item);
-
-                success = true;
-            }
-        } catch (error) {
-            success = false;
-        }
-    } else {
-        //Si el accesorio ya existe en el carrito, le agrega una unidad
-        item = cart[itemIndexOnCart];
-
-        //Revisa que aún tenga stock
-        if (item.stock > item.cantidad) {
-            item.cantidad += 1;
-            success = true;
-        }
+        
+    } catch (error) {
+        success = false;
     }
 
     // Se envía la respuesta según si la operación fue exitosa o no
     success == true
         ? res.status(200).json({
-              status: 'El accesorio fue agregado exitosamente',
-          })
+                status: 'El accesorio fue agregado exitosamente',
+        })
         : res.status(404).json({
-              status: 'No se econtró el accesorio dado',
-          });
+            status: 'No se econtró el accesorio dado',
+        });
 };
 
 // ------
 // Ruta get usada por los botones para remover un accesorio del carrito
 controller.cartRemoveGet = async (req, res) => {
     const { id } = req.params;
-    const cart = req.session.cart;
-    let accessoryName = ''; 
     let success = false;
 
-    // Buscar si el elemento existe en en carrito de compras
-    for (let index = 0; index < cart.length; index++) {
-        // Si encuentra el accesorio lo remueve del array y cambia la variable de control success a true
-        if (cart[index].id_accesorio == id) {
-            accessoryName = cart[index].nombre; 
-            cart.splice(index, 1);
-            success = true;
-            break;
-        }
+    try {
+        // Ejecuta la llamada al procedimiento almacenado para eliminar el accesorio del carrito
+
+        const query = await connection.query('CALL REMOVE_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
+        success = true;
+        
+    } catch (error) {
+        success = false;
     }
 
     if (success) {
-        req.flash('success', `Operación exitosa: El accesorio: ${accessoryName}, fue removido del carrito`);
-        res.redirect('/');
+        req.flash('success', `Operación exitosa: El accesorio fue removido del carrito`);
+        res.redirect('/cart');
     } else {
         req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
-        res.redirect('/');
+        res.redirect('/cart');
     }
+};
+
+// ------
+// Ruta get usada para mostrar el carrito
+controller.showCart = async (req, res) => {
+    
+    // Traer el carrito que corresponda al usuario desde la BD
+    const cartFromDB = await connection.query('CALL GET_ACCESSORY_CART(?)', [req.user.id_usuario]); 
+    const cOrig = cartFromDB[0]; 
+
+    // Variables locales del carrito y el resumen de la compra
+    const cart = [];
+    const resume = {};
+    resume.descuentos = 0;
+
+    // Iterar el carrito para llevar los datos al front
+    for (let index = 0; index < cOrig.length; index++) {
+        cart[index] = {};
+        cart[index].id_accesorio = cOrig[index].id_accesorio;
+        cart[index].nombre = cOrig[index].nombre;
+        cart[index].precio_base = cOrig[index].precio_base;
+        cart[index].descuento = cOrig[index].descuento;
+        cart[index].precio_final = cOrig[index].precio_final * cOrig[index].cantidad_accesorio;
+        cart[index].cantidad = cOrig[index].cantidad_accesorio;
+        cart[index].stock = cOrig[index].stock;
+
+        if (cart[index].descuento > 0) {
+            resume.descuentos += ((cart[index].precio_base * cart[index].cantidad) - cart[index].precio_final);
+        }
+
+    }
+
+    // Calculos finales para el resumen de compra
+    resume.subtotal = cart.map(item => item.precio_final).reduce((prev, curr) => prev + curr, 0);
+    resume.impuestos = resume.subtotal * 0.19;
+    resume.total = resume.subtotal + resume.impuestos;
+    
+    res.render('shop/shopping_cart', {cart, resume});
+};
+
+// ------
+// Ruta para actualizar el número de items de un accesorio del carrito
+controller.cartUpdate = async (req, res) => {
+    const { id, amount } = req.body;
+
+    // Inicializa la variable de control
+    let success = false;
+
+    // Ejecuta la sentencia para actualizar el carrito en la base de datos
+    try {
+        const query = connection.query('CALL MODIFY_AMOUNT_ACCESSORY_CART(?, ?, ?)', [req.user.id_usuario, id, amount]); 
+        success = true;
+    } catch (error) {
+        success = false;
+    }
+
+    // Se envía la respuesta según si la operación fue exitosa o no
+    success == true
+        ? res.status(200).json({
+            status: 'La cantidad fue modificada exitosamente',
+        })
+        : res.status(500).json({
+            status: 'La cantidad no pudo ser modificada',
+        });
 };
 
 module.exports = controller;

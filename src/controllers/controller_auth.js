@@ -5,13 +5,16 @@ controller.signup = (req, res) => {
     res.render('auth/signup');  
 }; 
 
+controller.businessSignup = (req, res) => {
+    res.render('auth/signup_business'); 
+}
+
 controller.login = (req, res) => {
     res.render('auth/login'); 
 }; 
 
 controller.logout = (req, res) => {
     req.logOut(); //Cierra la sesión
-    req.session.cart = []; 
     res.redirect('/login'); //Lo redirecciona a iniciar sesión
 }
 

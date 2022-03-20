@@ -18,6 +18,7 @@
 @import './pages/inventory_select_existing_accessory'; 
 @import './pages/products'; 
 @import './pages/accessory_details';
+@import './pages/carrito';
 
 /*Global rulesets*/
 *{
@@ -50,7 +51,9 @@ main{
 
 /*Clase para fijar el body cuando se abre el menú en mobile*/
 .body--fixed{
-    position: sticky; 
+    top: 70px; /*Valor calculado a partir de los márgenes y padding existentes*/
+    width: 100%;
+    position: fixed; 
 }
 
 @import './mediaQueries'; 
