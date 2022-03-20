@@ -19,6 +19,7 @@ passport.use(
             //Usuario que se va a insertar en la base de datos
             const { name, documento, phone, address, conditions } = req.body;
             const newUser = {
+                id_usuario : -1, 
                 name,
                 documento,
                 correo_electronico : email,
@@ -42,7 +43,7 @@ passport.use(
 
                     
                     newUser.password = await helpers.encryptPassword(newUser.password);
-                    await pool.query('CALL REGISTER_NEW_CLIENT(?, ?, ?, ?, ?, ?, ?)', [
+                    const newUserQuery = await pool.query('CALL REGISTER_NEW_CLIENT(?, ?, ?, ?, ?, ?, ?)', [
                         newUser.name,
                         newUser.documento,
                         newUser.correo_electronico,
@@ -51,6 +52,9 @@ passport.use(
                         newUser.conditions,
                         newUser.password,
                     ]);
+
+                    // Se toma el id del nuevo usuario para su serialización y deserialización
+                    newUser.id_usuario = newUserQuery[0][0].id_usuario; 
 
                     return done(null, newUser);
 
@@ -172,14 +176,14 @@ passport.use(
 );
 
 // ---------------------------------
-//Serializar el usuario a partir del correo
+//Serializar el usuario a partir de su id
 passport.serializeUser((user, done) => {
-    done(null, user.correo_electronico);
+    done(null, user.id_usuario);
 });
 
 // ---------------------------------
-//Deserializar el usuario a partir del correo
-passport.deserializeUser(async (correo_electronico, done) => {
-    const rows = await pool.query('CALL GET_USER_SESSION_DATA_FROM_MAIL(?)', [correo_electronico]);  
+//Deserializar el usuario a partir de su id
+passport.deserializeUser(async (id_usuario, done) => {
+    const rows = await pool.query('CALL GET_USER_SESSION_DATA_FROM_ID(?)', [id_usuario]);  
     done(null, rows[0][0]);
 });
