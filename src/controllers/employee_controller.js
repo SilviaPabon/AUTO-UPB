@@ -165,4 +165,41 @@ controller.postOrder = async (req, res) => {
     }
 };
 
+// ---
+// Ruta para mostrar el inventario existente
+controller.inventory=async(req,res)=>{
+    const inventory = await connection.query('CALL SHOW_ACCESSORIES_INTERNAL(?)', [req.user.id_usuario]);
+    const data = {
+        ACCESORIOS: inventory[0],
+        isFiltered:false
+    }
+    res.render('employees/existing_inventory', {
+        data
+    });
+}
+
+// ---
+// Ruta post para buscar un accesorio
+controller.searchinventory = async (req, res) => {
+    //se toma como "criteria" la busqueda que se haga desde la barra de navegacion
+    const { criteria } = req.body;
+    res.redirect(`/employee/inventory/${criteria}`);
+};
+
+// ----
+// Ruta para mostrar el resultado de búsqueda de accesorio
+controller.searchinventoryResult = async (req, res) => {
+    const { criteria } = req.params;
+
+    const inventory = await connection.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(?, ?)', [req.user.id_usuario, criteria]);
+
+    const data = {
+        ACCESORIOS: inventory[0],
+        isFiltered : true,
+        criteria
+    };
+
+    res.render('employees/existing_inventory', { data });
+};
+
 module.exports = controller;

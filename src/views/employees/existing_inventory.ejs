@@ -14,7 +14,7 @@
             <div class="title-search-peer">
                 <h1 class="title title--black">INVENTARIO</h1>
 
-                <form action="/workers/inventory" method="post">
+                <form action="/employee/inventory" method="post">
                     <% if(data.isFiltered == true) {%>
                         <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un accesorio" value="<%= data.criteria %>" required>
                     <% } else {%>
@@ -58,7 +58,7 @@
             <% } %>
 
             <% if(data.isFiltered == true) {%>
-                <a href="/workers/inventory" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER A TODOS LOS ACCESORIOS</a>
+                <a href="/employee/inventory" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER A TODOS LOS ACCESORIOS</a>
             <% } %>
 
         </main>
