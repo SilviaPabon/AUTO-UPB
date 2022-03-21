@@ -93,7 +93,7 @@ CREATE TABLE TIPO_ESTADO_COMPRA(
 CREATE TABLE ACCESORIOS(
 	id_accesorio INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
     is_active TINYINT(1) UNSIGNED NOT NULL DEFAULT 1, 
-    nombre VARCHAR(64) NOT NULL, 
+    nombre VARCHAR(64) NOT NULL UNIQUE, 
     descripcion VARCHAR(324) NOT NULL, 
     stock INT UNSIGNED NOT NULL, 
     precio_ultima_compra DECIMAL(12,2) NOT NULL COMMENT 'Precio al que la emrpesa compró el accesorio a los proveedores', 
