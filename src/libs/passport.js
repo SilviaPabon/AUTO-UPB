@@ -175,6 +175,8 @@ passport.use(
     )
 );
 
+
+
 // ---------------------------------
 //Serializar el usuario a partir de su id
 passport.serializeUser((user, done) => {
