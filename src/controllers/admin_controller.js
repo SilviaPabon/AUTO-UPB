@@ -100,18 +100,26 @@ controller.inventory_modify_post = async (req, res) => {
     };
 
     //Update it into DB
-    await pool.query('CALL UPDATE_EXISTING_ACCESSORY(?, ?, ?, ?, ?, ?, ?)', [
-        updInventory.usID,
-        updInventory.id,
-        updInventory.status_select,
-        updInventory.name,
-        updInventory.description,
-        updInventory.price,
-        updInventory.discount
-    ]);
+    const accessoryExist = await pool.query('CALL ACCESSORY_EXIST(?)',[name]);
+    if(accessoryExist[0][0]['CONTEO'] == 0) {
 
-    req.flash('success', 'Transacción exitosa: Accesorio actualizado');
-    res.redirect('/admin/inventory/add_existing');
+        //Update it into DB
+        await pool.query('CALL UPDATE_EXISTING_ACCESSORY(?, ?, ?, ?, ?, ?, ?)', [
+            updInventory.usID,
+            updInventory.id,
+            updInventory.status_select,
+            updInventory.name,
+            updInventory.description,
+            updInventory.price,
+            updInventory.discount
+        ]);
+        req.flash('success', 'Transacción exitosa: Accesorio actualizado');
+        res.redirect('/admin/inventory/add_existing');
+
+    }else{
+        req.flash('message','Transacción fallida: El accesorio '+name+' ya existe');
+        res.redirect(`/admin/inventory/edit_existing/${id}`);
+    }
 }
 
 // Ruta para mostrar las cuentas existentes
