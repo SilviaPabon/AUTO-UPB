@@ -453,6 +453,29 @@ label {
   background-color: #c3e9e4;
 }
 
+/*Contenedor del texto que se muestra
+cuando no se encuentran resultados
+para el criterio de búsqueda*/
+.result-empty {
+  width: 100%;
+  margin: 16px 0;
+}
+
+.result-empty__text {
+  width: 80%;
+  min-width: 260px;
+  margin: 0px auto;
+  text-align: center;
+  color: grey;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.result-empty__text span {
+  color: grey;
+  text-decoration: underline;
+}
+
 .aside-navigation {
   /*Columa contenedora de la barra de navegación*/
   width: 200px;
