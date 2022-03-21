@@ -45,7 +45,7 @@ controller.userUpdate_post = async (req, res) => {
     const {email, phone, address, password} = req.body;
     const encPassword = await helpers.encryptPassword(password);
     const emailExist = await pool.query('CALL USER_EXIST(?)',[email]);
-    if(emailExist[0][0]['CONTEO'] = 0 ||(emailExist[0][0]['CONTEO'] = 1 && req.user.correo_electronico == email) ) {
+    if(emailExist[0][0]['CONTEO'] == 0 || (emailExist[0][0]['CONTEO'] = 1 && req.user.correo_electronico == email) ) {
 
         await pool.query('CALL UPDATE_EXISTING_USER(?,?,?,?,?,?)',
         [
