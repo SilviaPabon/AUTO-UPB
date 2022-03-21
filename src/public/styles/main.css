@@ -499,10 +499,12 @@ para el criterio de búsqueda*/
 }
 
 .aside-navigation .brand {
-  color: white;
-  font-size: 32px;
-  text-align: center;
-  margin: 12px 0;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.aside-navigation .brand img {
+  width: 100%;
 }
 
 .aside-navigation .menu {
@@ -1049,6 +1051,7 @@ main {
   }
   .aside-navigation {
     /*Columa contenedora de la barra de navegación*/
+    padding: 0px 16px;
     height: 60px;
     width: 100%;
     /*Display flex para poner el logo encima de las opciones de navegación*/
@@ -1065,12 +1068,15 @@ main {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    padding: 36px;
     /*La posición es fija al costado*/
     position: inherit;
     /*Contenedor de las opciones de navegación*/
     /*Clase que muestra la barra de navegación cuando se dé click al toggle*/
     /*Menú de hamburguesa para dispositivos móviles*/
+  }
+  .aside-navigation .brand {
+    margin-top: 0;
+    max-width: 140px;
   }
   .aside-navigation .menu {
     /*Tiene flex para separar la navegación de los botones de sesión*/
