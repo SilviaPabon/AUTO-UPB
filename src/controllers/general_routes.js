@@ -37,24 +37,34 @@ controller.accessoryDetails = async (req, res) => {
 };
 
 controller.userUpdate = async (req, res) => {
-    console.log(req.user);
+    
     const userd = await pool.query('CALL GET_USER_DATA_FROM_ID (?)',[req.user.id_usuario])
     res.render('userUpdate', { userd }); 
 }
 controller.userUpdate_post = async (req, res) => {
     const {email, phone, address, password} = req.body;
     const encPassword = await helpers.encryptPassword(password);
-    await pool.query('CALL UPDATE_EXISTING_USER(?,?,?,?,?,?)',
-    [
-        req.user.id_usuario,
-        req.user.id_usuario,
-        email,
-        address,
-        phone,
-        encPassword
-    ]);
-    req.flash('success','Datos actualizados exitosamente');
-    res.redirect('/');
+    const emailExist = await pool.query('CALL USER_EXIST(?)',[email]);
+    if(emailExist[0][0]['CONTEO'] = 0 ||(emailExist[0][0]['CONTEO'] = 1 && req.user.correo_electronico == email) ) {
+
+        await pool.query('CALL UPDATE_EXISTING_USER(?,?,?,?,?,?)',
+        [
+            req.user.id_usuario,
+            req.user.id_usuario,
+            email,
+            address,
+            phone,
+            encPassword
+        ]);
+        req.flash('success','Datos actualizados exitosamente');
+        req.user;
+        res.redirect('/');
+
+    }else{
+        req.user;
+        req.flash('message','El correo '+email+' ya está en uso');
+        res.redirect('/update');
+    }
 
 }
 
