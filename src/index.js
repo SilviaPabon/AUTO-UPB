@@ -3,11 +3,28 @@ const path = require('path');
 const morgan = require('morgan'); 
 const flash = require('connect-flash');
 const session = require('express-session'); 
+const MySQLStore = require('express-mysql-session')(session); 
 
 //Requiere passport e inicializa la cofiguración
 const passport = require('passport');
 require('./libs/passport'); 
 
+/*
+Conexión para guardar las sesiones en la base de datos
+La expiración de la sesión es de medio día y se revisa la tabla 
+En busca de sesiones expiradas cada 30 minutos 
+*/
+const sessionStore = new MySQLStore({
+    host: process.env.PRINCIPAL_DB_HOST, 
+    database: process.env.PRINCIPAL_DB_NAME, 
+    user: process.env.PRINCIPAL_DB_USER, 
+    port: process.env.PRINCIPAL_DB_PORT, 
+    password: process.env.PRINCIPAL_DB_PASSWORD, 
+    clearExpired: true, 
+    checkExpirationInterval: 1800000, 
+    expiration: 43200000, 
+    createDatabaseTable: true
+}); 
 
 const app = express(); 
 
@@ -32,7 +49,11 @@ app.use(express.json());
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 43200000
+    },
+    store: sessionStore
 }));
 
 app.use(passport.initialize());
