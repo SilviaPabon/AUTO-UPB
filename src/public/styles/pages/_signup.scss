@@ -1,0 +1,29 @@
+#signup-conditions{
+    font-weight: 300;
+    text-align: justify;
+    color: black;
+
+    a{
+        font-weight: bold;
+        color: $main_green_bright;
+    }
+}
+
+.form-group__check{
+    display: flex; 
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth_redirect_message{
+    text-align: center;
+    font-weight: 300;
+    margin: 24px 0 16px 0; 
+    color: black; 
+
+    a{
+        font-weight: bold;
+        color: $main_green_bright;
+    }
+}

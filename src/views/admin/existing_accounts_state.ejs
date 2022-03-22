@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>ACTUALIZACIÓN ESTADO DE CUENTA</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            
+            <form action="/admin/account_status/<%= data.user[0][0].id_usuario %>" method="post" class="input-form" id="updstate-form">
+                <%- include('../partials/_messages.ejs') %>
+
+                <h1 class="title title--center">ESTADO DE CUENTA</h1>
+
+                <div class="form-group" id="name-group">
+                    <label class="label--block" for="name">Nombres/Razón social:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Nombres usuario"
+                            value="<%= data.user[0][0].nombre %>"
+                            readonly
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="name-group">
+                    <label class="label--block" for="name">Cédula/NIT: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="name"
+                            name="name"
+                            placeholder="Nombres usuario"
+                            value="<%= data.user[0][0].identificacion %>"
+                            readonly
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="username-group">
+                    <label class="label--block" for="price">Correo electrónico:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="email"
+                            id="username"
+                            name="username"
+                            placeholder="Username/correo usuario"
+                            value="<%= data.user[0][0].correo_electronico %>"
+                            readonly
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="rol-group">
+                    <label class="label--block" for="inventory">Rol: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="rol"
+                            name="rol"
+                            placeholder="Rol del usuario"
+                            value="<%= data.user[0][0].tipo_usuario %>"
+                            readonly
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group" id="state_before-group">
+                    <label class="label--block" for="inventory">Estado de cuenta actual: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="state_before"
+                            name="state_before"
+                            placeholder="Rol del usuario"
+                            value="<%= data.user[0][0].estado_cuenta %>"
+                            readonly
+                        />
+                    </div>
+                </div>
+                
+                <div class="form-group" id="state-group">
+                    <label class="label--block" for="rol">Estado de cuenta nuevo:</label>
+                    <div class="form-group__input">
+                        <%- include('../partials/_stateAccount.ejs') %>
+                        <p class="form-group__error-message">Debe seleccionar un estado de cuenta</p>
+                    </div>
+                </div>
+
+                <p class="form__error-message">
+                    Por favor, rellene el formulario correctamente antes de realizar el envío.
+                </p>
+
+                <input
+                    type="submit"
+                    value="GUARDAR CAMBIO"
+                    class="btn btn--submit btn--primary btn--block btn--no-radius"
+                />
+            </form>
+        </main>
+        <script src="/scripts/validations/status_form_validation.js"></script>
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

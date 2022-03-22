@@ -1,0 +1,5 @@
+- Manual de politicas de recuperacion y respaldos
+    /src/public/docs/ManualDeProteccionDatos-2022-10.pdf
+
+- Manual de politicas de proteccion de datos
+    https://docs.google.com/document/d/1lkSgK_iAXZdK-EptJkuBCzRlpc-mul48/edit?usp=sharing&ouid=101338403893575823190&rtpof=true&sd=true

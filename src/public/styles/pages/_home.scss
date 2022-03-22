@@ -1,0 +1,152 @@
+/*SECTION DE SERVICIOS OFRECIDOS*/
+.service-card{
+    &__title{
+        width: 100%;
+        background-color: $main_green;
+        padding: 0.6em;
+        text-align: center;
+
+        & img{
+            margin: 24px;
+            max-height: 60px;
+        }
+    }
+
+    &__text{
+        text-align: center;
+        color: $total_black;
+        padding: 24px 12px;
+    }
+
+}
+
+/*SECTIONS DE PRODUCTOS MÁS VENDIDOS Y PRODUCTOS CON DESCUENTO*/
+.featured-product-card, 
+.disscount-products-card {
+    transition: all 0.4s ease-in-out;
+
+    &__image img {
+        width: 100%;
+    }
+
+    &__body{
+        padding: 0px 8px 8px 8px;
+        text-align: center;
+
+        & h3{
+            text-transform: uppercase;
+        }
+
+        & p{
+
+            color: $main_green;
+            display: inline-block;
+            font-weight: 300;
+            margin: 4px 4px 12px 0;
+
+            & span {
+                color: $very_dark;
+                margin: 4px;
+            }
+
+        }
+    }
+
+    &__btns{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+}
+
+.disscount-products-card{
+
+    position: relative;
+
+    &__disscount{
+        position: absolute;
+        top: 8px;
+        right: 8px;
+
+        & span{
+            background-color: $bright_red;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    }
+}
+
+/*SECTION DE CONTACTO*/
+.contact-us{
+
+    background-color: $very_dark;
+    padding: 32px;
+    border-radius: 16px;
+
+    .contact-card{
+        width: 30%;
+        min-width: 240px;
+        max-width: 360px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        margin: 8px 0;
+
+        &__icon{
+            width: 100%;
+            text-align: center;
+            & img{
+                max-width: 40px;
+            }
+        }
+
+        &__body{
+            text-align: center;
+            & p{
+                font-family: Roboto-Thin;
+                font-weight: lighter;
+            }
+        }
+    }
+
+}
+
+/*sección de sobre nosotros*/
+.about-us{
+    background-color: $very_dark;
+    border-radius: 16px;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    &__image-container, 
+    &__text-container{
+
+        padding: 16px;
+
+        display: flex; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__image-container{
+        grid-column: 1;
+
+        & img{
+            width: 100%;
+            border-radius: 16px;
+        }
+    }
+
+    &__text-container{
+        grid-column: 2;
+        text-align: center;
+    }
+}

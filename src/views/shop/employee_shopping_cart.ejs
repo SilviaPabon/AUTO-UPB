@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>CARRITO DE COMPRAS</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            <%- include('../partials/_messages.ejs') %>
+            <div class="title-search-peer">
+                <h1 class="title title--black">CARRITO DE COMPRAS</h1>
+            </div>
+
+            <table class="generic-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Descuento/Unidad</th>
+                        <th>Cantidad</th>
+                        <th>Precio final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < cart.length; i++) { %>
+                    <tr>
+                        <th>
+                            <a
+                                href="/employee/cart/remove/<%= cart[i].id_accesorio %>"
+                                class="btn btn--alert btn--no-radius"
+                                name="reserveNow"
+                                aria-label="Eliminar <%= cart[i].nombre %> del carrito de compras"
+                                >X</a
+                            >
+                        </th>
+                        <th><%= cart[i].nombre %></th>
+                        <th><%= cart[i].precio_base %></th>
+                        <th><%= cart[i].descuento %></th>
+                        <th>
+                            <div class="card_cant">
+                                <button
+                                    class="btn--amount btn--amount-a"
+                                    aria-label="Disminuir en uno la cantidad actual del accesorio <%= cart[i].nombre %>"
+                                >
+                                    -
+                                </button>
+
+                                <label for="input">Cantidad del accesorio <%= cart[i].nombre %></label>
+                                <input
+                                    class="input_cart_amount"
+                                    type="number"
+                                    min="1"
+                                    max="<%= cart[i].stock %>"
+                                    step="1"
+                                    id="input"
+                                    value="<%= cart[i].cantidad %>"
+                                    data-id="<%= cart[i].id_accesorio %>"
+                                />
+                                
+                                <button
+                                    class="btn--amount btn--amount-b"
+                                    aria-label="Aumentar en uno la cantidad actual del accesorio <%= cart[i].nombre %>"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </th>
+                        <th><%= cart[i].precio_final %></th>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <div class="resume-form-container">
+                <section class="shopping_resume">
+                    <h1 class="title title--black">RESÚMEN</h1>
+
+                    <table class="generic-table">
+                        <tbody>
+                            <tr>
+                                <th>Subtotal</th>
+                                <th><%= resume.subtotal %></th>
+                            </tr>
+                            <tr>
+                                <th>Impuestos</th>
+                                <th><%= resume.impuestos %></th>
+                            </tr>
+                            <tr>
+                                <th>Descuentos</th>
+                                <th><%= resume.descuentos %></th>
+                            </tr>
+                            <tr>
+                                <th>Total</th>
+                                <th><%= resume.total %></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="shopping_user_info">
+                    <form action="/employee/cart/buy" method="post" class="input-form" id="signup-form">
+                        <h1 class="title title--center">INFORMACIÓN DEL CLIENTE</h1>
+
+                        <input type="hidden" name="id_usuario" id="id_usuario" value="-1" />
+
+                        <div class="form-group" id="name-group">
+                            <label class="label--block" for="name">Nombre Completo</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Nombre completo del cliente"
+                                />
+                                <p class="form-group__error-message">El nombre solo puede contener letras.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="documento-group">
+                            <label class="label--block" for="documento">Número de documento:</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="documento"
+                                    name="documento"
+                                    placeholder="Documento del cliente"
+                                    min="0"
+                                />
+                                <p class="form-group__error-message">
+                                    El número de documento solo puede tener números y debe tener de 6 a 14 números.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="email-group">
+                            <label class="label--block" for="email">Correo electrónico (Nombre de usuario):</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="ejemplo@dominio.com"
+                                />
+
+                                <p class="form-group__error-message">
+                                    Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="phone-group">
+                            <label class="label--block" for="phone">Número de celular o teléfono fijo:</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="phone"
+                                    name="phone"
+                                    min="0"
+                                    placeholder="Teléfono del cliente"
+                                />
+
+                                <p class="form-group__error-message">
+                                    El número de celular solo puede contener números y debe ser de 7 dígitos en caso de
+                                    teléfono fijo y 10 en caso de teléfono celular
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="address-group">
+                            <label class="label--block" for="address">Dirección:</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="text"
+                                    id="address"
+                                    name="address"
+                                    placeholder="Dirección del cliente"
+                                />
+
+                                <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="password-group">
+                            <label class="label--block" for="password">Contraseña:</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="********"
+                                />
+
+                                <p class="form-group__error-message">
+                                    La contraseña debe contener mínimo 8 caracteres y debe incluír un número y uno de
+                                    los siguientes caracteres especiales: $ ! % * # ? & /
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="">
+                            <div class="form-group__check">
+                                <input type="checkbox" name="conditions" id="conditions" checked />
+                                <label for="conditions" id="signup-conditions">
+                                    Aceptación de las
+                                    <a href="/docs/ManualDeProteccionDatos-2022-10.pdf"
+                                    target="_blank" rel="noopener noreferrer"
+                                        >políticas de seguridad y tratamiento de datos personales de la empresa.</a
+                                    >
+                                </label>
+                            </div>
+                        </div>
+
+                        <p class="form__error-message">
+                            Por favor, rellene el formulario correctamente antes de realizar el envío.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn--submit btn--primary btn--block btn--no-radius"
+                            id="searchClientBTN"
+                        >
+                            BUSCAR CLIENTE
+                        </button>
+                        <input
+                            type="submit"
+                            value="REGISTRAR COMPRA"
+                            class="btn btn--submit btn--primary btn--block btn--no-radius"
+                        />
+                    </form>
+                </section>
+            </div>
+        </main>
+
+        <script src="/scripts/addSub.js"></script>
+        <script src="/scripts/cart_order_search_client.js"></script>
+        <script src="/scripts/validations/signup_validate.js"></script>
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

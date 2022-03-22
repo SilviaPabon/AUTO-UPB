@@ -1,0 +1,35 @@
+.accessory-basic-card {
+    
+    &__image img {
+        width: 100%;
+    }
+
+    &__body{
+        padding: 0px 8px 8px 8px;
+        text-align: center;
+
+        & h3{
+            text-transform: uppercase;
+        }
+
+        & .price{
+
+            color: $main_green;
+            display: inline-block;
+            font-weight: 300;
+            margin: 4px 4px 12px 0;
+
+            & span {
+                color: $very_dark;
+                margin: 4px;
+            }
+
+        }
+    }
+
+    &__btns{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+}
