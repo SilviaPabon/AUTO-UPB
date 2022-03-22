@@ -465,6 +465,26 @@ PROCEDIMIENTOS PARA MANEJO DE INVENTARIO
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA COMPROBAR SI YA EXISTE UN ACCESORIO
+OK
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS ACCESSORY_EXIST; 
+DELIMITER //
+
+CREATE PROCEDURE ACCESSORY_EXIST(
+	IN nombre VARCHAR(255)
+)
+BEGIN 
+    	SELECT COUNT(*) 'CONTEO' FROM ACCESORIOS
+    	WHERE UPPER(ACCESORIOS.nombre) = UPPER(nombre); 
+END //
+
+DELIMITER ; 
+
+/* 
+#######################################################
 PROCEDIMIENTO PARA AGREGAR NUEVO PRODUCTO AL INVENTARIO
 OK
 #######################################################
