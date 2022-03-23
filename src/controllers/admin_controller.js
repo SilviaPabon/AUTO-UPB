@@ -86,7 +86,7 @@ controller.inventory_modify = async (req, res) => {
 controller.inventory_modify_post = async (req, res) => {
     const { id } = req.params;
 
-    const { name, description, status_select, price, discount  } = req.body;
+    const { name, originalName, description, status_select, price, discount  } = req.body;
 
     //Create new plan object
     const updInventory = {
@@ -101,7 +101,7 @@ controller.inventory_modify_post = async (req, res) => {
 
     //Update it into DB
     const accessoryExist = await pool.query('CALL ACCESSORY_EXIST(?)',[name]);
-    if(accessoryExist[0][0]['CONTEO'] == 0) {
+    if(accessoryExist[0][0]['CONTEO'] == 0 || (accessoryExist[0][0]['CONTEO'] == 1 && name == originalName)) {
 
         //Update it into DB
         await pool.query('CALL UPDATE_EXISTING_ACCESSORY(?, ?, ?, ?, ?, ?, ?)', [
