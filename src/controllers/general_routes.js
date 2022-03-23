@@ -65,7 +65,10 @@ controller.userUpdate_post = async (req, res) => {
         req.flash('message','El correo '+email+' ya está en uso');
         res.redirect('/update');
     }
+}
 
+controller.contactUs = async (req, res) =>{
+    res.render('contact_us');
 }
 
 module.exports = controller;
