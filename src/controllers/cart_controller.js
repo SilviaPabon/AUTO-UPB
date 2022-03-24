@@ -125,8 +125,7 @@ controller.orderClient = async (req, res) => {
 };
 
 controller.orderClientPost = async (req, res) => {
-    //Variables de control
-    let userStepSuccess = false; 
+
     let orderStepSuccess = false; 
 
     const order = {
