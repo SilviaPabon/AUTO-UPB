@@ -14,6 +14,10 @@ router.get('/remove/:id', protect.isLoggedIn, controller.cartRemoveGet);
 
 router.get('/', protect.isLoggedIn,controller.showCart); 
 
-router.post('/update', protect.isLoggedIn,controller.cartUpdate); 
+router.post('/update', protect.isLoggedIn,controller.cartUpdate);
+
+router.get('/orders', protect.isLoggedIn, controller.orderClient);
+
+router.get('/buy', protect.isLoggedIn, controller.orderClientPost); 
 
 module.exports = router;
