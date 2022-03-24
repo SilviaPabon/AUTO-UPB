@@ -10,5 +10,9 @@ router.post('/accounts/', protect.isLoggedIn, protect.isPartner, controller.sear
 router.get('/accounts/:criteria', protect.isLoggedIn, protect.isPartner, controller.searchAccountsResultPartner);
 
 
+router.get('/inventory', protect.isLoggedIn, protect.isPartner, controller.inventory);
+router.post('/inventory', protect.isLoggedIn, protect.isPartner,controller.searchinventory); 
+router.get('/inventory/:criteria',  protect.isLoggedIn, protect.isPartner,controller.searchinventoryResult);
+
 
 module.exports = router;
