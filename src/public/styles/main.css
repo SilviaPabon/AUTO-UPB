@@ -1005,6 +1005,50 @@ label[for="input"] {
   text-transform: uppercase;
 }
 
+.form-image {
+  width: 70%;
+  margin: 0 auto;
+  min-width: 240px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  border-radius: 16px;
+  background-color: #fff;
+  border: 1px solid #dfdfdf;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-image .input-form {
+  width: 100%;
+  margin: 0;
+  border: none;
+}
+
+.form-image .input-form:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transform: none;
+          transform: none;
+}
+
+.form-image:hover {
+  -webkit-box-shadow: #d4d4d4 0 4px 16px;
+          box-shadow: #d4d4d4 0 4px 16px;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.form-image__img {
+  width: 360px;
+  max-height: 450px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(/images/contact_us.jpg);
+}
+
 /*Global rulesets*/
 * {
   margin: 0;
@@ -1185,6 +1229,16 @@ main {
     grid-row: 2;
     padding: 8px 24px 24px 24px;
   }
+  .form-image {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    border-radius: 16px;
+  }
+  .form-image__img {
+    display: none;
+  }
 }
 
 /* PARA TABLETS*/
@@ -1209,6 +1263,17 @@ main {
   .hero-services__service:nth-child(2) {
     border-left: 1px transparent;
     border-right: 1px transparent;
+  }
+  .form-image {
+    display: block;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .form-image .input-form {
+    margin: 0 auto;
+  }
+  .form-image__img {
+    display: none;
   }
 }
 /*# sourceMappingURL=main.css.map */

@@ -4,7 +4,7 @@ const form = document.getElementById('contact_us');
 const regEx = {
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-    message: /^.{10,255}$/, 
+    message: /^.{10,255}$/
     
 };
 
@@ -48,39 +48,18 @@ const validateField = (regEx, input, field) => {
     }
 }
 
-const validateOption = (select, field) => {
-    if (select.value == 0) {
-        fields[field] = false;
-        document.getElementById(`${field}-group`).classList.remove('form-group--correct');
-        document.getElementById(`${field}-group`).classList.add('form-group--incorrect');
-        document
-            .querySelector(`#${field}-group .form-group__error-message`)
-            .classList.add('form-group__error-message--active');
-    } else {
-        fields[field] = true;
-        document.getElementById(`${field}-group`).classList.remove('form-group--incorrect');
-        document.getElementById(`${field}-group`).classList.add('form-group--correct');
-            document
-            .querySelector(`#${field}-group .form-group__error-message`)
-            .classList.remove('form-group__error-message--active');
-    }
-}
 
 inputs.forEach((input) => {
     input.addEventListener('keyup', validateForm);
     input.addEventListener('blur', validateForm);
 });
 
-selection.addEventListener("change", validateForm);
-
 form.addEventListener('submit', (e) => {
     //Verificar que todos los campos sean correctos
     if (
         fields.name &&
-        fields.description &&
-        fields.price &&
-        fields.discount &&
-        fields.status_select
+        fields.message &&
+        fields.email
     ) {
         this.submit();
     } else {
