@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>GESTIÓN DE CUENTAS EXISTENTES (SOCIOS)</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+
+            <div class="title-search-peer">
+                <h1 class="title title--black">CUENTAS DE CLIENTES</h1>
+
+                <form action="/partner/accounts" method="post">
+                    <% if(data.isFiltered == true) {%>
+                        <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" value="<%= data.criteria %>" required>
+                    <% } else {%>
+                        <input class="input input--search" type="text" id="criteria" name="criteria" placeholder="Buscar un usuario" required>
+                    <% } %>
+                    
+                    <input type="submit" class="btn btn--primary btn--no-radius" value="BUSCAR USUARIO">
+                </form>
+            </div>
+
+            <% if(data.users[0].length != 0) {%>
+
+                <table class="generic-table">
+                    <thead>
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre Completo</th>
+                            <th>Email</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(data.users[0].length != 0) {%>
+                            <% for(var i=0; i < data.users[0].length; i++) { %>
+                                <tr>
+                                    <th><%= data.users[0][i].identificacion %></th>
+                                    <th><%= data.users[0][i].nombre %></th>
+                                    <th><%= data.users[0][i].correo_electronico %></th>
+                                    <th><%= data.users[0][i].direccion %></th>
+                                    <th><%= data.users[0][i].telefono %></th>
+                                </tr>
+                            <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+
+            <% } else {%>
+
+                <div class="result-empty">
+                    <p class="result-empty__text">NO SE ENCONTRARON USUARIOS CON EL CRITERIO DE BÚSQUEDA: <span><%= data.criteria %></span> </p>
+                </div>
+
+            <% } %>
+
+            <% if(data.isFiltered == true) {%>
+                <a href="/partner/accounts" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER A TODAS LAS CUENTAS</a>
+            <% } %>
+
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>
