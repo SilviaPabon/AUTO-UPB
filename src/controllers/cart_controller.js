@@ -120,4 +120,38 @@ controller.cartUpdate = async (req, res) => {
         });
 };
 
+controller.orderClient = async (req, res) => {
+    res.render('clients/orders_clients');
+};
+
+controller.orderClientPost = async (req, res) => {
+    //Variables de control
+    let userStepSuccess = false; 
+    let orderStepSuccess = false; 
+
+    const order = {
+        id_orden: -1
+    }
+
+    try {
+        const newBuyOrderQuery = await connection.query('CALL REGISTER_NEW_BUY_ORDER(?, ?)', [req.user.id_usuario, req.user.id_usuario]); 
+        order.id_orden = newBuyOrderQuery[0][0].id_orden; 
+        orderStepSuccess = true;
+    } catch (error) {
+        orderStepSuccess = false;
+    }
+
+    if(orderStepSuccess){
+        const transactionQuery = await connection.query('CALL register_buy_order_from_cart(?, ?)', [req.user.id_usuario, order.id_orden]); 
+
+        if(transactionQuery[0] == undefined){
+            req.flash('success', 'Proceso exitoso: Se generó la orden de compra de manera exitosa');
+            res.redirect('/cart/orders'); 
+        }else{
+            req.flash('message', `Error: El stock del accesorio ${transactionQuery[0][0].nombre} es ${transactionQuery[0][0].stock}`);
+            res.redirect('/cart'); 
+        }
+    }
+}
+
 module.exports = controller;
