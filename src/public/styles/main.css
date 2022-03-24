@@ -1041,7 +1041,6 @@ label[for="input"] {
 }
 
 .form-image__img {
-  width: 360px;
   max-height: 450px;
   background-size: contain;
   background-position: center;
