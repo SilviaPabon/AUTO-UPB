@@ -1,0 +1,38 @@
+.form-image {
+    width: 70%;
+    margin: 0 auto;
+    min-width: 240px;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 16px;
+
+    background-color: $total_white;
+    border: 1px solid rgb(223, 223, 223);
+    transition: all 0.3s ease-in-out;
+    
+    & .input-form{
+        width: 100%;
+        margin: 0;
+        border: none;
+        &:hover{
+            box-shadow: none;
+            transform: none;
+        }     
+    }
+
+    &:hover{
+        box-shadow: $card_hover 0 4px 16px;
+        transform: scale(1.01);
+    }
+
+    &__img {
+        max-height: 450px;
+        
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url(/images/contact_us.jpg);
+        
+    }
+}

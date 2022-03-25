@@ -1,5 +1,6 @@
 const alertsContainer = document.querySelector('.aside-popup-container');
 const container = document.querySelector('.generic-table').children[1].children;
+const btn_buy = document.querySelectorAll('.buy-btn');
 
 // Gets resume table tbody
 const resume = document.querySelector('.shopping_resume').childNodes[3].children[0];
@@ -140,5 +141,17 @@ for (let i = 0; i < container.length; i++) {
             container[i].getElementsByTagName('input')[0].value = parseInt(1);
         }
         postChange(e.target);
+    });
+}
+
+if (btn_buy){
+    const btn_array = Array.from(btn_buy);
+
+    btn_array.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            if (!confirm('¿Desea realizar la compra?')) {
+                e.preventDefault();
+            }
+        });
     });
 }
