@@ -233,11 +233,13 @@
                         >
                             BUSCAR CLIENTE
                         </button>
-                        <input
-                            type="submit"
-                            value="REGISTRAR COMPRA"
-                            class="btn btn--submit btn--primary btn--block btn--no-radius"
-                        />
+                        <% if(cart.length > 0) { %>
+                            <input
+                                type="submit"
+                                value="REGISTRAR COMPRA"
+                                class="btn btn--submit btn--primary btn--block btn--no-radius buy-btn"
+                            />
+                        <% } %>
                     </form>
                 </section>
             </div>
