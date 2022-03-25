@@ -1150,6 +1150,95 @@ CALL REGISTER_NEW_BUY_ORDER(
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA MOSTRAR ORDENES DE COMPRA POR ID CLIENTE
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GET_USER_ORDERBUY_FROM_ID;
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_ORDERBUY_FROM_ID(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	
+    SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
+	FROM ORDER_SUMMARY AS OS
+	WHERE OS.id_cliente = session_user_id; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ; 
+
+/*
+CALL GET_USER_ORDERBUY_FROM_ID(
+	1, 
+); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA MOSTRAR ORDENES DE COMPRA DE TODOS LOS CLIENTES
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GETALL_USER_ORDERBUY;
+DELIMITER //
+
+CREATE PROCEDURE GETALL_USER_ORDERBUY(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	
+    SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
+	FROM ORDER_SUMMARY AS OS; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ; 
+
+/*
+CALL GETALL_USER_ORDERBUY(
+	1
+);
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA MOSTRAR ORDENES DE COMPRA A PARTIR DEL NOMBRE
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GET_USER_ORDERBUY_FROM_NAME;
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_ORDERBUY_FROM_NAME(
+	IN nombre VARCHAR(255),
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	
+    SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
+	FROM ORDER_SUMMARY AS OS, USUARIOS
+	WHERE USUARIOS.id_usuario = OS.id_cliente 
+    AND USUARIOS.nombre = nombre;
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ;
+
+/* 
+CALL GET_USER_ORDERBUY_FROM_NAME('Pedro Andrés Chaparro', 1);  
+ */
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE FACTURAS
 #######################################################
 */
@@ -1256,6 +1345,33 @@ CALL MARK_MESSAGE_AS_RESOLVED(
 	1
 );  
 */
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA MOSTRAR TODOS LOS MENSAJES DEL FORMULARIO)
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS GETALL_MESSAGES;
+DELIMITER //
+
+CREATE PROCEDURE GETALL_MESSAGES(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	
+    SELECT nombre_remitente, correo_remitente, texto_mensaje
+    FROM MENSAJES_INQUIETUDES
+    ORDER BY codigo_estado_mensaje;
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 2);
+    
+END //
+
+DELIMITER ; 
+
+/* CALL GETALL_MESSAGES(1); */
 
 /* 
 #######################################################
