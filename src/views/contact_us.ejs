@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/_globalHeaders.ejs') %>
+    <title>CONTACT US</title>
+</head>
+<body>
+    <%- include('partials/_navbar.ejs') %>
+    <main>
+        <section class="form-image">
+            <form action="/contact_us" method="post" class="input-form" id="contact_us">
+                <h1 class="title title--center">ESCRÍBENOS</h1>
+    
+                <div class="form-group" id="name-group">
+                    <label class="label--block" for="name">Nombre Completo:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Ingresa tu nombre completo"
+                        />
+                        <p class="form-group__error-message">El nombre solo puede contener letras.</p>
+                    </div>
+                </div>
+    
+                <div class="form-group" id="email-group">
+                    <label class="label--block" for="email">Correo electrónico:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="ejemplo@dominio.com"
+                        />
+    
+                        <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
+                    </div>
+                </div>
+    
+                <div class="form-group" id="message-group">
+                    <label class="label--block" for="message">Mensaje:</label>
+                    <div class="form-group__input">
+                        <textarea 
+                            wrap="soft" 
+                            class="input input--full-width input--textarea"
+                            id = "message"
+                            name = "message"
+                            placeholder="Mensaje"
+                        ></textarea> 
+                        <p class="form-group__error-message">El mensaje debe contener más de 10 caracteres</p> 
+                    </div>
+                </div>
+    
+                <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
+    
+                <input type="submit" value="ENVIAR MENSAJE" class="btn btn--submit btn--primary btn--block btn--no-radius" />
+            </form>
+            <div class="form-image__img">
+                
+            </div>
+            
+        </section>
+
+        
+
+    </main>
+    <script src="/scripts/validations/contact_us_validate.js"></script>
+    <%- include('partials/_globalScripts.ejs') %>
+</body>
+</html>

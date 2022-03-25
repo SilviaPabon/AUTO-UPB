@@ -65,7 +65,20 @@ controller.userUpdate_post = async (req, res) => {
         req.flash('message','El correo '+email+' ya está en uso');
         res.redirect('/update');
     }
+}
 
+controller.contactUs = async (req, res) =>{
+    res.render('contact_us');
+}
+controller.contactUspost = async (req, res) =>{
+    const {name, email, message} = req.body;
+
+    await pool.query('CALL REGISTER_NEW_MESSAGE(?,?,?)',[
+        name, email, message
+    ]);
+    req.flash('success', 'Mensaje registrado');
+    res.redirect('/');
+    
 }
 
 module.exports = controller;
