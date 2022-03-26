@@ -1161,9 +1161,14 @@ CREATE PROCEDURE GET_USER_ORDERBUY_FROM_ID(
 )
 BEGIN
 	
-    SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
-	FROM ORDER_SUMMARY AS OS
-	WHERE OS.id_cliente = session_user_id; 
+    /*Tomar el nombre del cliente*/
+    SELECT nombre INTO @user_name FROM USUARIOS WHERE
+		USUARIOS.id_usuario = session_user_id; 
+    
+    /*Tomar los datos de la orden*/
+    SELECT id_orden, estado_compra, fecha_compra, `Total Precios Base`, `Descuentos aplicados`, `IVA aplicado`, Total
+	FROM ORDER_SUMMARY_PRETTY AS OSP
+	WHERE OSP.`Nombre comprador` = @user_name; 
     
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
     VALUES (session_user_id, 2, 3);
@@ -1174,7 +1179,7 @@ DELIMITER ;
 
 /*
 CALL GET_USER_ORDERBUY_FROM_ID(
-	1, 
+	1
 ); 
 */
 
