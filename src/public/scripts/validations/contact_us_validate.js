@@ -4,7 +4,7 @@ const form = document.getElementById('contact_us');
 const regEx = {
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-    message: /^.{10,255}$/
+    message: /^.{10,324}$/
     
 };
 
