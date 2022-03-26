@@ -1,7 +1,6 @@
 const express = require('express'); 
 const router = express.Router(); 
 const protect = require('../libs/protect_middlewares')
-const connection = require('../database/connection'); 
 const controller = require('../controllers/cart_controller'); 
 
 // -----
@@ -15,8 +14,6 @@ router.get('/remove/:id', protect.isLoggedIn, controller.cartRemoveGet);
 router.get('/', protect.isLoggedIn,controller.showCart); 
 
 router.post('/update', protect.isLoggedIn,controller.cartUpdate);
-
-router.get('/orders', protect.isLoggedIn, controller.orderClient);
 
 router.get('/buy', protect.isLoggedIn, controller.orderClientPost); 
 

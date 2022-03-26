@@ -120,10 +120,6 @@ controller.cartUpdate = async (req, res) => {
         });
 };
 
-controller.orderClient = async (req, res) => {
-    res.render('clients/orders_clients');
-};
-
 controller.orderClientPost = async (req, res) => {
 
     let orderStepSuccess = false; 
