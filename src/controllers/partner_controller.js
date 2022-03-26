@@ -1,44 +1,43 @@
-const controller = {}; 
+const controller = {};
 const pool = require('../database/connection');
 
-controller.accountsPartner = async(req, res) => {
+controller.accountsPartner = async (req, res) => {
     const users = await pool.query('CALL SHOW_ACCOUNTS_PARTNERS (?)', [req.user.id_usuario]);
-    const data = {users, isFiltered : false};
-    
-    res.render('partner/existing_accounts_partner', {data} );
-}
+    const data = { users, isFiltered: false };
+
+    res.render('partner/existing_accounts_partner', { data });
+};
 
 controller.searchAccountsPartner = async (req, res) => {
     // Se toma el criterio de busqueda
     const { criteria } = req.body;
     res.redirect(`/partner/accounts/${criteria}`);
-}
+};
 
 controller.searchAccountsResultPartner = async (req, res) => {
-    
     const { criteria } = req.params;
 
-    const users = await pool.query('CALL PARTNER_SEARCH_USER_FROM_CRITERIA(?, ?)', [req.user.id_usuario ,criteria]);
+    const users = await pool.query('CALL PARTNER_SEARCH_USER_FROM_CRITERIA(?, ?)', [req.user.id_usuario, criteria]);
 
     const data = {
         users,
-        isFiltered : true,
-        criteria
+        isFiltered: true,
+        criteria,
     };
-  
-  res.render('partner/existing_accounts_partner', { data });
+
+    res.render('partner/existing_accounts_partner', { data });
 };
 
-controller.inventory=async(req,res)=>{
+controller.inventory = async (req, res) => {
     const inventory = await pool.query('CALL SHOW_ACCESSORIES_INTERNAL(?)', [req.user.id_usuario]);
     const data = {
         ACCESORIOS: inventory[0],
-        isFiltered:false
-    }
+        isFiltered: false,
+    };
     res.render('partner/partners_inventory', {
-        data
+        data,
     });
-}
+};
 
 // Ruta para cuando se busca un usuario
 controller.searchinventory = async (req, res) => {
@@ -51,16 +50,18 @@ controller.searchinventory = async (req, res) => {
 controller.searchinventoryResult = async (req, res) => {
     const { criteria } = req.params;
 
-    const inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(?, ?)', [req.user.id_usuario, criteria]);
+    const inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(?, ?)', [
+        req.user.id_usuario,
+        criteria,
+    ]);
 
     const data = {
         ACCESORIOS: inventory[0],
-        isFiltered:false, 
-        criteria
-    }
-    
+        isFiltered: true,
+        criteria,
+    };
+
     res.render('partner/partners_inventory', { data });
-}; 
+};
 
-module.exports = controller; 
-
+module.exports = controller;
