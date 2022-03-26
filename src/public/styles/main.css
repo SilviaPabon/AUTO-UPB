@@ -419,6 +419,7 @@ label {
   white-space: nowrap;
   table-layout: fixed;
   margin-top: 8px;
+  /*Celda de */
 }
 
 .generic-table th {
@@ -429,6 +430,16 @@ label {
 .generic-table td {
   color: black;
   padding: 12px 32px;
+}
+
+.generic-table .table-row--buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .generic-table th, .generic-table td {

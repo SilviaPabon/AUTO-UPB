@@ -390,6 +390,12 @@ label{
         padding: 12px 32px;
     }
 
+    /*Celda de */
+    & .table-row--buttons{
+        display: flex;
+        flex-direction: column;
+    }
+
     & th, & td{
         border: 1px solid #B1B1B1; 
     }
