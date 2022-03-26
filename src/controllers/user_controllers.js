@@ -13,11 +13,16 @@ controller.orderClient = async (req, res) => {
 
     if (queryOk) {
         const data = clientOrders[0];
-        console.log(req.user.id_usuario); 
 
-        res.render('clients/orders_clients', {data});
+        if(data.length > 0) {
+            res.render('clients/orders_clients', {data});
+        }else{
+            req.flash('message', 'No hay órdenes de compra para mostrar');
+            res.redirect('/');
+        }
+
     } else {
-        req.flash('error', 'Error inesperado en la consulta a la base de datos');
+        req.flash('message', 'Error inesperado en la consulta a la base de datos');
         res.redirect('/');
     }
 };
