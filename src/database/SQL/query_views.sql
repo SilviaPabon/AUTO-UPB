@@ -40,8 +40,8 @@ WHERE oca.id_accesorio = a.id_accesorio;
 
 /*VISTA PARA MOSTRAR LOS DATOS DE LA FACTURA DE MANERA "FÁCIL DE ENTENDER" */
 CREATE OR REPLACE VIEW BILL_PRETTY AS
-SELECT HF.id_factura, HF.id_orden, OC.fecha_compra, HF.productos, u1.nombre 'Nombre vendedor', u2.nombre 'Nombre cliente'
-FROM (HISTORICO_FACTURAS as HF, ORDENES_COMPRA as OC)
+SELECT HF.id_factura, HF.id_orden, OC.fecha_compra, HF.productos, u1.nombre 'Nombre vendedor', u2.nombre 'Nombre cliente', u2.identificacion 'Cédula cliente', OSP.`Total Precios Base`, OSP.`Descuentos aplicados`, OSP.`IVA aplicado`, OSP.`Total`
+FROM (HISTORICO_FACTURAS as HF, ORDENES_COMPRA as OC, ORDER_SUMMARY_PRETTY AS OSP)
 LEFT JOIN USUARIOS AS u1 ON u1.id_usuario = OC.id_vendedor 
 LEFT JOIN USUARIOS AS u2 ON u2.id_usuario = OC.id_cliente
 WHERE 	OC.id_orden = HF.id_orden
