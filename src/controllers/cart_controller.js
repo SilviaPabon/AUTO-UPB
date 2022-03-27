@@ -120,10 +120,6 @@ controller.cartUpdate = async (req, res) => {
         });
 };
 
-controller.orderClient = async (req, res) => {
-    res.render('clients/orders_clients');
-};
-
 controller.orderClientPost = async (req, res) => {
 
     let orderStepSuccess = false; 
@@ -145,7 +141,7 @@ controller.orderClientPost = async (req, res) => {
 
         if(transactionQuery[0] == undefined){
             req.flash('success', 'Proceso exitoso: Se generó la orden de compra de manera exitosa');
-            res.redirect('/cart/orders'); 
+            res.redirect('/user/orders'); 
         }else{
             req.flash('message', `Error: El stock del accesorio ${transactionQuery[0][0].nombre} es ${transactionQuery[0][0].stock}`);
             res.redirect('/cart'); 
