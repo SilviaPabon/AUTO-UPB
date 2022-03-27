@@ -77,6 +77,16 @@ controller.user_bill = async (req, res) => {
             });
         });
 
+        //Añade la columan final de totales 
+        dataAccessories.push({
+            name: '\u0020',
+            amount: '\u0020', 
+            base: `$ ${billDetails[0][0]['Total Precios Base']}`, 
+            disscount: `$ ${billDetails[0][0]['Descuentos aplicados']}`, 
+            taxes: `$ ${billDetails[0][0]['IVA aplicado']}`, 
+            final: `$ ${billDetails[0][0]['Total']}`
+        }); 
+
         // Manejo del documento PDF como una respuesta HTTP
         const stream = res.writeHead(200, {
             'Content-Type': 'application/pdf',
@@ -138,32 +148,6 @@ controller.user_bill = async (req, res) => {
                 headBackground: '#36c9b8',
                 cellsPadding: 10,
                 marginBottom: 20,
-            }
-        );
-
-        doc.addTable(
-            [
-                { key: 'Subtotal', label: 'Subtotal', align: 'left' },
-                { key: 'Total_descuentos', label: 'Total descuentos', align: 'left' },
-                { key: 'Total_impuestos', label: 'Total impuestos', align: 'left' },
-                { key: 'Total', label: 'Total', align: 'left' },
-            ],
-            [
-                {
-                    Subtotal: `$ ${billDetails[0][0]['Total Precios Base']}`,
-                    Total_descuentos: `$ ${billDetails[0][0]['Descuentos aplicados']}`,
-                    Total_impuestos: `$ ${billDetails[0][0]['IVA aplicado']}`,
-                    Total: `$ ${billDetails[0][0]['Total']}`,
-                },
-            ],
-            {
-                border: null,
-                width: 'fill_body',
-                striped: true,
-                stripedColors: ['#fff', '#ececec'],
-                headAlign: 'left',
-                headBackground: '#36c9b8',
-                cellsPadding: 10,
             }
         );
 
