@@ -94,30 +94,27 @@ controller.user_bill = async (req, res) => {
         // Header del PDF que contiene la informaciónd de la venta
         doc.setDocumentHeader(
             {
-                height: '22%',
+                height: '20%',
             },
             () => {
                 // Título de la factura
-                doc.fontSize(20).text(`Factura de venta órden #${req.params.id}`, {
+                doc.fontSize(20).fill('#36c9b8').text(`FACTURA DE VENTA ÓRDEN #${req.params.id}`, {
                     align: 'center',
                 });
                 doc.moveDown();
 
                 // Información de la empresa y el cliente
-                doc.fontSize(12).text(
-                    `EMITIDO POR: Wearcar \nNIT: 020320227-7 \nDIRECCIÓN: Kilómetro 7 de la vía Piedecuesta-Floridablanca \nTELÉFONO: 6559860 \nCELULAR: 390 14 56 986\nEMITIDO A: ${billDetails[0][0]['Nombre cliente']} \nIDENTIFICADO CON: ${billDetails[0][0]['Cédula cliente']}`,
+                doc.fontSize(12).fill('#000').text(
+                    `EMITIDO POR: Wearcar \nNIT: 020320227-7 \nDIRECCIÓN: Kilómetro 7 de la vía Piedecuesta-Floridablanca \nTELÉFONO: 6559860 \nCELULAR: 390 14 56 986\nEMITIDO A: ${billDetails[0][0]['Nombre cliente']} \nIDENTIFICADO CON: ${billDetails[0][0]['Cédula cliente']}\n\nIDENTIFICADOR DE FACTURA: ${billDetails[0][0]['id_factura']} \n FECHA DE EMISIÓN: ${date.toLocaleDateString()}`,
                     {
                         columns: 2,
                         columnGap: 15,
                         height: 90,
-                        width: 640,
+                        width: 600,
+                        align: 'center'
                     }
                 );
                 doc.moveDown(6);
-
-                billDetails[0][0]['Nombre vendedor'] != null
-                    ? doc.fontSize(12).text(`RESPONSABLE DE LA VENTA: ${billDetails[0][0]['Nombre vendedor']}`)
-                    : doc.fontSize(12).text('VENTA REALIZADA POR: Compra web');
             }
         );
 
