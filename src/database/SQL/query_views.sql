@@ -44,7 +44,8 @@ SELECT HF.id_factura, HF.id_orden, OC.fecha_compra, HF.productos, u1.nombre 'Nom
 FROM (HISTORICO_FACTURAS as HF, ORDENES_COMPRA as OC)
 LEFT JOIN USUARIOS AS u1 ON u1.id_usuario = OC.id_vendedor 
 LEFT JOIN USUARIOS AS u2 ON u2.id_usuario = OC.id_cliente
-WHERE 	OC.id_orden = HF.id_orden; 
+WHERE 	OC.id_orden = HF.id_orden
+GROUP BY HF.id_factura; 
 
 
 /*VISTA PARA MOSTRAR LOS LOGS DE MANERA "FÁCIL DE ENTENDER"*/
