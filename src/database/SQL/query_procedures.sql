@@ -1293,6 +1293,37 @@ CALL facture_add(3, 1);
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA OBTENER LA INFORMACIÓN DE UNA FACTURA
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS get_bill_details_from_id; 
+DELIMITER //
+
+CREATE PROCEDURE get_bill_details_from_id(
+	IN session_user_id INT UNSIGNED, 
+    IN id_orden INT UNSIGNED
+)
+BEGIN
+
+	/*Selecciona los datos de la orden pasada como parámetro*/
+	SELECT * FROM BILL_PRETTY 
+		WHERE BILL_PRETTY.id_orden = id_orden; 
+
+	/*Genera los logs*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 7);
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL get_bill_details_from_id(1, 1); 
+*/
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE MENSAJES DE CLIENTES (MENSAJES DEL FORMULARIO)
 OK
 #######################################################
