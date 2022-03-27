@@ -1065,6 +1065,9 @@ BEGIN
         DELETE FROM CARRITO_COMPRAS 
         WHERE CARRITO_COMPRAS.id_usuario = session_user_id; 
         
+        -- Crea la factura de venta
+        CALL facture_add(session_user_id, buy_order_id); 
+        
     COMMIT; 
     
     SET autocommit = 1; 
