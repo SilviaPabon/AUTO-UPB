@@ -46,6 +46,7 @@ controller.user_bill = async (req, res) => {
         //Documento PDF generado dinámicamente
         const doc = new PDF({
             size: 'A4',
+            margins: { top: 20, left: 10, right: 10, bottom: 20 },
             bufferPages: true,
         });
 
@@ -65,17 +66,16 @@ controller.user_bill = async (req, res) => {
         const dataAccessories = [];
         const productsArray = JSON.parse(billDetails[0][0]['productos']);
 
-        productsArray.forEach((product) => { 
+        productsArray.forEach((product) => {
             dataAccessories.push({
                 name: product['Accesorio'],
                 amount: product['Cantidad'],
-                base: product['Precio Base'],
-                disscount: product['Descuento Aplicado'],
-                taxes: product['Impuestos Aplicados'],
-                final: product['Precio Final'],
+                base: `$ ${product['Precio Base']}`,
+                disscount: `$ ${product['Descuento Aplicado']}`,
+                taxes: `$ ${product['Impuestos Aplicados']}`,
+                final: `$ ${product['Precio Final']}`,
             });
         });
-
 
         // Manejo del documento PDF como una respuesta HTTP
         const stream = res.writeHead(200, {
@@ -90,6 +90,36 @@ controller.user_bill = async (req, res) => {
         doc.on('end', () => {
             stream.end();
         });
+
+        // Header del PDF que contiene la informaciónd de la venta
+        doc.setDocumentHeader(
+            {
+                height: '22%',
+            },
+            () => {
+                // Título de la factura
+                doc.fontSize(20).text(`Factura de venta órden #${req.params.id}`, {
+                    align: 'center',
+                });
+                doc.moveDown();
+
+                // Información de la empresa y el cliente
+                doc.fontSize(12).text(
+                    `EMITIDO POR: Wearcar \nNIT: 020320227-7 \nDIRECCIÓN: Kilómetro 7 de la vía Piedecuesta-Floridablanca \nTELÉFONO: 6559860 \nCELULAR: 390 14 56 986\nEMITIDO A: ${billDetails[0][0]['Nombre cliente']} \nIDENTIFICADO CON: ${billDetails[0][0]['Cédula cliente']}`,
+                    {
+                        columns: 2,
+                        columnGap: 15,
+                        height: 90,
+                        width: 640,
+                    }
+                );
+                doc.moveDown(6);
+
+                billDetails[0][0]['Nombre vendedor'] != null
+                    ? doc.fontSize(12).text(`RESPONSABLE DE LA VENTA: ${billDetails[0][0]['Nombre vendedor']}`)
+                    : doc.fontSize(12).text('VENTA REALIZADA POR: Compra web');
+            }
+        );
 
         // Contenido del documento PDF
         doc.addTable(
@@ -107,12 +137,40 @@ controller.user_bill = async (req, res) => {
                 width: 'fill_body',
                 striped: true,
                 stripedColors: ['#fff', '#ececec'],
-                headAlign: 'center',
-                cellsPadding: 10
+                headAlign: 'left',
+                headBackground: '#36c9b8',
+                cellsPadding: 10,
+                marginBottom: 20,
             }
         );
 
-        doc.render(); 
+        doc.addTable(
+            [
+                { key: 'Subtotal', label: 'Subtotal', align: 'left' },
+                { key: 'Total_descuentos', label: 'Total descuentos', align: 'left' },
+                { key: 'Total_impuestos', label: 'Total impuestos', align: 'left' },
+                { key: 'Total', label: 'Total', align: 'left' },
+            ],
+            [
+                {
+                    Subtotal: `$ ${billDetails[0][0]['Total Precios Base']}`,
+                    Total_descuentos: `$ ${billDetails[0][0]['Descuentos aplicados']}`,
+                    Total_impuestos: `$ ${billDetails[0][0]['IVA aplicado']}`,
+                    Total: `$ ${billDetails[0][0]['Total']}`,
+                },
+            ],
+            {
+                border: null,
+                width: 'fill_body',
+                striped: true,
+                stripedColors: ['#fff', '#ececec'],
+                headAlign: 'left',
+                headBackground: '#36c9b8',
+                cellsPadding: 10,
+            }
+        );
+
+        doc.render();
 
         doc.end();
     } else {
