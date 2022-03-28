@@ -15,6 +15,7 @@ controller.inventory_add_new = (req, res) => {
 
 controller.inventory_add_new_post = async (req, res) => {
     const { name, description, buyprice, sellprice, discount, inventory } = req.body;
+    let queryOk = false;
 
     const newAcc = {
         usID: req.user.id_usuario,
@@ -27,18 +28,28 @@ controller.inventory_add_new_post = async (req, res) => {
     };
 
     //db
-    await pool.query('CALL ADD_NEW_ACCESSORY(?, ?, ?, ?, ?, ?, ?)', [
-        newAcc.usID,
-        newAcc.name,
-        newAcc.description,
-        newAcc.inventory,
-        newAcc.buyprice,
-        newAcc.sellprice,
-        newAcc.discount,
-    ]);
+    try {
+        await pool.query('CALL ADD_NEW_ACCESSORY(?, ?, ?, ?, ?, ?, ?)', [
+            newAcc.usID,
+            newAcc.name,
+            newAcc.description,
+            newAcc.inventory,
+            newAcc.buyprice,
+            newAcc.sellprice,
+            newAcc.discount,
+        ]);
+        queryOk = true;
+    } catch (error) {
+        queryOk = false;
+    }
 
-    req.flash('success', 'Transacción exitosa: Accesorio Añadido');
-    res.redirect('/admin/inventory/add_existing');
+    if(queryOk){
+        req.flash('success', 'Transacción exitosa: Accesorio Añadido');
+        res.redirect('/admin/inventory/add_existing');
+    }else{
+        req.flash('message', 'Error: Algo salió mal al añadir el accesorio');
+        res.redirect('/admin/new_accessory');
+    }
 };
 
 controller.inventory_add_existing = async (req, res) => {

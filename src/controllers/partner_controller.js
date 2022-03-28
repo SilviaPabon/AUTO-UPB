@@ -16,16 +16,27 @@ controller.searchAccountsPartner = async (req, res) => {
 
 controller.searchAccountsResultPartner = async (req, res) => {
     const { criteria } = req.params;
+    let queryOk = false; 
 
-    const users = await pool.query('CALL PARTNER_SEARCH_USER_FROM_CRITERIA(?, ?)', [req.user.id_usuario, criteria]);
+    try {
+        var users = await pool.query('CALL PARTNER_SEARCH_USER_FROM_CRITERIA(?, ?)', [req.user.id_usuario, criteria]);
+        queryOk = true;
+    } catch (error) {
+        queryOk = false;
+    }
 
-    const data = {
-        users,
-        isFiltered: true,
-        criteria,
-    };
-
-    res.render('partner/existing_accounts_partner', { data });
+    if(queryOk) {
+        const data = {
+            users,
+            isFiltered: true,
+            criteria,
+        };
+    
+        res.render('partner/existing_accounts_partner', { data });
+    }else{
+        req.flash('message', 'Error: Error inesperado al buscar el usuario con el criterio de búsqueda dado');
+        res.redirect('/partner/accounts');
+    }
 };
 
 controller.inventory = async (req, res) => {
@@ -49,19 +60,30 @@ controller.searchinventory = async (req, res) => {
 // Ruta para mostrar los usuarios resultantes de la búsqueda
 controller.searchinventoryResult = async (req, res) => {
     const { criteria } = req.params;
+    let queryOk = false;
 
-    const inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(?, ?)', [
-        req.user.id_usuario,
-        criteria,
-    ]);
+    try {
+        var inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(?, ?)', [
+            req.user.id_usuario,
+            criteria,
+        ]);
+        queryOk = true;
+    } catch (error) {
+        queryOk = false;
+    }
 
-    const data = {
-        ACCESORIOS: inventory[0],
-        isFiltered: true,
-        criteria,
-    };
-
-    res.render('partner/partners_inventory', { data });
+    if(queryOk) {
+        const data = {
+            ACCESORIOS: inventory[0],
+            isFiltered: true,
+            criteria,
+        };
+    
+        res.render('partner/partners_inventory', { data });
+    }else{
+        req.flash('message', 'Error: Algo salió mal al buscar el accesorio con el criterio de búsqueda dado');
+        res.redirect('/partner/inventory');
+    }
 };
 
 module.exports = controller;
