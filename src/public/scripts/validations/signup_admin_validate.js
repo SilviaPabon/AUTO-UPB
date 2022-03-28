@@ -3,7 +3,7 @@ const form = document.getElementById('signup-form');
 const selection = document.getElementById('rol_select');
 
 const regEx = {
-    name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, //Solo se permiten, letras, espacios y acentos
+    name: /^[a-zA-ZÀ-ÿ\s]{5,40}$/, //Solo se permiten, letras, espacios y acentos
     documento: /^\d{6,14}$/, // 6 a 14 numeros.
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$!%*#?&/%])[A-Za-z\d$!%*#?&/%]{8,}$/, // Mínimo 8 dígitos, con una letra, un número y un caracter especial
@@ -71,7 +71,7 @@ const validateOption = (select, field) => {
 }
 
 const validateField = (regEx, input, field) => {
-    if (regEx.test(input.value)) {
+    if (regEx.test(input.value.replaceAll(' ', ''))) {
         //Si es correcto
         fields[field] = true;
         document.getElementById(`${field}-group`).classList.remove('form-group--incorrect');

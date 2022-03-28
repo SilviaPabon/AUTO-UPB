@@ -3,7 +3,7 @@ const form = document.getElementById('contact_us');
 
 const regEx = {
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+    name: /^[a-zA-ZÀ-ÿ\s]{5,65}$/,
     message: /^.{10,324}$/
     
 };
@@ -31,7 +31,7 @@ const validateForm = (e) => {
 }
 
 const validateField = (regEx, input, field) => {
-    if (regEx.test(input.value)) {
+    if (regEx.test(input.value.replaceAll(' ', ''))) {
         fields[field] = true;
         document.getElementById(`${field}-group`).classList.remove('form-group--incorrect');
         document.getElementById(`${field}-group`).classList.add('form-group--correct');

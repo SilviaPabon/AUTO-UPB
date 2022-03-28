@@ -2,7 +2,7 @@ const inputs = document.querySelectorAll('#signup-form .input--full-width');
 const form = document.getElementById('signup-form');
 
 const regEx = {
-    name: /^.{2,100}$/, //Contiene 2 a 100 caracteres
+    name: /^.{5,85}$/, //Contiene 2 a 100 caracteres
     documento: new RegExp('^[0-9]{9}(-[0-9]{1})$'), // Formato del NIT 
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$!%*#?&/%])[A-Za-z\d$!%*#?&/%]{8,}$/, // Mínimo 8 dígitos, con una letra, un número y un caracter especial
@@ -48,7 +48,7 @@ const validateForm = (e) => {
 };
 
 const validateField = (regEx, input, field) => {
-    if (regEx.test(input.value)) {
+    if (regEx.test(input.value.replaceAll(' ', ''))) {
         //Si es correcto
         fields[field] = true;
         document.getElementById(`${field}-group`).classList.remove('form-group--incorrect');
