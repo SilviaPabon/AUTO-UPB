@@ -204,5 +204,9 @@ controller.state_acc_post = async (req, res) => {
 
 }
 
+controller.finances = (req, res) => {
+    res.render('admin/finances_select_option');
+};
+
 module.exports = controller; 
 
