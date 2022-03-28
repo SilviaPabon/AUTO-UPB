@@ -158,8 +158,10 @@ CREATE TABLE HISTORICO_FACTURAS(
     
     CONSTRAINT FOREIGN KEY fk_factura_usuario_creacion (id_usuario_creacion) REFERENCES USUARIOS(id_usuario), 
     CONSTRAINT FOREIGN KEY fk_factura_usuario_modificacion (id_usuario_ultima_modificacion) REFERENCES USUARIOS(id_usuario), 
-    CONSTRAINT fk_facturas_ordenes FOREIGN KEY (id_factura) REFERENCES ORDENES_COMPRA(id_orden)
+    CONSTRAINT fk_facturas_ordenes FOREIGN KEY (id_orden) REFERENCES ORDENES_COMPRA(id_orden)
 ); 
+
+
 
 CREATE TABLE TIPOS_MOVIMIENTO_FINANCIERO(
 	codigo_movimiento INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 

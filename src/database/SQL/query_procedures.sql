@@ -782,7 +782,6 @@ DROP PROCEDURE IF EXISTS SHOW_TOP_DISCOUNT;
 DELIMITER //
 
 CREATE PROCEDURE SHOW_TOP_DISCOUNT(
-	IN session_user_id INT UNSIGNED
 )
 BEGIN 
 
@@ -1065,6 +1064,9 @@ BEGIN
         DELETE FROM CARRITO_COMPRAS 
         WHERE CARRITO_COMPRAS.id_usuario = session_user_id; 
         
+        -- Crea la factura
+        CALL facture_add(session_user_id, buy_order_id); 
+        
     COMMIT; 
     
     SET autocommit = 1; 
@@ -1279,6 +1281,10 @@ BEGIN
         session_user_id, 
         session_user_id
 	);
+    
+    /*Genera el log*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 1, 7);
  
 END//
 
@@ -1286,6 +1292,37 @@ DELIMITER ;
 
 /*
 CALL facture_add(3, 1); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER LA INFORMACIÓN DE UNA FACTURA
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS get_bill_details_from_id; 
+DELIMITER //
+
+CREATE PROCEDURE get_bill_details_from_id(
+	IN session_user_id INT UNSIGNED, 
+    IN id_orden INT UNSIGNED
+)
+BEGIN
+
+	/*Selecciona los datos de la orden pasada como parámetro*/
+	SELECT * FROM BILL_PRETTY 
+		WHERE BILL_PRETTY.id_orden = id_orden; 
+
+	/*Genera los logs*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 7);
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL get_bill_details_from_id(1, 1); 
 */
 
 /* 
