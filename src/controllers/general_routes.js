@@ -71,13 +71,26 @@ controller.contactUs = async (req, res) =>{
     res.render('contact_us');
 }
 controller.contactUspost = async (req, res) =>{
+    
     const {name, email, message} = req.body;
+    let queryOk = false; 
 
-    await pool.query('CALL REGISTER_NEW_MESSAGE(?,?,?)',[
-        name, email, message
-    ]);
-    req.flash('success', 'Mensaje registrado');
-    res.redirect('/');
+    try {
+        await pool.query('CALL REGISTER_NEW_MESSAGE(?,?,?)',[
+            name, email, message
+        ]);
+        success = true;
+    } catch (error) {
+        success = false;
+    }
+
+    if(success){
+        req.flash('success', 'Mensaje registrado');
+        res.redirect('/');
+    }else{
+        req.flash('message', 'Ocurrió un error inesperado al registrar el mensaje. Error común: Usar emojis en el contenido del mensaje'); 
+        res.redirect('/');
+    }
     
 }
 
