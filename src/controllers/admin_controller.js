@@ -204,5 +204,11 @@ controller.state_acc_post = async (req, res) => {
 
 }
 
+controller.messages = async (req, res) => {
+
+    res.render('admin/show_messages');
+
+}
+
 module.exports = controller; 
 

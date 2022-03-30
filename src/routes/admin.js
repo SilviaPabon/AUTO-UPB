@@ -26,5 +26,6 @@ router.get('/accounts', protect.isLoggedIn, protect.isAdmin, controller.accounts
 router.post('/accounts', protect.isLoggedIn, protect.isAdmin, controller.searchAccounts); 
 router.get('/accounts/:criteria', protect.isLoggedIn, protect.isAdmin, controller.searchAccountsResult)
 
+router.get('/messages', protect.isLoggedIn, protect.isAdmin, controller.messages);
 
 module.exports = router;
