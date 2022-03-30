@@ -27,6 +27,8 @@ router.post('/accounts', protect.isLoggedIn, protect.isAdmin, controller.searchA
 router.get('/accounts/:criteria', protect.isLoggedIn, protect.isAdmin, controller.searchAccountsResult)
 
 router.get('/finances', protect.isLoggedIn, protect.isAdmin, controller.finances); 
+router.get('/finances/historical_prices', protect.isLoggedIn, protect.isAdmin, controller.historicalPrices);
+router.get('/finances/historical_prices/:id', protect.isLoggedIn, protect.isAdmin, controller.historicalPricesProd); 
 
 
 module.exports = router;
