@@ -11,7 +11,7 @@
     <%- include('partials/_navbar.ejs') %>
     <main>
         <section class="form-image">
-            <form action="/contact_us" method="post" class="input-form" id="contact_us">
+            <form action="/contact_us" method="post" class="input-form" id="contact_us" data-form="contact">
                 <h1 class="title title--center">ESCRÍBENOS</h1>
     
                 <div class="form-group" id="name-group">
@@ -23,6 +23,7 @@
                             id="name"
                             name="name"
                             placeholder="Ingresa tu nombre completo"
+                            data-form="contact"
                         />
                         <p class="form-group__error-message">El nombre solo puede contener letras y debe contener de 5 a 65 caracteres.</p>
                     </div>
@@ -37,6 +38,7 @@
                             id="email"
                             name="email"
                             placeholder="ejemplo@dominio.com"
+                            data-form="contact"
                         />
     
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
@@ -52,6 +54,7 @@
                             id = "message"
                             name = "message"
                             placeholder="Mensaje"
+                            data-form="contact"
                         ></textarea> 
                         <p class="form-group__error-message">El mensaje debe contener minimo 10 caracteres y máximo 324. No incluya caracteres de escape o emojis.</p> 
                     </div>
@@ -70,7 +73,8 @@
         
 
     </main>
-    <script src="/scripts/validations/contact_us_validate.js"></script>
+    
+    <script src="/scripts/validations/validate_global.js"></script>
     <%- include('partials/_globalScripts.ejs') %>
 </body>
 </html>

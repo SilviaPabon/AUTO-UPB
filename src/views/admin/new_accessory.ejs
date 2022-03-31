@@ -12,7 +12,7 @@
 
         <main>
             
-            <form action="/admin/inventory/add_new" method="post" class="input-form" id="signup-form">
+            <form action="/admin/inventory/add_new" method="post" class="input-form" id="signup-form" data-form="inventory_add">
                 <%- include('../partials/_messages.ejs') %>
 
                 <h1 class="title title--center">AGREGAR NUEVO PRODUCTO</h1>
@@ -26,6 +26,7 @@
                             id="name"
                             name="name"
                             placeholder="Ingresa el nombre del nuevo accesorio"
+                            data-form="inventory_add"
                         />
                         <p class="form-group__error-message">El nombre del producto debe tener mínimo 3 carácteres y un límite de máximo 64 carácteres</p>
                     </div>
@@ -40,6 +41,7 @@
                             id="description"
                             placeholder="Ingresa los detalles del nuevo accesorio."
                             wrap="soft"
+                            data-form="inventory_add"
                         ></textarea>
                         <p class="form-group__error-message">La descripción tiene un límite de mínimo 10 carácteres y máximo 324 carácteres</p>
                     </div>
@@ -54,6 +56,7 @@
                             id="buyprice"
                             name="buyprice"
                             placeholder="Precio de compra a proveedores"
+                            data-form="inventory_add"
                         />
                         <p class="form-group__error-message">El precio de venta solo puede tener números y debe tener de 2 a 12 números.</p>
                     </div>
@@ -68,6 +71,7 @@
                             id="sellprice"
                             name="sellprice"
                             placeholder="Precio de venta a clientes"
+                            data-form="inventory_add"
                         />
                         <p class="form-group__error-message">El precio de venta solo puede tener números y debe tener de 2 a 12 números.</p>
                     </div>
@@ -82,6 +86,7 @@
                             id="discount"
                             name="discount"
                             placeholder="Descuento del accesorio"
+                            data-form="inventory_add"
                         />
                         <p class="form-group__error-message">El descuento solo puede tener números y debe tener de 1 a 3 números.</p>
                     </div>
@@ -96,6 +101,7 @@
                             id="inventory"
                             name="inventory"
                             placeholder="Inventario inicial del accesorio"
+                            data-form="inventory_add"
                         />
                         <p class="form-group__error-message">El inventario solo puede tener números y debe tener de 1 a 5 números.</p>
                     </div>
@@ -112,7 +118,8 @@
                 />
             </form>
         </main>
-        <script src="/scripts/validations/inventory_add_validate.js"></script>
+
+        <script src="/scripts/validations/validate_global.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
     </body>
 </html>

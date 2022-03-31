@@ -14,7 +14,7 @@
 
             <%- include('../partials/_messages.ejs') %>
 
-            <form method="post" class="input-form" id="login-form">
+            <form method="post" class="input-form" id="login-form" data-form="login" >
 
                 <h1 class="title title--center">INICIO DE SESIÓN</h1>
 
@@ -27,6 +27,7 @@
                             id="email"
                             name="email"
                             placeholder="ejemplo@dominio.com"
+                            data-form="login"  
                         />
 
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
@@ -42,6 +43,7 @@
                             id="password"
                             name="password"
                             placeholder="********"
+                            data-form="login" 
                         />
 
                         <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluír un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
@@ -58,7 +60,7 @@
         </main>
 
 
-        <script src="/scripts/validations/login_validate.js"></script>
+        <script src="/scripts/validations/validate_global.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>
