@@ -28,4 +28,8 @@ router.get('/accounts/:criteria', protect.isLoggedIn, protect.isAdmin, controlle
 
 router.get('/messages', protect.isLoggedIn, protect.isAdmin, controller.messages);
 
+router.get('/finances', protect.isLoggedIn, protect.isAdmin, controller.finances); 
+router.get('/finances/historical_prices', protect.isLoggedIn, protect.isAdmin, controller.historicalPrices);
+router.get('/finances/historical_prices/:id', protect.isLoggedIn, protect.isAdmin, controller.historicalPricesProd); 
+
 module.exports = router;
