@@ -432,6 +432,12 @@ label {
   padding: 12px 32px;
 }
 
+.generic-table td.message {
+  max-width: 400px;
+  text-align: center;
+  white-space: normal;
+}
+
 .generic-table .table-row--buttons {
   display: -webkit-box;
   display: -ms-flexbox;

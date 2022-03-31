@@ -206,7 +206,9 @@ controller.state_acc_post = async (req, res) => {
 
 controller.messages = async (req, res) => {
 
-    res.render('admin/show_messages');
+    const data = await pool.query('CALL GETALL_MESSAGES(?)', [req.user.id_usuario]);
+
+    res.render('admin/show_messages', {data});
 
 }
 

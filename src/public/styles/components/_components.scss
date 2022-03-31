@@ -382,13 +382,21 @@ label{
     & th{
         color: black;
         padding: 12px 32px;
-
     }
+    
 
     & td {
         color: black;
-        padding: 12px 32px;
+        padding: 12px 32px;     
     }
+    & td.message{
+        max-width: 400px;
+
+        text-align: center;
+
+        white-space: normal;
+    }
+    
 
     /*Celda de */
     & .table-row--buttons{
