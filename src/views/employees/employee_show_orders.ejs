@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>ÓRDENES DE COMPRA DE LOS CLIENTES</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+        <main>
+            <%- include('../partials/_messages.ejs') %>
+            <section class="section--no-top-margin">
+                <h1 class="title title--center">ÓRDENES DE COMPRA</h1>
+
+                <% if (data.length > 0) {%>
+
+                <table class="generic-table">
+                    <thead>
+                        <tr>
+                            <th>ID ORDEN</th>
+                            <th>ESTADO</th>
+                            <th>COMPRADOR</th>
+                            <th>VENDEDOR</th>
+                            <th>FECHA DE COMPRA</th>
+                            <th>SUBTOTAL</th>
+                            <th>DESCUENTOS</th>
+                            <th>IMPUESTOS</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < data.length; i++) { %>
+                            <tr>
+                                <td>#<%= data[i].id_orden %></td>
+                                <td><%= data[i].estado_compra %></td>
+                                <td><%= data[i]['Nombre comprador'] %></td>
+                                <% if (data[i]['Nombre vendedor'] != null ) { %> 
+                                    <td><%= data[i]['Nombre vendedor'] %></td>
+                                <% } else { %>
+                                    <td>COMPRA EN WEB</td>
+                                <% } %>
+                                <td><%= data[i].fecha_compra %></td>
+                                <td>$<%= data[i]['Total Precios Base'] %></td>
+                                <td>$<%= data[i]['Descuentos aplicados'] %></td>
+                                <td>$<%= data[i]['IVA aplicado'] %></td>
+                                <td>$<%= data[i].Total %></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <% } %>
+            </section>
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

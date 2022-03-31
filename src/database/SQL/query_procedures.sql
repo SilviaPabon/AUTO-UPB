@@ -1198,6 +1198,17 @@ CREATE PROCEDURE GETALL_USER_ORDERBUY(
 )
 BEGIN
 	
+    SELECT id_orden, `Nombre comprador`, `Nombre vendedor`, fecha_compra, estado_compra, `Total Precios Base`, `Descuentos aplicados`, `IVA aplicado`, `Total`
+	FROM order_summary_pretty AS OSP; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ;
+BEGIN
+	
     SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
 	FROM ORDER_SUMMARY AS OS; 
     
