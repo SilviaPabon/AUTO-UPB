@@ -180,10 +180,40 @@ const validateField = (regEx, input, field) => {
     }
 };
 
-//Cuando cambie un input, se llama la funciónd e validación
-const validateForm = (e) => {
-    validateField(regEx[e.target.dataset.form][e.target.name], e.target, e.target.name);
+// Función para validra un tag de tipo select
+const validateOption = (select, field) => {
+    if (select.value == 0) {
+        fields[form.dataset.form][field] = false;
+        document.getElementById(`${field}-group`).classList.remove('form-group--correct');
+        document.getElementById(`${field}-group`).classList.add('form-group--incorrect');
+        document
+            .querySelector(`#${field}-group .form-group__error-message`)
+            .classList.add('form-group__error-message--active');
+    } else {
+        fields[form.dataset.form][field] = true;
+        document.getElementById(`${field}-group`).classList.remove('form-group--incorrect');
+        document.getElementById(`${field}-group`).classList.add('form-group--correct');
+        document
+            .querySelector(`#${field}-group .form-group__error-message`)
+            .classList.remove('form-group__error-message--active');
+    }
 };
+
+//Cuando cambie un input, se llama la funciónd de validación
+const validateForm = (e) => {
+    if (e.target.tagName === 'SELECT') {
+        validateOption(e.target, e.target.name); 
+    } else {
+        validateField(regEx[form.dataset.form][e.target.name], e.target, e.target.name);
+    }
+};
+
+//Cuando cambie un select, se llama la funciónd de validación
+try {
+    selection.addEventListener('change', validateForm);
+} catch (error) {
+    //Handle error
+}
 
 //Validación de los input
 inputs.forEach((input) => {

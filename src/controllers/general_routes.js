@@ -39,7 +39,6 @@ controller.accessoryDetails = async (req, res) => {
 controller.userUpdate = async (req, res) => {
     
     const userd = await pool.query('CALL GET_USER_DATA_FROM_ID (?)',[req.user.id_usuario])
-    console.log(userd); 
     res.render('userUpdate', { userd }); 
 }
 controller.userUpdate_post = async (req, res) => {
