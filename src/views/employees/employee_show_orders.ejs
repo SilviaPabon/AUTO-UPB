@@ -19,6 +19,7 @@
                 <table class="generic-table">
                     <thead>
                         <tr>
+                            <th>FACTURA</th>
                             <th>ID ORDEN</th>
                             <th>ESTADO</th>
                             <th>COMPRADOR</th>
@@ -33,6 +34,9 @@
                     <tbody>
                         <% for(var i=0; i < data.length; i++) { %>
                             <tr>
+                                <td class="table-row--buttons">
+                                    <a href="/user/bill/<%= data[i].id_orden %>" class="btn btn--primary">Ver factura</a>
+                                </td>
                                 <td>#<%= data[i].id_orden %></td>
                                 <td><%= data[i].estado_compra %></td>
                                 <td><%= data[i]['Nombre comprador'] %></td>
