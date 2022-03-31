@@ -64,3 +64,12 @@ CREATE VIEW CART_PRETTY AS
 SELECT cart.id_usuario, cart.id_accesorio, a.nombre, a.stock, a.precio_base, a.descuento, a.precio_final, a.ruta_imagen, cart.cantidad_accesorio
 FROM CARRITO_COMPRAS AS cart, ACCESORIOS as a
 WHERE cart.id_accesorio = a.id_accesorio; 
+
+/*VISTA PARA MOSTRAR HISTÓRICO DE PRECIOS*/
+DROP VIEW IF EXISTS HISTORIAL_PRICES_VIEW;
+CREATE VIEW HISTORIAL_PRICES_VIEW AS
+SELECT A.NOMBRE AS nombre_accesorio, precio_asignado, DATE_FORMAT(FECHA_CAMBIO,"%e/%c/%Y %H:%i") AS fecha_cambio, H.id_accesorio AS id_accesorio, U.NOMBRE AS u_responsable
+FROM ACCESORIOS AS A, HISTORICO_CAMBIO_PRECIOS AS H, USUARIOS AS U
+WHERE A.id_accesorio = H.id_accesorio
+AND H.id_usuario_responsable = U.id_usuario
+ORDER BY fecha_cambio DESC;
