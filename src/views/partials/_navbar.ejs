@@ -9,7 +9,7 @@
 
             <li class="navigation__account">
                 <div class="navigation__account__icon"><span class="icon--bigger"><img src="/icons/user-circle-solid.svg" alt="Ícono usuario"></span></div>
-                <p><%= user.nombre.split(' ')[0] %></p>
+                <p class="navigation__account__name"><%= user.nombre %></p>
             </li>
 
             <% if(user.codigo_tipo_usuario == 1) { %>
@@ -65,7 +65,7 @@
             <li class="navigation__item">
                 <a href="/partner/inventory" class="navigation__link"
                     ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg" alt="Ícono inventario"></span></div>
-                    Consulta de inventario</a
+                    Consultar inventario</a
                 >
             </li>
             <li class="navigation__item">
@@ -90,13 +90,19 @@
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
                     ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra de clientes"></span></div>
-                    Órdenes de los clientes</a
+                    Órdenes de compra clientes</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/employee/refounds" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/exchange-alt-solid.svg" alt="Ícono gestión de devoluciones"></span></div>
+                    Devoluciones</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="/employee/inventory" class="navigation__link"
                     ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg" alt="Ícono inventario"></span></div>
-                    Consulta de inventario</a
+                    Consultar inventario</a
                 >
             </li>
             <% } else if (user.codigo_tipo_usuario == 4){ %>
@@ -109,13 +115,13 @@
             <li class="navigation__item">
                 <a href="#" class="navigation__link"
                     ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra"></span></div>
-                    Órdenes de los clientes</a
+                    Órdenes de compra clientes</a
                 >
             </li>
             <li class="navigation__item">
                 <a href="/admin/accounts" class="navigation__link"
                     ><div class="navigation__icon"><span class="icon"><img src="/icons/users-solid.svg" alt="Ícono gestión de cuentas"></span></div>
-                    Gestión cuentas existentes</a
+                    Gestión de cuentas</a
                 >
             </li>
             <li class="navigation__item">
@@ -133,7 +139,13 @@
             <li class="navigation__item">
                 <a href="/admin/create_account" class="navigation__link"
                     ><div class="navigation__icon"><span class="icon"><img src="/icons/user-cog-solid.svg" alt="Ícono gestión de cuentas internas"></span></div>
-                    Creación cuenta interna</a
+                    Creación de cuenta interna</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/admin/messages" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg" alt="Ícono mensajes de los usuarios"></span></div>
+                    Mensajes de los usuarios</a
                 >
             </li>
             <% } %>
