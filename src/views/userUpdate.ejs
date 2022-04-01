@@ -112,12 +112,13 @@
                 <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
 
                 <input type="submit" value="ACTUALIZAR MI CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
-            
+                <a href="/deactivate" role="button" class="btn btn--secondary btn--block btn--no-radius" id="deactivate_account">DESACTIVAR CUENTA</a>
 
             </form>
         </main>
 
         <script src="/scripts/validations/update_acc_validate.js"></script>
+        <script src="/scripts/confirm_user_account_delete.js"></script>
         <%- include('partials/_globalScripts.ejs') %>
 
     </body>
