@@ -205,12 +205,24 @@ controller.state_acc_post = async (req, res) => {
 }
 
 controller.messages = async (req, res) => {
-
     const data = await pool.query('CALL GETALL_MESSAGES(?)', [req.user.id_usuario]);
-
     res.render('admin/show_messages', {data});
-
 }
+
+controller.finances = (req, res) => {
+    res.render('admin/finances_select_option');
+};
+
+controller.historicalPrices = async (req, res) => {
+    const callAccessories = await pool.query('CALL SHOW_ACCESSORIES_ADMIN(?)', [req.user.id_usuario]);
+    res.render('admin/finances_products', { accesorios: callAccessories });
+};
+
+controller.historicalPricesProd = async (req, res) => {
+    const { id } = req.params;
+    const callAccessories = await pool.query('CALL HISTORICAL_ACCESSORY_PRICES(?, ?)', [req.user.id_usuario, id]);
+    res.render('admin/finances_historic_prices', { accesorios: callAccessories });
+};
 
 module.exports = controller; 
 

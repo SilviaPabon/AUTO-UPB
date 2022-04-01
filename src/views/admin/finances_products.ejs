@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>VER HISTÓRICO DE PRECIOS</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+
+            <section class="inventory_existing_accessories section--no-top-margin">
+                <h1 class="title title--center">VER HISTÓRICO DE PRECIOS POR ACCESORIO </h1>
+    
+                <div class="cards_container cards_container--center-items">
+                    
+                    <% if (accesorios) { %>
+                        <% for (var i = 0; i < accesorios[0].length; i++) { %>
+                            
+                            <article class="generic-card inventory_existing_accessories_card">
+                                <div class="inventory_existing_accessories_card__image">
+                                    <img class="lazyload" data-src="/images<%= accesorios[0][i].ruta_imagen %>" alt="<%= accesorios[0][i].nombre %>">
+                                </div>
+                                <div class="inventory_existing_accessories_card__body">
+                                    <h2 class="card__title"><%= accesorios[0][i].nombre %></h2>
+                                    <a href="/admin/finances/historical_prices/<%= accesorios[0][i].id_accesorio %>" class="btn btn--primary btn--card btn--block" aria-label="Ver histórico de precios del producto <%= accesorios[0][i].nombre %>">VER HISTÓRICO DE PRECIOS</a>
+                                </div>
+                            </article>
+                        <% }  %> 
+                    <% }  %> 
+    
+                </div>
+    
+            </section>
+
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+        <script src="/scripts/vendors/lazysizes.min.js" async></script>
+        
+    </body>
+</html>
