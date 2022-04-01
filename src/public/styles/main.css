@@ -433,7 +433,6 @@ label {
 }
 
 .generic-table td.message {
-  max-width: 400px;
   text-align: center;
   white-space: normal;
 }
