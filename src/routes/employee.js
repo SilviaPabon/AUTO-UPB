@@ -15,7 +15,11 @@ router.post('/cart/buy', protect.isLoggedIn, protect.isWorker, controller.postOr
 router.get('/inventory', protect.isLoggedIn, protect.isWorker, controller.inventory);
 //Ruta post para que el trabajador busque accesorios en el inventario
 router.post('/inventory', protect.isLoggedIn, protect.isWorker,controller.searchinventory);
-//Ruta para mostrar al trabajador los accesoriso que complan con el criterio de búsqueda. 
+//Ruta para mostrar al trabajador los accesoriso que compran con el criterio de búsqueda. 
 router.get('/inventory/:criteria',  protect.isLoggedIn, protect.isWorker,controller.searchinventoryResult);
+//Ruta para mostrar al trabajador orden de compra. 
+router.get('/refunds',  protect.isLoggedIn, protect.isWorker, controller.refunds);
+// 
+router.post('/refunds/search_order',  protect.isLoggedIn, protect.isWorker, controller.search_order);
 
 module.exports = router;
