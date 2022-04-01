@@ -167,7 +167,7 @@ controller.postOrder = async (req, res) => {
 
 // ---
 // Ruta para mostrar el inventario existente
-controller.inventory=async(req,res)=>{
+controller.inventory = async(req,res)=>{
     const inventory = await connection.query('CALL SHOW_ACCESSORIES_INTERNAL(?)', [req.user.id_usuario]);
     const data = {
         ACCESORIOS: inventory[0],
@@ -200,6 +200,49 @@ controller.searchinventoryResult = async (req, res) => {
     };
 
     res.render('employees/existing_inventory', { data });
+};
+
+// Ruta para hacer devoluciones
+controller.refunds = (req, res) => {
+
+    res.render('employees/refunds');
+};
+
+controller.search_order = async (req, res) => {
+    const { order } = req.body;
+
+    console.log(order)
+    let response;
+    let success = false;
+
+    try {
+        response = await connection.query('CALL GET_ORDERBUY_ID(?)', [order]);
+        success = true; 
+        console.log('pass');
+    } catch (error) {
+        success = false;
+        console.log('false');
+    }
+
+    success == true ? res.status(200).send(response[0]) : res.status(500).send([]);
+};
+
+controller.makeRefund = async (req, res) => {
+    
+    //Variables de control
+    let userStepSuccess = false; 
+    let orderStepSuccess = false; 
+
+    //Recibimiento y organización de los datos
+    const { cantidad_venta, precio_final } = req.body;
+
+    const user = {
+        id_usuario,
+        name, 
+        documento, 
+    }
+
+    
 };
 
 module.exports = controller;
