@@ -63,7 +63,8 @@
                 &__link {
                     /*Centrar los textos*/
                     display: flex;
-                    justify-content: center;
+                    justify-content: space-evenly; 
+                    text-align: center;
                     line-height: 1.5;
                     border-bottom: 1px solid rgb(255, 255, 255);
                 }
