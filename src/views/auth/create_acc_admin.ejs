@@ -14,7 +14,7 @@
 
             <%- include('../partials/_messages.ejs') %>
 
-            <form action="/admin/create_account" method="post" class="input-form" id="signup-form">
+            <form action="/admin/create_account" method="post" class="input-form" id="signup-form" data-form="signup_admin">
 
                 <h1 class="title title--center">CREACIÓN DE CUENTA INTERNA</h1>
 
@@ -27,6 +27,7 @@
                             id="name"
                             name="name"
                             placeholder="Ingresa tu nombre completo"
+                            data-form="signup_admin"
                         />
                         <p class="form-group__error-message">El nombre solo puede contener letras y debe contener de 5 a 65 caracteres.</p>
                     </div>
@@ -41,6 +42,7 @@
                             id="documento"
                             name="documento"
                             placeholder="Ingresa tu documento"
+                            data-form="signup_admin"
                         />
                         <p class="form-group__error-message">El número de documento solo puede tener números y debe tener de 6 a 14 números.</p>
                     </div>
@@ -55,6 +57,7 @@
                             id="email"
                             name="email"
                             placeholder="ejemplo@dominio.com"
+                            data-form="signup_admin"
                         />
 
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
@@ -70,6 +73,7 @@
                             id="phone"
                             name="phone"
                             placeholder="Ingresa tu número de celular"
+                            data-form="signup_admin"
                         />
 
                         <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
@@ -85,6 +89,7 @@
                             id="address"
                             name="address"
                             placeholder="Ingresa tu dirección"
+                            data-form="signup_admin"
                         />
 
                         <p class="form-group__error-message">La dirección debe temer de 15 a 100 caracteres.</p>
@@ -100,6 +105,7 @@
                             id="password"
                             name="password"
                             placeholder="********"
+                            data-form="signup_admin"
                         />
 
                         <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluír un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
@@ -118,7 +124,6 @@
                         <p class="form-group__error-message">Debe seleccionar un rol</p>
                     </div>
                 </div>
-                <!--PENDINTE LA CONDICIÓN PARA QUE ESTO SE CUMPLA-->
                 <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
 
                 <input type="submit" value="CREAR CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
@@ -126,7 +131,7 @@
             </form>
         </main>
 
-        <script src="/scripts/validations/signup_admin_validate.js"></script>
+        <script src="/scripts/validations/validate_global.min.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>

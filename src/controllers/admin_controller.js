@@ -204,6 +204,11 @@ controller.state_acc_post = async (req, res) => {
 
 }
 
+controller.messages = async (req, res) => {
+    const data = await pool.query('CALL GETALL_MESSAGES(?)', [req.user.id_usuario]);
+    res.render('admin/show_messages', {data});
+}
+
 controller.finances = (req, res) => {
     res.render('admin/finances_select_option');
 };
