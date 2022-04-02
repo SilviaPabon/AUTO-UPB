@@ -218,7 +218,6 @@ controller.showorders = async (req, res) => {
         const data = clientOrders[0];
 
         if (data.length > 0) {
-            console.log(data); 
             res.render('employees/employee_show_orders', { data });
         } else {
             req.flash('message', 'No hay órdenes de compra para mostrar');
