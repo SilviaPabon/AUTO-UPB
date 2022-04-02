@@ -192,7 +192,7 @@ controller.searchinventoryResult = async (req, res) => {
     const { criteria } = req.params;
 
     const inventory = await connection.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(?, ?)', [req.user.id_usuario, criteria]);
-console.log(data);
+
     const data = {
         ACCESORIOS: inventory[0],
         isFiltered : true,
