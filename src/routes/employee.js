@@ -17,5 +17,8 @@ router.get('/inventory', protect.isLoggedIn, protect.isWorker, controller.invent
 router.post('/inventory', protect.isLoggedIn, protect.isWorker,controller.searchinventory);
 //Ruta para mostrar al trabajador los accesoriso que complan con el criterio de búsqueda. 
 router.get('/inventory/:criteria',  protect.isLoggedIn, protect.isWorker,controller.searchinventoryResult);
+//Ruta para mostrar al trabajador las ordenes de compra de los clientes.
+router.get('/orders', protect.isLoggedIn, protect.isWorker,controller.showorders);
+
 
 module.exports = router;
