@@ -489,7 +489,7 @@ para el criterio de búsqueda*/
 
 .aside-navigation {
   /*Columa contenedora de la barra de navegación*/
-  width: 200px;
+  width: 220px;
   height: 100vh;
   z-index: 100;
   background-color: #0d141c;
@@ -539,13 +539,22 @@ para el criterio de búsqueda*/
 
 .aside-navigation .menu .navigation {
   list-style: none;
+  /*Puede crecer máximo el 80% de la altura de la página*/
+  max-height: 65vh;
+  overflow-y: scroll;
+  /*En caso de que crezca más del 80%, permite el scroll pero 
+            oculta la barra de navegación*/
   /*Li dentro del ul*/
   /*Link dentro del li*/
   /*CONTENEDOR DE LOS ICONOS*/
 }
 
+.aside-navigation .menu .navigation::-webkit-scrollbar {
+  display: none;
+}
+
 .aside-navigation .menu .navigation__account {
-  padding: 8px;
+  padding: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -559,23 +568,35 @@ para el criterio de búsqueda*/
   text-decoration: none;
   color: white;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
 }
 
+.aside-navigation .menu .navigation__account__name {
+  /*El nombre del usuario tiene un ancho máximo de 140px
+                    Si se pasa del máximo, se muestra como puntos suspensivos*/
+  max-width: 140px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .aside-navigation .menu .navigation__item {
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
 
 .aside-navigation .menu .navigation__link {
-  padding: 0.6em 0;
+  padding: 0.8em 0.4em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
   text-decoration: none;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   border-right: 2px transparent;
   -webkit-transition: all 0.2s ease-in;
@@ -603,13 +624,13 @@ para el criterio de búsqueda*/
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  min-width: 40px;
+  min-width: 32px;
   margin: 0 8px;
   /*ICONOS*/
 }
 
 .aside-navigation .menu .navigation__icon .icon img, .aside-navigation .menu .navigation__account__icon .icon img {
-  width: 20px;
+  width: 18px;
 }
 
 .aside-navigation .menu .navigation__icon .icon--bigger img, .aside-navigation .menu .navigation__account__icon .icon--bigger img {
@@ -1085,7 +1106,7 @@ body {
 
 main {
   position: relative;
-  margin-left: 200px;
+  margin-left: 220px;
   min-height: 100vh;
   padding: 16px 16px;
 }
@@ -1169,9 +1190,10 @@ main {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    text-align: center;
     line-height: 1.5;
     border-bottom: 1px solid white;
   }
