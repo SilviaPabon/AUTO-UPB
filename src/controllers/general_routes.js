@@ -2,10 +2,6 @@ const controller = {};
 const pool = require('../database/connection');
 const helpers = require('../libs/helpers');
 
-const { promisify } = require('util');
-const exec = promisify(require('child_process').exec);
-const childProcess = require('child_process'); 
-
 controller.home = async (req, res) => {
     // Se obtienen los productos en descuento
     const disccountProducts = await pool.query('CALL SHOW_TOP_DISCOUNT()');
