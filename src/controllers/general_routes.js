@@ -108,7 +108,7 @@ controller.openMail = async (req, res) => {
         route = await exec('where /f /r "C:\\Program Files" thunderbird.exe');
         execExist = true;
     } catch (error) {
-        req.flash('message', 'ERROR: No se ha encontrado el ejecutable de Thunderbird dentro del disco C:');
+        req.flash('message', 'ERROR: No se ha encontrado el ejecutable de Thunderbird dentro del directorio por defecto C:Program Files');
         execExist = false;
     }
 
