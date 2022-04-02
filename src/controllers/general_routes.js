@@ -92,49 +92,4 @@ controller.contactUspost = async (req, res) => {
     }
 };
 
-/* --------------------------------
-Ruta para abrir el cliente de correo Thunderbird en la ruta de instalación default
-*/
-controller.openMail = async (req, res) => {
-    //Variables de control para la búsqueda del ejecutable de Thunderbird
-    let execExist = false;
-    let route = '';
-
-    //Variable de control para la ejecución del servicio de Thunderbird
-    let proccessOK = true;
-
-    //Buscar si existe el archivo dentro del Disco C
-    try {
-        route = await exec('where /f /r "C:\\Program Files" thunderbird.exe');
-        execExist = true;
-    } catch (error) {
-        req.flash('message', 'ERROR: No se ha encontrado el ejecutable de Thunderbird dentro del directorio por defecto C:Program Files');
-        execExist = false;
-    }
-
-    //Si el archivo ejecutable existe, inicia el proceso
-    if(execExist) {
-        childProcess.execFile(`${route.stdout.slice(1, -2).slice(0, -1)}`, (error, stdout, stderr) => {
-            if(error){
-                req.flash('message', 'ERROR: No se ha podido iniciar el cliente de correo Thunderbird')
-                proccessOK = false; 
-            }
-            if(stderr){
-                req.flash('message', 'ERROR: No se ha podido iniciar el cliente de correo Thunderbird')
-                proccessOK = false; 
-            }
-        });
-    }else{
-        proccessOK = false;
-    }
-
-    /*Si el proceso pudo iniciar satisfactoriamente, retorna al home y muestra el aviso*/
-    if (proccessOK) {
-        req.flash('success', 'El cliente de correo Thunderbird ha sido abierto satisfactoriamente');
-        res.redirect('/');
-    } else {
-        res.redirect('/');
-    }
-};
-
 module.exports = controller;
