@@ -1,0 +1,17 @@
+//Zona directa para el dominio wearcar.autoupb.com
+zone "wearcar.autoupb.com"{
+  type master; 
+  file "/etc/bind/db.wearcar.autoupb.com"; 
+};  
+
+//Zona inversa para la red 192.168.70.0
+zone "70.168.192.in-addr.arpa"{
+  type master;
+  file "/etc/bind/db.70.168.192"; 
+}; 
+
+//Zona inversa para la red en ipv6 2801:0:2e0:abcd:a
+zone "a.0.0.0.d.c.b.a.0.e.2.0.0.0.0.0.1.0.8.2.ip6.arpa"{
+  type master;
+  file "/etc/bind/db.rev.ipv6.wearcar.autoupb.com";
+};
