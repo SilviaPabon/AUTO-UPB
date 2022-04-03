@@ -544,8 +544,8 @@ para el criterio de búsqueda*/
 
 .aside-navigation .menu .navigation {
   list-style: none;
-  /*Puede crecer máximo el 80% de la altura de la página*/
-  max-height: 65vh;
+  /*Puede crecer máximo el 75% de la altura de la página*/
+  max-height: 75vh;
   overflow-y: scroll;
   /*En caso de que crezca más del 80%, permite el scroll pero 
             oculta la barra de navegación*/
