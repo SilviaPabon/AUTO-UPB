@@ -20,107 +20,126 @@
 
                 <section class="shopping_user_info">
                     
+                    <form action="/employee/refunds" method="post" class="input-form" id="signup-form">
+                        <input type="hidden" name="id_accesorio" id="id_accesorio" value="-1" />
 
-                    <!-- <input type="hidden" name="id_usuario" id="id_usuario" value="-1" /> -->
-
-                    <div class="form-group" id="order-group">
-                        <label class="label--block" for="name">Número Orden de Compra</label>
-                        <div class="form-group__input">
-                            <input
-                                class="input input--full-width"
-                                type="number"
-                                id="order"
-                                name="order"
-                                placeholder="Ingrese el # orden"
-                            />
-                            
+                        <div class="form-group" id="order-group">
+                            <label class="label--block" for="name">Número Orden de Compra</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="order"
+                                    name="order"
+                                    placeholder="Ingrese el # orden"
+                                />
+                                
+                            </div>
                         </div>
-                    </div>
 
-                    <button
-                        type="button"
-                        class="btn btn--submit btn--primary btn--block btn--no-radius"
-                        id="searchOrderBTN"
-                    >
-                        BUSCAR ORDEN
-                    </button>
+                        <button
+                            type="button"
+                            class="btn btn--submit btn--primary btn--block btn--no-radius"
+                            id="searchOrderBTN"
+                        >
+                            BUSCAR ORDEN
+                        </button>
 
-                    <div class="form-group" id="accesorio-group">
-                        <label class="label--block" for="documento">Id de accesorio que se quiere devolver</label>
-                        <select class="input input--full-width" id="accesorio_select" name="accesorio">
-                            <option hidden disabled selected value="-"> -- Seleccione un accesorio -- </option>
-                        </select>
-                        <p class="form-group__error-message">Debe seleccionar un accesorio</p>
-                    </div>
-
-                    <div class="form-group" id="cantidad_d-group">
-                        <label class="label--block" for="documento">Cantidad llevada de accesorio</label>
-                        <div class="form-group__input">
-                            <input
-                                class="input input--full-width"
-                                type="number"
-                                id="cantidad_d"
-                                name="cantidad_d"
-                                placeholder="Cantidad a devolver del accesorio"
-                                min="0"
-                                readonly
-                            />
-                            
+                        <div class="form-group" id="accesorio-group">
+                            <label class="label--block" for="documento">Nombre del accesorio que se quiere devolver</label>
+                            <select class="input input--full-width" id="accesorio_select" name="accesorio">
+                                <option hidden disabled selected value="-"> -- Seleccione un accesorio -- </option>
+                            </select>
+                            <p class="form-group__error-message">Debe seleccionar un accesorio</p>
                         </div>
-                    </div>
+
+                        <div class="form-group" id="cantidad_ds-group">
+                            <label class="label--block" for="cantidad_ds">Cantidad llevada de accesorio</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="cantidad_ds"
+                                    name="cantidad_ds"
+                                    placeholder="Cantidad llevada del accesorio"
+                                    min="0"
+                                    readonly
+                                />
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="precio-group">
+                            <label class="label--block" for="precio">Precio por unidad</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="precio"
+                                    name="precio"
+                                    step="1"
+                                    placeholder="Precio por unidad"
+                                    min="0"
+                                    readonly
+                                />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="cantidad_di-group">
+                            <label class="label--block" for="cantidad_di">Cantidad a devolver</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="cantidad_di"
+                                    name="cantidad_di"
+                                    placeholder="Cantidad a devolver del accesorio"
+                                    min="0"
+                                />
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="defectuoso-group">
+                            <label class="label--block" for="defectuoso">Cantidad defectuosos</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="number"
+                                    id="defectuoso"
+                                    name="defectuoso"
+                                    step="1"
+                                    placeholder="Cantidad de defectuosos"
+                                    min="0"
+                                />
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="date-group">
+                            <label class="label--block" for="documento">Fecha de compra</label>
+                            <div class="form-group__input">
+                                <input
+                                    class="input input--full-width"
+                                    type="datetime"
+                                    id="date"
+                                    name="date"
+                                    placeholder="Fecha de compra"
+                                    readonly
+                                />
+                            </div>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn--submit btn--primary btn--block btn--no-radius"
+                            id="makeRefundBTN"
+                            
+                        >
+                            REALIZAR DEVOLUCIÓN
+                        </button>
+                    </form>
                     
-                    <div class="form-group" id="cantidad_d-group">
-                        <label class="label--block" for="documento">Cantidad devolver</label>
-                        <div class="form-group__input">
-                            <input
-                                class="input input--full-width"
-                                type="number"
-                                id="cantidad_d"
-                                name="cantidad_d"
-                                placeholder="Cantidad a devolver del accesorio"
-                                min="0"
-                            />
-                            
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="defectuoso-group">
-                        <label class="label--block" for="documento">Cantidad defectuosos</label>
-                        <div class="form-group__input">
-                            <input
-                                class="input input--full-width"
-                                type="number"
-                                id="defectuoso"
-                                name="defectuoso"
-                                placeholder="# de defectuosos"
-                                min="0"
-                            />
-                            
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="date-group">
-                        <label class="label--block" for="documento">Fecha de compra</label>
-                        <div class="form-group__input">
-                            <input
-                                class="input input--full-width"
-                                type="text"
-                                id="date"
-                                name="date"
-                                placeholder="fecha de compra"
-                                min="0"
-                                readonly
-                            />
-                        </div>
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn--submit btn--primary btn--block btn--no-radius"
-                        id="searchClientBTN"
-                    >
-                        BUSCAR CLIENTE
-                    </button>
                 </section>
             </div>
         </main>
