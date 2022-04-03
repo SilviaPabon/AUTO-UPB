@@ -1,12 +1,18 @@
 const btnSearch = document.getElementById('searchOrderBTN'); 
+const btnRefund = document.getElementById('makeRefundBTN');
 
 const alertsContainer = document.querySelector('.aside-popup-container');
 
 const inputOrder = document.getElementById('order'); 
-const inputCantidad = document.querySelectorAll('#cantidad_d');  
+const inputCantidadStatic = document.getElementById('cantidad_ds');
+const inputCantidadInput = document.getElementById('cantidad_di');
+const inputDefectuosos = document.getElementById('defectuoso');    
 const inputPrecio = document.getElementById('precio');
 const inputFecha = document.getElementById('date');
+const inputAccesorio = document.getElementById('id_accesorio');
+
 var sel = document.getElementById('accesorio_select');
+btnRefund.style.display = "none";
 
 function reloadAlerts() {
     setTimeout(() => {
@@ -18,7 +24,7 @@ function reloadAlerts() {
 }
 
 btnSearch.addEventListener('click', async e => {
-    
+    btnRefund.style.display = "none";
     if (sel.length > 0) {
         
         for (var i=0; i < sel.length; i++) {
@@ -34,9 +40,14 @@ btnSearch.addEventListener('click', async e => {
         option.value = "-";
         sel.appendChild(option);
 
-        inputCantidad[0].value = "";
-        inputCantidad[1].value = "";
+        inputCantidadStatic.value = "";
+        inputCantidadInput.value = "";
+        inputDefectuosos.value = "";
+        inputPrecio.value = "";
         inputFecha.value = "";
+        inputCantidadInput.removeAttribute("max");
+
+        btnRefund.style.display = "block";
         
     }
     
@@ -55,15 +66,18 @@ btnSearch.addEventListener('click', async e => {
     const alert = document.createElement('div');
     alert.classList.add('popup');
 
-    // Procede según si existe el usuario
+    // 
     if(responseFormated.length == 0){
-        //Si no se encontró un usuario
+        //
         
         //Reemplaza los campos del formulario
         inputOrder.value = "";
-        inputCantidad[0].value = "";
-        inputCantidad[1].value = "";
+        inputCantidadStatic.value = "";
+        inputCantidadInput.value = "";
+        inputPrecio.value = "";
         inputFecha.value = "";
+        inputAccesorio.value = "";
+        btnRefund.style.display = "none";
 
         //Envía la alerta
         alert.classList.add('popup--ward');
@@ -72,17 +86,16 @@ btnSearch.addEventListener('click', async e => {
         paragraph.innerText = `No se encontró la orden de compra ${numOrder}`;
         alert.appendChild(paragraph);
     }else{
-        //Si encontró un usuario
+        //Si encontró una orden
         
         var opt = null;
         for(i = 0; i < responseFormated.length; i++) { 
             opt = document.createElement('option');
             opt.value = i;
-            opt.innerHTML = responseFormated[i].id_accesorio;
+            opt.innerHTML = responseFormated[i].nombre;
             sel.appendChild(opt);
-
         };
-
+        
         //Envía la alerta
         alert.classList.add('popup--success');
         alert.classList.add('popup--active');
@@ -109,38 +122,48 @@ sel.addEventListener("change", async e => {
     });
 
     const responseFormated = await response.json();
-
-    inputCantidad[0].value = responseFormated[sel.value].cantidad_venta;
-    inputCantidad[1].value = responseFormated[sel.value].cantidad_venta;
+    inputDefectuosos.value = "";
+    inputAccesorio.value = responseFormated[sel.value].id_accesorio;
+    inputCantidadStatic.value = responseFormated[sel.value].cantidad_venta;
+    inputCantidadInput.value = responseFormated[sel.value].cantidad_venta;
+    inputCantidadInput.setAttribute("max", parseInt(inputCantidadInput.value));
+    const precioFinal = responseFormated[sel.value].precio_final
+    inputPrecio.value = parseInt(precioFinal) / parseInt(inputCantidadStatic.value);
     inputFecha.value = responseFormated[sel.value].fecha_compra;
 });
+// Event listeners para cuando haya cambio en el input de la cant a devolver
+inputCantidadInput.addEventListener('input', (e) => {
+    if (
+        inputCantidadInput.value >
+        parseInt(inputCantidadStatic.value)
+    ) {
+        inputCantidadInput.value = parseInt(inputCantidadStatic.value)
+    }
+    if (inputCantidadInput.value < 0) {
+        inputCantidadInput.value = 1;
+    }
+    inputCantidadInput.setAttribute("max", inputCantidadInput.value);
+})
 
-// Evnet listeners para registrar los clicks en los botones y el propio input
-/* for (let i = 0; i < container.length; i++) {
-    inputCantidad.addEventListener('input', (e) => {
-        if (
-            inputCantidad.value >
-            parseInt(inputCantidad.max)
-        ) {
-            container[i].getElementsByTagName('input')[0].value = parseInt(
-                container[i].getElementsByTagName('input')[0].max
-            );
+// Event listeners para cuando haya cambio en el input defectuosos
+inputDefectuosos.addEventListener('input', (e) => {
+    if (
+        inputDefectuosos.value >
+        parseInt(inputCantidadInput.value)
+    ) {
+        inputDefectuosos.value = parseInt(inputCantidadInput.max)
+    }
+    if (inputDefectuosos.value < 0) {
+        inputDefectuosos.value = 1;
+    }
+});
+
+
+if (btnRefund){
+
+    btnRefund.addEventListener('click', (e) => {
+        if (!confirm('¿Desea concretar la devolución?')) {
+            e.preventDefault();
         }
-        if (container[i].getElementsByTagName('input')[0].value < 1) {
-            container[i].getElementsByTagName('input')[0].value = parseInt(1);
-        }
-        postChange(e.target);
     });
-} */
-
-/* if (btn_buy){
-    const btn_array = Array.from(btn_buy);
-
-    btn_array.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-            if (!confirm('¿Desea realizar la compra?')) {
-                e.preventDefault();
-            }
-        });
-    });
-} */
+}
