@@ -1631,7 +1631,7 @@ BEGIN
 		ACCESORIOS.stock = ACCESORIOS.stock + new_units, 
         ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
 	WHERE ACCESORIOS.id_accesorio = id_accesorio; 
-    
+
 END //
 
 DELIMITER ;
@@ -1653,7 +1653,7 @@ BEGIN
 
     INSERT INTO HISTORICO_INGRESOS_GASTOS SET 
         HISTORICO_INGRESOS_GASTOS.codigo_tipo_movimiento = 3, 
-        HISTORICO_INGRESOS_GASTOS.valor_movimiento = HISTORICO_INGRESOS_GASTOS.valor_movimiento - update_profits, 
+        HISTORICO_INGRESOS_GASTOS.valor_movimiento = update_profits, 
 	    HISTORICO_INGRESOS_GASTOS.id_usuario_creacion = session_user_id, 
     HISTORICO_INGRESOS_GASTOS.id_usuario_ultima_modificacion = session_user_id;
     
