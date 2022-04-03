@@ -202,6 +202,31 @@ controller.searchinventoryResult = async (req, res) => {
     res.render('employees/existing_inventory', { data });
 };
 
+controller.showorders = async (req, res) => {
+    let queryOk = false;
+
+    try {
+        var clientOrders = await connection.query('CALL GETALL_USER_ORDERBUY(?)', [req.user.id_usuario]);
+        queryOk = true;
+    } catch (error) {
+            queryOk = false;
+    }
+
+    if (queryOk) {
+        const data = clientOrders[0];
+
+        if (data.length > 0) {
+            res.render('employees/employee_show_orders', { data });
+        } else {
+            req.flash('message', 'No hay órdenes de compra para mostrar');
+            res.redirect('/');
+        }
+    } else {
+        req.flash('message', 'Error inesperado en la consulta a la base de datos');
+        res.redirect('/');
+    }
+};
+
 // Ruta para hacer devoluciones
 controller.refunds = (req, res) => {
 

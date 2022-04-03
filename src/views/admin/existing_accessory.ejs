@@ -12,7 +12,7 @@
 
         <main>
             
-            <form action="/admin/inventory/add_existing/<%= accesorios[0][0].id_accesorio %>" method="post" class="input-form" id="signup-form">
+            <form action="/admin/inventory/add_existing/<%= accesorios[0][0].id_accesorio %>" method="post" class="input-form" id="signup-form" data-form="inventory_add_units">
                 <%- include('../partials/_messages.ejs') %>
 
                 <h1 class="title title--center">REGISTRAR NUEVAS UNIDADES DE PRODUCTO EXISTENTE</h1>
@@ -85,6 +85,7 @@
                             id="buyprice"
                             name="buyprice"
                             placeholder="Precio de compra"
+                            data-form="inventory_add_units"
                         />
                         <p class="form-group__error-message">
                             Sólo se admiten entre 2 y 12 números.
@@ -102,6 +103,7 @@
                             name="newAmmount"
                             min="0"
                             placeholder="Nuevas unidades para agregar al inventario"
+                            data-form="inventory_add_units"
                         />
                         <p class="form-group__error-message">
                             Sólo se admiten entre 1 y 4 números.
@@ -120,7 +122,8 @@
                 />
             </form>
         </main>
-        <script src="/scripts/validations/inventory_upd_validate.js"></script>
+
+        <script src="/scripts/validations/validate_global.min.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
     </body>
 </html>

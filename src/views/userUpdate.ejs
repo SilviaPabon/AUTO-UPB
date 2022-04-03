@@ -14,7 +14,7 @@
 
             <%- include('partials/_messages.ejs') %>
 
-            <form action="/update" method="post" class="input-form" id="update-form">
+            <form action="/update" method="post" class="input-form" id="update-form" data-form="account_update">
 
                 <h1 class="title title--center">ACTUALIZAR DATOS</h1>
 
@@ -38,7 +38,7 @@
                     <div class="form-group__input">
                         <input
                             class="input input--full-width"
-                            type="number"
+                            type="text"
                             id="documento"
                             name="documento"
                             value="<%=userd[0][0].identificacion %>"                        
@@ -57,6 +57,7 @@
                             id="email"
                             name="email"
                             value="<%=userd[0][0].correo_electronico %>"
+                            data-form="account_update"
                         />
 
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
@@ -73,6 +74,7 @@
                             name="phone"
                             min="0"
                             value="<%=userd[0][0].telefono %>"
+                            data-form="account_update"
                         />
 
                         <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
@@ -88,6 +90,7 @@
                             id="address"
                             name="address"
                             value="<%=userd[0][0].direccion %>"
+                            data-form="account_update"
                         />
 
                         <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
@@ -103,6 +106,7 @@
                             id="password"
                             name="password"
                             placeholder="********"
+                            data-form="account_update"
                         />
 
                         <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluír un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
@@ -112,12 +116,15 @@
                 <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
 
                 <input type="submit" value="ACTUALIZAR MI CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
-            
+                <a href="/deactivate" role="button" class="btn btn--secondary btn--block btn--no-radius" id="deactivate_account">DESACTIVAR CUENTA</a>
 
             </form>
         </main>
 
-        <script src="/scripts/validations/update_acc_validate.js"></script>
+
+        <script src="/scripts/confirm_user_account_delete.js"></script>
+        <script src="/scripts/validations/validate_global.min.js"></script>
+
         <%- include('partials/_globalScripts.ejs') %>
 
     </body>

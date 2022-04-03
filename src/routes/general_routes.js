@@ -8,7 +8,9 @@ router.get('/accessories', controller.accessories)
 router.get('/accessories/:id', controller.accessoryDetails); 
 router.get('/update', protect.isLoggedIn, controller.userUpdate);
 router.post('/update', protect.isLoggedIn, controller.userUpdate_post);
+router.get('/deactivate', protect.isLoggedIn, controller.userDeactivate); 
 router.get('/contact_us',controller.contactUs);
 router.post('/contact_us', controller.contactUspost);
+
 
 module.exports = router;

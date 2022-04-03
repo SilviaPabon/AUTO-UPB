@@ -1,6 +1,6 @@
 .aside-navigation {
     /*Columa contenedora de la barra de navegación*/
-    width: 200px;
+    width: 220px;
     height: 100vh;
     z-index: 100;
     background-color: $very_dark;
@@ -38,8 +38,18 @@
 
             list-style: none;
 
+            /*Puede crecer máximo el 75% de la altura de la página*/
+            max-height: 75vh; 
+            overflow-y: scroll; 
+
+            /*En caso de que crezca más del 80%, permite el scroll pero 
+            oculta la barra de navegación*/
+            &::-webkit-scrollbar{
+                display: none;
+            }
+
             &__account{
-                padding: 8px;
+                padding: 12px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -47,23 +57,33 @@
                 text-decoration: none;
                 color: white;
                 text-align: center;
-                font-size: $md;
+                font-size: $sm;
                 font-weight: 300;
+
+                &__name{
+                    /*El nombre del usuario tiene un ancho máximo de 140px
+                    Si se pasa del máximo, se muestra como puntos suspensivos*/
+                    max-width: 140px; 
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
             }
 
             /*Li dentro del ul*/
             &__item {
-                margin-bottom: 4px;
+                margin-bottom: 0;
             }
 
             /*Link dentro del li*/
             &__link {
-                padding: 0.6em 0;
+                padding: 0.8em 0.4em;
                 display: flex;
+                align-items: center;
                 width: 100%;
                 text-decoration: none;
                 color: white;
-                font-size: $md;
+                font-size: $sm;
                 font-weight: 300;
                 border-right: 2px transparent;
 
@@ -85,13 +105,13 @@
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                min-width: 40px;
+                min-width: 32px;
 
                 margin: 0 8px;
 
                 /*ICONOS*/
                 & .icon img{
-                    width: 20px;
+                    width: 18px;
                 }
 
                 & .icon--bigger img{

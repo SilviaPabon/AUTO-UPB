@@ -12,7 +12,7 @@
 
         <main>
             
-            <form action="/admin/account_status/<%= data.user[0][0].id_usuario %>" method="post" class="input-form" id="updstate-form">
+            <form action="/admin/account_status/<%= data.user[0][0].id_usuario %>" method="post" class="input-form" id="updstate-form" data-form="account_status">
                 <%- include('../partials/_messages.ejs') %>
 
                 <h1 class="title title--center">ESTADO DE CUENTA</h1>
@@ -37,7 +37,7 @@
                     <div class="form-group__input">
                         <input
                             class="input input--full-width"
-                            type="number"
+                            type="text"
                             id="identification"
                             name="identification"
                             placeholder="Nombres usuario"
@@ -111,7 +111,8 @@
                 />
             </form>
         </main>
-        <script src="/scripts/validations/status_form_validation.js"></script>
+
+        <script src="/scripts/validations/validate_global.min.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
     </body>
 </html>

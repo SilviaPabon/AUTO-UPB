@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/_globalHeaders.ejs') %>
+    <title>MENSAJES</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <main>
+        <div class="title-search-peer">
+            <h1 class="title titlle--black">MENSAJES AL ADMIN</h1>
+        </div>
+
+        <table class="generic-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo electrónico</th>
+                    <th>Mensaje enviado</th>
+                    <th>Acciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                    <% if(data[0].length != 0) {%>
+                        <% for(var i=0; i < data[0].length; i++) { %>
+                            <tr>
+                                <th><%= data[0][i].nombre_remitente %></th>
+                                <th><%= data[0][i].correo_remitente %></th>
+                                <td class="message"> <%= data[0][i].texto_mensaje %></td>  
+                                <th>
+                                    <input type="button" class="btn btn--primary" value="Marcar resuelto">
+                                </th>
+                            </tr>
+                        <% } %>
+                    <% } %>
+            </tbody>
+        </table>
+    </main>
+    
+    <%- include('../partials/_globalScripts.ejs') %>
+</body>
+</html>

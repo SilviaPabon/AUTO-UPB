@@ -1,5 +1,6 @@
 const controller = {};
 const pool = require('../database/connection');
+const fs = require('fs'); 
 
 controller.createAccount = (req, res) => {
     res.render('auth/create_acc_admin');
@@ -95,10 +96,21 @@ controller.inventory_modify = async (req, res) => {
 }
 
 controller.inventory_modify_post = async (req, res) => {
+
     const { id } = req.params;
+    const { name, originalName, description, status_select, price, discount, originalImageRoute } = req.body;
 
-    const { name, originalName, description, status_select, price, discount  } = req.body;
+    // Hace la nueva ruta de la ímagen según el nuevo nombre ingresado
+    const newImageRoute = `/${name.replace(/\s/g, '_')}.jpg`; 
 
+    if(newImageRoute != originalImageRoute){
+        fs.rename(`${req.app.settings.static}\\images${originalImageRoute}`, `${req.app.settings.static}\\images${newImageRoute}`, function(err){
+            if(err){
+                //Just for handle the error
+            }
+        })
+    }
+    
     //Create new plan object
     const updInventory = {
         usID: req.user.id_usuario,
@@ -203,6 +215,26 @@ controller.state_acc_post = async (req, res) => {
     res.redirect('/admin/accounts')
 
 }
+
+controller.messages = async (req, res) => {
+    const data = await pool.query('CALL GETALL_MESSAGES(?)', [req.user.id_usuario]);
+    res.render('admin/show_messages', {data});
+}
+
+controller.finances = (req, res) => {
+    res.render('admin/finances_select_option');
+};
+
+controller.historicalPrices = async (req, res) => {
+    const callAccessories = await pool.query('CALL SHOW_ACCESSORIES_ADMIN(?)', [req.user.id_usuario]);
+    res.render('admin/finances_products', { accesorios: callAccessories });
+};
+
+controller.historicalPricesProd = async (req, res) => {
+    const { id } = req.params;
+    const callAccessories = await pool.query('CALL HISTORICAL_ACCESSORY_PRICES(?, ?)', [req.user.id_usuario, id]);
+    res.render('admin/finances_historic_prices', { accesorios: callAccessories });
+};
 
 module.exports = controller; 
 

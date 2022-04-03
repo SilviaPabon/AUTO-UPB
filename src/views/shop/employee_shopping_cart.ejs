@@ -104,7 +104,7 @@
                 </section>
 
                 <section class="shopping_user_info">
-                    <form action="/employee/cart/buy" method="post" class="input-form" id="signup-form">
+                    <form action="/employee/cart/buy" method="post" class="input-form" id="signup-form" data-form="signup_user">
                         <h1 class="title title--center">INFORMACIÓN DEL CLIENTE</h1>
 
                         <input type="hidden" name="id_usuario" id="id_usuario" value="-1" />
@@ -118,6 +118,7 @@
                                     id="name"
                                     name="name"
                                     placeholder="Nombre completo del cliente"
+                                    data-form="signup_user"
                                 />
                                 <p class="form-group__error-message">El nombre solo puede contener letras.</p>
                             </div>
@@ -133,6 +134,7 @@
                                     name="documento"
                                     placeholder="Documento del cliente"
                                     min="0"
+                                    data-form="signup_user"
                                 />
                                 <p class="form-group__error-message">
                                     El número de documento solo puede tener números y debe tener de 6 a 14 números.
@@ -149,6 +151,7 @@
                                     id="email"
                                     name="email"
                                     placeholder="ejemplo@dominio.com"
+                                    data-form="signup_user"
                                 />
 
                                 <p class="form-group__error-message">
@@ -167,6 +170,7 @@
                                     name="phone"
                                     min="0"
                                     placeholder="Teléfono del cliente"
+                                    data-form="signup_user"
                                 />
 
                                 <p class="form-group__error-message">
@@ -185,6 +189,7 @@
                                     id="address"
                                     name="address"
                                     placeholder="Dirección del cliente"
+                                    data-form="signup_user"
                                 />
 
                                 <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
@@ -200,6 +205,7 @@
                                     id="password"
                                     name="password"
                                     placeholder="********"
+                                    data-form="signup_user"
                                 />
 
                                 <p class="form-group__error-message">
@@ -247,7 +253,7 @@
 
         <script src="/scripts/addSub.js"></script>
         <script src="/scripts/cart_order_search_client.js"></script>
-        <script src="/scripts/validations/signup_validate.js"></script>
+        <script src="/scripts/validations/validate_global.min.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
     </body>
 </html>

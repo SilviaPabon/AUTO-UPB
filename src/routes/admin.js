@@ -26,5 +26,10 @@ router.get('/accounts', protect.isLoggedIn, protect.isAdmin, controller.accounts
 router.post('/accounts', protect.isLoggedIn, protect.isAdmin, controller.searchAccounts); 
 router.get('/accounts/:criteria', protect.isLoggedIn, protect.isAdmin, controller.searchAccountsResult)
 
+router.get('/messages', protect.isLoggedIn, protect.isAdmin, controller.messages);
+
+router.get('/finances', protect.isLoggedIn, protect.isAdmin, controller.finances); 
+router.get('/finances/historical_prices', protect.isLoggedIn, protect.isAdmin, controller.historicalPrices);
+router.get('/finances/historical_prices/:id', protect.isLoggedIn, protect.isAdmin, controller.historicalPricesProd); 
 
 module.exports = router;

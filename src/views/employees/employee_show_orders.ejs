@@ -5,23 +5,25 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <%- include('../partials/_globalHeaders.ejs') %>
-        <title>MIS ÓRDENES DE COMPRA</title>
+        <title>ÓRDENES DE COMPRA DE LOS CLIENTES</title>
     </head>
     <body>
         <%- include('../partials/_navbar.ejs') %>
         <main>
             <%- include('../partials/_messages.ejs') %>
             <section class="section--no-top-margin">
-                <h1 class="title title--center">MIS ÓRDENES DE COMPRA</h1>
+                <h1 class="title title--center">ÓRDENES DE COMPRA</h1>
 
                 <% if (data.length > 0) {%>
 
                 <table class="generic-table">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>FACTURA</th>
                             <th>ID ORDEN</th>
                             <th>ESTADO</th>
+                            <th>COMPRADOR</th>
+                            <th>VENDEDOR</th>
                             <th>FECHA DE COMPRA</th>
                             <th>SUBTOTAL</th>
                             <th>DESCUENTOS</th>
@@ -33,11 +35,16 @@
                         <% for(var i=0; i < data.length; i++) { %>
                             <tr>
                                 <td class="table-row--buttons">
-                                    <a aria-label="Reportar recibido de la órden de compra número <%= data[i].id_orden %>" href="#" class="btn btn--primary">Reportar recibido</a>
                                     <a role="button" aria-label="Ver factura para la órden de compra número <%= data[i].id_orden %>" href="/user/bill/<%= data[i].id_orden %>" class="btn btn--primary">Ver factura</a>
                                 </td>
                                 <td>#<%= data[i].id_orden %></td>
                                 <td><%= data[i].estado_compra %></td>
+                                <td><%= data[i]['Nombre comprador'] %></td>
+                                <% if (data[i]['Nombre vendedor'] != null ) { %> 
+                                    <td><%= data[i]['Nombre vendedor'] %></td>
+                                <% } else { %>
+                                    <td>COMPRA EN WEB</td>
+                                <% } %>
                                 <td><%= data[i].fecha_compra %></td>
                                 <td>$<%= data[i]['Total Precios Base'] %></td>
                                 <td>$<%= data[i]['Descuentos aplicados'] %></td>

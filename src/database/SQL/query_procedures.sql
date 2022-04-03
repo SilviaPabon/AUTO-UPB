@@ -958,6 +958,39 @@ CALL REGISTER_NEW_BUY_ORDER(
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA VER EL HISTÓRICO DE PRECIOS DE UN PRODUCTO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS HISTORICAL_ACCESSORY_PRICES; 
+
+DELIMITER //
+
+CREATE PROCEDURE HISTORICAL_ACCESSORY_PRICES(
+	IN session_user_id INT UNSIGNED,
+    IN id_accesorio INT UNSIGNED 
+)
+BEGIN 
+    
+	SELECT nombre_accesorio, precio_asignado, fecha_cambio, u_responsable
+        FROM HISTORIAL_PRICES_VIEW AS H 
+        WHERE
+        H.id_accesorio = id_accesorio; 
+	
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 9);
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL HISTORICAL_ACCESSORY_PRICES(1, 56); 
+SELECT * FROM LOGS;
+*/
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA ASOCIAR LOS ACCESORIOS CON LA ORDEN DE COMPRA
 Se usa una transacción para asegurarse de que todos los accesorios son agregados
 correctamente
@@ -1196,6 +1229,17 @@ DELIMITER //
 CREATE PROCEDURE GETALL_USER_ORDERBUY(
 	IN session_user_id INT UNSIGNED
 )
+BEGIN
+	
+    SELECT id_orden, `Nombre comprador`, `Nombre vendedor`, fecha_compra, estado_compra, `Total Precios Base`, `Descuentos aplicados`, `IVA aplicado`, `Total`
+	FROM order_summary_pretty AS OSP; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ;
 BEGIN
 	
     SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
