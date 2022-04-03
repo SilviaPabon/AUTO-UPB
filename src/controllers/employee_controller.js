@@ -211,17 +211,14 @@ controller.refunds = (req, res) => {
 controller.search_order = async (req, res) => {
     const { order } = req.body;
 
-    console.log(order)
     let response;
     let success = false;
 
     try {
         response = await connection.query('CALL GET_ORDERBUY_ID(?)', [order]);
         success = true; 
-        console.log('pass');
     } catch (error) {
         success = false;
-        console.log('false');
     }
 
     success == true ? res.status(200).send(response[0]) : res.status(500).send([]);
@@ -230,19 +227,40 @@ controller.search_order = async (req, res) => {
 controller.makeRefund = async (req, res) => {
     
     //Variables de control
-    let userStepSuccess = false; 
-    let orderStepSuccess = false; 
+    let success = false; 
 
     //Recibimiento y organización de los datos
-    const { cantidad_venta, precio_final } = req.body;
+    const { id_accesorio, cantidad_di, defectuoso, precio } = req.body;
 
-    const user = {
-        id_usuario,
-        name, 
-        documento, 
+    let addGanancias = 0;
+    let addInventario = 0;
+
+
+    if (cantidad_di == defectuoso) {
+        addGanancias = cantidad_di * precio;
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, addGanancias])
+        success = true;
+    } else if (defectuoso > 0) {
+        addGanancias = cantidad_di * precio;
+        addInventario += parseInt(cantidad_di - defectuoso)
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, addGanancias])
+        const updateInventoryR = await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [req.user.id_usuario, id_accesorio, addInventario]);
+        success = true;
+    } else if (defectuoso == 0) {
+        addGanancias = cantidad_di * precio;
+        addInventario += parseInt(cantidad_di);
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, addGanancias])
+        const updateInventoryR = await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [req.user.id_usuario, id_accesorio, addInventario]);
+        success = true;
     }
 
-    
+    if (success) {
+        req.flash('success', `Operación exitosa`);
+        res.redirect('/employee/refunds');
+    } else {
+        req.flash('message', 'Error');
+        res.redirect('/employee/refunds');
+    }
 };
 
 module.exports = controller;
