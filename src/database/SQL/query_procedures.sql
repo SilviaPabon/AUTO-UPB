@@ -1580,3 +1580,83 @@ DELIMITER ;
 /*
 CALL GET_ACCESSORY_CART(1); 
 */
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER INFO DE ORDEN DE COMPRA SEGÚN SU ID
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS GET_ORDERBUY_ID; 
+
+DELIMITER //
+
+CREATE PROCEDURE GET_ORDERBUY_ID(
+	IN id_orden INT UNSIGNED
+)
+BEGIN 
+	
+    SELECT OA.id_accesorio, nombre, cantidad_venta, DATE_FORMAT(fecha_compra,"%e/%c/%Y %H:%i") AS fecha_compra, OA.precio_final 
+    FROM ordenes_compra_has_accesorios AS OA, ordenes_compra AS OC, accesorios AS A
+    WHERE OA.id_orden = id_orden
+    AND OC.id_orden = id_orden
+    AND A.id_accesorio = OA.id_accesorio
+    AND OC.codigo_estado_compra = 2; 
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL GET_ORDERBUY_ID(3); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA ACTUALIZAR EL INVENTARIO LUEGO DE UNA DEVOLUCIÓN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS UPDATE_INVENTORY_FROM_REFUNDS; 
+DELIMITER //
+
+CREATE PROCEDURE UPDATE_INVENTORY_FROM_REFUNDS(
+	IN session_user_id INT UNSIGNED, 
+	IN id_accesorio INT UNSIGNED, 
+    IN new_units INT UNSIGNED
+)
+BEGIN 
+
+    UPDATE ACCESORIOS SET 
+		ACCESORIOS.stock = ACCESORIOS.stock + new_units, 
+        ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
+	WHERE ACCESORIOS.id_accesorio = id_accesorio; 
+    
+END //
+
+DELIMITER ;
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA ACTUALIZAR LAS GANANCIAS LUEGO DE UNA DEVOLUCIÓN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS UPDATE_PROFITS_FROM_REFUNDS; 
+DELIMITER //
+
+CREATE PROCEDURE UPDATE_PROFITS_FROM_REFUNDS(
+	IN session_user_id INT UNSIGNED,  
+    IN update_profits INT UNSIGNED
+)
+BEGIN 
+
+    INSERT INTO HISTORICO_INGRESOS_GASTOS SET 
+        HISTORICO_INGRESOS_GASTOS.codigo_tipo_movimiento = 3, 
+        HISTORICO_INGRESOS_GASTOS.valor_movimiento = HISTORICO_INGRESOS_GASTOS.valor_movimiento - update_profits, 
+	    HISTORICO_INGRESOS_GASTOS.id_usuario_creacion = session_user_id, 
+    HISTORICO_INGRESOS_GASTOS.id_usuario_ultima_modificacion = session_user_id;
+    
+END //
+
+DELIMITER ;
