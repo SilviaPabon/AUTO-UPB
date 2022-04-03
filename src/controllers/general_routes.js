@@ -35,6 +35,9 @@ controller.accessoryDetails = async (req, res) => {
     }
 };
 
+/*
+* * RUTA PARA LA ACTUALIZACIÓN DE LA CUENTA 
+*/
 controller.userUpdate = async (req, res) => {
     const userd = await pool.query('CALL GET_USER_DATA_FROM_ID (?)', [req.user.id_usuario]);
     res.render('userUpdate', { userd });
@@ -62,9 +65,21 @@ controller.userUpdate_post = async (req, res) => {
     }
 };
 
+/*
+* * RUTA PARA LA DESACTIVACIÓN DE LA CUENTA
+*/
+controller.userDeactivate =  async (req, res) => {
+
+    //Llamada al procedure para la desactivación de la cuenta y recirección al login para
+    await pool.query('CALL CHANGE_EXISTING_USER_STATUS(?, ?, ?)', [req.user.id_usuario, req.user.id_usuario, 2]); 
+    res.redirect('/logout'); 
+
+}; 
+
 controller.contactUs = async (req, res) => {
     res.render('contact_us');
 };
+
 controller.contactUspost = async (req, res) => {
     const { name, email, message } = req.body;
     let queryOk = false;
