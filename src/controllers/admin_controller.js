@@ -1,5 +1,6 @@
 const controller = {};
 const pool = require('../database/connection');
+const fs = require('fs'); 
 
 controller.createAccount = (req, res) => {
     res.render('auth/create_acc_admin');
@@ -95,10 +96,21 @@ controller.inventory_modify = async (req, res) => {
 }
 
 controller.inventory_modify_post = async (req, res) => {
+
     const { id } = req.params;
+    const { name, originalName, description, status_select, price, discount, originalImageRoute } = req.body;
 
-    const { name, originalName, description, status_select, price, discount  } = req.body;
+    // Hace la nueva ruta de la ímagen según el nuevo nombre ingresado
+    const newImageRoute = `/${name.replace(/\s/g, '_')}.jpg`; 
 
+    if(newImageRoute != originalImageRoute){
+        fs.rename(`${req.app.settings.static}\\images${originalImageRoute}`, `${req.app.settings.static}\\images${newImageRoute}`, function(err){
+            if(err){
+                //Just for handle the error
+            }
+        })
+    }
+    
     //Create new plan object
     const updInventory = {
         usID: req.user.id_usuario,

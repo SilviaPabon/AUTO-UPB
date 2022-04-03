@@ -36,6 +36,7 @@
                             name="originalName"
                             value="<%= accesorios[0][0].nombre %>"
                             data-form="inventory_update"
+                            readonly
                         />
                         <p class="form-group__error-message">
                             Sólo se admiten entre 3 y 64 carácteres.
@@ -118,6 +119,16 @@
                         </p>
                     </div>
                 </div>
+
+                <input
+                    class="input input--full-width"
+                    type="hidden"
+                    id="originalImageRoute"
+                    name="originalImageRoute"
+                    value="<%= accesorios[0][0].ruta_imagen %>"
+                    data-form="inventory_update"
+                    readonly
+                />
 
                 <p class="form__error-message">
                     Por favor, rellene el formulario correctamente antes de realizar el envío.

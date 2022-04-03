@@ -12,4 +12,5 @@ router.get('/deactivate', protect.isLoggedIn, controller.userDeactivate);
 router.get('/contact_us',controller.contactUs);
 router.post('/contact_us', controller.contactUspost);
 
+
 module.exports = router;

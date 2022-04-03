@@ -162,7 +162,8 @@ const keys = Object.keys(fields[form.dataset.form]);
 
 // Función para validar un campo
 const validateField = (regEx, input, field) => {
-    if (regEx.test(input.value)) {
+
+    if (regEx.test(input.value.trim().replace(/\s\s+/g, ' '))) {
         //Si es correcto
         fields[input.dataset.form][field] = true;
         document.getElementById(`${field}-group`).classList.remove('form-group--incorrect');
@@ -224,6 +225,10 @@ inputs.forEach((input) => {
 //Validación final cuando se hace submit
 form.addEventListener('submit', (e) => {
     let inputsOK = true;
+
+    inputs.forEach((input) => {
+        input.value = input.value.trim().replace(/\s\s+/g, ' ');
+    })
 
     for (let key_index = 0; key_index < keys.length; key_index++) {
         if (fields[e.target.dataset.form][keys[key_index]] === false) {

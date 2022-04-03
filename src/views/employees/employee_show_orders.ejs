@@ -35,7 +35,7 @@
                         <% for(var i=0; i < data.length; i++) { %>
                             <tr>
                                 <td class="table-row--buttons">
-                                    <a href="/user/bill/<%= data[i].id_orden %>" class="btn btn--primary">Ver factura</a>
+                                    <a role="button" aria-label="Ver factura para la órden de compra número <%= data[i].id_orden %>" href="/user/bill/<%= data[i].id_orden %>" class="btn btn--primary">Ver factura</a>
                                 </td>
                                 <td>#<%= data[i].id_orden %></td>
                                 <td><%= data[i].estado_compra %></td>
