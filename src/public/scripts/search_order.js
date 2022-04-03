@@ -1,8 +1,9 @@
+//botones para buscar orden y hacer devolución
 const btnSearch = document.getElementById('searchOrderBTN'); 
 const btnRefund = document.getElementById('makeRefundBTN');
-
+//complemento para la funcionalidad de alerts
 const alertsContainer = document.querySelector('.aside-popup-container');
-
+//inputs necesarios para el script
 const inputOrder = document.getElementById('order'); 
 const inputCantidadStatic = document.getElementById('cantidad_ds');
 const inputCantidadInput = document.getElementById('cantidad_di');
@@ -10,10 +11,12 @@ const inputDefectuosos = document.getElementById('defectuoso');
 const inputPrecio = document.getElementById('precio');
 const inputFecha = document.getElementById('date');
 const inputAccesorio = document.getElementById('id_accesorio');
-
+//para trabajar el combobox
 var sel = document.getElementById('accesorio_select');
+//por defecto botón "hacer devolución" no aparece
 btnRefund.style.display = "none";
 
+//complemento para la funcionalidad de alerts
 function reloadAlerts() {
     setTimeout(() => {
         let alert = document.querySelector('.popup--active');
@@ -23,15 +26,28 @@ function reloadAlerts() {
     }, 3000);
 }
 
+// - variable generalizada para traer la orden y actualizar la cantidad, precio...
+async function bringOrder(numOrder) {
+    let response = await fetch('/employee/refunds/search_order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ order: numOrder }),
+    })
+    let data = await response.json()
+    return data;
+}
+
+// - event listener cuando se cliquea buscar orden
 btnSearch.addEventListener('click', async e => {
-    btnRefund.style.display = "none";
+    
+    //si la longitud del combobox es mayor a 0
     if (sel.length > 0) {
-        
+        //se borra el contenido del combobox
         for (var i=0; i < sel.length; i++) {
             sel.remove(i);
             i--;
         }
-
+        //se crea el primer elemento del combobox por defecto
         let option = document.createElement('option');
         option.innerHTML = '-- Seleccione un accesorio -- ';
         option.setAttribute("hidden", "");
@@ -40,6 +56,7 @@ btnSearch.addEventListener('click', async e => {
         option.value = "-";
         sel.appendChild(option);
 
+        //se limpian algunos inputs
         inputCantidadStatic.value = "";
         inputCantidadInput.value = "";
         inputDefectuosos.value = "";
@@ -47,30 +64,20 @@ btnSearch.addEventListener('click', async e => {
         inputFecha.value = "";
         inputCantidadInput.removeAttribute("max");
 
-        btnRefund.style.display = "block";
-        
     }
     
-    const numOrder = inputOrder.value; 
-
-    // Envía el post a la ruta definida para obtener los datos del cliente
-    const response = await fetch('/employee/refunds/search_order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ order: numOrder }),
-    });
-
-    // Pasa la respuesta al formato JSON
-    const responseFormated = await response.json();  
+    //se hace la búsqueda de la orden por medio de la función bringOrder y
+    //se crean las alertas respectivas según el resultado
+    const numOrder = inputOrder.value;
+    const responseFormated = await bringOrder(numOrder); 
 
     const alert = document.createElement('div');
     alert.classList.add('popup');
 
-    // 
+    //si la orden no existe o no es valida:
     if(responseFormated.length == 0){
-        //
         
-        //Reemplaza los campos del formulario
+        //Limpia el formulario
         inputOrder.value = "";
         inputCantidadStatic.value = "";
         inputCantidadInput.value = "";
@@ -87,12 +94,14 @@ btnSearch.addEventListener('click', async e => {
         alert.appendChild(paragraph);
     }else{
         //Si encontró una orden
-        
+        //aparece el botón para hacer devoluciones
+        btnRefund.style.display = "block";
+        //se llena el combobox
         var opt = null;
         for(i = 0; i < responseFormated.length; i++) { 
             opt = document.createElement('option');
             opt.value = i;
-            opt.innerHTML = responseFormated[i].nombre;
+            opt.innerText = responseFormated[i].nombre;
             opt.classList.add('option');
             sel.appendChild(opt);
         };
@@ -112,17 +121,13 @@ btnSearch.addEventListener('click', async e => {
 
 }); 
 
+// - event listener cuando se cliquea para seleccionar un accesorio del combobox
 sel.addEventListener("change", async e => {
     
     const numOrder = inputOrder.value;
+    const responseFormated = await bringOrder(numOrder);
 
-    const response = await fetch('/employee/refunds/search_order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ order: numOrder }),
-    });
-
-    const responseFormated = await response.json();
+    // - se llenan algunos inputs conforme la información cuando se trae la orden
     inputDefectuosos.value = "";
     inputAccesorio.value = responseFormated[sel.value].id_accesorio;
     inputCantidadStatic.value = responseFormated[sel.value].cantidad_venta;
@@ -132,6 +137,7 @@ sel.addEventListener("change", async e => {
     inputPrecio.value = parseInt(precioFinal) / parseInt(inputCantidadStatic.value);
     inputFecha.value = responseFormated[sel.value].fecha_compra;
 });
+
 // Event listeners para cuando haya cambio en el input de la cant a devolver
 inputCantidadInput.addEventListener('input', (e) => {
     if (
@@ -159,7 +165,7 @@ inputDefectuosos.addEventListener('input', (e) => {
     }
 });
 
-
+// Alerta antes de concretar la devolución
 if (btnRefund){
 
     btnRefund.addEventListener('click', (e) => {
