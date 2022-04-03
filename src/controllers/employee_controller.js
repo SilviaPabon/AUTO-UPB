@@ -232,24 +232,26 @@ controller.makeRefund = async (req, res) => {
     //Recibimiento y organización de los datos
     const { id_accesorio, cantidad_di, defectuoso, precio } = req.body;
 
-    let addGanancias = 0;
+    let moneyToRefund = 0;
     let addInventario = 0;
 
-
+    //si la cantidad a devolver y los defectuosos es igual, se devuelve dinero pero no retorna a inventario
     if (cantidad_di == defectuoso) {
-        addGanancias = cantidad_di * precio;
-        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, addGanancias])
+        moneyToRefund = cantidad_di * precio;
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
         success = true;
+    //si la cantidad de defectuosos es mayor a uno, se devuelve dinero y se retornan al inventario los que estén bien
     } else if (defectuoso > 0) {
-        addGanancias = cantidad_di * precio;
+        moneyToRefund = cantidad_di * precio;
         addInventario += parseInt(cantidad_di - defectuoso)
-        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, addGanancias])
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
         const updateInventoryR = await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [req.user.id_usuario, id_accesorio, addInventario]);
         success = true;
+    //si la cantidad de defectuosos es igual a 0, se devuelve el dinero y se retorna todo al inventario
     } else if (defectuoso == 0) {
-        addGanancias = cantidad_di * precio;
+        moneyToRefund = cantidad_di * precio;
         addInventario += parseInt(cantidad_di);
-        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, addGanancias])
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
         const updateInventoryR = await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [req.user.id_usuario, id_accesorio, addInventario]);
         success = true;
     }
