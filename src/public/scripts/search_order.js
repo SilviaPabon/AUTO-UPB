@@ -93,6 +93,7 @@ btnSearch.addEventListener('click', async e => {
             opt = document.createElement('option');
             opt.value = i;
             opt.innerHTML = responseFormated[i].nombre;
+            opt.classList.add('option');
             sel.appendChild(opt);
         };
         
