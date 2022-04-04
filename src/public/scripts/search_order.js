@@ -16,6 +16,8 @@ var sel = document.getElementById('accesorio_select');
 //por defecto botón "hacer devolución" no aparece
 btnRefund.style.display = "none";
 
+let globalOrder = [];
+
 //complemento para la funcionalidad de alerts
 function reloadAlerts() {
     setTimeout(() => {
@@ -56,34 +58,30 @@ btnSearch.addEventListener('click', async e => {
         option.value = "-";
         sel.appendChild(option);
 
-        //se limpian algunos inputs
-        inputCantidadStatic.value = "";
-        inputCantidadInput.value = "";
-        inputDefectuosos.value = "";
-        inputPrecio.value = "";
-        inputFecha.value = "";
         inputCantidadInput.removeAttribute("max");
 
     }
+    //limpieza de campos
+    inputCantidadStatic.value = "";
+    inputCantidadInput.value = "";
+    inputDefectuosos.value = "";
+    inputPrecio.value = "";
+    inputFecha.value = "";
+    inputAccesorio.value = "";
     
     //se hace la búsqueda de la orden por medio de la función bringOrder y
     //se crean las alertas respectivas según el resultado
     const numOrder = inputOrder.value;
-    const responseFormated = await bringOrder(numOrder); 
+    globalOrder = await bringOrder(numOrder); 
 
     const alert = document.createElement('div');
     alert.classList.add('popup');
 
     //si la orden no existe o no es valida:
-    if(responseFormated.length == 0){
+    if(globalOrder.length == 0){
         
         //Limpia el formulario
         inputOrder.value = "";
-        inputCantidadStatic.value = "";
-        inputCantidadInput.value = "";
-        inputPrecio.value = "";
-        inputFecha.value = "";
-        inputAccesorio.value = "";
         btnRefund.style.display = "none";
 
         //Envía la alerta
@@ -98,10 +96,10 @@ btnSearch.addEventListener('click', async e => {
         btnRefund.style.display = "block";
         //se llena el combobox
         var opt = null;
-        for(i = 0; i < responseFormated.length; i++) { 
+        for(i = 0; i < globalOrder.length; i++) { 
             opt = document.createElement('option');
             opt.value = i;
-            opt.innerText = responseFormated[i].nombre;
+            opt.innerText = globalOrder[i].nombre;
             opt.classList.add('option');
             sel.appendChild(opt);
         };
@@ -123,19 +121,16 @@ btnSearch.addEventListener('click', async e => {
 
 // - event listener cuando se cliquea para seleccionar un accesorio del combobox
 sel.addEventListener("change", async e => {
-    
-    const numOrder = inputOrder.value;
-    const responseFormated = await bringOrder(numOrder);
 
     // - se llenan algunos inputs conforme la información cuando se trae la orden
     inputDefectuosos.value = "";
-    inputAccesorio.value = responseFormated[sel.value].id_accesorio;
-    inputCantidadStatic.value = responseFormated[sel.value].cantidad_venta;
-    inputCantidadInput.value = responseFormated[sel.value].cantidad_venta;
+    inputAccesorio.value = globalOrder[sel.value].id_accesorio;
+    inputCantidadStatic.value = globalOrder[sel.value].cantidad_venta;
+    inputCantidadInput.value = globalOrder[sel.value].cantidad_venta;
     inputCantidadInput.setAttribute("max", parseInt(inputCantidadInput.value));
-    const precioFinal = responseFormated[sel.value].precio_final
+    const precioFinal = globalOrder[sel.value].precio_final
     inputPrecio.value = parseInt(precioFinal) / parseInt(inputCantidadStatic.value);
-    inputFecha.value = responseFormated[sel.value].fecha_compra;
+    inputFecha.value = globalOrder[sel.value].fecha_compra;
 });
 
 // Event listeners para cuando haya cambio en el input de la cant a devolver
@@ -150,6 +145,12 @@ inputCantidadInput.addEventListener('input', (e) => {
         inputCantidadInput.value = 1;
     }
     inputCantidadInput.setAttribute("max", inputCantidadInput.value);
+    if (
+        inputDefectuosos.value >
+        parseInt(inputCantidadInput.value)
+    ) {
+        inputDefectuosos.value = parseInt(inputCantidadInput.max)
+    }
 })
 
 // Event listeners para cuando haya cambio en el input defectuosos
