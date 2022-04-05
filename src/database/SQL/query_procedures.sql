@@ -772,6 +772,23 @@ END //
 CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(1, 'C');
 */
 
+DROP PROCEDURE IF EXISTS SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN; 
+
+DELIMITER //
+
+CREATE PROCEDURE SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN(	
+	IN session_user_id INT UNSIGNED,
+	IN criteria VARCHAR(255)
+)
+BEGIN 
+	SELECT   id_accesorio, nombre, precio_final, ruta_imagen FROM ACCESORIOS
+    WHERE 	UPPER(ACCESORIOS.nombre) LIKE (CONCAT(UPPER(criteria), '%')); 
+
+	/*REGISTRO DEL LOG DE LA CONSULTA*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 4);
+END //
+
 /* 
 #######################################################
 PROCEDIMIENTOS PARA MOSTRAR LOS 12 ACCESORIOS CON MÁS DESCUENTO

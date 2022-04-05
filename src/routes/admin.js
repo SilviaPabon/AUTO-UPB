@@ -19,6 +19,11 @@ router.post('/inventory/add_new', protect.isLoggedIn, protect.isAdmin, controlle
 router.get('/inventory/add_existing', protect.isLoggedIn, protect.isAdmin, controller.inventory_add_existing);
 router.get('/inventory/add_existing/:id', protect.isLoggedIn, protect.isAdmin, controller.inventory_add_existing_id); 
 router.post('/inventory/add_existing/:id', protect.isLoggedIn, protect.isAdmin, controller.inventory_add_existing_id_post);
+
+router.post('/inventory/search_existing',  protect.isLoggedIn, protect.isAdmin,controller.search_inventory_result);
+router.get('/inventory/search_existing/:criteria', protect.isLoggedIn, protect.isAdmin, controller.search_inventory_result_get); 
+
+
 router.get('/inventory/edit_existing/:id', protect.isLoggedIn, protect.isAdmin, controller.inventory_modify);
 router.post('/inventory/edit_existing/:id', protect.isLoggedIn, protect.isAdmin, controller.inventory_modify_post);  
 
