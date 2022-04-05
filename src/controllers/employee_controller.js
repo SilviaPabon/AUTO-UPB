@@ -167,7 +167,7 @@ controller.postOrder = async (req, res) => {
 
 // ---
 // Ruta para mostrar el inventario existente
-controller.inventory=async(req,res)=>{
+controller.inventory = async(req,res)=>{
     const inventory = await connection.query('CALL SHOW_ACCESSORIES_INTERNAL(?)', [req.user.id_usuario]);
     const data = {
         ACCESORIOS: inventory[0],
@@ -202,8 +202,6 @@ controller.searchinventoryResult = async (req, res) => {
     res.render('employees/existing_inventory', { data });
 };
 
-module.exports = controller;
-
 controller.showorders = async (req, res) => {
     let queryOk = false;
 
@@ -228,3 +226,68 @@ controller.showorders = async (req, res) => {
         res.redirect('/');
     }
 };
+
+// Ruta para hacer devoluciones
+controller.refunds = (req, res) => {
+
+    res.render('employees/refunds');
+};
+
+controller.search_order = async (req, res) => {
+    const { order } = req.body;
+
+    let response;
+    let success = false;
+
+    try {
+        response = await connection.query('CALL GET_ORDERBUY_ID(?)', [order]);
+        success = true; 
+    } catch (error) {
+        success = false;
+    }
+
+    success == true ? res.status(200).send(response[0]) : res.status(500).send([]);
+};
+
+controller.makeRefund = async (req, res) => {
+    
+    //Variables de control
+    let success = false; 
+
+    //Recibimiento y organización de los datos
+    const { id_accesorio, cantidad_di, defectuoso, precio } = req.body;
+
+    let moneyToRefund = 0;
+    let addInventario = 0;
+
+    //si la cantidad a devolver y los defectuosos es igual, se devuelve dinero pero no retorna a inventario
+    if (cantidad_di == defectuoso) {
+        moneyToRefund = cantidad_di * precio;
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
+        success = true;
+    //si la cantidad de defectuosos es mayor a uno, se devuelve dinero y se retornan al inventario los que estén bien
+    } else if (defectuoso > 0) {
+        moneyToRefund = cantidad_di * precio;
+        addInventario += parseInt(cantidad_di - defectuoso)
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
+        const updateInventoryR = await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [req.user.id_usuario, id_accesorio, addInventario]);
+        success = true;
+    //si la cantidad de defectuosos es igual a 0, se devuelve el dinero y se retorna todo al inventario
+    } else if (defectuoso == 0) {
+        moneyToRefund = cantidad_di * precio;
+        addInventario += parseInt(cantidad_di);
+        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
+        const updateInventoryR = await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [req.user.id_usuario, id_accesorio, addInventario]);
+        success = true;
+    }
+
+    if (success) {
+        req.flash('success', `Operación exitosa`);
+        res.redirect('/employee/refunds');
+    } else {
+        req.flash('message', 'Error');
+        res.redirect('/employee/refunds');
+    }
+};
+
+module.exports = controller;
