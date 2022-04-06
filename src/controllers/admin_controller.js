@@ -56,7 +56,7 @@ controller.inventory_add_existing = async (req, res) => {
     const callAccessories = await pool.query('CALL SHOW_ACCESSORIES_ADMIN(?)', [req.user.id_usuario]);
     const data = {
         ACCESORIOS: callAccessories,
-        isFiltered : true,
+        isFiltered : false,
     };
     res.render('admin/inventory_select_existing_accessory', { data });
 };
@@ -100,16 +100,28 @@ controller.search_inventory_result = async (req, res) => {
 
 controller.search_inventory_result_get = async (req, res) => {
     const { criteria } = req.params;
-
-    const inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN(?, ?)', [req.user.id_usuario, criteria]);
-
-    const data = {
-        ACCESORIOS: inventory,
-        isFiltered : true,
-        criteria
-    };
-
-    res.render('admin/inventory_select_existing_accessory', { data });
+    let inventory;
+    let queryOk = false;
+    try{
+        inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN(?, ?)', [req.user.id_usuario, criteria]);
+        queryOk = true;
+    } catch (error) {
+        req.flash('message', 'Ocurrió un error inesperado al buscar el accesorio.'); 
+        queryOk = false;
+    }
+    if(queryOk){
+        const data = {
+            ACCESORIOS: inventory,
+            isFiltered : true,
+            criteria
+        };
+    
+        res.render('admin/inventory_select_existing_accessory', { data });
+    }
+    else{
+        res.redirect('/admin/inventory/add_existing')
+    }
+    
 };
 
 
