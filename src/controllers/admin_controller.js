@@ -55,7 +55,11 @@ controller.inventory_add_new_post = async (req, res) => {
 
 controller.inventory_add_existing = async (req, res) => {
     const callAccessories = await pool.query('CALL SHOW_ACCESSORIES_ADMIN(?)', [req.user.id_usuario]);
-    res.render('admin/inventory_select_existing_accessory', { accessories: callAccessories });
+    const data = {
+        ACCESORIOS: callAccessories,
+        isFiltered : false,
+    };
+    res.render('admin/inventory_select_existing_accessory', { data });
 };
 
 controller.inventory_add_existing_id = async (req, res) => {
@@ -88,6 +92,40 @@ controller.inventory_add_existing_id_post = async (req, res) => {
     req.flash('success', 'Transacción exitosa: Accesorio actualizado');
     res.redirect('/admin/inventory/add_existing');
 };
+
+
+controller.search_inventory_result = async (req, res) => {
+    const { criteria } = req.body;
+    res.redirect(`/admin/inventory/search_existing/${criteria}`);
+};
+
+controller.search_inventory_result_get = async (req, res) => {
+    const { criteria } = req.params;
+    let inventory;
+    let queryOk = false;
+    try{
+        inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN(?, ?)', [req.user.id_usuario, criteria]);
+        queryOk = true;
+    } catch (error) {
+        req.flash('message', 'Ocurrió un error inesperado al buscar el accesorio.'); 
+        queryOk = false;
+    }
+    if(queryOk){
+        const data = {
+            ACCESORIOS: inventory,
+            isFiltered : true,
+            criteria
+        };
+    
+        res.render('admin/inventory_select_existing_accessory', { data });
+    }
+    else{
+        res.redirect('/admin/inventory/add_existing')
+    }
+    
+};
+
+
 
 controller.inventory_modify = async (req, res) => {
     const { id } = req.params;
