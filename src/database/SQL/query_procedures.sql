@@ -802,7 +802,7 @@ CREATE PROCEDURE SHOW_TOP_DISCOUNT(
 )
 BEGIN 
 
-	SELECT id_accesorio, nombre, precio_base, descuento, precio_final, ruta_imagen
+	SELECT id_accesorio, nombre, stock, precio_base, descuento, precio_final, ruta_imagen
     FROM ACCESORIOS 
     WHERE 
 		is_active = 1 AND 
@@ -831,7 +831,7 @@ CREATE PROCEDURE SHOW_TOP_SALES(
 )
 BEGIN 
 
-	SELECT id_accesorio, nombre, precio_final, unidades_vendidas, ruta_imagen
+	SELECT id_accesorio, nombre, stock, precio_final, unidades_vendidas, ruta_imagen
     FROM ACCESORIOS 
     WHERE 
 		is_active = 1 AND
