@@ -11,29 +11,27 @@
         <%- include('partials/_navbar.ejs') %>
 
         <main>
-
             <%- include('partials/_messages.ejs') %>
 
             <section class="section--no-top-margin">
-
                 <h2 class="title title--center">NUESTROS SERVICIOS</h2>
 
                 <div class="cards_container cards_container--center-items">
-
                     <article class="generic-card generic-card service-card">
                         <div class="service-card__title">
                             <h3>ACCESORIOS EXCLUSIVOS</h3>
-                            <img src="/icons/gem-solid.svg" alt="Icono de accesorio exxlusivo">
+                            <img src="/icons/gem-solid.svg" alt="Icono de accesorio exxlusivo" />
                         </div>
                         <div class="service-card__text">
-                            En nuestra tienda física y nuestra página web, podrás encontrar accesorios exlusivos y originales para las marcas premium A1 y A2. 
+                            En nuestra tienda física y nuestra página web, podrás encontrar accesorios exlusivos y
+                            originales para las marcas premium A1 y A2.
                         </div>
                     </article>
 
                     <article class="generic-card generic-card service-card">
                         <div class="service-card__title">
                             <h3>INSTALACIÓN</h3>
-                            <img src="/icons/tools-solid.svg" alt="Icono de instalación">
+                            <img src="/icons/tools-solid.svg" alt="Icono de instalación" />
                         </div>
                         <div class="service-card__text">
                             Contamos con personal altamente capacitado para instalar tus accesorios.
@@ -43,107 +41,145 @@
                     <article class="generic-card generic-card service-card">
                         <div class="service-card__title">
                             <h3>PRODUCTOS IMPORTADOS</h3>
-                            <img src="/icons/plane-arrival-solid.svg" alt="Icono de accesorios importados">
+                            <img src="/icons/plane-arrival-solid.svg" alt="Icono de accesorios importados" />
                         </div>
                         <div class="service-card__text">
                             Importamos los productos de más alta calidad desde el exterios.
                         </div>
                     </article>
-
                 </div>
-
             </section>
 
             <% if(data.featuredProducts[0].length > 0) {%>
 
-                <section class="featured-products" id="featured">
+            <section class="featured-products" id="featured">
+                <h2 class="title title--center">PRODUCTOS DESTACADOS</h2>
 
-                    <h2 class="title title--center">PRODUCTOS DESTACADOS</h2>
-    
-                    <div class="cards_container cards_container--center-items">
-    
-                        <% for(var i=0; i < data.featuredProducts[0].length; i++) { %>
+                <div class="cards_container cards_container--center-items">
+                    <% for(var i=0; i < data.featuredProducts[0].length; i++) { %>
 
-                        <article class="generic-card featured-product-card">
-                            <div class="featured-product-card__image">
-                                <img class="lazyload" data-src="/images<%= data.featuredProducts[0][i].ruta_imagen %>" alt="<%= data.featuredProducts[0][0].nombre %>">
+                    <article class="generic-card featured-product-card">
+                        <% if(data.featuredProducts[0][i].stock > 0) { %>
+                        <div class="featured-product-card__image">
+                            <img
+                                class="lazyload"
+                                data-src="/images<%= data.featuredProducts[0][i].ruta_imagen %>"
+                                alt="<%= data.featuredProducts[0][0].nombre %>"
+                            />
+                        </div>
+                        <% } else { %>
+                        <div class="featured-product-card__image product-card__image--sold-out">
+                            <p class="sold-out">Accesorio agotado</p>
+                            <img
+                                class="lazyload"
+                                data-src="/images<%= data.featuredProducts[0][i].ruta_imagen %>"
+                                alt="<%= data.featuredProducts[0][0].nombre %>"
+                            />
+                        </div>
+                        <% } %>
+                        <div class="featured-product-card__body">
+                            <h3 class="card__title"><%= data.featuredProducts[0][i].nombre %></h3>
+
+                            <p><span>Precio actual: </span> $<%= data.featuredProducts[0][i].precio_final %></p>
+                            <p><span>Unidades vendidas: </span> <%= data.featuredProducts[0][i].unidades_vendidas %></p>
+
+                            <div class="featured-product-card__btns">
+                                <% if(user) {%>
+                                <a
+                                    role="button"
+                                    tabindex="0"
+                                    class="btn btn--primary btn--card btn--center"
+                                    data-id="<%= data.featuredProducts[0][i].id_accesorio %>"
+                                    id="addToCartBtn"
+                                    aria-label="Añadir <%= data.featuredProducts[0][i].nombre %> al carrito de compras"
+                                    >AÑADIR AL CARRITO</a
+                                >
+                                <% } %>
+                                <a
+                                    href="/accessories/<%= data.featuredProducts[0][i].id_accesorio %>"
+                                    class="btn btn--secondary btn--card btn--center"
+                                    aria-label="Ver detalles de <%= data.featuredProducts[0][i].nombre %>"
+                                    >VER DETALLES</a
+                                >
                             </div>
-                            <div class="featured-product-card__body">
-                                <h3 class="card__title"><%= data.featuredProducts[0][i].nombre %></h3>
-    
-                                <p><span>Precio actual: </span> $<%= data.featuredProducts[0][i].precio_final %></p>
-                                <p><span>Unidades vendidas: </span> <%= data.featuredProducts[0][i].unidades_vendidas %></p>
-    
-                                <div class="featured-product-card__btns">
-                                
-                                    <% if(user) {%>
-                                        <a role="button" tabindex="0" class="btn btn--primary btn--card btn--center" data-id="<%= data.featuredProducts[0][i].id_accesorio %>" id="addToCartBtn" aria-label="Añadir <%= data.featuredProducts[0][i].nombre %> al carrito de compras">AÑADIR AL CARRITO</a>
-                                    <% } %>
-                                    <a href="/accessories/<%= data.featuredProducts[0][i].id_accesorio %>" class="btn btn--secondary btn--card btn--center" aria-label="Ver detalles de <%= data.featuredProducts[0][i].nombre %>">VER DETALLES</a>
+                        </div>
+                    </article>
 
-                                </div>
+                    <% } %>
+                </div>
+            </section>
+
+            <% } %> <% if(data.disccountProducts[0].length > 0) {%>
+
+            <section class="disscount-products" id="disscount">
+                <h2 class="title title--center">PRODUCTOS EN DESCUENTO:</h2>
+
+                <div class="cards_container cards_container--center-items">
+                    <% for(var i=0; i < data.disccountProducts[0].length -1; i++) { %>
+
+                    <article class="generic-card disscount-products-card">
+                        <div class="disscount-products-card__disscount">
+                            <span><%= data.disccountProducts[0][i].descuento %>%</span>
+                        </div>
+
+                        <% if(data.disccountProducts[0][i].stock > 0) { %>
+                        <div class="disscount-products-card__image">
+                            <img
+                                class="lazyload"
+                                data-src="/images<%=data.disccountProducts[0][i].ruta_imagen %>"
+                                alt="<%= data.disccountProducts[0][i].nombre %>"
+                            />
+                        </div>
+                        <% } else { %>
+                        <div class="disscount-products-card__image product-card__image--sold-out">
+                            <p class="sold-out">Accesorio agotado</p>
+                            <img
+                                class="lazyload"
+                                data-src="/images<%=data.disccountProducts[0][i].ruta_imagen %>"
+                                alt="<%= data.disccountProducts[0][i].nombre %>"
+                            />
+                        </div>
+                        <% } %>
+
+                        <div class="disscount-products-card__body">
+                            <h3 class="card__title"><%= data.disccountProducts[0][i].nombre %></h3>
+
+                            <p><span>Precio sin descuento: </span> $<%= data.disccountProducts[0][i].precio_base %></p>
+                            <p><span>Precio actual: </span> $<%= data.disccountProducts[0][i].precio_final %></p>
+
+                            <div class="disscount-products-card__btns">
+                                <% if(user) {%>
+                                <a
+                                    role="button"
+                                    tabindex="0"
+                                    class="btn btn--primary btn--card btn--center"
+                                    data-id="<%= data.disccountProducts[0][i].id_accesorio %>"
+                                    id="addToCartBtn"
+                                    aria-label="Añadir <%= data.disccountProducts[0][i].nombre %> al carrito de compras"
+                                    >AÑADIR AL CARRITO</a
+                                >
+                                <% } %>
+                                <a
+                                    href="/accessories/<%= data.disccountProducts[0][i].id_accesorio %>"
+                                    class="btn btn--secondary btn--card btn--center"
+                                    aria-label="Ver detalles de <%= data.disccountProducts[0][i].nombre %>"
+                                    >VER DETALLES</a
+                                >
                             </div>
-                        </article>
-        
-                        <% } %> 
+                        </div>
+                    </article>
 
-                    </div>
-    
-                </section>
-
-            <% } %>
-
-            <% if(data.disccountProducts[0].length > 0) {%>
-
-                <section class="disscount-products" id="disscount">
-
-                    <h2 class="title title--center">PRODUCTOS EN DESCUENTO:</h2>
-    
-                    <div class="cards_container cards_container--center-items">
-    
-                        <% for(var i=0; i < data.disccountProducts[0].length -1; i++) { %>
-
-                        <article class="generic-card disscount-products-card">
-
-                            <div class="disscount-products-card__disscount">
-                                <span><%= data.disccountProducts[0][i].descuento %>%</span>
-                            </div>
-
-                            <div class="disscount-products-card__image">
-                                <img class="lazyload" data-src="/images<%=data.disccountProducts[0][i].ruta_imagen %>" alt="<%= data.disccountProducts[0][i].nombre %>">
-                            </div>
-                            <div class="disscount-products-card__body">
-                                <h3 class="card__title"><%= data.disccountProducts[0][i].nombre %></h3>
-    
-                                <p><span>Precio sin descuento: </span> $<%= data.disccountProducts[0][i].precio_base %></p>
-                                <p><span>Precio actual: </span> $<%= data.disccountProducts[0][i].precio_final %></p>
-    
-                                <div class="disscount-products-card__btns">
-
-                                    <% if(user) {%>
-                                        <a role="button" tabindex="0" class="btn btn--primary btn--card btn--center" data-id="<%= data.disccountProducts[0][i].id_accesorio %>" id="addToCartBtn" aria-label="Añadir <%= data.disccountProducts[0][i].nombre %> al carrito de compras">AÑADIR AL CARRITO</a>
-                                    <% } %>
-                                    <a href="/accessories/<%= data.disccountProducts[0][i].id_accesorio %>" class="btn btn--secondary btn--card btn--center" aria-label="Ver detalles de <%= data.disccountProducts[0][i].nombre %>">VER DETALLES</a>
-
-                                </div>
-                            </div>
-                        </article>
-        
-                        <% } %> 
-
-                    </div>
-    
-                </section>
+                    <% } %>
+                </div>
+            </section>
 
             <% } %>
 
             <section class="contact-us">
-
                 <div class="cards_container cards_container--center-items">
-                    
                     <article class="contact-card">
                         <div class="contact-card__icon">
-                            <img src="/icons/map-marked-solid.svg" alt="">
+                            <img src="/icons/map-marked-solid.svg" alt="" />
                         </div>
                         <div class="contact-card__body">
                             <h3 class="card__title card__title--light">NUESTRO LOCAL</h3>
@@ -153,7 +189,7 @@
 
                     <article class="contact-card">
                         <div class="contact-card__icon">
-                            <img src="/icons/phone-solid.svg" alt="">
+                            <img src="/icons/phone-solid.svg" alt="" />
                         </div>
                         <div class="contact-card__body">
                             <h3 class="card__title card__title--light">LLAMÁNOS</h3>
@@ -164,36 +200,36 @@
 
                     <article class="contact-card">
                         <div class="contact-card__icon">
-                            <img src="/icons/hashtag-solid.svg" alt="">
+                            <img src="/icons/hashtag-solid.svg" alt="" />
                         </div>
                         <div class="contact-card__body">
                             <h3 class="card__title card__title--light">NUESTRAS REDES SOCIALES</h3>
                             <p>Puedes encontrarnos como @auto_upb_accesorios en Facebook, instagram y Twitter</p>
                         </div>
                     </article>
-
                 </div>
-
             </section>
 
             <section class="about-us">
-
                 <div class="about-us__image-container">
-                    <img class="lazyload" data-src="/images/about-us.jpg" alt="Imagen de carro">
+                    <img class="lazyload" data-src="/images/about-us.jpg" alt="Imagen de carro" />
                 </div>
 
                 <div class="about-us__text-container">
                     <h2 class="title title--center title--light">SOBRE NOSOTROS</h2>
-                    <p>En WEARCAR, somos especialistas en la comercialización de accesorios para todo tipo de vehículo automotriz. Buscamos, coordinar y mejorar el proceso de compra para aquellos clientes del consorcio AUTO-UPB que quieren darle un aspecto único y personalizado a su automóvil, permitiendo que encuentren accesorios de la más alta calidad fabricados en la industria nacional y también importados desde el exterior, según sus necesidades específicas. </p>
+                    <p>
+                        En WEARCAR, somos especialistas en la comercialización de accesorios para todo tipo de vehículo
+                        automotriz. Buscamos, coordinar y mejorar el proceso de compra para aquellos clientes del
+                        consorcio AUTO-UPB que quieren darle un aspecto único y personalizado a su automóvil,
+                        permitiendo que encuentren accesorios de la más alta calidad fabricados en la industria nacional
+                        y también importados desde el exterior, según sus necesidades específicas.
+                    </p>
                 </div>
-
             </section>
-
         </main>
 
         <%- include('partials/_globalScripts.ejs') %>
         <script src="/scripts/addToCartBtn.js"></script>
         <script src="/scripts/vendors/lazysizes.min.js" async></script>
-
     </body>
 </html>

@@ -14,6 +14,8 @@ controller.home = async (req, res) => {
         featuredProducts,
     };
 
+    console.table(data.disccountProducts[0]); 
+
     res.render('index', { data });
 };
 

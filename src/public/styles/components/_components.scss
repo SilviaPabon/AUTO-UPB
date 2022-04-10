@@ -170,6 +170,26 @@ section{
     }
 }
 
+/*Estilos especiale spara cards*/
+.product-card__image--sold-out{
+    position: relative;
+
+    & img{
+        filter: grayscale(100%); 
+    }
+
+    & .sold-out{
+        position: absolute; 
+        z-index: 2;
+        top: 4px; 
+        right: 4px; 
+        padding: 0.4em; 
+        background-color: $bright_red; 
+        color: white; 
+        text-transform: uppercase;
+    }
+}
+
 /*Formularios*/
 .input-form{
     width: 90%;
