@@ -145,6 +145,10 @@
   margin: 16px auto;
 }
 
+#bnt--prevent {
+  display: none;
+}
+
 section {
   margin-top: 32px;
 }
