@@ -733,7 +733,7 @@ CREATE PROCEDURE SHOW_ACCESSORIES_ADMIN(
 )
 BEGIN 
 
-	SELECT id_accesorio, nombre, precio_final, ruta_imagen
+	SELECT id_accesorio, nombre, is_active, precio_final, ruta_imagen
     FROM ACCESORIOS; 
     
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
