@@ -196,23 +196,29 @@ section {
 }
 
 /*Estilos especiale spara cards*/
-.product-card__image--sold-out {
+.product-card__image--sold-out,
+.product-card__image--no-active {
   position: relative;
 }
 
-.product-card__image--sold-out img {
+.product-card__image--sold-out img,
+.product-card__image--no-active img {
   -webkit-filter: grayscale(100%);
           filter: grayscale(100%);
 }
 
-.product-card__image--sold-out .sold-out {
+.product-card__image--sold-out .sold-out,
+.product-card__image--sold-out .no-active,
+.product-card__image--no-active .sold-out,
+.product-card__image--no-active .no-active {
   position: absolute;
   z-index: 2;
-  top: 4px;
-  right: 4px;
+  top: 8px;
+  right: 8px;
   padding: 0.4em;
   background-color: #E60118;
   color: white;
+  border-radius: 8px;
   text-transform: uppercase;
 }
 
