@@ -1,0 +1,244 @@
+
+!
+! Last configuration change at 15:32:43 UTC Mon Jan 2 2006
+! NVRAM config last updated at 15:32:47 UTC Mon Jan 2 2006
+! NVRAM config last updated at 15:32:47 UTC Mon Jan 2 2006
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+dot11 syslog
+ip source-route
+!
+!
+!
+ip dhcp pool vlan10
+ network 192.168.70.128 255.255.255.240
+ default-router 192.168.70.129 
+ dns-server 192.168.70.129 192.168.70.147 
+!
+ip dhcp pool vlan20
+ network 192.168.70.144 255.255.255.248
+ default-router 192.168.70.145 
+ dns-server 192.168.70.145 192.168.70.147 
+!
+ip dhcp pool vlan30
+ network 192.168.70.152 255.255.255.252
+ default-router 192.168.70.153 
+ dns-server 192.168.70.153 192.168.70.147 
+!
+ip dhcp pool vlan40
+ network 192.168.70.0 255.255.255.128
+ default-router 192.168.70.1 
+ dns-server 192.168.70.1 192.168.70.147 
+!
+!
+!
+ip cef
+ip host www.wearcar.autoupb.com 192.168.70.146
+ipv6 host www.wearcar.autoupb.com 2801:0:2E0:A:C::2
+ipv6 unicast-routing
+ipv6 cef
+ipv6 dhcp pool ipv6_pool_personal_tienda
+ address prefix 2801:0:2E0:A:A::/80
+ dns-server 2801:0:2E0:A:A::1
+ dns-server 2801:0:2E0:A:C::3
+!
+ipv6 dhcp pool ipv6_pool_caja
+ address prefix 2801:0:2E0:A:B::/80
+ dns-server 2801:0:2E0:A:B::1
+ dns-server 2801:0:2E0:A:C::3
+!
+ipv6 dhcp pool ipv6_pool_servidores
+ address prefix 2801:0:2E0:A:C::/80
+ dns-server 2801:0:2E0:A:C::1
+ dns-server 2801:0:2E0:A:C::3
+!
+ipv6 dhcp pool ipv6_pool_wireless
+ address prefix 2801:0:2E0:A:D::/80
+ dns-server 2801:0:2E0:A:D::1
+ dns-server 2801:0:2E0:A:C::3
+!
+!
+multilink bundle-name authenticated
+!
+crypto pki token default removal timeout 0
+!
+!
+!
+!
+license udi pid CISCO1841 sn FTX1405Y2LE
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+ ipv6 traffic-filter ipv6_102 in
+!
+interface FastEthernet0/0.1
+ ip nat inside
+ ip virtual-reassembly in
+ ipv6 traffic-filter ipv6_102 in
+!
+interface FastEthernet0/0.2
+ ip nat inside
+ ip virtual-reassembly in
+ ipv6 traffic-filter ipv6_102 in
+!
+interface FastEthernet0/0.3
+ ip nat inside
+ ip virtual-reassembly in
+ ipv6 traffic-filter ipv6_102 in
+!
+interface FastEthernet0/0.4
+ ip nat inside
+ ip virtual-reassembly in
+ ipv6 traffic-filter ipv6_102 in
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.70.129 255.255.255.240
+ ipv6 address 2801:0:2E0:A:A::1/80
+ ipv6 nd managed-config-flag
+ ipv6 dhcp server ipv6_pool_personal_tienda
+!
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.70.145 255.255.255.248
+ ipv6 address 2801:0:2E0:A:C::1/80
+ ipv6 nd managed-config-flag
+ ipv6 dhcp server ipv6_pool_servidores
+!
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.70.153 255.255.255.252
+ ipv6 address 2801:0:2E0:A:B::1/80
+ ipv6 nd managed-config-flag
+ ipv6 dhcp server ipv6_pool_caja
+!
+interface FastEthernet0/0.40
+ encapsulation dot1Q 40
+ ip address 192.168.70.1 255.255.255.128
+ ipv6 address 2801:0:2E0:A:D::1/80
+ ipv6 nd managed-config-flag
+ ipv6 dhcp server ipv6_pool_wireless
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Serial0/0/0
+ ip address 10.10.70.2 255.255.255.252
+ ip access-group 101 in
+ ip nat outside
+ ip virtual-reassembly in
+ shutdown
+ ipv6 address 2801:0:2E0:1::12/126
+ ipv6 traffic-filter ipv6_101 in
+ no fair-queue
+ clock rate 2000000
+!
+interface Serial0/1/0
+ ip address 10.10.20.1 255.255.255.252
+ ip access-group 101 in
+ ip nat outside
+ ip virtual-reassembly in
+ shutdown
+ ipv6 address 2801:0:2E0:1::D/126
+ ipv6 traffic-filter ipv6_101 in
+ clock rate 2000000
+!
+router ospf 1
+ network 10.10.20.0 0.0.0.3 area 0
+ network 10.10.70.0 0.0.0.3 area 0
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip dns server
+ip nat inside source static tcp 192.168.70.147 25 10.10.20.1 25 extendable
+ip nat inside source static udp 192.168.70.147 25 10.10.20.1 25 extendable
+ip nat inside source static udp 192.168.70.147 53 10.10.20.1 53 extendable
+ip nat inside source static tcp 192.168.70.146 80 10.10.20.1 80 extendable
+ip nat inside source static tcp 192.168.70.147 110 10.10.20.1 110 extendable
+ip nat inside source static udp 192.168.70.147 110 10.10.20.1 110 extendable
+ip nat inside source static tcp 192.168.70.146 443 10.10.20.1 443 extendable
+ip route 0.0.0.0 0.0.0.0 Serial0/1/0
+!
+access-list 101 permit ospf any any
+access-list 101 permit tcp any any eq www
+access-list 101 permit tcp any any eq 443
+access-list 101 permit udp any any eq domain
+access-list 101 permit tcp any any eq pop3
+access-list 101 permit tcp any any eq smtp
+access-list 101 permit udp any any eq 110
+access-list 101 permit udp any any eq 25
+access-list 101 deny   icmp any 192.168.70.0 0.0.0.127
+access-list 101 deny   icmp any 192.168.70.128 0.0.0.15
+access-list 101 deny   icmp any 192.168.70.144 0.0.0.7
+access-list 101 deny   icmp any 192.168.70.152 0.0.0.3
+access-list 101 permit ip any any
+ipv6 route ::/0 Serial0/1/0
+ipv6 router ospf 1
+!
+!
+!
+!
+!
+!
+!
+ipv6 access-list ipv6_102
+ deny icmp 2801:0:2E0:A:A::/80 2801:0:2E0:A:B::/80
+ deny icmp 2801:0:2E0:A:A::/80 2801:0:2E0:A:C::/80
+ deny icmp 2801:0:2E0:A:A::/80 2801:0:2E0:A:D::/80
+ permit ipv6 any any
+!
+ipv6 access-list ipv6_101
+ permit tcp any host 2801:0:2E0:A:A::2 eq www
+ permit tcp any host 2801:0:2E0:A:A::2 eq 443
+ permit udp any host 2801:0:2E0:A:A::2 eq domain
+ permit tcp any host 2801:0:2E0:A:A::3 eq pop3
+ permit tcp any host 2801:0:2E0:A:A::3 eq smtp
+ permit udp any host 2801:0:2E0:A:A::3 eq 110
+ permit udp any host 2801:0:2E0:A:A::3 eq 25
+ deny icmp any 2801:0:2E0:A::/64
+ permit ipv6 any any
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+end
