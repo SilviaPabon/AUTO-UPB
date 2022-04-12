@@ -274,5 +274,9 @@ controller.historicalPricesProd = async (req, res) => {
     res.render('admin/finances_historic_prices', { accesorios: callAccessories });
 };
 
+controller.finantial_perfom_details = (req, res) => {
+    res.render('admin/finances_perform_details');
+};
+
 module.exports = controller; 
 

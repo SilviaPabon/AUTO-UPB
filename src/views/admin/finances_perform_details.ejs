@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>RENDIMIENTO FINANCIERO</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+        <main>
+            <%- include('../partials/_messages.ejs') %>
+            <section class="section--no-top-margin">
+                <h1 class="title title--center">RENDIMIENTO FINANCIERO</h1>
+                <%# if (accesorios) { %>
+                    <h2 class="title title--black">GANANCIAS</h1>
+                    <table class="generic-table">
+                        <thead>
+                            <tr>
+                                <th>FECHA DEL MOVIMIENTO</th>
+                                <th>VALOR DE GANANCIA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%# for(var i=0; i < accesorios[0].length; i++) { %>
+                                <tr>
+                                    <td><%#= accesorios[0][i].nombre_accesorio %></td>
+                                    <td>$<%#= accesorios[0][i].precio_asignado %></td>
+                                </tr>
+                            <%# } %>
+                        </tbody>
+                    </table>
+
+                    <h2 class="title title--black">PÉRDIDAS</h1>
+                        <table class="generic-table">
+                            <thead>
+                                <tr>
+                                    <th>FECHA DEL MOVIMIENTO</th>
+                                    <th>VALOR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%# for(var i=0; i < accesorios[0].length; i++) { %>
+                                    <tr>
+                                        <td><%#= accesorios[0][i].nombre_accesorio %></td>
+                                        <td>$<%#= accesorios[0][i].precio_asignado %></td>
+                                    </tr>
+                                <%# } %>
+                            </tbody>
+                        </table>
+                    
+                        <h2 class="title title--black">RESÚMEN GANANCIAS Y PÉRDIDAS TOTALES</h1>
+                            <table class="generic-table">
+                                <thead>
+                                    <tr>
+                                        <th>TIPO DE RESÚMEN</th>
+                                        <th>VALOR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%# for(var i=0; i < accesorios[0].length; i++) { %>
+                                        <tr>
+                                            <td><%#= accesorios[0][i].nombre_accesorio %></td>
+                                            <td>$<%#= accesorios[0][i].precio_asignado %></td>
+                                        </tr>
+                                    <%# } %>
+                                </tbody>
+                            </table>
+                    
+            
+                 <%#% } else {%>
+
+                    <div class="result-empty">
+                        <p class="result-empty__text">NO SE ENCONTRARON REPORTES </p>
+                    </div>
+    
+                 <%# } %>
+    
+                
+                
+                
+                
+            </section>
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>
