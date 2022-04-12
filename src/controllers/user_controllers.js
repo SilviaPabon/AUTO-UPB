@@ -30,6 +30,21 @@ controller.orderClient = async (req, res) => {
 };
 
 // ----------------------------------------------------------------
+//Controlador para que el cliente pueda ver sus órdenes de compra
+
+
+
+//para que el cliente confirme el "entregado" de la compra
+
+controller.orderDone = async (req, res) => {
+    
+    await pool.query('CALL MARK_ORDER_AS_RECEIVED(?,?)', [req.user.id_usuario, req.params.id]);
+
+    res.redirect('/user/orders');
+
+};
+
+// ----------------------------------------------------------------
 // Controlador para mostrar la factura de la compra del cliente
 controller.user_bill = async (req, res) => {
     let queryOk = false;
