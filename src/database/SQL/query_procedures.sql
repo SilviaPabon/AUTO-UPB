@@ -1699,6 +1699,12 @@ DELIMITER ;
 
 /* 
 #######################################################
+PROCEDIMIENTOS DE MOVIMIENTOS/RENDIMIENTOS FINANCIEROS
+#######################################################
+*/
+
+/* 
+#######################################################
 PROCEDIMIENTO PARA ACTUALIZAR LAS GANANCIAS LUEGO DE UNA DEVOLUCIÓN
 #######################################################
 */
@@ -1721,3 +1727,91 @@ BEGIN
 END //
 
 DELIMITER ;
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA VISUALIZAR LOS INGRESOS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS VISUALIZE_PROFITS_ADMIN; 
+DELIMITER //
+
+CREATE PROCEDURE VISUALIZE_PROFITS_ADMIN(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+    SELECT fecha_movimiento, tipo_movimiento, valor, usuario_responsable
+		FROM PROFITS_OUTGOINGS_VIEW
+		WHERE codigo_movimiento = 1;
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 8);
+    
+END //
+
+DELIMITER ;
+
+/*CALL VISUALIZE_PROFITS_ADMIN(1);*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA VISUALIZAR LOS GASTOS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS VISUALIZE_OUTGOINGS_ADMIN; 
+DELIMITER //
+
+CREATE PROCEDURE VISUALIZE_OUTGOINGS_ADMIN(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+
+    SELECT fecha_movimiento, tipo_movimiento, valor, usuario_responsable
+		FROM PROFITS_OUTGOINGS_VIEW
+		WHERE (codigo_movimiento = 2 OR codigo_movimiento = 3);
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 8);
+    
+END //
+
+DELIMITER ;
+
+/*CALL VISUALIZE_OUTGOINGS_ADMIN(1);*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA VISUALIZAR LAS ENTRADAS O GASTOS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS VISUALIZE_RESUME_ADMIN; 
+DELIMITER //
+
+CREATE PROCEDURE VISUALIZE_RESUME_ADMIN(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+
+    -- Se suma el valor de las entradas
+	SET @entradas = (SELECT SUM(valor)
+					FROM PROFITS_OUTGOINGS_VIEW
+					WHERE codigo_movimiento = 1);
+    -- Se suma el valor de las perdidas
+    SET @gastos =  (SELECT SUM(valor)
+					FROM PROFITS_OUTGOINGS_VIEW
+					WHERE codigo_movimiento = 2 OR codigo_movimiento = 3);
+                    
+	SELECT ROUND((@entradas - @gastos), 2) AS resumen FROM PROFITS_OUTGOINGS_VIEW
+    GROUP BY resumen;
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 8);
+    
+END //
+
+DELIMITER ;
+
+/*CALL VISUALIZE_RESUME_ADMIN(1);*/
