@@ -36,6 +36,8 @@ router.get('/messages', protect.isLoggedIn, protect.isAdmin, controller.messages
 router.get('/finances', protect.isLoggedIn, protect.isAdmin, controller.finances); 
 router.get('/finances/historical_prices', protect.isLoggedIn, protect.isAdmin, controller.historicalPrices);
 router.get('/finances/historical_prices/:id', protect.isLoggedIn, protect.isAdmin, controller.historicalPricesProd);
-router.get('/finances/perform_details/', protect.isLoggedIn, protect.isAdmin, controller.finantial_perfom_details); 
+router.get('/finances/perform_details/', protect.isLoggedIn, protect.isAdmin, controller.finantial_perfom_details);
+router.get('/finances/perform_details/profits', protect.isLoggedIn, protect.isAdmin, controller.finantial_profits);
+router.get('/finances/perform_details/outgoings', protect.isLoggedIn, protect.isAdmin, controller.finantial_outgoings);  
 
 module.exports = router;
