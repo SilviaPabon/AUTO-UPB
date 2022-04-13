@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>FACTURA <%= data.id_factura %></title>
+    </head>
+    <body>
+        <article class="bill" id="bill">
+            <h1 class="bill__title">Factura órden de compra número <%= data.id_factura %></h1>
+
+            <div class="bill__header">
+                <p class="bill__header__company">Wearcar</p>
+                <p class="bill__header__content"><span>NIT: </span>020320227-7</p>
+                <p class="bill__header__content"><span>DIRECCIÓN: </span>Kilómetro 7 vía Piececuesta-Floridablanca</p>
+                <p class="bill__header__content"><span>TELÉFONO: </span>6559860</p>
+                <p class="bill__header__content"><span>CELULAR: </span>390-14-56-986</p>
+            </div>
+
+            <div class="bill__body">
+                <div class="bill__body__extra-row">
+                    <p class="bill__body__extra-row__content"><span>Orden de compra:</span> <%= data.id_orden %></p>
+                    <p class="bill__body__extra-row__content"><span>Fecha emisión:</span> <%= data.fecha_emision %></p>
+                    <p class="bill__body__extra-row__content"><span>Fecha compra:</span> <%= data.fecha_compra %></p>
+                    <p class="bill__body__extra-row__content"><span>Cliente:</span> <%= data.nombre_cliente %></p>
+                </div>
+
+                <h2 class="title title--thin">Listado de accesorios:</h2>
+
+                <div class="bill__body__table">
+                    <table class="generic-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Precio Base</th>
+                                <th>Descuento</th>
+                                <th>Iva</th>
+                                <th>Precio Final</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(data.productos.length != 0) {%> <% for(var i=0; i < data.productos.length; i++) { %>
+                            <tr>
+                                <th><%= data.productos[i]['Accesorio'] %></th>
+                                <th><%= data.productos[i]['Cantidad'] %></th>
+                                <th>$<%= data.productos[i]['Precio Base'] %> COP</th>
+                                <th>$<%= data.productos[i]['Descuento Aplicado']%> COP</th>
+                                <th>$<%= data.productos[i]['Impuestos Aplicados']%> COP</th>
+                                <th>$<%= data.productos[i]['Precio Final']%> COP</th>
+                            </tr>
+                            <% } %> <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 class="title title--thin">Resúmen de la compra:</h2>
+
+                <div class="bill__body__resume">
+                    <table class="generic-table">
+                        <tbody>
+                            <tr>
+                                <td>Total bruto:</td>
+                                <td>$<%= data.total_base%> COP</td>
+                            </tr>
+                            <tr>
+                                <td>Total descuentos:</td>
+                                <td>$<%= data.total_descuentos%> COP</td>
+                            </tr>
+                            <tr>
+                                <td>Total IVA:</td>
+                                <td>$<%= data.total_impuestos%> COP</td>
+                            </tr>
+                            <tr>
+                                <td>Total neto:</td>
+                                <td>$<%= data.total%> COP</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+    </body>
+</html>
