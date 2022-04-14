@@ -277,7 +277,7 @@ controller.makeRefund = async (req, res) => {
     ]);
 
     // Si el valor es nulo re reemplaza por un cero
-    currentRefunds[0][0].currentRefunds = currentRefunds[0][0].currentRefunds == null ? 0 : currentRefunds;
+    currentRefunds[0][0].currentRefunds = currentRefunds[0][0].currentRefunds == null ? 0 : currentRefunds[0][0].currentRefunds;
 
     // Se verifica que no se pase el número de accesorios comprados
     if (currentRefunds[0][0].currentRefunds + cantidad_di <= cantidad_ds) {
