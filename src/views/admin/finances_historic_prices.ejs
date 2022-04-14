@@ -26,10 +26,10 @@
                         <tbody>
                             <% for(var i=0; i < accesorios[0].length; i++) { %>
                                 <tr>
-                                    <td><%= accesorios[0][i].nombre_accesorio %></td>
-                                    <td>$<%= accesorios[0][i].precio_asignado %></td>
-                                    <td><%= accesorios[0][i].fecha_cambio %></td>
-                                    <td><%= accesorios[0][i].u_responsable %></td>
+                                    <td data-label="Nombre"><%= accesorios[0][i].nombre_accesorio %></td>
+                                    <td data-label="Precio">$<%= accesorios[0][i].precio_asignado %></td>
+                                    <td data-label="Fecha"><%= accesorios[0][i].fecha_cambio %></td>
+                                    <td data-label="Responsable"><%= accesorios[0][i].u_responsable %></td>
                                 </tr>
                             <% } %>
                         </tbody>
