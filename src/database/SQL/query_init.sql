@@ -214,3 +214,19 @@ CREATE TABLE CARRITO_COMPRAS(
     
     INDEX carrito_user(id_usuario)
 )COMMENT = 'TABLA PARA EL MANEJO DEL CARRITO DE COMPRAS DESDE EL APLICATIVO WEB'; 
+
+CREATE TABLE HISTORICO_DEVOLUCIONES(
+	id_devolucion INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    fecha_devolucion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    id_orden INT UNSIGNED NOT NULL, 
+    id_accesorio INT UNSIGNED NOT NULL, 
+    cantidad_devuelta SMALLINT UNSIGNED NOT NULL, 
+    id_responsable_devolucion INT UNSIGNED NOT NULL, 
+    
+    CONSTRAINT fk_devolucion_orden FOREIGN KEY (id_orden) REFERENCES ORDENES_COMPRA(id_orden), 
+    CONSTRAINT fk_devolucion_accesorio FOREIGN KEY (id_accesorio) REFERENCES ACCESORIOS(id_accesorio), 
+    CONSTRAINT fk_devolucion_responsable FOREIGN KEY (id_responsable_devolucion) REFERENCES USUARIOS(id_usuario), 
+    
+    INDEX devolucion_orden(id_orden), 
+    INDEX devolucion_accesorio(id_accesorio)
+)COMMENT = 'Tabla para el resgistro de devoluciones'; 
