@@ -45,6 +45,9 @@
 
 /*Botones*/
 .btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   border: 1px solid transparent;
   padding: 0.4em 0.6em;
   cursor: pointer;
@@ -276,7 +279,7 @@ label {
 
 /*Error general del formulario*/
 .form__error-message {
-  background-color: #FF0000;
+  background-color: #ff0000;
   text-align: justify;
   font-weight: lighter;
   padding: 8px;
@@ -401,7 +404,7 @@ label {
   flex-direction: column;
 }
 .generic-table th, .generic-table td {
-  border: 1px solid #B1B1B1;
+  border: 1px solid #b1b1b1;
 }
 .generic-table tbody tr:nth-child(odd) {
   background-color: #ececec;
@@ -1099,7 +1102,61 @@ main {
   .form-image__img {
     display: none;
   }
-}
+
+  /*########*/
+  /* Responsive de las tablas */
+  /* ###### */
+  .generic-table {
+    /*Se agrega el label de cada fila*/
+  }
+  .generic-table thead {
+    display: none;
+  }
+  .generic-table tbody, .generic-table tr, .generic-table td {
+    display: block;
+    width: 100%;
+  }
+  .generic-table tr {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .generic-table tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    overflow-x: auto;
+  }
+  .generic-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    text-align: left;
+    padding-left: 12px;
+  }
+  .generic-table tbody tr td:nth-child(odd) {
+    background-color: #ececec;
+  }
+  .generic-table tbody tr td:nth-child(even) {
+    background-color: #fff;
+  }
+
+  /*Tabla especial*/
+  .horizontal-table {
+    /*Se agrega el label de cada fila*/
+  }
+  .horizontal-table tr td {
+    text-align: center;
+    padding-right: 0;
+    padding-left: 0;
+    position: relative;
+    overflow-x: auto;
+  }
+  .horizontal-table td::before {
+    width: 100%;
+    text-align: center;
+  }
+
 /* PARA TABLETS*/
 @media (max-width: 992px) {
   /*#########*/
@@ -1123,7 +1180,7 @@ main {
     border-left: 1px transparent;
     border-right: 1px transparent;
   }
-
+  
   .form-image {
     display: block;
     grid-template-columns: 1fr;

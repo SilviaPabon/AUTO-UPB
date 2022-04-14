@@ -33,24 +33,30 @@
                     </thead>
                     <tbody>
                         <% for(var i=0; i < data.length; i++) { %>
-                            <tr>
-                                <td class="table-row--buttons">
-                                    <a role="button" aria-label="Ver factura para la órden de compra número <%= data[i].id_orden %>" href="/user/bill/<%= data[i].id_orden %>" class="btn btn--primary">Ver factura</a>
-                                </td>
-                                <td>#<%= data[i].id_orden %></td>
-                                <td><%= data[i].estado_compra %></td>
-                                <td><%= data[i]['Nombre comprador'] %></td>
-                                <% if (data[i]['Nombre vendedor'] != null ) { %> 
-                                    <td><%= data[i]['Nombre vendedor'] %></td>
-                                <% } else { %>
-                                    <td>COMPRA EN WEB</td>
-                                <% } %>
-                                <td><%= data[i].fecha_compra %></td>
-                                <td>$<%= data[i]['Total Precios Base'] %></td>
-                                <td>$<%= data[i]['Descuentos aplicados'] %></td>
-                                <td>$<%= data[i]['IVA aplicado'] %></td>
-                                <td>$<%= data[i].Total %></td>
-                            </tr>
+                        <tr>
+                            <td data-label="Acciones" class="table-row--buttons">
+                                <a
+                                    role="button"
+                                    aria-label="Ver factura para la órden de compra número <%= data[i].id_orden %>"
+                                    href="/user/bill/<%= data[i].id_orden %>"
+                                    class="btn btn--primary"
+                                    >Ver factura</a
+                                >
+                            </td>
+                            <td data-label="Id">#<%= data[i].id_orden %></td>
+                            <td data-label="Estado"><%= data[i].estado_compra %></td>
+                            <td data-label="Comprador"><%= data[i]['Nombre comprador'] %></td>
+                            <% if (data[i]['Nombre vendedor'] != null ) { %>
+                                <td data-label="Vendedor"><%= data[i]['Nombre vendedor'] %></td>
+                            <% } else { %>
+                                <td data-label="Vendedor">COMPRA EN WEB</td>
+                            <% } %>
+                            <td data-label="Fecha"><%= data[i].fecha_compra %></td>
+                            <td data-label="Subtotal">$<%= data[i]['Total Precios Base'] %></td>
+                            <td data-label="Descuentos">$<%= data[i]['Descuentos aplicados'] %></td>
+                            <td data-label="Impuestos">$<%= data[i]['IVA aplicado'] %></td>
+                            <td data-label="Total">$<%= data[i].Total %></td>
+                        </tr>
                         <% } %>
                     </tbody>
                 </table>

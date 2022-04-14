@@ -41,10 +41,10 @@
                         <% if (data.ACCESORIOS ) { %>
                             <% for(var i = 0; i<data.ACCESORIOS.length; i++ ) {%>
                                 <tr>
-                                    <td><%= data.ACCESORIOS[i].id_accesorio%></td>
-                                    <td><%= data.ACCESORIOS[i].nombre%></td>
-                                    <td><%= data.ACCESORIOS[i].precio_final%></td>
-                                    <td><%= data.ACCESORIOS[i].stock%></td>
+                                    <td data-label="Id"><%= data.ACCESORIOS[i].id_accesorio%></td>
+                                    <td data-label="Nombre"><%= data.ACCESORIOS[i].nombre%></td>
+                                    <td data-label="Precio"><%= data.ACCESORIOS[i].precio_final%></td>
+                                    <td data-label="Stock"><%= data.ACCESORIOS[i].stock%></td>
                                 </tr>
                             <%} %>
                         <%} %>
@@ -60,7 +60,7 @@
             <% } %>
 
             <% if(data.isFiltered == true) {%>
-                <a href="/partner/inventory" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER A TODOS LOS ACCESORIOS</a>
+                <a href="/partner/inventory" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER ATRÁS</a>
             <% } %>
 
         </main>
