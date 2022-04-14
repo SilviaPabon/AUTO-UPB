@@ -73,3 +73,13 @@ FROM ACCESORIOS AS A, HISTORICO_CAMBIO_PRECIOS AS H, USUARIOS AS U
 WHERE A.id_accesorio = H.id_accesorio
 AND H.id_usuario_responsable = U.id_usuario
 ORDER BY fecha_cambio DESC;
+
+/*VISTA PARA MOSTRAR RESUMEN DE INGRESOS Y GASTOS*/
+DROP VIEW IF EXISTS PROFITS_OUTGOINGS_VIEW;
+CREATE VIEW PROFITS_OUTGOINGS_VIEW AS
+SELECT  DATE_FORMAT(H.fecha_movimiento,"%e/%c/%Y %H:%i") AS fecha_movimiento, T.codigo_movimiento, T.movimiento AS tipo_movimiento, H.valor_movimiento AS valor,
+	U.nombre AS usuario_responsable
+FROM HISTORICO_INGRESOS_GASTOS AS H, TIPOS_MOVIMIENTO_FINANCIERO AS T, USUARIOS AS U
+WHERE H.codigo_tipo_movimiento = T.codigo_movimiento
+AND H.id_usuario_ultima_modificacion = U.id_usuario
+ORDER BY H.fecha_movimiento DESC;
