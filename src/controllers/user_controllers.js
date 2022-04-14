@@ -42,8 +42,6 @@ controller.user_bill = async (req, res) => {
         queryOk = false;
     }
 
-    console.log(billDetails); 
-
     const data = {
         id_factura: billDetails[0][0].id_factura,
         id_orden: billDetails[0][0].id_orden,
