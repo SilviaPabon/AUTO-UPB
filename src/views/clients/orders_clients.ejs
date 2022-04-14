@@ -33,7 +33,10 @@
                         <% for(var i=0; i < data.length; i++) { %>
                             <tr>
                                 <td class="table-row--buttons">
-                                    <a aria-label="Reportar recibido de la órden de compra número <%= data[i].id_orden %>" href="#" class="btn btn--primary">Reportar recibido</a>
+                                    <% if(data[i].estado_compra == 'En tránsito'){%>
+                                        <a role="button" id="recieved" aria-label="Reportar recibido de la órden de compra número <%= data[i].id_orden %>" href="/user/orderDone/<%= data[i].id_orden %>" class="btn btn--primary">Reportar recibido</a>
+                                    <%}%>
+                                    
                                     <a role="button" aria-label="Ver factura para la órden de compra número <%= data[i].id_orden %>" href="/user/bill/<%= data[i].id_orden %>" class="btn btn--primary">Ver factura</a>
                                 </td>
                                 <td>#<%= data[i].id_orden %></td>
@@ -54,4 +57,5 @@
 
         <%- include('../partials/_globalScripts.ejs') %>
     </body>
+    <script src="/scripts/recieved.js"></script>
 </html>
