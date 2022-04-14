@@ -46,16 +46,14 @@ controller.cartRemoveGet = async (req, res) => {
 
     try {
         // Ejecuta la llamada al procedimiento almacenado para eliminar el accesorio del carrito
-
-        const query = await connection.query('CALL REMOVE_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
+        await connection.query('CALL REMOVE_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
         success = true;
-        
     } catch (error) {
         success = false;
     }
 
     if (success) {
-        req.flash('success', `Operación exitosa: El accesorio fue removido del carrito`);
+        req.flash('success', 'Operación exitosa: El accesorio fue removido del carrito');
         res.redirect('/employee/cart');
     } else {
         req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
@@ -72,7 +70,7 @@ controller.user_exists = async (req, res) => {
 
     try {
         response = await connection.query('CALL GET_USER_DATA_BUY_ORDER(?)', [documento]);
-        success = true; 
+        success = true;
     } catch (error) {
         success = false;
     }
@@ -83,100 +81,106 @@ controller.user_exists = async (req, res) => {
 // ----
 // Ruta para enviar los datos del cliente y proceder con la orden
 controller.postOrder = async (req, res) => {
-
     //Variables de control
-    let userStepSuccess = false; 
-    let orderStepSuccess = false; 
+    let userStepSuccess = false;
+    let orderStepSuccess = false;
 
     //Recibimiento y organización de los datos
     const { id_usuario, name, documento, email, phone, address, password, conditions } = req.body;
 
     const user = {
         id_usuario,
-        name, 
-        documento, 
-        email, 
-        phone, 
-        address, 
-        password, 
-        conditions
-    }
+        name,
+        documento,
+        email,
+        phone,
+        address,
+        password,
+        conditions,
+    };
 
     const order = {
-        id_orden: -1
-    }
+        id_orden: -1,
+    };
 
     user.conditions = user.conditions == 'on' ? 1 : 0;
 
-    if(user.id_usuario != -1){
+    if (user.id_usuario != -1) {
         //Si el usuario existe, verifica que la contraseña sea correcta
-        const userPassword = await connection.query('CALL GET_USER_PASSWORD(?)', [user.email]); 
+        const userPassword = await connection.query('CALL GET_USER_PASSWORD(?)', [user.email]);
         const passwordsAreEqual = await helpers.matchPassword(user.password, userPassword[0][0].contraseña);
 
-        if(passwordsAreEqual){
-            userStepSuccess = true; 
-        }else{
+        if (passwordsAreEqual) {
+            userStepSuccess = true;
+        } else {
             req.flash('message', 'Error: La contraseña del usuario no coincide');
-            res.redirect('/employee/cart'); 
+            res.redirect('/employee/cart');
         }
-    }else{
+    } else {
         //Si el usuario no existe, lo crea en la base de datos y obtiene su id
 
         //Se encripta la contraseña para su almacenamiento en la base de datos
-        user.password = await helpers.encryptPassword(user.password); 
+        user.password = await helpers.encryptPassword(user.password);
 
         //Se realiza el registro
         const newUserQuery = await connection.query('CALL REGISTER_NEW_CLIENT(?, ?, ?, ?, ?, ?, ?)', [
-            user.name, 
-            user.documento, 
-            user.email, 
-            user.address, 
-            user.phone, 
-            user.conditions, 
-            user.password
-        ]); 
+            user.name,
+            user.documento,
+            user.email,
+            user.address,
+            user.phone,
+            user.conditions,
+            user.password,
+        ]);
 
         //Reemplaza el id que estaba como -1 al nuevo id del usuario creado
-        user.id_usuario = newUserQuery[0][0].id_usuario; 
+        user.id_usuario = newUserQuery[0][0].id_usuario;
 
-        userStepSuccess = true; 
+        userStepSuccess = true;
     }
-
 
     //Si el paso del cliente salió bien, se crea la orden de compra a nombre de ese cliente
-    if(userStepSuccess){
-        const newBuyOrderQuery = await connection.query('CALL REGISTER_NEW_BUY_ORDER(?, ?)', [req.user.id_usuario, user.id_usuario]); 
-        order.id_orden = newBuyOrderQuery[0][0].id_orden; 
-        orderStepSuccess = true; 
+    if (userStepSuccess) {
+        const newBuyOrderQuery = await connection.query('CALL REGISTER_NEW_BUY_ORDER(?, ?)', [
+            req.user.id_usuario,
+            user.id_usuario,
+        ]);
+        order.id_orden = newBuyOrderQuery[0][0].id_orden;
+        orderStepSuccess = true;
     }
 
-
     //Una vez se cree la orden de compra, se comienza la transacción de registro de la orden
-    if(orderStepSuccess){
-        const transactionQuery = await connection.query('CALL register_buy_order_from_cart(?, ?)', [req.user.id_usuario, order.id_orden]); 
+    if (orderStepSuccess) {
+        const transactionQuery = await connection.query('CALL register_buy_order_from_cart(?, ?)', [
+            req.user.id_usuario,
+            order.id_orden,
+        ]);
 
-        if(transactionQuery[0] == undefined){
+        if (transactionQuery[0] == undefined) {
             req.flash('success', 'Proceso exitoso: Se generó la orden de compra de manera exitosa');
-            res.redirect('/employee/cart'); 
-        }else{
-            req.flash('message', `Error: El stock del accesorio ${transactionQuery[0][0].nombre} es ${transactionQuery[0][0].stock}`);
-            res.redirect('/employee/cart'); 
+            res.redirect('/employee/cart');
+        } else {
+            req.flash(
+                'message',
+                `Error: El stock del accesorio ${transactionQuery[0][0].nombre} es ${transactionQuery[0][0].stock}`
+            );
+            res.redirect('/employee/cart');
         }
     }
 };
 
 // ---
 // Ruta para mostrar el inventario existente
-controller.inventory = async(req,res)=>{
+controller.inventory = async (req, res) => {
     const inventory = await connection.query('CALL SHOW_ACCESSORIES_INTERNAL(?)', [req.user.id_usuario]);
     const data = {
         ACCESORIOS: inventory[0],
-        isFiltered:false
-    }
+        isFiltered: false,
+    };
     res.render('employees/existing_inventory', {
-        data
+        data,
     });
-}
+};
 
 // ---
 // Ruta post para buscar un accesorio
@@ -191,12 +195,15 @@ controller.searchinventory = async (req, res) => {
 controller.searchinventoryResult = async (req, res) => {
     const { criteria } = req.params;
 
-    const inventory = await connection.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(?, ?)', [req.user.id_usuario, criteria]);
+    const inventory = await connection.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(?, ?)', [
+        req.user.id_usuario,
+        criteria,
+    ]);
 
     const data = {
         ACCESORIOS: inventory[0],
-        isFiltered : true,
-        criteria
+        isFiltered: true,
+        criteria,
     };
 
     res.render('employees/existing_inventory', { data });
@@ -209,7 +216,7 @@ controller.showorders = async (req, res) => {
         var clientOrders = await connection.query('CALL GETALL_USER_ORDERBUY(?)', [req.user.id_usuario]);
         queryOk = true;
     } catch (error) {
-            queryOk = false;
+        queryOk = false;
     }
 
     if (queryOk) {
@@ -229,7 +236,6 @@ controller.showorders = async (req, res) => {
 
 // Ruta para hacer devoluciones
 controller.refunds = (req, res) => {
-
     res.render('employees/refunds');
 };
 
@@ -241,7 +247,7 @@ controller.search_order = async (req, res) => {
 
     try {
         response = await connection.query('CALL GET_ORDERBUY_ID(?)', [order]);
-        success = true; 
+        success = true;
     } catch (error) {
         success = false;
     }
@@ -250,42 +256,75 @@ controller.search_order = async (req, res) => {
 };
 
 controller.makeRefund = async (req, res) => {
-    
-    //Variables de control
-    let success = false; 
+    //Variable de control
+    let success = false;
 
     //Recibimiento y organización de los datos
-    const { id_accesorio, cantidad_di, defectuoso, precio } = req.body;
+    /* 
+        cantidad_di = Cantidad que se quiere devolver
+        cantidad_ds = Cantidad comprada del accesorio
+    */
+    const { order, id_accesorio, cantidad_di, cantidad_ds, defectuoso, precio } = req.body;
 
     let moneyToRefund = 0;
     let addInventario = 0;
 
-    //si la cantidad a devolver y los defectuosos es igual, se devuelve dinero pero no retorna a inventario
-    if (cantidad_di == defectuoso) {
-        moneyToRefund = cantidad_di * precio;
-        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
-        success = true;
-    //si la cantidad de defectuosos es mayor a uno, se devuelve dinero y se retornan al inventario los que estén bien
-    } else if (defectuoso > 0) {
-        moneyToRefund = cantidad_di * precio;
-        addInventario += parseInt(cantidad_di - defectuoso)
-        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
-        const updateInventoryR = await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [req.user.id_usuario, id_accesorio, addInventario]);
-        success = true;
-    //si la cantidad de defectuosos es igual a 0, se devuelve el dinero y se retorna todo al inventario
-    } else if (defectuoso == 0) {
-        moneyToRefund = cantidad_di * precio;
-        addInventario += parseInt(cantidad_di);
-        const updateProfitsR = await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund])
-        const updateInventoryR = await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [req.user.id_usuario, id_accesorio, addInventario]);
+    //Se obtiene el número de devoluciones del accesoio en la orden dada
+    let currentRefunds = await connection.query('CALL OBTAIN_CURRENT_REFUNDS(?, ?, ?)', [
+        order,
+        id_accesorio,
+        cantidad_di,
+    ]);
+
+    // Si el valor es nulo re reemplaza por un cero
+    currentRefunds[0][0].currentRefunds = currentRefunds[0][0].currentRefunds == null ? 0 : currentRefunds;
+
+    // Se verifica que no se pase el número de accesorios comprados
+    if (currentRefunds[0][0].currentRefunds + cantidad_di <= cantidad_ds) {
+        if (cantidad_di == defectuoso) {
+            //si la cantidad a devolver y los defectuosos es igual, se devuelve dinero pero no retorna a inventario
+            moneyToRefund = cantidad_di * precio;
+            await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund]);
+        } else if (defectuoso > 0) {
+            //si la cantidad de defectuosos es mayor a uno, se devuelve dinero y se retornan al inventario los que estén bien
+            moneyToRefund = cantidad_di * precio;
+            addInventario += parseInt(cantidad_di - defectuoso);
+            await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund]);
+            await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [
+                req.user.id_usuario,
+                id_accesorio,
+                addInventario,
+            ]);
+        } else if (defectuoso == 0) {
+            //si la cantidad de defectuosos es igual a 0, se devuelve el dinero y se retorna todo al inventario
+            moneyToRefund = cantidad_di * precio;
+            addInventario += parseInt(cantidad_di);
+            await connection.query('CALL UPDATE_PROFITS_FROM_REFUNDS(?, ?)', [req.user.id_usuario, moneyToRefund]);
+            await connection.query('CALL UPDATE_INVENTORY_FROM_REFUNDS(?, ?, ?)', [
+                req.user.id_usuario,
+                id_accesorio,
+                addInventario,
+            ]);
+        }
+
+        // En todo caso, se agrega el registro al histórico de devoluciones
+        await connection.query('CALL REGISTER_REFUND(?, ?, ?, ?)', [
+            order,
+            id_accesorio,
+            cantidad_di,
+            req.user.id_usuario,
+        ]);
+
+        console.log('Pasó esto');
+
         success = true;
     }
 
     if (success) {
-        req.flash('success', `Operación exitosa`);
+        req.flash('success', 'Operación exitosa');
         res.redirect('/employee/refunds');
     } else {
-        req.flash('message', 'Error');
+        req.flash('message', 'No fue posible realizar la devolución del accesorio para la orden seleccionada');
         res.redirect('/employee/refunds');
     }
 };
