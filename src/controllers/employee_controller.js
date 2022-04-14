@@ -277,10 +277,11 @@ controller.makeRefund = async (req, res) => {
     ]);
 
     // Si el valor es nulo re reemplaza por un cero
-    currentRefunds[0][0].currentRefunds = currentRefunds[0][0].currentRefunds == null ? 0 : currentRefunds[0][0].currentRefunds;
+    currentRefunds[0][0].currentRefunds =
+        currentRefunds[0][0].currentRefunds == null ? 0 : currentRefunds[0][0].currentRefunds;
 
     // Se verifica que no se pase el número de accesorios comprados
-    if (currentRefunds[0][0].currentRefunds + cantidad_di <= cantidad_ds) {
+    if (currentRefunds[0][0].currentRefunds + parseInt(cantidad_di) <= cantidad_ds) {
         if (cantidad_di == defectuoso) {
             //si la cantidad a devolver y los defectuosos es igual, se devuelve dinero pero no retorna a inventario
             moneyToRefund = cantidad_di * precio;
@@ -314,8 +315,6 @@ controller.makeRefund = async (req, res) => {
             cantidad_di,
             req.user.id_usuario,
         ]);
-
-        console.log('Pasó esto');
 
         success = true;
     }
