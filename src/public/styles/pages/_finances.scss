@@ -1,0 +1,27 @@
+#finances-profit, 
+#finances-loss, 
+#finances-neutral{
+    text-align: center;
+    font-size: $lg;
+    color: black;
+    text-transform: uppercase;
+}
+
+
+#finances-profit{
+    & span{
+        color: #00c417;
+    }
+}
+
+#finances-loss{
+    & span{
+        color: red;
+    }
+}
+
+#finances-neutral{
+    & span{
+        color: black;
+    }
+}
