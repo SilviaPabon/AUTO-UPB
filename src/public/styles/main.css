@@ -935,6 +935,27 @@ label[for=input] {
   font-weight: bold;
 }
 
+#finances-profit,
+#finances-loss,
+#finances-neutral {
+  text-align: center;
+  font-size: 22px;
+  color: black;
+  text-transform: uppercase;
+}
+
+#finances-profit span {
+  color: #00c417;
+}
+
+#finances-loss span {
+  color: red;
+}
+
+#finances-neutral span {
+  color: black;
+}
+
 /*Global rulesets*/
 * {
   margin: 0;
@@ -1156,7 +1177,7 @@ main {
     width: 100%;
     text-align: center;
   }
-
+}
 /* PARA TABLETS*/
 @media (max-width: 992px) {
   /*#########*/
@@ -1180,7 +1201,7 @@ main {
     border-left: 1px transparent;
     border-right: 1px transparent;
   }
-  
+
   .form-image {
     display: block;
     grid-template-columns: 1fr;

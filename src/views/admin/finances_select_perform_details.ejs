@@ -38,32 +38,17 @@
 
                 <article class="">
                     <h2 class="title title--black">RESÚMEN GANANCIAS O PÉRDIDAS TOTALES</h1>
-                        <table class="generic-table">
-                            <thead>
-                                <tr>
-                                    <th>VALOR</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% if(resume[0][0].resumen > 0) { %>
-                                    <tr>
-                                        <td>$<%= resume[0][0].resumen %> de ganancias</td>
-                                    </tr>
-                                <% } %>
-                                
-                                <% if(resume[0][0].resumen < 0) { %>
-                                    <tr>
-                                        <td>$<%= resume[0][0].resumen %> de pérdidas</td>
-                                    </tr>
-                                <% } %>
-                                
-                                <% if(resume[0][0].resumen === 0) { %>
-                                    <tr>
-                                        <td>Estamos en 0</td>
-                                    </tr>
-                                <% } %>
-                            </tbody>
-                        </table>
+                        <% if(resume[0][0].resumen > 0) { %>
+                            <p id="finances-profit"><span>$<%= resume[0][0].resumen %></span> de ganancias</p>
+                        <% } %>
+                        
+                        <% if(resume[0][0].resumen < 0) { %>
+                            <p id="finances-loss"><span>$<%= resume[0][0].resumen %></span> de pérdidas</p>
+                        <% } %>
+                        
+                        <% if(resume[0][0].resumen === 0) { %>
+                            <p id="finances-neutral">Estamos en ceros.</p>
+                        <% } %>
                 </article>
 
             </div>

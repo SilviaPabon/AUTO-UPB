@@ -1815,3 +1815,53 @@ END //
 DELIMITER ;
 
 /*CALL VISUALIZE_RESUME_ADMIN(1);*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA VALIDAR SI SE PUEDE HACER LA DEVOLUCIÓN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS OBTAIN_CURRENT_REFUNDS; 
+
+DELIMITER //
+
+CREATE PROCEDURE OBTAIN_CURRENT_REFUNDS(
+	IN id_orden INT UNSIGNED, 
+    IN id_accesorio INT UNSIGNED, 
+    IN cantidad INT UNSIGNED
+) 
+BEGIN
+
+	SELECT SUM(cantidad_devuelta) 'currentRefunds' FROM HISTORICO_DEVOLUCIONES AS HD
+    WHERE 	HD.id_orden = id_orden AND
+			HD.id_accesorio = id_accesorio; 
+    
+END//
+
+DELIMITER ;
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA REGISTRAR UNA NUEVA DEVOLUCIÓN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS REGISTER_REFUND; 
+
+DELIMITER //
+
+CREATE PROCEDURE REGISTER_REFUND(
+	IN id_orden INT UNSIGNED, 
+    IN id_accesorio INT UNSIGNED, 
+    IN cantidad INT UNSIGNED, 
+    IN session_user_id INT UNSIGNED
+)
+BEGIN
+
+	INSERT INTO HISTORICO_DEVOLUCIONES (id_orden, id_accesorio, cantidad_devuelta, id_responsable_devolucion) 
+    VALUES (id_orden, id_accesorio, cantidad, session_user_id); 
+
+END //
+
+DELIMITER ;
