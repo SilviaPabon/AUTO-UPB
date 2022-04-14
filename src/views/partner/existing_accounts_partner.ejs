@@ -45,11 +45,11 @@
                         <% if(data.users[0].length != 0) {%>
                             <% for(var i=0; i < data.users[0].length; i++) { %>
                                 <tr>
-                                    <th><%= data.users[0][i].identificacion %></th>
-                                    <th><%= data.users[0][i].nombre %></th>
-                                    <th><%= data.users[0][i].correo_electronico %></th>
-                                    <th><%= data.users[0][i].direccion %></th>
-                                    <th><%= data.users[0][i].telefono %></th>
+                                    <td data-label="Identificación"><%= data.users[0][i].identificacion %></td>
+                                    <td data-label="Nombre"><%= data.users[0][i].nombre %></td>
+                                    <td data-label="Correo"><%= data.users[0][i].correo_electronico %></td>
+                                    <td data-label="Dirección"><%= data.users[0][i].direccion %></td>
+                                    <td data-label="Teléfono"><%= data.users[0][i].telefono %></td>
                                 </tr>
                             <% } %>
                         <% } %>

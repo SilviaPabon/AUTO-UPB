@@ -30,7 +30,7 @@
                 <tbody>
                     <% for(var i=0; i < cart.length; i++) { %>
                     <tr>
-                        <th>
+                        <td data-label="Acciones">
                             <a
                                 href="cart/remove/<%= cart[i].id_accesorio %>"
                                 class="btn btn--alert btn--no-radius"
@@ -38,11 +38,11 @@
                                 aria-label="Eliminar <%= cart[i].nombre %> del carrito de compras"
                                 >X</a
                             >
-                        </th>
-                        <th><%= cart[i].nombre %></th>
-                        <th><%= cart[i].precio_base %></th>
-                        <th><%= cart[i].descuento %></th>
-                        <th>
+                        </td>
+                        <td data-label="Nombre"><%= cart[i].nombre %></td>
+                        <td data-label="Precio base"><%= cart[i].precio_base %></td>
+                        <td data-label="Descuento"><%= cart[i].descuento %></td>
+                        <td data-label="Cantidad">
                             <div class="card_cant">
                                 <button class="btn--amount btn--amount-a" aria-label="Disminuir en uno la cantidad actual del accesorio <%= cart[i].nombre %>">-</button>
                                 
@@ -59,8 +59,8 @@
                                 />
                                 <button class="btn--amount btn--amount-b" aria-label="Aumentar en uno la cantidad actual del accesorio <%= cart[i].nombre %>">+</button>
                             </div>
-                        </th>
-                        <th><%= cart[i].precio_final %></th>
+                        </td>
+                        <td data-label="Precio final"><%= cart[i].precio_final %></td>
                     </tr>
                     <% } %>
                 </tbody>
@@ -70,23 +70,23 @@
                 <section class="shopping_resume">
                     <h1 class="title title--black">RESÚMEN</h1>
 
-                    <table class="generic-table">
+                    <table class="generic-table horizontal-table">
                         <tbody>
                             <tr>
-                                <th>Subtotal</th>
-                                <th><%= resume.subtotal %></th>
+                                <td>Subtotal</td>
+                                <td><%= resume.subtotal %></td>
                             </tr>
                             <tr>
-                                <th>Impuestos</th>
-                                <th><%= resume.impuestos %></th>
+                                <td>Impuestos</td>
+                                <td><%= resume.impuestos %></td>
                             </tr>
                             <tr>
-                                <th>Descuentos</th>
-                                <th><%= resume.descuentos %></th>
+                                <td>Descuentos</td>
+                                <td><%= resume.descuentos %></td>
                             </tr>
                             <tr>
-                                <th>Total</th>
-                                <th><%= resume.total %></th>
+                                <td>Total</td>
+                                <td><%= resume.total %></td>
                             </tr>
                         </tbody>
                     </table>
