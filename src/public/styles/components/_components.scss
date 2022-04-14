@@ -3,7 +3,7 @@
 /*Títulos*/
 .title {
     color: $total_black;
-    margin: 12px 0 16px 0;
+    margin: 16px 0 16px 0;
     font-size: $x_lg;
     font-weight: bolder;
 
@@ -14,6 +14,11 @@
     &--light {
         color: $total_white;
     }
+
+    &--thin{
+        font-weight: lighter;
+    }
+  
 }
 
 .card__title {

@@ -17,7 +17,7 @@
 /*Títulos*/
 .title {
   color: #000;
-  margin: 12px 0 16px 0;
+  margin: 16px 0 16px 0;
   font-size: 32px;
   font-weight: bolder;
 }
@@ -26,6 +26,9 @@
 }
 .title--light {
   color: #fff;
+}
+.title--thin {
+  font-weight: lighter;
 }
 
 .card__title {
@@ -873,6 +876,65 @@ label[for=input] {
   background-image: url(/images/contact_us.jpg);
 }
 
+.bill {
+  /*Estilos generales del contenedor de la factura*/
+  width: 90%;
+  max-width: 1000px;
+  min-width: 240px;
+  margin: 0 auto;
+  border: 1px solid black;
+  background-color: white;
+  /*Header de la factura*/
+  /*Contenido de la factura*/
+}
+.bill__title {
+  width: 100%;
+  background-color: #36c9b8;
+  padding: 12px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+.bill__header {
+  text-align: center;
+  margin: 12px 0;
+}
+.bill__header__company {
+  color: black;
+  font-weight: bold;
+  font-size: 32px;
+  margin: 8px 0;
+}
+.bill__header__content {
+  color: black;
+}
+.bill__header__content span {
+  color: black;
+  font-weight: bold;
+}
+.bill__body {
+  padding: 16px 32px;
+}
+.bill__body__extra-row {
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  padding: 8px 16px;
+  margin: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+}
+.bill__body__extra-row__content {
+  padding: 8px;
+  color: black;
+}
+.bill__body__extra-row__content span {
+  color: black;
+  font-weight: bold;
+}
+
 /*Global rulesets*/
 * {
   margin: 0;
@@ -1094,7 +1156,7 @@ main {
     width: 100%;
     text-align: center;
   }
-}
+
 /* PARA TABLETS*/
 @media (max-width: 992px) {
   /*#########*/
@@ -1118,7 +1180,7 @@ main {
     border-left: 1px transparent;
     border-right: 1px transparent;
   }
-
+  
   .form-image {
     display: block;
     grid-template-columns: 1fr;

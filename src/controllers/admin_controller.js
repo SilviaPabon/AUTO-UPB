@@ -274,5 +274,20 @@ controller.historicalPricesProd = async (req, res) => {
     res.render('admin/finances_historic_prices', { accesorios: callAccessories });
 };
 
+controller.finantial_perfom_details = async (req, res) => {
+    const callResume = await pool.query('CALL VISUALIZE_RESUME_ADMIN(?)', [req.user.id_usuario]);
+    res.render('admin/finances_select_perform_details', { resume: callResume });
+};
+
+controller.finantial_profits = async (req, res) => {
+    const callProfits = await pool.query('CALL VISUALIZE_PROFITS_ADMIN(?)', [req.user.id_usuario]);
+    res.render('admin/finances_profits', { profits: callProfits });
+};
+
+controller.finantial_outgoings = async (req, res) => {
+    const callOutgoings = await pool.query('CALL VISUALIZE_OUTGOINGS_ADMIN(?)', [req.user.id_usuario]);
+    res.render('admin/finances_outgoings', { outgoings: callOutgoings });
+};
+
 module.exports = controller; 
 
