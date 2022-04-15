@@ -47,7 +47,28 @@
                 <div class="form-group" id="status-group">
                     <label class="label--block" for="status">Estado actual:</label>
                     <div class="form-group__input">
-                        <%- include('../partials/_statusAccesory.ejs') %>
+                        <% if(accesorios[0][0].is_active == 1) { %>
+                            <input
+                                class="input input--full-width"
+                                type="text"
+                                id="status"
+                                name="status"
+                                placeholder="Ingresa el estado del accesorio"
+                                value="Activo"
+                                readonly
+                            />
+                        <% } %>
+                        <% if(accesorios[0][0].is_active == 2) { %>
+                            <input
+                                class="input input--full-width"
+                                type="text"
+                                id="status"
+                                name="status"
+                                placeholder="Ingresa el estado del accesorio"
+                                value="Inactivo"
+                                readonly
+                            />
+                        <% } %>
                     </div>
                 </div>
 

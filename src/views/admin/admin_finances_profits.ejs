@@ -27,10 +27,10 @@
                         <tbody>
                             <% for(var i=0; i < profits[0].length; i++) { %>
                                 <tr>
-                                    <td><%= profits[0][i].fecha_movimiento %></td>
-                                    <td>$<%= profits[0][i].valor %></td>
-                                    <td><%= profits[0][i].tipo_movimiento %></td>
-                                    <td><%= profits[0][i].usuario_responsable %></td>
+                                    <td data-label="Fecha"><%= profits[0][i].fecha_movimiento %></td>
+                                    <td data-label="Valor">$<%= profits[0][i].valor %></td>
+                                    <td data-label="Descripción"><%= profits[0][i].tipo_movimiento %></td>
+                                    <td data-label="Responsable"><%= profits[0][i].usuario_responsable %></td>
                                 </tr>
                             <% } %>
                         </tbody>
