@@ -733,7 +733,7 @@ CREATE PROCEDURE SHOW_ACCESSORIES_ADMIN(
 )
 BEGIN 
 
-	SELECT id_accesorio, nombre, precio_final, ruta_imagen
+	SELECT id_accesorio, nombre, is_active, precio_final, ruta_imagen
     FROM ACCESORIOS; 
     
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
@@ -772,6 +772,23 @@ END //
 CALL SEARCH_ACCESSORIES_FROM_CRITERIA_INTERNAL(1, 'C');
 */
 
+DROP PROCEDURE IF EXISTS SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN; 
+
+DELIMITER //
+
+CREATE PROCEDURE SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN(	
+	IN session_user_id INT UNSIGNED,
+	IN criteria VARCHAR(255)
+)
+BEGIN 
+	SELECT   id_accesorio, nombre, is_active, precio_final, ruta_imagen FROM ACCESORIOS
+    WHERE 	UPPER(ACCESORIOS.nombre) LIKE (CONCAT(UPPER(criteria), '%')); 
+
+	/*REGISTRO DEL LOG DE LA CONSULTA*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 4);
+END //
+
 /* 
 #######################################################
 PROCEDIMIENTOS PARA MOSTRAR LOS 12 ACCESORIOS CON MÁS DESCUENTO
@@ -782,11 +799,10 @@ DROP PROCEDURE IF EXISTS SHOW_TOP_DISCOUNT;
 DELIMITER //
 
 CREATE PROCEDURE SHOW_TOP_DISCOUNT(
-	IN session_user_id INT UNSIGNED
 )
 BEGIN 
 
-	SELECT id_accesorio, nombre, precio_base, descuento, precio_final, ruta_imagen
+	SELECT id_accesorio, nombre, stock, precio_base, descuento, precio_final, ruta_imagen
     FROM ACCESORIOS 
     WHERE 
 		is_active = 1 AND 
@@ -815,7 +831,7 @@ CREATE PROCEDURE SHOW_TOP_SALES(
 )
 BEGIN 
 
-	SELECT id_accesorio, nombre, precio_final, unidades_vendidas, ruta_imagen
+	SELECT id_accesorio, nombre, stock, precio_final, unidades_vendidas, ruta_imagen
     FROM ACCESORIOS 
     WHERE 
 		is_active = 1 AND
@@ -959,6 +975,39 @@ CALL REGISTER_NEW_BUY_ORDER(
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA VER EL HISTÓRICO DE PRECIOS DE UN PRODUCTO
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS HISTORICAL_ACCESSORY_PRICES; 
+
+DELIMITER //
+
+CREATE PROCEDURE HISTORICAL_ACCESSORY_PRICES(
+	IN session_user_id INT UNSIGNED,
+    IN id_accesorio INT UNSIGNED 
+)
+BEGIN 
+    
+	SELECT nombre_accesorio, precio_asignado, fecha_cambio, u_responsable
+        FROM HISTORIAL_PRICES_VIEW AS H 
+        WHERE
+        H.id_accesorio = id_accesorio; 
+	
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 9);
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL HISTORICAL_ACCESSORY_PRICES(1, 56); 
+SELECT * FROM LOGS;
+*/
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA ASOCIAR LOS ACCESORIOS CON LA ORDEN DE COMPRA
 Se usa una transacción para asegurarse de que todos los accesorios son agregados
 correctamente
@@ -1065,6 +1114,9 @@ BEGIN
         DELETE FROM CARRITO_COMPRAS 
         WHERE CARRITO_COMPRAS.id_usuario = session_user_id; 
         
+        -- Crea la factura
+        CALL facture_add(session_user_id, buy_order_id); 
+        
     COMMIT; 
     
     SET autocommit = 1; 
@@ -1150,6 +1202,111 @@ CALL REGISTER_NEW_BUY_ORDER(
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA MOSTRAR ORDENES DE COMPRA POR ID CLIENTE
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GET_USER_ORDERBUY_FROM_ID;
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_ORDERBUY_FROM_ID(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	
+    /*Tomar el nombre del cliente*/
+    SELECT nombre INTO @user_name FROM USUARIOS WHERE
+		USUARIOS.id_usuario = session_user_id; 
+    
+    /*Tomar los datos de la orden*/
+    SELECT id_orden, estado_compra, fecha_compra, `Total Precios Base`, `Descuentos aplicados`, `IVA aplicado`, Total
+	FROM ORDER_SUMMARY_PRETTY AS OSP
+	WHERE OSP.`Nombre comprador` = @user_name; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ; 
+
+/*
+CALL GET_USER_ORDERBUY_FROM_ID(
+	1
+); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA MOSTRAR ORDENES DE COMPRA DE TODOS LOS CLIENTES
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GETALL_USER_ORDERBUY;
+DELIMITER //
+
+CREATE PROCEDURE GETALL_USER_ORDERBUY(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	
+    SELECT id_orden, `Nombre comprador`, `Nombre vendedor`, fecha_compra, estado_compra, `Total Precios Base`, `Descuentos aplicados`, `IVA aplicado`, `Total`
+	FROM order_summary_pretty AS OSP; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ;
+BEGIN
+	
+    SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
+	FROM ORDER_SUMMARY AS OS; 
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ; 
+
+/*
+CALL GETALL_USER_ORDERBUY(
+	1
+);
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA MOSTRAR ORDENES DE COMPRA A PARTIR DEL NOMBRE
+#######################################################
+*/
+DROP PROCEDURE IF EXISTS GET_USER_ORDERBUY_FROM_NAME;
+DELIMITER //
+
+CREATE PROCEDURE GET_USER_ORDERBUY_FROM_NAME(
+	IN nombre VARCHAR(255),
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	
+    SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
+	FROM ORDER_SUMMARY AS OS, USUARIOS
+	WHERE USUARIOS.id_usuario = OS.id_cliente 
+    AND USUARIOS.nombre = nombre;
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 3);
+    
+END //
+
+DELIMITER ;
+
+/* 
+CALL GET_USER_ORDERBUY_FROM_NAME('Pedro Andrés Chaparro', 1);  
+ */
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE FACTURAS
 #######################################################
 */
@@ -1185,6 +1342,10 @@ BEGIN
         session_user_id, 
         session_user_id
 	);
+    
+    /*Genera el log*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 1, 7);
  
 END//
 
@@ -1192,6 +1353,37 @@ DELIMITER ;
 
 /*
 CALL facture_add(3, 1); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER LA INFORMACIÓN DE UNA FACTURA
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS get_bill_details_from_id; 
+DELIMITER //
+
+CREATE PROCEDURE get_bill_details_from_id(
+	IN session_user_id INT UNSIGNED, 
+    IN id_orden INT UNSIGNED
+)
+BEGIN
+
+	/*Selecciona los datos de la orden pasada como parámetro*/
+	SELECT * FROM BILL_PRETTY 
+		WHERE BILL_PRETTY.id_orden = id_orden; 
+
+	/*Genera los logs*/
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 7);
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL get_bill_details_from_id(1, 1); 
 */
 
 /* 
@@ -1256,6 +1448,33 @@ CALL MARK_MESSAGE_AS_RESOLVED(
 	1
 );  
 */
+
+/* 
+#######################################################
+PROCEDIMIENTOS PARA MOSTRAR TODOS LOS MENSAJES DEL FORMULARIO)
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS GETALL_MESSAGES;
+DELIMITER //
+
+CREATE PROCEDURE GETALL_MESSAGES(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN
+	
+    SELECT nombre_remitente, correo_remitente, texto_mensaje
+    FROM MENSAJES_INQUIETUDES
+    ORDER BY codigo_estado_mensaje;
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 2);
+    
+END //
+
+DELIMITER ; 
+
+/* CALL GETALL_MESSAGES(1); */
 
 /* 
 #######################################################
@@ -1422,3 +1641,227 @@ DELIMITER ;
 /*
 CALL GET_ACCESSORY_CART(1); 
 */
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER INFO DE ORDEN DE COMPRA SEGÚN SU ID
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS GET_ORDERBUY_ID; 
+
+DELIMITER //
+
+CREATE PROCEDURE GET_ORDERBUY_ID(
+	IN id_orden INT UNSIGNED
+)
+BEGIN 
+	
+    SELECT OA.id_accesorio, nombre, cantidad_venta, DATE_FORMAT(fecha_compra,"%e/%c/%Y %H:%i") AS fecha_compra, OA.precio_final 
+    FROM ordenes_compra_has_accesorios AS OA, ordenes_compra AS OC, accesorios AS A
+    WHERE OA.id_orden = id_orden
+    AND OC.id_orden = id_orden
+    AND A.id_accesorio = OA.id_accesorio
+    AND OC.codigo_estado_compra = 2; 
+
+END //
+
+DELIMITER ; 
+
+/*
+CALL GET_ORDERBUY_ID(3); 
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA ACTUALIZAR EL INVENTARIO LUEGO DE UNA DEVOLUCIÓN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS UPDATE_INVENTORY_FROM_REFUNDS; 
+DELIMITER //
+
+CREATE PROCEDURE UPDATE_INVENTORY_FROM_REFUNDS(
+	IN session_user_id INT UNSIGNED, 
+	IN id_accesorio INT UNSIGNED, 
+    IN new_units INT UNSIGNED
+)
+BEGIN 
+
+    UPDATE ACCESORIOS SET 
+		ACCESORIOS.stock = ACCESORIOS.stock + new_units, 
+        ACCESORIOS.id_usuario_ultima_modificacion = session_user_id
+	WHERE ACCESORIOS.id_accesorio = id_accesorio; 
+
+END //
+
+DELIMITER ;
+
+/* 
+#######################################################
+PROCEDIMIENTOS DE MOVIMIENTOS/RENDIMIENTOS FINANCIEROS
+#######################################################
+*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA ACTUALIZAR LAS GANANCIAS LUEGO DE UNA DEVOLUCIÓN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS UPDATE_PROFITS_FROM_REFUNDS; 
+DELIMITER //
+
+CREATE PROCEDURE UPDATE_PROFITS_FROM_REFUNDS(
+	IN session_user_id INT UNSIGNED,  
+    IN update_profits INT UNSIGNED
+)
+BEGIN 
+
+    INSERT INTO HISTORICO_INGRESOS_GASTOS SET 
+        HISTORICO_INGRESOS_GASTOS.codigo_tipo_movimiento = 3, 
+        HISTORICO_INGRESOS_GASTOS.valor_movimiento = update_profits, 
+	    HISTORICO_INGRESOS_GASTOS.id_usuario_creacion = session_user_id, 
+    HISTORICO_INGRESOS_GASTOS.id_usuario_ultima_modificacion = session_user_id;
+    
+END //
+
+DELIMITER ;
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA VISUALIZAR LOS INGRESOS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS VISUALIZE_PROFITS_ADMIN; 
+DELIMITER //
+
+CREATE PROCEDURE VISUALIZE_PROFITS_ADMIN(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+    SELECT fecha_movimiento, tipo_movimiento, valor, usuario_responsable
+		FROM PROFITS_OUTGOINGS_VIEW
+		WHERE codigo_movimiento = 1;
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 8);
+    
+END //
+
+DELIMITER ;
+
+/*CALL VISUALIZE_PROFITS_ADMIN(1);*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA VISUALIZAR LOS GASTOS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS VISUALIZE_OUTGOINGS_ADMIN; 
+DELIMITER //
+
+CREATE PROCEDURE VISUALIZE_OUTGOINGS_ADMIN(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+
+    SELECT fecha_movimiento, tipo_movimiento, valor, usuario_responsable
+		FROM PROFITS_OUTGOINGS_VIEW
+		WHERE (codigo_movimiento = 2 OR codigo_movimiento = 3);
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 8);
+    
+END //
+
+DELIMITER ;
+
+/*CALL VISUALIZE_OUTGOINGS_ADMIN(1);*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA VISUALIZAR LAS ENTRADAS O GASTOS
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS VISUALIZE_RESUME_ADMIN; 
+DELIMITER //
+
+CREATE PROCEDURE VISUALIZE_RESUME_ADMIN(
+	IN session_user_id INT UNSIGNED
+)
+BEGIN 
+
+    -- Se suma el valor de las entradas
+	SET @entradas = (SELECT SUM(valor)
+					FROM PROFITS_OUTGOINGS_VIEW
+					WHERE codigo_movimiento = 1);
+    -- Se suma el valor de las pérdidas
+    SET @gastos =  (SELECT SUM(valor)
+					FROM PROFITS_OUTGOINGS_VIEW
+					WHERE codigo_movimiento = 2 OR codigo_movimiento = 3);
+                    
+	SELECT ROUND((@entradas - @gastos), 2) AS resumen FROM PROFITS_OUTGOINGS_VIEW
+    GROUP BY resumen;
+    
+    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
+    VALUES (session_user_id, 2, 8);
+    
+END //
+
+DELIMITER ;
+
+/*CALL VISUALIZE_RESUME_ADMIN(1);*/
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA VALIDAR SI SE PUEDE HACER LA DEVOLUCIÓN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS OBTAIN_CURRENT_REFUNDS; 
+
+DELIMITER //
+
+CREATE PROCEDURE OBTAIN_CURRENT_REFUNDS(
+	IN id_orden INT UNSIGNED, 
+    IN id_accesorio INT UNSIGNED, 
+    IN cantidad INT UNSIGNED
+) 
+BEGIN
+
+	SELECT SUM(cantidad_devuelta) 'currentRefunds' FROM HISTORICO_DEVOLUCIONES AS HD
+    WHERE 	HD.id_orden = id_orden AND
+			HD.id_accesorio = id_accesorio; 
+    
+END//
+
+DELIMITER ;
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA REGISTRAR UNA NUEVA DEVOLUCIÓN
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS REGISTER_REFUND; 
+
+DELIMITER //
+
+CREATE PROCEDURE REGISTER_REFUND(
+	IN id_orden INT UNSIGNED, 
+    IN id_accesorio INT UNSIGNED, 
+    IN cantidad INT UNSIGNED, 
+    IN session_user_id INT UNSIGNED
+)
+BEGIN
+
+	INSERT INTO HISTORICO_DEVOLUCIONES (id_orden, id_accesorio, cantidad_devuelta, id_responsable_devolucion) 
+    VALUES (id_orden, id_accesorio, cantidad, session_user_id); 
+
+END //
+
+DELIMITER ;

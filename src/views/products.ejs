@@ -22,9 +22,18 @@
                     <% for(var i = 0; i < products[0].length; i++) { %>
                     
                         <article class="generic-card accessory-basic-card">
-                            <div class="accessory-basic-card__image">
-                                <img data-src="/images<%=products[0][i].ruta_imagen%>" class="lazyload" alt="<%=products[0][i].nombre %>">
-                            </div>
+
+                            <% if(products[0][i].stock > 0) { %>
+                                <div class="accessory-basic-card__image">
+                                    <img data-src="/images<%=products[0][i].ruta_imagen%>" class="lazyload" alt="<%=products[0][i].nombre %>">
+                                </div>
+                                <% } else { %>
+                                <div class="accessory-basic-card__image product-card__image--sold-out">
+                                    <p class="sold-out">Accesorio agotado</p>
+                                    <img data-src="/images<%=products[0][i].ruta_imagen%>" class="lazyload" alt="<%=products[0][i].nombre %>">
+                                </div>
+                            <% } %>
+
                             <div class="accessory-basic-card__body">
                                 <h3 class="card__title"><%=products[0][i].nombre %></h2>
                                 <p class="price"><span>Precio: </span><%=products[0][i].precio_final %></p>

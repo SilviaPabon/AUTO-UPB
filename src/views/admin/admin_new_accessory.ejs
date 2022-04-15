@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>AGREGAR NUEVO ACCESORIO</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            
+            <form action="/admin/inventory/add_new" method="post" class="input-form" id="signup-form" data-form="inventory_add">
+                <%- include('../partials/_messages.ejs') %>
+
+                <h1 class="title title--center">AGREGAR NUEVO PRODUCTO</h1>
+
+                <div class="form-group" id="name-group">
+                    <label class="label--block" for="name">Nombre del producto:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Ingresa el nombre del nuevo accesorio"
+                            data-form="inventory_add"
+                        />
+                        <p class="form-group__error-message">El nombre del producto debe tener mínimo 3 caracteres y un límite de máximo 64 caracteres</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="description-group">
+                    <label class="label--block" for="description">Descripción del producto:</label>
+                    <div class="form-group__input">
+                        <textarea
+                            class="input input--textarea input--full-width"
+                            name="description"
+                            id="description"
+                            placeholder="Ingresa los detalles del nuevo accesorio."
+                            wrap="soft"
+                            data-form="inventory_add"
+                        ></textarea>
+                        <p class="form-group__error-message">La descripción tiene un límite de mínimo 10 caracteres y máximo 324 caracteres</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="buyprice-group">
+                    <label class="label--block" for="buyprice">Precio de compra a proveedores:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="buyprice"
+                            name="buyprice"
+                            placeholder="Precio de compra a proveedores"
+                            data-form="inventory_add"
+                        />
+                        <p class="form-group__error-message">El precio de venta sólo puede tener números y debe tener de 2 a 12 números.</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="sellprice-group">
+                    <label class="label--block" for="sellprice">Precio de venta del accesorio:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="sellprice"
+                            name="sellprice"
+                            placeholder="Precio de venta a clientes"
+                            data-form="inventory_add"
+                        />
+                        <p class="form-group__error-message">El precio de venta sólo puede tener números y debe tener de 2 a 12 números.</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="discount-group">
+                    <label class="label--block" for="discount">Descuento del accesorio: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="discount"
+                            name="discount"
+                            placeholder="Descuento del accesorio"
+                            data-form="inventory_add"
+                        />
+                        <p class="form-group__error-message">El descuento sólo puede tener números y debe tener de 1 a 3 números.</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="inventory-group">
+                    <label class="label--block" for="inventory">Inventario del accesorio: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="inventory"
+                            name="inventory"
+                            placeholder="Inventario inicial del accesorio"
+                            data-form="inventory_add"
+                        />
+                        <p class="form-group__error-message">El inventario sólo puede tener números y debe tener de 1 a 5 números.</p>
+                    </div>
+                </div>
+
+                <p class="form__error-message">
+                    Por favor, rellene el formulario correctamente antes de realizar el envío.
+                </p>
+
+                <button id="btn--prevent" type="submit" disabled aria-hidden="true"></button>
+                <input
+                    type="submit"
+                    value="AGREGAR ACCESORIO"
+                    class="btn btn--submit btn--primary btn--block btn--no-radius"
+                />
+            </form>
+        </main>
+
+        <script src="/scripts/validations/validate_global.min.js"></script>
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

@@ -24,11 +24,12 @@ GROUP BY oca.id_orden;
 
 /*VISTA PARA MOSTAR LAS ÓRDENES DE COMPRA DE MANERA "FÁCIL DE ENTENDER"*/
 CREATE OR REPLACE VIEW ORDER_SUMMARY_PRETTY AS
-SELECT oc.id_orden, u1.nombre 'Nombre comprador', u2.nombre 'Nombre vendedor', oc.fecha_compra, oc.codigo_estado_compra, SUM(oca.precio_base) 'Total Precios Base', SUM(oca.descuento_venta) 'Descuentos aplicados', SUM(oca.impuestos_venta) 'IVA aplicado' ,SUM(oca.precio_final) 'Total'
-FROM (ORDENES_COMPRA AS oc, ORDENES_COMPRA_HAS_ACCESORIOS AS oca)
+SELECT oc.id_orden, u1.nombre 'Nombre comprador', u2.nombre 'Nombre vendedor', DATE_FORMAT(oc.fecha_compra,"%e/%c/%Y %H:%i") 'fecha_compra', tec.estado_compra, SUM(oca.precio_base) 'Total Precios Base', SUM(oca.descuento_venta) 'Descuentos aplicados', SUM(oca.impuestos_venta) 'IVA aplicado' ,SUM(oca.precio_final) 'Total'
+FROM (ORDENES_COMPRA AS oc, ORDENES_COMPRA_HAS_ACCESORIOS AS oca, TIPO_ESTADO_COMPRA AS tec)
 LEFT JOIN USUARIOS AS u1 ON u1.id_usuario = oc.id_cliente
 LEFT JOIN USUARIOS AS u2 ON u2.id_usuario = oc.id_vendedor
-WHERE oc.id_orden = oca.id_orden 
+WHERE 	oc.id_orden = oca.id_orden AND
+		oc.codigo_estado_compra = tec.codigo_estado_compra
 GROUP BY oca.id_orden; 
 
 /*VISTA PARA VER LOS ACCESORIOS DE LAS ÓRDENES DE COMPRA DE MANERA "FÁCIL DE ENTENDER"*/
@@ -36,6 +37,17 @@ CREATE VIEW BILL_DETAILS_PRETTY AS
 SELECT oca.id_orden, a.nombre 'nombre_accesorio', oca.cantidad_venta 'cantidad_comprada', oca.precio_base, oca.descuento_venta 'descuento_aplicado', oca.impuestos_venta 'impuestos_aplicados', oca.precio_final
 FROM ORDENES_COMPRA_HAS_ACCESORIOS as oca, ACCESORIOS as a
 WHERE oca.id_accesorio = a.id_accesorio; 
+
+/*VISTA PARA MOSTRAR LOS DATOS DE LA FACTURA DE MANERA "FÁCIL DE ENTENDER" */
+CREATE OR REPLACE VIEW BILL_PRETTY AS
+SELECT HF.id_factura, HF.id_orden, DATE_FORMAT(oc.fecha_compra,"%e/%c/%Y %H:%i") 'fecha_compra', HF.productos, u1.nombre 'Nombre vendedor', u2.nombre 'Nombre cliente', u2.identificacion 'Cédula cliente', OSP.`Total Precios Base`, OSP.`Descuentos aplicados`, OSP.`IVA aplicado`, OSP.`Total`
+FROM (HISTORICO_FACTURAS as HF, ORDENES_COMPRA as OC, ORDER_SUMMARY_PRETTY AS OSP)
+LEFT JOIN USUARIOS AS u1 ON u1.id_usuario = OC.id_vendedor 
+LEFT JOIN USUARIOS AS u2 ON u2.id_usuario = OC.id_cliente
+WHERE 	OC.id_orden = HF.id_orden AND
+		OC.id_orden = OSP.id_orden
+GROUP BY HF.id_factura; 
+
 
 /*VISTA PARA MOSTRAR LOS LOGS DE MANERA "FÁCIL DE ENTENDER"*/
 DROP VIEW IF EXISTS LOGS_PRETTY;
@@ -52,3 +64,22 @@ CREATE VIEW CART_PRETTY AS
 SELECT cart.id_usuario, cart.id_accesorio, a.nombre, a.stock, a.precio_base, a.descuento, a.precio_final, a.ruta_imagen, cart.cantidad_accesorio
 FROM CARRITO_COMPRAS AS cart, ACCESORIOS as a
 WHERE cart.id_accesorio = a.id_accesorio; 
+
+/*VISTA PARA MOSTRAR HISTÓRICO DE PRECIOS*/
+DROP VIEW IF EXISTS HISTORIAL_PRICES_VIEW;
+CREATE VIEW HISTORIAL_PRICES_VIEW AS
+SELECT A.NOMBRE AS nombre_accesorio, precio_asignado, DATE_FORMAT(FECHA_CAMBIO,"%e/%c/%Y %H:%i") AS fecha_cambio, H.id_accesorio AS id_accesorio, U.NOMBRE AS u_responsable
+FROM ACCESORIOS AS A, HISTORICO_CAMBIO_PRECIOS AS H, USUARIOS AS U
+WHERE A.id_accesorio = H.id_accesorio
+AND H.id_usuario_responsable = U.id_usuario
+ORDER BY fecha_cambio DESC;
+
+/*VISTA PARA MOSTRAR RESUMEN DE INGRESOS Y GASTOS*/
+DROP VIEW IF EXISTS PROFITS_OUTGOINGS_VIEW;
+CREATE VIEW PROFITS_OUTGOINGS_VIEW AS
+SELECT  DATE_FORMAT(H.fecha_movimiento,"%e/%c/%Y %H:%i") AS fecha_movimiento, T.codigo_movimiento, T.movimiento AS tipo_movimiento, H.valor_movimiento AS valor,
+	U.nombre AS usuario_responsable
+FROM HISTORICO_INGRESOS_GASTOS AS H, TIPOS_MOVIMIENTO_FINANCIERO AS T, USUARIOS AS U
+WHERE H.codigo_tipo_movimiento = T.codigo_movimiento
+AND H.id_usuario_ultima_modificacion = U.id_usuario
+ORDER BY H.fecha_movimiento DESC;

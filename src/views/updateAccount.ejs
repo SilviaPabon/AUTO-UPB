@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('partials/_globalHeaders.ejs') %>
+        <title>ACTUALIZAR DATOS</title>
+    </head>
+    <body>
+        <%- include('partials/_navbar.ejs') %>
+
+        <main>
+
+            <%- include('partials/_messages.ejs') %>
+
+            <form action="/update" method="post" class="input-form" id="update-form" data-form="account_update">
+
+                <h1 class="title title--center">ACTUALIZAR DATOS</h1>
+
+                <div class="form-group" id="name-group">
+                    <label class="label--block" for="name">Nombre:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="name"
+                            name="name"
+                            value="<%=userd[0][0].nombre %>"
+                            readonly
+                        />
+                        <p class="form-group__error-message">El nombre o razón social sólo puede contener letras.</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="documento-group">
+                    <label class="label--block" for="documento">Número de documento o NIT:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="documento"
+                            name="documento"
+                            value="<%=userd[0][0].identificacion %>"                        
+                            readonly
+                        />
+                        <p class="form-group__error-message">El número de documento sólo puede tener números y debe tener de 6 a 14 números. En el caso del NIT, omitir el guión.</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="email-group">
+                    <label class="label--block" for="email">Correo electrónico:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="email"
+                            id="email"
+                            name="email"
+                            value="<%=userd[0][0].correo_electronico %>"
+                            data-form="account_update"
+                        />
+
+                        <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="phone-group">
+                    <label class="label--block" for="phone">Número de celular o teléfono fijo:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="phone"
+                            name="phone"
+                            min="0"
+                            value="<%=userd[0][0].telefono %>"
+                            data-form="account_update"
+                        />
+
+                        <p class="form-group__error-message">El número de celular sólo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="address-group">
+                    <label class="label--block" for="address">Dirección:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="address"
+                            name="address"
+                            value="<%=userd[0][0].direccion %>"
+                            data-form="account_update"
+                        />
+
+                        <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="password-group">
+                    <label class="label--block" for="password">Contraseña:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="********"
+                            data-form="account_update"
+                        />
+
+                        <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluir un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
+                    </div>
+                </div>
+
+                <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
+
+                <button id="btn--prevent" type="submit" disabled aria-hidden="true"></button>
+                <input type="submit" value="ACTUALIZAR MI CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
+                <a href="/deactivate" role="button" class="btn btn--secondary btn--block btn--no-radius" id="deactivate_account">DESACTIVAR CUENTA</a>
+
+            </form>
+        </main>
+
+
+        <script src="/scripts/confirm_user_account_delete.js"></script>
+        <script src="/scripts/validations/validate_global.min.js"></script>
+
+        <%- include('partials/_globalScripts.ejs') %>
+
+    </body>
+</html>

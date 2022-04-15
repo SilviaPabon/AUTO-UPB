@@ -14,7 +14,7 @@
 
             <%- include('../partials/_messages.ejs') %>
 
-            <form action="/signup" method="post" class="input-form" id="signup-form">
+            <form action="/signup" method="post" class="input-form" id="signup-form" data-form="signup_business">
 
                 <h1 class="title title--center">CREACIÓN DE CUENTA PARA EMPRESAS</h1>
 
@@ -27,8 +27,9 @@
                             id="name"
                             name="name"
                             placeholder="Razón social de la empresa"
+                            data-form="signup_business"
                         />
-                        <p class="form-group__error-message">La razón social debe tener un largo mínimo de 2 letras.</p>
+                        <p class="form-group__error-message">La razón social debe contener de 5 a 85 caracteres</p>
                     </div>
                 </div>
 
@@ -42,6 +43,7 @@
                             name="documento"
                             placeholder="NIT de la empresa"
                             min="0"
+                            data-form="signup_business"
                         />
                         <p class="form-group__error-message">El NIT debe respetar la forma XXXXXXXXX-Y (Omita los puntos e incluya el guión)</p>
                     </div>
@@ -56,6 +58,7 @@
                             id="email"
                             name="email"
                             placeholder="ejemplo@dominio.com"
+                            data-form="signup_business"
                         />
 
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
@@ -72,9 +75,10 @@
                             name="phone"
                             min="0"
                             placeholder="Número de teléfono o fijo de la empresa"
+                            data-form="signup_business"
                         />
 
-                        <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
+                        <p class="form-group__error-message">El número de celular sólo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
                     </div>
                 </div>
 
@@ -87,6 +91,7 @@
                             id="address"
                             name="address"
                             placeholder="Dirección de la empresa"
+                            data-form="signup_business"
                         />
 
                         <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
@@ -102,9 +107,10 @@
                             id="password"
                             name="password"
                             placeholder="********"
+                            data-form="signup_business"
                         />
 
-                        <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluír un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
+                        <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluir un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
                     </div>
                 </div>
 
@@ -123,6 +129,7 @@
 
                 <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
 
+                <button id="btn--prevent" type="submit" disabled aria-hidden="true"></button>
                 <input type="submit" value="CREAR CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
             
                 <p class="auth_redirect_message">¿No es una empresa? <a href="/signup">Crea una cuenta para personas naturales.</a></p>
@@ -131,7 +138,7 @@
             </form>
         </main>
 
-        <script src="/scripts/validations/signupBusiness_validaje.js"></script>
+        <script src="/scripts/validations/validate_global.min.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>

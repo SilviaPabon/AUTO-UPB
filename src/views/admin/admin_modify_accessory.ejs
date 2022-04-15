@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>MODIFICAR ACCESORIO EXISTENTE</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            
+            <form action="/admin/inventory/edit_existing/<%= accesorios[0][0].id_accesorio %>" method="post" class="input-form" id="modify-form" data-form="inventory_update">
+                <%- include('../partials/_messages.ejs') %>
+
+                <h1 class="title title--center">MODIFICAR DETALLES DE PRODUCTO EXISTENTE</h1>
+
+                <div class="form-group" id="name-group">
+                    <label class="label--block" for="name">Nombre del producto:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Ingresa el nombre del accesorio"
+                            value="<%= accesorios[0][0].nombre %>"
+                            data-form="inventory_update"
+                        />
+                        <input
+                            class="input input--full-width"
+                            type="hidden"
+                            id="originalName"
+                            name="originalName"
+                            value="<%= accesorios[0][0].nombre %>"
+                            data-form="inventory_update"
+                            readonly
+                        />
+                        <p class="form-group__error-message">
+                            Sólo se admiten entre 3 y 64 caracteres.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="status-group">
+                    <label class="label--block" for="status">Estado actual:</label>
+                    <div class="form-group__input">
+                        <% if(accesorios[0][0].is_active == 1) { %>
+                            <input
+                                class="input input--full-width"
+                                type="text"
+                                id="status"
+                                name="status"
+                                placeholder="Ingresa el estado del accesorio"
+                                value="Activo"
+                                readonly
+                            />
+                        <% } %>
+                        <% if(accesorios[0][0].is_active == 2) { %>
+                            <input
+                                class="input input--full-width"
+                                type="text"
+                                id="status"
+                                name="status"
+                                placeholder="Ingresa el estado del accesorio"
+                                value="Inactivo"
+                                readonly
+                            />
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="form-group" id="status_select-group">
+                    <label class="label--block" for="status_select">Actualizar el estado del accesorio:</label>
+                    <div class="form-group__input">
+                        <select class="input input--full-width" id="status_select" name="status_select">
+                            <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
+                            <option class="option" value="1">Activo</option>
+                            <option class="option" value="2">Inactivo</option>
+                        </select>
+                        <p class="form-group__error-message">
+                            Debe seleccionar una opción.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="description-group">
+                    <label class="label--block" for="description">Descripción del producto:</label>
+                    <div class="form-group__input">
+                        <textarea
+                            class="input input--textarea input--full-width"
+                            name="description"
+                            id="description"
+                            placeholder="Ingresa los detalles del accesorio."
+                            wrap="soft"
+                            data-form="inventory_update"
+                        ><%= accesorios[0][0].descripcion %></textarea>
+                        <p class="form-group__error-message">
+                            Sólo se admiten entre 10 y 324 caracteres.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" id="price-group">
+                    <label class="label--block" for="price">Precio del accesorio:</label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="price"
+                            name="price"
+                            placeholder="Precio base del accesorio"
+                            value="<%= accesorios[0][0].precio_base %>"
+                            data-form="inventory_update"
+                        />
+                        <p class="form-group__error-message">
+                            Sólo se admiten entre 2 y 12 números.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="form-group" id="discount-group">
+                    <label class="label--block" for="discount">Descuento: </label>
+                    <div class="form-group__input">
+                        <input
+                            class="input input--full-width"
+                            type="number"
+                            id="discount"
+                            name="discount"
+                            min="0"
+                            placeholder="Descuento"
+                            value="<%= accesorios[0][0].descuento %>"
+                            data-form="inventory_update"
+                        />
+                        <p class="form-group__error-message">
+                            Sólo se admiten entre 1 y 3 números.
+                        </p>
+                    </div>
+                </div>
+
+                <input
+                    class="input input--full-width"
+                    type="hidden"
+                    id="originalImageRoute"
+                    name="originalImageRoute"
+                    value="<%= accesorios[0][0].ruta_imagen %>"
+                    data-form="inventory_update"
+                    readonly
+                />
+
+                <p class="form__error-message">
+                    Por favor, rellene el formulario correctamente antes de realizar el envío.
+                </p>
+
+                <button id="btn--prevent" type="submit" disabled aria-hidden="true"></button>
+                <input
+                    type="submit"
+                    value="ACTUALIZAR PRODUCTO"
+                    class="btn btn--submit btn--primary btn--block btn--no-radius"
+                />
+            </form>
+        </main>
+        <script src="/scripts/validations/validate_global.min.js"></script>
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

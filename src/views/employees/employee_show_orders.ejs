@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>ÓRDENES DE COMPRA DE LOS CLIENTES</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+        <main>
+            <%- include('../partials/_messages.ejs') %>
+            <section class="section--no-top-margin">
+                <h1 class="title title--center">ÓRDENES DE COMPRA</h1>
+
+                <% if (data.length > 0) {%>
+
+                <table class="generic-table">
+                    <thead>
+                        <tr>
+                            <th>FACTURA</th>
+                            <th>ID ORDEN</th>
+                            <th>ESTADO</th>
+                            <th>COMPRADOR</th>
+                            <th>VENDEDOR</th>
+                            <th>FECHA DE COMPRA</th>
+                            <th>SUBTOTAL</th>
+                            <th>DESCUENTOS</th>
+                            <th>IMPUESTOS</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < data.length; i++) { %>
+                        <tr>
+                            <td data-label="Acciones" class="table-row--buttons">
+                                <a
+                                    role="button"
+                                    aria-label="Ver factura para la órden de compra número <%= data[i].id_orden %>"
+                                    href="/user/bill/<%= data[i].id_orden %>"
+                                    class="btn btn--primary"
+                                    >Ver factura</a
+                                >
+                            </td>
+                            <td data-label="Id">#<%= data[i].id_orden %></td>
+                            <td data-label="Estado"><%= data[i].estado_compra %></td>
+                            <td data-label="Comprador"><%= data[i]['Nombre comprador'] %></td>
+                            <% if (data[i]['Nombre vendedor'] != null ) { %>
+                                <td data-label="Vendedor"><%= data[i]['Nombre vendedor'] %></td>
+                            <% } else { %>
+                                <td data-label="Vendedor">COMPRA EN WEB</td>
+                            <% } %>
+                            <td data-label="Fecha"><%= data[i].fecha_compra %></td>
+                            <td data-label="Subtotal">$<%= data[i]['Total Precios Base'] %></td>
+                            <td data-label="Descuentos">$<%= data[i]['Descuentos aplicados'] %></td>
+                            <td data-label="Impuestos">$<%= data[i]['IVA aplicado'] %></td>
+                            <td data-label="Total">$<%= data[i].Total %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <% } %>
+            </section>
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

@@ -14,7 +14,7 @@
 
             <%- include('../partials/_messages.ejs') %>
 
-            <form action="/signup" method="post" class="input-form" id="signup-form">
+            <form action="/signup" method="post" class="input-form" id="signup-form" data-form="signup_user">
 
                 <h1 class="title title--center">CREACIÓN DE CUENTA</h1>
 
@@ -27,8 +27,9 @@
                             id="name"
                             name="name"
                             placeholder="Ingresa tu nombre completo"
+                            data-form="signup_user"
                         />
-                        <p class="form-group__error-message">El nombre solo puede contener letras.</p>
+                        <p class="form-group__error-message">El nombre sólo puede contener letras y debe contener de 5 a 65 caracteres.</p>
                     </div>
                 </div>
 
@@ -42,8 +43,9 @@
                             name="documento"
                             placeholder="Ingresa tu documento"
                             min="0"
+                            data-form="signup_user"
                         />
-                        <p class="form-group__error-message">El número de documento solo puede tener números y debe tener de 6 a 14 números.</p>
+                        <p class="form-group__error-message">El número de documento sólo puede tener números y debe tener de 6 a 14 números.</p>
                     </div>
                 </div>
 
@@ -56,6 +58,7 @@
                             id="email"
                             name="email"
                             placeholder="ejemplo@dominio.com"
+                            data-form="signup_user"
                         />
 
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
@@ -72,9 +75,10 @@
                             name="phone"
                             min="0"
                             placeholder="Ingresa tu número de celular"
+                            data-form="signup_user"
                         />
 
-                        <p class="form-group__error-message">El número de celular solo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
+                        <p class="form-group__error-message">El número de celular sólo puede contener números y debe ser de 7 dígitos en caso de teléfono fijo y 10 en caso de teléfono celular</p>
                     </div>
                 </div>
 
@@ -87,6 +91,7 @@
                             id="address"
                             name="address"
                             placeholder="Ingresa tu dirección"
+                            data-form="signup_user"
                         />
 
                         <p class="form-group__error-message">La dirección debe tener de 15 a 100 caracteres.</p>
@@ -102,9 +107,10 @@
                             id="password"
                             name="password"
                             placeholder="********"
+                            data-form="signup_user"
                         />
 
-                        <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluír un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
+                        <p class="form-group__error-message">La contraseña debe contener mínimo 8 caracteres y debe incluir un número y uno de los siguientes caracteres especiales: $ ! % * # ? & /</p>
                     </div>
                 </div>
 
@@ -123,6 +129,7 @@
 
                 <p class="form__error-message">Por favor, rellene el formulario correctamente antes de realizar el envío.</p>
 
+                <button id="btn--prevent" type="submit" disabled aria-hidden="true"></button>
                 <input type="submit" value="CREAR CUENTA" class="btn btn--submit btn--primary btn--block btn--no-radius" />
             
                 <p class="auth_redirect_message">¿No es una persona natural? <a href="/signupBusiness">Crea una cuenta para empresas.</a></p>
@@ -131,7 +138,7 @@
             </form>
         </main>
 
-        <script src="/scripts/validations/signup_validate.js"></script>
+        <script src="/scripts/validations/validate_global.min.js"></script>
         <%- include('../partials/_globalScripts.ejs') %>
 
     </body>

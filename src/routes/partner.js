@@ -1,18 +1,20 @@
-const express = require('express'); 
-const router = express.Router(); 
-const controller = require('../controllers/partner_controller'); 
-const protect = require('../libs/protect_middlewares'); 
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/partner_controller');
+const protect = require('../libs/protect_middlewares');
 
-router.get('/accounts', protect.isLoggedIn, protect.isPartner, controller.accountsPartner);  
+// Ruta pra mostrar al socio las cuentas existentes
+router.get('/accounts', protect.isLoggedIn, protect.isPartner, controller.accountsPartner);
 
-router.post('/accounts/', protect.isLoggedIn, protect.isPartner, controller.searchAccountsPartner, );
-
+// Rutas para permitir al socio buscar cuentas de usuario
+router.post('/accounts/', protect.isLoggedIn, protect.isPartner, controller.searchAccountsPartner);
 router.get('/accounts/:criteria', protect.isLoggedIn, protect.isPartner, controller.searchAccountsResultPartner);
 
-
+// Ruta para mostrar al socio el inventario
 router.get('/inventory', protect.isLoggedIn, protect.isPartner, controller.inventory);
-router.post('/inventory', protect.isLoggedIn, protect.isPartner,controller.searchinventory); 
-router.get('/inventory/:criteria',  protect.isLoggedIn, protect.isPartner,controller.searchinventoryResult);
 
+// Rutas para permitir al socio buscar accesorios en el inventario
+router.post('/inventory', protect.isLoggedIn, protect.isPartner, controller.searchinventory);
+router.get('/inventory/:criteria', protect.isLoggedIn, protect.isPartner, controller.searchinventoryResult);
 
 module.exports = router;

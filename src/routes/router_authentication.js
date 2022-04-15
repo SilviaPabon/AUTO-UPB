@@ -26,7 +26,8 @@ router.post(
     })
 );
 
-router.get('/signupBusiness', protect.isNotLoggedIn, controller.businessSignup); 
+// Ruta para el registro de empresas
+router.get('/signupBusiness', protect.isNotLoggedIn, controller.businessSignup);
 
 router.get('/logout', protect.isLoggedIn, controller.logout);
 
