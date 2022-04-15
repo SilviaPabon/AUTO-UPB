@@ -48,12 +48,12 @@
                             <tbody>
                                 <% if(data.productos.length != 0) {%> <% for(var i=0; i < data.productos.length; i++) { %>
                                 <tr>
-                                    <th><%= data.productos[i]['Accesorio'] %></th>
-                                    <th><%= data.productos[i]['Cantidad'] %></th>
-                                    <th>$<%= data.productos[i]['Precio Base'] %> COP</th>
-                                    <th>$<%= data.productos[i]['Descuento Aplicado']%> COP</th>
-                                    <th>$<%= data.productos[i]['Impuestos Aplicados']%> COP</th>
-                                    <th>$<%= data.productos[i]['Precio Final']%> COP</th>
+                                    <td data-label="Nombre"><%= data.productos[i]['Accesorio'] %></td>
+                                    <td data-label="Cantidad"><%= data.productos[i]['Cantidad'] %></td>
+                                    <td data-label="Subtotal">$<%= data.productos[i]['Precio Base'] %> COP</td>
+                                    <td data-label="Descuento">$<%= data.productos[i]['Descuento Aplicado']%> COP</td>
+                                    <td data-label="Iva">$<%= data.productos[i]['Impuestos Aplicados']%> COP</td>
+                                    <td data-label="Precio final">$<%= data.productos[i]['Precio Final']%> COP</td>
                                 </tr>
                                 <% } %> <% } %>
                             </tbody>
@@ -63,7 +63,7 @@
                     <h2 class="title title--thin">Resúmen de la compra:</h2>
     
                     <div class="bill__body__resume">
-                        <table class="generic-table">
+                        <table class="generic-table horizontal-table">
                             <tbody>
                                 <tr>
                                     <td>Total bruto:</td>
