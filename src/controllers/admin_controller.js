@@ -3,15 +3,15 @@ const pool = require('../database/connection');
 const fs = require('fs'); 
 
 controller.createAccount = (req, res) => {
-    res.render('auth/create_acc_admin');
+    res.render('auth/admin_create_account');
 };
 
 controller.inventory = (req, res) => {
-    res.render('admin/inventory_select_accessory_type');
+    res.render('admin/admin_inventory_select_dashboard');
 };
 
 controller.inventory_add_new = (req, res) => {
-    res.render('admin/new_accessory');
+    res.render('admin/admin_new_accessory');
 };
 
 controller.inventory_add_new_post = async (req, res) => {
@@ -59,13 +59,13 @@ controller.inventory_add_existing = async (req, res) => {
         ACCESORIOS: callAccessories,
         isFiltered : false,
     };
-    res.render('admin/inventory_select_existing_accessory', { data });
+    res.render('admin/admin_show_inventory', { data });
 };
 
 controller.inventory_add_existing_id = async (req, res) => {
     const { id } = req.params;
     const callAccessories = await pool.query('CALL SHOW_ACCESSORY_DETAILS(?)', [id]);
-    res.render('admin/existing_accessory', { accesorios: callAccessories });
+    res.render('admin/admin_add_inventory_to_existing', { accesorios: callAccessories });
 };
 
 controller.inventory_add_existing_id_post = async (req, res) => {
@@ -117,7 +117,7 @@ controller.search_inventory_result_get = async (req, res) => {
             criteria
         };
     
-        res.render('admin/inventory_select_existing_accessory', { data });
+        res.render('admin/admin_show_inventory', { data });
     }
     else{
         res.redirect('/admin/inventory/add_existing')
@@ -130,7 +130,7 @@ controller.search_inventory_result_get = async (req, res) => {
 controller.inventory_modify = async (req, res) => {
     const { id } = req.params;
     const callAccessories = await pool.query('CALL SHOW_ACCESSORY_DETAILS_ADMIN(?)', [id]);
-    res.render('admin/existing_accesory_modify', { accesorios: callAccessories });
+    res.render('admin/admin_modify_accessory', { accesorios: callAccessories });
 }
 
 controller.inventory_modify_post = async (req, res) => {
@@ -192,7 +192,7 @@ controller.accounts = async (req, res) => {
         isFiltered : false
     };
 
-    res.render('admin/existing_accounts', { data });
+    res.render('admin/admin_show_accounts', { data });
 };
 
 // Ruta para cuando se busca un usuario
@@ -214,7 +214,7 @@ controller.searchAccountsResult = async (req, res) => {
         criteria
     };
 
-    res.render('admin/existing_accounts', { data });
+    res.render('admin/admin_show_accounts', { data });
 };
 
 
@@ -227,7 +227,7 @@ controller.state_acc = async (req, res) => {
     const data = {
         user
     }
-    res.render('admin/existing_accounts_state', {data});   
+    res.render('admin/admin_change_account_state', {data});   
 }; 
 
 controller.state_acc_post = async (req, res) => {
@@ -256,37 +256,37 @@ controller.state_acc_post = async (req, res) => {
 
 controller.messages = async (req, res) => {
     const data = await pool.query('CALL GETALL_MESSAGES(?)', [req.user.id_usuario]);
-    res.render('admin/show_messages', {data});
+    res.render('admin/admin_show_messages', {data});
 }
 
 controller.finances = (req, res) => {
-    res.render('admin/finances_select_option');
+    res.render('admin/admin_finances_select_dashboard');
 };
 
 controller.historicalPrices = async (req, res) => {
     const callAccessories = await pool.query('CALL SHOW_ACCESSORIES_ADMIN(?)', [req.user.id_usuario]);
-    res.render('admin/finances_products', { accesorios: callAccessories });
+    res.render('admin/admin_finances_inventory', { accesorios: callAccessories });
 };
 
 controller.historicalPricesProd = async (req, res) => {
     const { id } = req.params;
     const callAccessories = await pool.query('CALL HISTORICAL_ACCESSORY_PRICES(?, ?)', [req.user.id_usuario, id]);
-    res.render('admin/finances_historic_prices', { accesorios: callAccessories });
+    res.render('admin/admin_price_history', { accesorios: callAccessories });
 };
 
 controller.finantial_perfom_details = async (req, res) => {
     const callResume = await pool.query('CALL VISUALIZE_RESUME_ADMIN(?)', [req.user.id_usuario]);
-    res.render('admin/finances_select_perform_details', { resume: callResume });
+    res.render('admin/admin_finances_select_report', { resume: callResume });
 };
 
 controller.finantial_profits = async (req, res) => {
     const callProfits = await pool.query('CALL VISUALIZE_PROFITS_ADMIN(?)', [req.user.id_usuario]);
-    res.render('admin/finances_profits', { profits: callProfits });
+    res.render('admin/admin_finances_profits', { profits: callProfits });
 };
 
 controller.finantial_outgoings = async (req, res) => {
     const callOutgoings = await pool.query('CALL VISUALIZE_OUTGOINGS_ADMIN(?)', [req.user.id_usuario]);
-    res.render('admin/finances_outgoings', { outgoings: callOutgoings });
+    res.render('admin/admin_finances_outgoings.', { outgoings: callOutgoings });
 };
 
 module.exports = controller; 

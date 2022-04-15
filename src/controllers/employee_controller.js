@@ -177,7 +177,7 @@ controller.inventory = async (req, res) => {
         ACCESORIOS: inventory[0],
         isFiltered: false,
     };
-    res.render('employees/existing_inventory', {
+    res.render('employees/employee_show_inventory', {
         data,
     });
 };
@@ -206,7 +206,7 @@ controller.searchinventoryResult = async (req, res) => {
         criteria,
     };
 
-    res.render('employees/existing_inventory', { data });
+    res.render('employees/employee_show_inventory', { data });
 };
 
 controller.showorders = async (req, res) => {
@@ -236,7 +236,7 @@ controller.showorders = async (req, res) => {
 
 // Ruta para hacer devoluciones
 controller.refunds = (req, res) => {
-    res.render('employees/refunds');
+    res.render('employees/employee_refunds');
 };
 
 controller.search_order = async (req, res) => {

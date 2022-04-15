@@ -95,7 +95,29 @@
                 <div class="form-group" id="state-group">
                     <label class="label--block" for="rol">Estado de cuenta nuevo:</label>
                     <div class="form-group__input">
-                        <%- include('../partials/_stateAccount.ejs') %>
+                        <% if(data.user[0][0].estado_cuenta == "Activo") { %>
+                            <select class="input input--full-width" id="state_select" name="state">
+                                <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
+                                <option class="option" value="2">Inactivo</option>
+                                <option class="option" value="3">Fuera de servicio</option>
+                            </select>
+                        <% } %>
+                        
+                        <% if(data.user[0][0].estado_cuenta == "Inactivo") { %>
+                            <select class="input input--full-width" id="state_select" name="state">
+                                <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
+                                <option class="option" value="1">Activo</option>
+                                <option class="option" value="3">Fuera de servicio</option>
+                            </select>
+                        <% } %>
+                        
+                        <% if(data.user[0][0].estado_cuenta == "Fuera de servicio") { %>
+                            <select class="input input--full-width" id="state_select" name="state">
+                                <option hidden disabled selected value="0"> -- Seleccione un estado -- </option>
+                                <option class="option" value="1">Activo</option>
+                                <option class="option" value="2">Inactivo</option>
+                            </select>
+                        <% } %>
                         <p class="form-group__error-message">Debe seleccionar un estado de cuenta</p>
                     </div>
                 </div>

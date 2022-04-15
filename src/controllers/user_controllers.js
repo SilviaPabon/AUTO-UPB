@@ -17,7 +17,7 @@ controller.orderClient = async (req, res) => {
         const data = clientOrders[0];
 
         if (data.length > 0) {
-            res.render('clients/orders_clients', { data });
+            res.render('clients/client_show_orders', { data });
         } else {
             req.flash('message', 'No hay órdenes de compra para mostrar');
             res.redirect('/');

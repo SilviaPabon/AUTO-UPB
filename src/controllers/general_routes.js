@@ -14,7 +14,7 @@ controller.home = async (req, res) => {
         featuredProducts,
     };
 
-    res.render('index', { data });
+    res.render('home', { data });
 };
 
 controller.accessories = async (req, res) => {
@@ -40,7 +40,7 @@ controller.accessoryDetails = async (req, res) => {
 */
 controller.userUpdate = async (req, res) => {
     const userd = await pool.query('CALL GET_USER_DATA_FROM_ID (?)', [req.user.id_usuario]);
-    res.render('userUpdate', { userd });
+    res.render('updateAccount', { userd });
 };
 controller.userUpdate_post = async (req, res) => {
     const { email, phone, address, password } = req.body;
@@ -77,7 +77,7 @@ controller.userDeactivate =  async (req, res) => {
 }; 
 
 controller.contactUs = async (req, res) => {
-    res.render('contact_us');
+    res.render('contactUs');
 };
 
 controller.contactUspost = async (req, res) => {
