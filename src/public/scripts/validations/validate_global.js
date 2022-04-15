@@ -162,7 +162,6 @@ const keys = Object.keys(fields[form.dataset.form]);
 
 // Función para validar un campo
 const validateField = (regEx, input, field) => {
-
     if (regEx.test(input.value.trim().replace(/\s\s+/g, ' '))) {
         //Si es correcto
         fields[input.dataset.form][field] = true;
@@ -203,7 +202,7 @@ const validateOption = (select, field) => {
 //Cuando cambie un input, se llama la funciónd de validación
 const validateForm = (e) => {
     if (e.target.tagName === 'SELECT') {
-        validateOption(e.target, e.target.name); 
+        validateOption(e.target, e.target.name);
     } else {
         validateField(regEx[form.dataset.form][e.target.name], e.target, e.target.name);
     }
@@ -228,7 +227,7 @@ form.addEventListener('submit', (e) => {
 
     inputs.forEach((input) => {
         input.value = input.value.trim().replace(/\s\s+/g, ' ');
-    })
+    });
 
     for (let key_index = 0; key_index < keys.length; key_index++) {
         if (fields[e.target.dataset.form][keys[key_index]] === false) {
