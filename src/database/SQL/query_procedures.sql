@@ -781,7 +781,7 @@ CREATE PROCEDURE SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN(
 	IN criteria VARCHAR(255)
 )
 BEGIN 
-	SELECT   id_accesorio, nombre, precio_final, ruta_imagen FROM ACCESORIOS
+	SELECT   id_accesorio, nombre, is_active, precio_final, ruta_imagen FROM ACCESORIOS
     WHERE 	UPPER(ACCESORIOS.nombre) LIKE (CONCAT(UPPER(criteria), '%')); 
 
 	/*REGISTRO DEL LOG DE LA CONSULTA*/
