@@ -302,7 +302,7 @@ controller.finantial_profits = async (req, res) => {
 // Controlador de la ruta para mostrar los gastos
 controller.finantial_outgoings = async (req, res) => {
     const callOutgoings = await pool.query('CALL VISUALIZE_OUTGOINGS_ADMIN(?)', [req.user.id_usuario]);
-    res.render('admin/admin_finances_outgoings.', { outgoings: callOutgoings });
+    res.render('admin/admin_finances_outgoings', { outgoings: callOutgoings });
 };
 
 module.exports = controller; 
