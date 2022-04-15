@@ -11,11 +11,10 @@ controller.cartAdd = async (req, res) => {
     try {
         // Ejecuta la llamada al procedimiento almacenado para añadir el accesorio al carrito
         const query = await connection.query('CALL ADD_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
-        
-        if(query[0][0]['@success'] == 1){
-            success = true; 
+
+        if (query[0][0]['@success'] == 1) {
+            success = true;
         }
-        
     } catch (error) {
         success = false;
     }
@@ -23,11 +22,11 @@ controller.cartAdd = async (req, res) => {
     // Se envía la respuesta según si la operación fue exitosa o no
     success == true
         ? res.status(200).json({
-                status: 'El accesorio fue agregado exitosamente',
-        })
+              status: 'El accesorio fue agregado exitosamente',
+          })
         : res.status(404).json({
-            status: 'No se econtró el accesorio dado',
-        });
+              status: 'No se econtró el accesorio dado',
+          });
 };
 
 // Controlador de la ruta para elimiar accesorios del carrito
@@ -38,15 +37,14 @@ controller.cartRemoveGet = async (req, res) => {
     try {
         // Ejecuta la llamada al procedimiento almacenado para eliminar el accesorio del carrito
 
-        const query = await connection.query('CALL REMOVE_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
+        await connection.query('CALL REMOVE_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
         success = true;
-        
     } catch (error) {
         success = false;
     }
 
     if (success) {
-        req.flash('success', `Operación exitosa: El accesorio fue removido del carrito`);
+        req.flash('success', 'Operación exitosa: El accesorio fue removido del carrito');
         res.redirect('/cart');
     } else {
         req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
@@ -56,10 +54,9 @@ controller.cartRemoveGet = async (req, res) => {
 
 // Controlador de la ruta para mostrar el carrito de compras
 controller.showCart = async (req, res) => {
-    
     // Traer el carrito que corresponda al usuario desde la BD
-    const cartFromDB = await connection.query('CALL GET_ACCESSORY_CART(?)', [req.user.id_usuario]); 
-    const cOrig = cartFromDB[0]; 
+    const cartFromDB = await connection.query('CALL GET_ACCESSORY_CART(?)', [req.user.id_usuario]);
+    const cOrig = cartFromDB[0];
 
     // Variables locales del carrito y el resumen de la compra
     const cart = [];
@@ -78,17 +75,16 @@ controller.showCart = async (req, res) => {
         cart[index].stock = cOrig[index].stock;
 
         if (cart[index].descuento > 0) {
-            resume.descuentos += ((cart[index].precio_base * cart[index].cantidad) - cart[index].precio_final);
+            resume.descuentos += cart[index].precio_base * cart[index].cantidad - cart[index].precio_final;
         }
-
     }
 
     // Calculos finales para el resumen de compra
-    resume.subtotal = cart.map(item => item.precio_final).reduce((prev, curr) => prev + curr, 0);
+    resume.subtotal = cart.map((item) => item.precio_final).reduce((prev, curr) => prev + curr, 0);
     resume.impuestos = resume.subtotal * 0.19;
     resume.total = resume.subtotal + resume.impuestos;
-    
-    res.render('shop/shopping_cart', {cart, resume});
+
+    res.render('shop/shopping_cart', { cart, resume });
 };
 
 // Controlador de la ruta para actualizar el número de itemes de un accesorio en el carrito
@@ -100,7 +96,7 @@ controller.cartUpdate = async (req, res) => {
 
     // Ejecuta la sentencia para actualizar el carrito en la base de datos
     try {
-        const query = connection.query('CALL MODIFY_AMOUNT_ACCESSORY_CART(?, ?, ?)', [req.user.id_usuario, id, amount]); 
+        connection.query('CALL MODIFY_AMOUNT_ACCESSORY_CART(?, ?, ?)', [req.user.id_usuario, id, amount]);
         success = true;
     } catch (error) {
         success = false;
@@ -109,41 +105,49 @@ controller.cartUpdate = async (req, res) => {
     // Se envía la respuesta según si la operación fue exitosa o no
     success == true
         ? res.status(200).json({
-            status: 'La cantidad fue modificada exitosamente',
-        })
+              status: 'La cantidad fue modificada exitosamente',
+          })
         : res.status(500).json({
-            status: 'La cantidad no pudo ser modificada',
-        });
+              status: 'La cantidad no pudo ser modificada',
+          });
 };
 
 // Controlador de la ruta para emitir órden de compra
 controller.orderClientPost = async (req, res) => {
-
-    let orderStepSuccess = false; 
+    let orderStepSuccess = false;
 
     const order = {
-        id_orden: -1
-    }
+        id_orden: -1,
+    };
 
     try {
-        const newBuyOrderQuery = await connection.query('CALL REGISTER_NEW_BUY_ORDER(?, ?)', [req.user.id_usuario, req.user.id_usuario]); 
-        order.id_orden = newBuyOrderQuery[0][0].id_orden; 
+        const newBuyOrderQuery = await connection.query('CALL REGISTER_NEW_BUY_ORDER(?, ?)', [
+            req.user.id_usuario,
+            req.user.id_usuario,
+        ]);
+        order.id_orden = newBuyOrderQuery[0][0].id_orden;
         orderStepSuccess = true;
     } catch (error) {
         orderStepSuccess = false;
     }
 
-    if(orderStepSuccess){
-        const transactionQuery = await connection.query('CALL register_buy_order_from_cart(?, ?)', [req.user.id_usuario, order.id_orden]); 
+    if (orderStepSuccess) {
+        const transactionQuery = await connection.query('CALL register_buy_order_from_cart(?, ?)', [
+            req.user.id_usuario,
+            order.id_orden,
+        ]);
 
-        if(transactionQuery[0] == undefined){
+        if (transactionQuery[0] == undefined) {
             req.flash('success', 'Proceso exitoso: Se generó la orden de compra de manera exitosa');
-            res.redirect('/user/orders'); 
-        }else{
-            req.flash('message', `Error: El stock del accesorio ${transactionQuery[0][0].nombre} es ${transactionQuery[0][0].stock}`);
-            res.redirect('/cart'); 
+            res.redirect('/user/orders');
+        } else {
+            req.flash(
+                'message',
+                `Error: El stock del accesorio ${transactionQuery[0][0].nombre} es ${transactionQuery[0][0].stock}`
+            );
+            res.redirect('/cart');
         }
     }
-}
+};
 
 module.exports = controller;

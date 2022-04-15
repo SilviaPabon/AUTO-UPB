@@ -4,7 +4,7 @@
     height: 100vh;
     z-index: 100;
     background-color: $very_dark;
-    
+
     /*Display flex para poner el logo encima de las opciones de navegación*/
     display: flex;
     flex-direction: column;
@@ -35,20 +35,19 @@
 
         /*Navegación entre las pestañas de la página*/
         .navigation {
-
             list-style: none;
 
             /*Puede crecer máximo el 75% de la altura de la página*/
-            max-height: 75vh; 
-            overflow-y: scroll; 
+            max-height: 75vh;
+            overflow-y: scroll;
 
             /*En caso de que crezca más del 80%, permite el scroll pero 
             oculta la barra de navegación*/
-            &::-webkit-scrollbar{
+            &::-webkit-scrollbar {
                 display: none;
             }
 
-            &__account{
+            &__account {
                 padding: 12px;
                 display: flex;
                 justify-content: center;
@@ -60,10 +59,10 @@
                 font-size: $sm;
                 font-weight: 300;
 
-                &__name{
+                &__name {
                     /*El nombre del usuario tiene un ancho máximo de 140px
                     Si se pasa del máximo, se muestra como puntos suspensivos*/
-                    max-width: 140px; 
+                    max-width: 140px;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
@@ -95,12 +94,13 @@
                 background-color: $main_green;
             }
 
-            &_link:target{
+            &_link:target {
                 background-color: $main_green;
             }
 
             /*CONTENEDOR DE LOS ICONOS*/
-            &__icon, &__account__icon {
+            &__icon,
+            &__account__icon {
                 /*Centrar el icono dentro del contenedor para normalizar el tamaño*/
                 display: inline-flex;
                 align-items: center;
@@ -110,28 +110,25 @@
                 margin: 0 8px;
 
                 /*ICONOS*/
-                & .icon img{
+                & .icon img {
                     width: 18px;
                 }
 
-                & .icon--bigger img{
+                & .icon--bigger img {
                     width: 30px;
                 }
             }
 
-            &__account__icon{
-                & i{
+            &__account__icon {
+                & i {
                     font-size: $x_lg;
                 }
             }
-
         }
-
     }
 
     /*Menú de hamburguesa para dispositivos móviles*/
     .menu-toggle {
         display: none;
     }
-
 }

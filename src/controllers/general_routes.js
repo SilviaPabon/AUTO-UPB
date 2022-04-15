@@ -69,13 +69,11 @@ controller.userUpdate_post = async (req, res) => {
 };
 
 // Controlador de la ruta para desactivar la cuenta
-controller.userDeactivate =  async (req, res) => {
-
+controller.userDeactivate = async (req, res) => {
     //Llamada al procedure para la desactivación de la cuenta y recirección al login para
-    await pool.query('CALL CHANGE_EXISTING_USER_STATUS(?, ?, ?)', [req.user.id_usuario, req.user.id_usuario, 2]); 
-    res.redirect('/logout'); 
-
-}; 
+    await pool.query('CALL CHANGE_EXISTING_USER_STATUS(?, ?, ?)', [req.user.id_usuario, req.user.id_usuario, 2]);
+    res.redirect('/logout');
+};
 
 // Controlador de la ruta para el formulario de contacto
 controller.contactUs = async (req, res) => {
@@ -89,12 +87,12 @@ controller.contactUspost = async (req, res) => {
 
     try {
         await pool.query('CALL REGISTER_NEW_MESSAGE(?,?,?)', [name, email, message]);
-        success = true;
+        queryOk = true;
     } catch (error) {
-        success = false;
+        queryOk = false;
     }
 
-    if (success) {
+    if (queryOk) {
         req.flash('success', 'Mensaje registrado');
         res.redirect('/');
     } else {

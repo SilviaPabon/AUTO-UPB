@@ -19,7 +19,7 @@ controller.searchAccountsPartner = async (req, res) => {
 // Controlador de la ruta para mostrar el resultado de la búsqueda de clientes
 controller.searchAccountsResultPartner = async (req, res) => {
     const { criteria } = req.params;
-    let queryOk = false; 
+    let queryOk = false;
 
     try {
         var users = await pool.query('CALL PARTNER_SEARCH_USER_FROM_CRITERIA(?, ?)', [req.user.id_usuario, criteria]);
@@ -28,15 +28,15 @@ controller.searchAccountsResultPartner = async (req, res) => {
         queryOk = false;
     }
 
-    if(queryOk) {
+    if (queryOk) {
         const data = {
             users,
             isFiltered: true,
             criteria,
         };
-    
+
         res.render('partner/partners_show_accounts', { data });
-    }else{
+    } else {
         req.flash('message', 'Error: Error inesperado al buscar el usuario con el criterio de búsqueda dado');
         res.redirect('/partner/accounts');
     }
@@ -76,15 +76,15 @@ controller.searchinventoryResult = async (req, res) => {
         queryOk = false;
     }
 
-    if(queryOk) {
+    if (queryOk) {
         const data = {
             ACCESORIOS: inventory[0],
             isFiltered: true,
             criteria,
         };
-    
+
         res.render('partner/partners_show_inventory', { data });
-    }else{
+    } else {
         req.flash('message', 'Error: Algo salió mal al buscar el accesorio con el criterio de búsqueda dado');
         res.redirect('/partner/inventory');
     }

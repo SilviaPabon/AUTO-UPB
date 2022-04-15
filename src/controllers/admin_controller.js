@@ -1,6 +1,6 @@
 const controller = {};
 const pool = require('../database/connection');
-const fs = require('fs'); 
+const fs = require('fs');
 
 // Controlador de la ruta para mostrar el formulario de creación de cuentas internas
 controller.createAccount = (req, res) => {
@@ -48,10 +48,10 @@ controller.inventory_add_new_post = async (req, res) => {
         queryOk = false;
     }
 
-    if(queryOk){
+    if (queryOk) {
         req.flash('success', 'Transacción exitosa: Accesorio Añadido');
         res.redirect('/admin/inventory/add_existing');
-    }else{
+    } else {
         req.flash('message', 'Error: Algo salió mal al añadir el accesorio');
         res.redirect('/admin/new_accessory');
     }
@@ -62,7 +62,7 @@ controller.inventory_add_existing = async (req, res) => {
     const callAccessories = await pool.query('CALL SHOW_ACCESSORIES_ADMIN(?)', [req.user.id_usuario]);
     const data = {
         ACCESORIOS: callAccessories,
-        isFiltered : false,
+        isFiltered: false,
     };
     res.render('admin/admin_show_inventory', { data });
 };
@@ -111,26 +111,27 @@ controller.search_inventory_result_get = async (req, res) => {
     const { criteria } = req.params;
     let inventory;
     let queryOk = false;
-    try{
-        inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN(?, ?)', [req.user.id_usuario, criteria]);
+    try {
+        inventory = await pool.query('CALL SEARCH_ACCESSORIES_FROM_CRITERIA_ADMIN(?, ?)', [
+            req.user.id_usuario,
+            criteria,
+        ]);
         queryOk = true;
     } catch (error) {
-        req.flash('message', 'Ocurrió un error inesperado al buscar el accesorio.'); 
+        req.flash('message', 'Ocurrió un error inesperado al buscar el accesorio.');
         queryOk = false;
     }
-    if(queryOk){
+    if (queryOk) {
         const data = {
             ACCESORIOS: inventory,
-            isFiltered : true,
-            criteria
+            isFiltered: true,
+            criteria,
         };
-    
+
         res.render('admin/admin_show_inventory', { data });
+    } else {
+        res.redirect('/admin/inventory/add_existing');
     }
-    else{
-        res.redirect('/admin/inventory/add_existing')
-    }
-    
 };
 
 // Controlador de la ruta para mostrar el formulario para modificar los detalles de los accesorios
@@ -138,25 +139,28 @@ controller.inventory_modify = async (req, res) => {
     const { id } = req.params;
     const callAccessories = await pool.query('CALL SHOW_ACCESSORY_DETAILS_ADMIN(?)', [id]);
     res.render('admin/admin_modify_accessory', { accesorios: callAccessories });
-}
+};
 
 // Controlador para modificar los detalles de los accesorios
 controller.inventory_modify_post = async (req, res) => {
-
     const { id } = req.params;
     const { name, originalName, description, status_select, price, discount, originalImageRoute } = req.body;
 
     // Hace la nueva ruta de la ímagen según el nuevo nombre ingresado
-    const newImageRoute = `/${name.replace(/\s/g, '_')}.jpg`; 
+    const newImageRoute = `/${name.replace(/\s/g, '_')}.jpg`;
 
-    if(newImageRoute != originalImageRoute){
-        fs.rename(`${req.app.settings.static}\\images${originalImageRoute}`, `${req.app.settings.static}\\images${newImageRoute}`, function(err){
-            if(err){
-                //Just for handle the error
+    if (newImageRoute != originalImageRoute) {
+        fs.rename(
+            `${req.app.settings.static}\\images${originalImageRoute}`,
+            `${req.app.settings.static}\\images${newImageRoute}`,
+            function (err) {
+                if (err) {
+                    //Just for handle the error
+                }
             }
-        })
+        );
     }
-    
+
     //Create new plan object
     const updInventory = {
         usID: req.user.id_usuario,
@@ -169,9 +173,8 @@ controller.inventory_modify_post = async (req, res) => {
     };
 
     //Update it into DB
-    const accessoryExist = await pool.query('CALL ACCESSORY_EXIST(?)',[name]);
-    if(accessoryExist[0][0]['CONTEO'] == 0 || (accessoryExist[0][0]['CONTEO'] == 1 && name == originalName)) {
-
+    const accessoryExist = await pool.query('CALL ACCESSORY_EXIST(?)', [name]);
+    if (accessoryExist[0][0]['CONTEO'] == 0 || (accessoryExist[0][0]['CONTEO'] == 1 && name == originalName)) {
         //Update it into DB
         await pool.query('CALL UPDATE_EXISTING_ACCESSORY(?, ?, ?, ?, ?, ?, ?)', [
             updInventory.usID,
@@ -180,16 +183,15 @@ controller.inventory_modify_post = async (req, res) => {
             updInventory.name,
             updInventory.description,
             updInventory.price,
-            updInventory.discount
+            updInventory.discount,
         ]);
         req.flash('success', 'Transacción exitosa: Accesorio actualizado');
         res.redirect('/admin/inventory/add_existing');
-
-    }else{
-        req.flash('message','Transacción fallida: El accesorio '+name+' ya existe');
+    } else {
+        req.flash('message', 'Transacción fallida: El accesorio ' + name + ' ya existe');
         res.redirect(`/admin/inventory/edit_existing/${id}`);
     }
-}
+};
 
 // Controlador de la ruta para mostrar las cuentas existentes
 controller.accounts = async (req, res) => {
@@ -197,7 +199,7 @@ controller.accounts = async (req, res) => {
 
     const data = {
         users,
-        isFiltered : false
+        isFiltered: false,
     };
 
     res.render('admin/admin_show_accounts', { data });
@@ -214,12 +216,12 @@ controller.searchAccounts = async (req, res) => {
 controller.searchAccountsResult = async (req, res) => {
     const { criteria } = req.params;
 
-    const users = await pool.query('CALL ADMIN_SEARCH_USER_FROM_CRITERIA(?, ?)', [req.user.id_usuario ,criteria]);
+    const users = await pool.query('CALL ADMIN_SEARCH_USER_FROM_CRITERIA(?, ?)', [req.user.id_usuario, criteria]);
 
     const data = {
         users,
-        isFiltered : true,
-        criteria
+        isFiltered: true,
+        criteria,
     };
 
     res.render('admin/admin_show_accounts', { data });
@@ -227,20 +229,18 @@ controller.searchAccountsResult = async (req, res) => {
 
 // Controlador de la ruta para mostar el formulario de modificación del estado de las cuentas
 controller.state_acc = async (req, res) => {
-
     const { id } = req.params;
-    const userd = {usID: req.user.id_usuario};
+    const userd = { usID: req.user.id_usuario };
 
     const user = await pool.query('CALL SHOW_ACCOUNT_DETAILS(?, ?)', [id, userd.usID]);
     const data = {
-        user
-    }
-    res.render('admin/admin_change_account_state', {data});   
-}; 
+        user,
+    };
+    res.render('admin/admin_change_account_state', { data });
+};
 
 // Controlador de la ruta para modificar el estado de la cuenta
 controller.state_acc_post = async (req, res) => {
-
     const { id } = req.params;
 
     const { state } = req.body;
@@ -255,19 +255,18 @@ controller.state_acc_post = async (req, res) => {
     await pool.query('CALL CHANGE_EXISTING_USER_STATUS(?, ? , ?)', [
         modifyState.usID,
         modifyState.id,
-        modifyState.state
+        modifyState.state,
     ]);
 
     req.flash('success', 'Transacción exitosa: ');
-    res.redirect('/admin/accounts')
-
-}
+    res.redirect('/admin/accounts');
+};
 
 // Controlador de la ruta para mostrar los mensajes del formulario de contacto
 controller.messages = async (req, res) => {
     const data = await pool.query('CALL GETALL_MESSAGES(?)', [req.user.id_usuario]);
-    res.render('admin/admin_show_messages', {data});
-}
+    res.render('admin/admin_show_messages', { data });
+};
 
 // Controlador de la ruta para mostrar el dashboard de finanzas
 controller.finances = (req, res) => {
@@ -305,5 +304,4 @@ controller.finantial_outgoings = async (req, res) => {
     res.render('admin/admin_finances_outgoings', { outgoings: callOutgoings });
 };
 
-module.exports = controller; 
-
+module.exports = controller;

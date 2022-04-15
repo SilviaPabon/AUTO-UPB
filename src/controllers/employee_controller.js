@@ -180,7 +180,7 @@ controller.searchinventoryResult = async (req, res) => {
     res.render('employees/employee_show_inventory', { data });
 };
 
-// Controlador de la ruta para mostrar las órdenes de clientes 
+// Controlador de la ruta para mostrar las órdenes de clientes
 controller.showorders = async (req, res) => {
     let queryOk = false;
 

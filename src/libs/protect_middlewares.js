@@ -32,7 +32,7 @@ module.exports = {
     },
 
     isPartner(req, res, next) {
-        if(req.user.codigo_tipo_usuario == 2){
+        if (req.user.codigo_tipo_usuario == 2) {
             return next();
         }
 
@@ -41,13 +41,13 @@ module.exports = {
         res.status(401).redirect('/');
     },
 
-    isWorker(req, res, next){
-        if(req.user.codigo_tipo_usuario == 3){
+    isWorker(req, res, next) {
+        if (req.user.codigo_tipo_usuario == 3) {
             return next();
         }
 
         //Si no es trabajador, muestra el aviso y lo redirije al home
         req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
         res.status(401).redirect('/');
-    }
+    },
 };

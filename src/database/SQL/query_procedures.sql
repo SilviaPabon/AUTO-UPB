@@ -1799,7 +1799,7 @@ BEGIN
 	SET @entradas = (SELECT SUM(valor)
 					FROM PROFITS_OUTGOINGS_VIEW
 					WHERE codigo_movimiento = 1);
-    -- Se suma el valor de las perdidas
+    -- Se suma el valor de las pérdidas
     SET @gastos =  (SELECT SUM(valor)
 					FROM PROFITS_OUTGOINGS_VIEW
 					WHERE codigo_movimiento = 2 OR codigo_movimiento = 3);

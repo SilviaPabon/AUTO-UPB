@@ -1,27 +1,26 @@
 /*SECTION DE SERVICIOS OFRECIDOS*/
-.service-card{
-    &__title{
+.service-card {
+    &__title {
         width: 100%;
         background-color: $main_green;
         padding: 0.6em;
         text-align: center;
 
-        & img{
+        & img {
             margin: 24px;
             max-height: 60px;
         }
     }
 
-    &__text{
+    &__text {
         text-align: center;
         color: $total_black;
         padding: 24px 12px;
     }
-
 }
 
 /*SECTIONS DE PRODUCTOS MÁS VENDIDOS Y PRODUCTOS CON DESCUENTO*/
-.featured-product-card, 
+.featured-product-card,
 .disscount-products-card {
     transition: all 0.4s ease-in-out;
 
@@ -29,16 +28,15 @@
         width: 100%;
     }
 
-    &__body{
+    &__body {
         padding: 0px 8px 8px 8px;
         text-align: center;
 
-        & h3{
+        & h3 {
             text-transform: uppercase;
         }
 
-        & p{
-
+        & p {
             color: $main_green;
             display: inline-block;
             font-weight: 300;
@@ -48,28 +46,25 @@
                 color: $very_dark;
                 margin: 4px;
             }
-
         }
     }
 
-    &__btns{
+    &__btns {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
     }
-
 }
 
-.disscount-products-card{
-
+.disscount-products-card {
     position: relative;
 
-    &__disscount{
+    &__disscount {
         position: absolute;
         top: 8px;
         right: 8px;
 
-        & span{
+        & span {
             background-color: $bright_red;
             padding: 4px 8px;
             border-radius: 4px;
@@ -78,13 +73,12 @@
 }
 
 /*SECTION DE CONTACTO*/
-.contact-us{
-
+.contact-us {
     background-color: $very_dark;
     padding: 32px;
     border-radius: 16px;
 
-    .contact-card{
+    .contact-card {
         width: 30%;
         min-width: 240px;
         max-width: 360px;
@@ -96,27 +90,26 @@
 
         margin: 8px 0;
 
-        &__icon{
+        &__icon {
             width: 100%;
             text-align: center;
-            & img{
+            & img {
                 max-width: 40px;
             }
         }
 
-        &__body{
+        &__body {
             text-align: center;
-            & p{
+            & p {
                 font-family: Roboto-Thin;
                 font-weight: lighter;
             }
         }
     }
-
 }
 
 /*sección de sobre nosotros*/
-.about-us{
+.about-us {
     background-color: $very_dark;
     border-radius: 16px;
     overflow: hidden;
@@ -125,27 +118,26 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 
-    &__image-container, 
-    &__text-container{
-
+    &__image-container,
+    &__text-container {
         padding: 16px;
 
-        display: flex; 
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    &__image-container{
+    &__image-container {
         grid-column: 1;
 
-        & img{
+        & img {
             width: 100%;
             border-radius: 16px;
         }
     }
 
-    &__text-container{
+    &__text-container {
         grid-column: 2;
         text-align: center;
     }

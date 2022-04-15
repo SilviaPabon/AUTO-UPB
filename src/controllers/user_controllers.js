@@ -29,11 +29,9 @@ controller.orderClient = async (req, res) => {
 
 //Controlador para que el cliente pueda marcar su órden como recibida
 controller.orderDone = async (req, res) => {
-    
     await pool.query('CALL MARK_ORDER_AS_RECEIVED(?,?)', [req.user.id_usuario, req.params.id]);
 
     res.redirect('/user/orders');
-
 };
 
 // Controlador para mostrar la factura de la compra del cliente
@@ -55,9 +53,9 @@ controller.user_bill = async (req, res) => {
         fecha_compra: billDetails[0][0].fecha_compra,
         fecha_emision: date.toLocaleDateString(),
         nombre_cliente: billDetails[0][0]['Nombre cliente'],
-        total_base: billDetails[0][0]['Total Precios Base'], 
-        total_descuentos: billDetails[0][0]['Descuentos aplicados'], 
-        total_impuestos: billDetails[0][0]['IVA aplicado'], 
+        total_base: billDetails[0][0]['Total Precios Base'],
+        total_descuentos: billDetails[0][0]['Descuentos aplicados'],
+        total_impuestos: billDetails[0][0]['IVA aplicado'],
         total: billDetails[0][0].Total,
         productos: JSON.parse(billDetails[0][0].productos),
     };
