@@ -1,6 +1,7 @@
 const controller = {};
 const pool = require('../database/connection');
 
+// Controlador de la ruta para mostrar las cuentas existentes
 controller.accountsPartner = async (req, res) => {
     const users = await pool.query('CALL SHOW_ACCOUNTS_PARTNERS (?)', [req.user.id_usuario]);
     const data = { users, isFiltered: false };
@@ -8,12 +9,14 @@ controller.accountsPartner = async (req, res) => {
     res.render('partner/partners_show_accounts', { data });
 };
 
+// Controlador de la ruta para realizar búsquedas de clientes
 controller.searchAccountsPartner = async (req, res) => {
     // Se toma el criterio de busqueda
     const { criteria } = req.body;
     res.redirect(`/partner/accounts/${criteria}`);
 };
 
+// Controlador de la ruta para mostrar el resultado de la búsqueda de clientes
 controller.searchAccountsResultPartner = async (req, res) => {
     const { criteria } = req.params;
     let queryOk = false; 
@@ -39,6 +42,7 @@ controller.searchAccountsResultPartner = async (req, res) => {
     }
 };
 
+// Controlador de la ruta para mostrar el inventario
 controller.inventory = async (req, res) => {
     const inventory = await pool.query('CALL SHOW_ACCESSORIES_INTERNAL(?)', [req.user.id_usuario]);
     const data = {
@@ -50,14 +54,14 @@ controller.inventory = async (req, res) => {
     });
 };
 
-// Ruta para cuando se busca un usuario
+// Controlador de la ruta para buscar un accesorio en el inventario
 controller.searchinventory = async (req, res) => {
     //La ruta solo toma lo que se pasó en el formulario y lo redirige a la vista
     const { criteria } = req.body;
     res.redirect(`/partner/inventory/${criteria}`);
 };
 
-// Ruta para mostrar los usuarios resultantes de la búsqueda
+// Controlador de la ruta para mostrar el resultado de la búsqueda de accesorios
 controller.searchinventoryResult = async (req, res) => {
     const { criteria } = req.params;
     let queryOk = false;

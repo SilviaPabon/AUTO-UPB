@@ -1,8 +1,7 @@
 const controller = {};
 const connection = require('../database/connection');
 
-// -----------
-// Ruta para añadir un accesorio al carrito
+// Controlador de la ruta para añadir accesorios al carrito de compras
 controller.cartAdd = async (req, res) => {
     const { id } = req.body;
 
@@ -31,8 +30,7 @@ controller.cartAdd = async (req, res) => {
         });
 };
 
-// ------
-// Ruta get usada por los botones para remover un accesorio del carrito
+// Controlador de la ruta para elimiar accesorios del carrito
 controller.cartRemoveGet = async (req, res) => {
     const { id } = req.params;
     let success = false;
@@ -56,8 +54,7 @@ controller.cartRemoveGet = async (req, res) => {
     }
 };
 
-// ------
-// Ruta get usada para mostrar el carrito
+// Controlador de la ruta para mostrar el carrito de compras
 controller.showCart = async (req, res) => {
     
     // Traer el carrito que corresponda al usuario desde la BD
@@ -94,8 +91,7 @@ controller.showCart = async (req, res) => {
     res.render('shop/shopping_cart', {cart, resume});
 };
 
-// ------
-// Ruta para actualizar el número de items de un accesorio del carrito
+// Controlador de la ruta para actualizar el número de itemes de un accesorio en el carrito
 controller.cartUpdate = async (req, res) => {
     const { id, amount } = req.body;
 
@@ -120,6 +116,7 @@ controller.cartUpdate = async (req, res) => {
         });
 };
 
+// Controlador de la ruta para emitir órden de compra
 controller.orderClientPost = async (req, res) => {
 
     let orderStepSuccess = false; 

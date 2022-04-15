@@ -2,8 +2,7 @@ const controller = {};
 const helpers = require('../libs/helpers');
 const connection = require('../database/connection');
 
-// ------
-// Ruta get usada para mostrar el carrito
+// Controlador de la ruta para mostrar el carrito de compras
 controller.showCart = async (req, res) => {
     // Traer el carrito que corresponda al usuario desde la BD
     const cartFromDB = await connection.query('CALL GET_ACCESSORY_CART(?)', [req.user.id_usuario]);
@@ -38,31 +37,7 @@ controller.showCart = async (req, res) => {
     res.render('shop/employee_shopping_cart', { cart, resume });
 };
 
-// ------
-// Ruta get usada por los botones para remover un accesorio del carrito
-controller.cartRemoveGet = async (req, res) => {
-    const { id } = req.params;
-    let success = false;
-
-    try {
-        // Ejecuta la llamada al procedimiento almacenado para eliminar el accesorio del carrito
-        await connection.query('CALL REMOVE_ACCESSORY_CART(?, ?)', [req.user.id_usuario, id]);
-        success = true;
-    } catch (error) {
-        success = false;
-    }
-
-    if (success) {
-        req.flash('success', 'Operación exitosa: El accesorio fue removido del carrito');
-        res.redirect('/employee/cart');
-    } else {
-        req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
-        res.redirect('/employee/cart');
-    }
-};
-
-// ----
-// Ruta para obtener los datos de un usuario si existe
+// Controlador de la ruta para saber si un usuario existe desde la vista del carrito de compras
 controller.user_exists = async (req, res) => {
     const { documento } = req.body;
     let response;
@@ -78,8 +53,7 @@ controller.user_exists = async (req, res) => {
     success == true ? res.status(200).send(response[0]) : res.status(500).send([]);
 };
 
-// ----
-// Ruta para enviar los datos del cliente y proceder con la orden
+// Controlador de la ruta para generar la órden de compra con los datos del cliente
 controller.postOrder = async (req, res) => {
     //Variables de control
     let userStepSuccess = false;
@@ -169,8 +143,7 @@ controller.postOrder = async (req, res) => {
     }
 };
 
-// ---
-// Ruta para mostrar el inventario existente
+// Controlador de la ruta para mostrar el inventario existente
 controller.inventory = async (req, res) => {
     const inventory = await connection.query('CALL SHOW_ACCESSORIES_INTERNAL(?)', [req.user.id_usuario]);
     const data = {
@@ -182,16 +155,14 @@ controller.inventory = async (req, res) => {
     });
 };
 
-// ---
-// Ruta post para buscar un accesorio
+// Controlador de la ruta post para buscar un accesorio
 controller.searchinventory = async (req, res) => {
     //se toma como "criteria" la busqueda que se haga desde la barra de navegacion
     const { criteria } = req.body;
     res.redirect(`/employee/inventory/${criteria}`);
 };
 
-// ----
-// Ruta para mostrar el resultado de búsqueda de accesorio
+// Controlador de la ruta para mostrar el resultado de búsqueda de accesorio
 controller.searchinventoryResult = async (req, res) => {
     const { criteria } = req.params;
 
@@ -209,6 +180,7 @@ controller.searchinventoryResult = async (req, res) => {
     res.render('employees/employee_show_inventory', { data });
 };
 
+// Controlador de la ruta para mostrar las órdenes de clientes 
 controller.showorders = async (req, res) => {
     let queryOk = false;
 
@@ -234,11 +206,12 @@ controller.showorders = async (req, res) => {
     }
 };
 
-// Ruta para hacer devoluciones
+// Contorlador de la ruta para hacer devoluciones
 controller.refunds = (req, res) => {
     res.render('employees/employee_refunds');
 };
 
+// Controlador de la ruta para obtener los datos de la órden de comrpa dentro del formulario de devoluciones
 controller.search_order = async (req, res) => {
     const { order } = req.body;
 
@@ -255,6 +228,7 @@ controller.search_order = async (req, res) => {
     success == true ? res.status(200).send(response[0]) : res.status(500).send([]);
 };
 
+// Controlador para generar la devolución
 controller.makeRefund = async (req, res) => {
     //Variable de control
     let success = false;
