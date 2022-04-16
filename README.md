@@ -16,6 +16,8 @@ Wearcar is a company that sells vehicle accessories, belonging to the self-named
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![EJS](https://img.shields.io/badge/EJS-B4CA65?style=for-the-badge&logo=javascript&logoColor=black%22)
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Suse](https://img.shields.io/badge/OPEN%20Suse-0C322C?style=for-the-badge&logo=SUSE&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu%20Server-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 
 
 ## Page Previews
