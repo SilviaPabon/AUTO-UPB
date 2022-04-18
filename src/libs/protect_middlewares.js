@@ -1,3 +1,5 @@
+const pool = require('../database/connection'); 
+
 module.exports = {
     /*FUNCIÓN PARA VERIFICAR QUE SI ESTÁ LOGUEADO*/
     isLoggedIn(req, res, next) {
@@ -70,4 +72,19 @@ module.exports = {
         req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
         res.status(401).redirect('/');
     },
+
+    async ownBuyOrder(req, res, next) {
+
+        const owner = await pool.query('CALL get_buy_order_owner(?)', [req.params.id]);
+
+        if(owner[0][0] != undefined){
+            if(owner[0][0]['Codigo comprador'] == req.user.id_usuario){
+                return next();
+            }else{
+                req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
+                res.status(401).redirect('/');
+            }
+        }
+
+    }
 };

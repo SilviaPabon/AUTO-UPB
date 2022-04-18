@@ -1384,6 +1384,28 @@ CALL get_bill_details_from_id(1, 1);
 
 /* 
 #######################################################
+PROCEDIMIENTO PARA OBTENER EL ID DEL "DUEÑO" DE LA ORDEN DE COMPRA
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS get_buy_order_owner; 
+DELIMITER //
+
+CREATE PROCEDURE get_buy_order_owner(
+    IN id_orden INT UNSIGNED
+)
+BEGIN
+
+	/*Selecciona los datos de la orden pasada como parámetro*/
+	SELECT `Codigo comprador` FROM ORDER_SUMMARY_PRETTY 
+		WHERE ORDER_SUMMARY_PRETTY.id_orden = id_orden; 
+
+END //
+
+DELIMITER ;
+
+/* 
+#######################################################
 PROCEDIMIENTOS PARA MANEJO DE MENSAJES DE CLIENTES (MENSAJES DEL FORMULARIO)
 OK
 #######################################################
