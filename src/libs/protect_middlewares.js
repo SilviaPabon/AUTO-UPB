@@ -61,7 +61,7 @@ module.exports = {
         res.status(401).redirect('/');
     },
 
-    canUseCart(req, res, next) {
+    canUseClientCart(req, res, next) {
         if (req.user.codigo_tipo_usuario == 1 || req.user.codigo_tipo_usuario == 2) {
             return next();
         }

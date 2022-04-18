@@ -1212,15 +1212,11 @@ CREATE PROCEDURE GET_USER_ORDERBUY_FROM_ID(
 	IN session_user_id INT UNSIGNED
 )
 BEGIN
-	
-    /*Tomar el nombre del cliente*/
-    SELECT nombre INTO @user_name FROM USUARIOS WHERE
-		USUARIOS.id_usuario = session_user_id; 
-    
+	    
     /*Tomar los datos de la orden*/
     SELECT id_orden, estado_compra, fecha_compra, `Total Precios Base`, `Descuentos aplicados`, `IVA aplicado`, Total
 	FROM ORDER_SUMMARY_PRETTY AS OSP
-	WHERE OSP.`Nombre comprador` = @user_name; 
+	WHERE OSP.`Codigo comprador` = session_user_id; 
     
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
     VALUES (session_user_id, 2, 3);
