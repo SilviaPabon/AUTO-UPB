@@ -50,4 +50,24 @@ module.exports = {
         req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
         res.status(401).redirect('/');
     },
+
+    isClient(req, res, next) {
+        if (req.user.codigo_tipo_usuario == 1) {
+            return next();
+        }
+
+        //Si no es cliente, muestra el aviso y lo redirije al home
+        req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
+        res.status(401).redirect('/');
+    },
+
+    canUseCart(req, res, next) {
+        if (req.user.codigo_tipo_usuario == 1 || req.user.codigo_tipo_usuario == 2) {
+            return next();
+        }
+
+        //Si no es cliente, muestra el aviso y lo redirije al home
+        req.flash('message', 'ERROR: No tienes los permisos para realizar esa acción');
+        res.status(401).redirect('/');
+    },
 };

@@ -45,7 +45,9 @@
                     </div>
 
                     <% if(user) {%>
-                        <a class="btn btn--primary btn--block btn--block btn--no-radius" data-id="<%= product[0][0].id_accesorio %>" id="addToCartBtn" aria-label="Añadir <%= product[0][0].nombre %> al carrito de compras">Añadir al carrito</a>
+                        <% if(user.codigo_tipo_usuario != 4) {%>
+                            <a class="btn btn--primary btn--block btn--block btn--no-radius" data-id="<%= product[0][0].id_accesorio %>" id="addToCartBtn" aria-label="Añadir <%= product[0][0].nombre %> al carrito de compras">Añadir al carrito</a>
+                        <% } %>    
                     <% } %>
 
                 </div>
