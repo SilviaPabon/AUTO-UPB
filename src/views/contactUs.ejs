@@ -17,14 +17,25 @@
                 <div class="form-group" id="name-group">
                     <label class="label--block" for="name">Nombre Completo:</label>
                     <div class="form-group__input">
-                        <input
-                            class="input input--full-width"
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Ingresa tu nombre completo"
-                            data-form="contact"
-                        />
+                        <% if(user) { %>
+                            <input
+                                class="input input--full-width"
+                                type="text"
+                                id="name"
+                                name="name"
+                                data-form="contact"
+                                value="<%= user.nombre %>"
+                            />
+                        <% }else{ %>
+                            <input
+                                class="input input--full-width"
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Ingresa tu nombre completo"
+                                data-form="contact"
+                            />
+                        <% } %>
                         <p class="form-group__error-message">El nombre sólo puede contener letras y debe contener de 5 a 65 caracteres.</p>
                     </div>
                 </div>
@@ -32,15 +43,25 @@
                 <div class="form-group" id="email-group">
                     <label class="label--block" for="email">Correo electrónico:</label>
                     <div class="form-group__input">
-                        <input
-                            class="input input--full-width"
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="ejemplo@dominio.com"
-                            data-form="contact"
-                        />
-    
+                        <% if(user) { %>
+                            <input
+                                class="input input--full-width"
+                                type="email"
+                                id="email"
+                                name="email"
+                                value="<%= user.correo_electronico %>"
+                                data-form="contact"
+                            />
+                        <% }else{ %>
+                            <input
+                                class="input input--full-width"
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="ejemplo@dominio.com"
+                                data-form="contact"
+                            />
+                        <% } %>
                         <p class="form-group__error-message">Correo inválido. El correo electrónico debe ser de la forma nombre@dominio.com</p>
                     </div>
                 </div>
@@ -75,7 +96,7 @@
 
     </main>
     
-    <script src="/scripts/validations/validate_global.min"></script>
+    <script src="/scripts/validations/validate_global.min.js"></script>
     <%- include('partials/_globalScripts.ejs') %>
 </body>
 </html>

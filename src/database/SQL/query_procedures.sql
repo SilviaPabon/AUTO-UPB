@@ -1212,15 +1212,11 @@ CREATE PROCEDURE GET_USER_ORDERBUY_FROM_ID(
 	IN session_user_id INT UNSIGNED
 )
 BEGIN
-	
-    /*Tomar el nombre del cliente*/
-    SELECT nombre INTO @user_name FROM USUARIOS WHERE
-		USUARIOS.id_usuario = session_user_id; 
-    
+	    
     /*Tomar los datos de la orden*/
     SELECT id_orden, estado_compra, fecha_compra, `Total Precios Base`, `Descuentos aplicados`, `IVA aplicado`, Total
 	FROM ORDER_SUMMARY_PRETTY AS OSP
-	WHERE OSP.`Nombre comprador` = @user_name; 
+	WHERE OSP.`Codigo comprador` = session_user_id; 
     
     INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
     VALUES (session_user_id, 2, 3);
@@ -1385,6 +1381,28 @@ DELIMITER ;
 /*
 CALL get_bill_details_from_id(1, 1); 
 */
+
+/* 
+#######################################################
+PROCEDIMIENTO PARA OBTENER EL ID DEL "DUEÑO" DE LA ORDEN DE COMPRA
+#######################################################
+*/
+
+DROP PROCEDURE IF EXISTS get_buy_order_owner; 
+DELIMITER //
+
+CREATE PROCEDURE get_buy_order_owner(
+    IN id_orden INT UNSIGNED
+)
+BEGIN
+
+	/*Selecciona los datos de la orden pasada como parámetro*/
+	SELECT `Codigo comprador` FROM ORDER_SUMMARY_PRETTY 
+		WHERE ORDER_SUMMARY_PRETTY.id_orden = id_orden; 
+
+END //
+
+DELIMITER ;
 
 /* 
 #######################################################
@@ -1803,6 +1821,14 @@ BEGIN
     SET @gastos =  (SELECT SUM(valor)
 					FROM PROFITS_OUTGOINGS_VIEW
 					WHERE codigo_movimiento = 2 OR codigo_movimiento = 3);
+
+    IF @gastos IS NULL THEN
+        SET @gastos = 0; 
+    END IF; 
+
+    IF @entradas IS NULL THEN
+        SET @entradas = 0;
+    END IF; 
                     
 	SELECT ROUND((@entradas - @gastos), 2) AS resumen FROM PROFITS_OUTGOINGS_VIEW
     GROUP BY resumen;
