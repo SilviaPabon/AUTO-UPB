@@ -10,12 +10,12 @@ router.post('/add', protect.isLoggedIn, controller.cartAdd);
 router.get('/remove/:id', protect.isLoggedIn, controller.cartRemoveGet);
 
 // Ruta para mostrar el carrtito de compras
-router.get('/', protect.isLoggedIn, controller.showCart);
+router.get('/', protect.isLoggedIn, protect.canUseClientCart,controller.showCart);
 
 // Ruta para actualizar el número items de un accesorio en el carrito
 router.post('/update', protect.isLoggedIn, controller.cartUpdate);
 
 // Ruta para emitir la órden de compra
-router.get('/buy', protect.isLoggedIn, controller.orderClientPost);
+router.get('/buy', protect.isLoggedIn, protect.canUseClientCart,controller.orderClientPost);
 
 module.exports = router;

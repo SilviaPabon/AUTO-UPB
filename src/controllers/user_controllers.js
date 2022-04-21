@@ -42,25 +42,25 @@ controller.user_bill = async (req, res) => {
     //Obtención de los datos de la factura
     try {
         var billDetails = await pool.query('CALL get_bill_details_from_id(?, ?)', [req.user.id_usuario, req.params.id]);
-        queryOk = true;
+        queryOk = billDetails[0][0] != undefined ? true : false;
     } catch (error) {
         queryOk = false;
     }
 
-    const data = {
-        id_factura: billDetails[0][0].id_factura,
-        id_orden: billDetails[0][0].id_orden,
-        fecha_compra: billDetails[0][0].fecha_compra,
-        fecha_emision: date.toLocaleDateString(),
-        nombre_cliente: billDetails[0][0]['Nombre cliente'],
-        total_base: billDetails[0][0]['Total Precios Base'],
-        total_descuentos: billDetails[0][0]['Descuentos aplicados'],
-        total_impuestos: billDetails[0][0]['IVA aplicado'],
-        total: billDetails[0][0].Total,
-        productos: JSON.parse(billDetails[0][0].productos),
-    };
-
     if (queryOk) {
+        const data = {
+            id_factura: billDetails[0][0].id_factura,
+            id_orden: billDetails[0][0].id_orden,
+            fecha_compra: billDetails[0][0].fecha_compra,
+            fecha_emision: date.toLocaleDateString(),
+            nombre_cliente: billDetails[0][0]['Nombre cliente'],
+            total_base: billDetails[0][0]['Total Precios Base'],
+            total_descuentos: billDetails[0][0]['Descuentos aplicados'],
+            total_impuestos: billDetails[0][0]['IVA aplicado'],
+            total: billDetails[0][0].Total,
+            productos: JSON.parse(billDetails[0][0].productos),
+        };
+
         res.render('shop/bill.ejs', { data: data });
     } else {
         req.flash('message', 'Error en la consulta de la factura');

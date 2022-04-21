@@ -85,15 +85,17 @@
 
                             <div class="featured-product-card__btns">
                                 <% if(user) {%>
-                                <a
-                                    role="button"
-                                    tabindex="0"
-                                    class="btn btn--primary btn--card btn--center"
-                                    data-id="<%= data.featuredProducts[0][i].id_accesorio %>"
-                                    id="addToCartBtn"
-                                    aria-label="Añadir <%= data.featuredProducts[0][i].nombre %> al carrito de compras"
-                                    >AÑADIR AL CARRITO</a
-                                >
+                                    <% if(user.codigo_tipo_usuario != 4) {%>
+                                        <a
+                                            role="button"
+                                            tabindex="0"
+                                            class="btn btn--primary btn--card btn--center"
+                                            data-id="<%= data.featuredProducts[0][i].id_accesorio %>"
+                                            id="addToCartBtn"
+                                            aria-label="Añadir <%= data.featuredProducts[0][i].nombre %> al carrito de compras"
+                                            >AÑADIR AL CARRITO</a
+                                        >
+                                    <% } %>
                                 <% } %>
                                 <a
                                     href="/accessories/<%= data.featuredProducts[0][i].id_accesorio %>"
@@ -149,15 +151,17 @@
 
                             <div class="disscount-products-card__btns">
                                 <% if(user) {%>
-                                <a
-                                    role="button"
-                                    tabindex="0"
-                                    class="btn btn--primary btn--card btn--center"
-                                    data-id="<%= data.disccountProducts[0][i].id_accesorio %>"
-                                    id="addToCartBtn"
-                                    aria-label="Añadir <%= data.disccountProducts[0][i].nombre %> al carrito de compras"
-                                    >AÑADIR AL CARRITO</a
-                                >
+                                    <% if(user.codigo_tipo_usuario != 4) {%>
+                                        <a
+                                            role="button"
+                                            tabindex="0"
+                                            class="btn btn--primary btn--card btn--center"
+                                            data-id="<%= data.disccountProducts[0][i].id_accesorio %>"
+                                            id="addToCartBtn"
+                                            aria-label="Añadir <%= data.disccountProducts[0][i].nombre %> al carrito de compras"
+                                            >AÑADIR AL CARRITO</a
+                                        >
+                                    <% } %>
                                 <% } %>
                                 <a
                                     href="/accessories/<%= data.disccountProducts[0][i].id_accesorio %>"

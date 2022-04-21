@@ -45,10 +45,18 @@ controller.cartRemoveGet = async (req, res) => {
 
     if (success) {
         req.flash('success', 'Operación exitosa: El accesorio fue removido del carrito');
-        res.redirect('/cart');
+        if(req.user.codigo_tipo_usuario == 3){
+            res.redirect('/employee/cart'); 
+        }else{
+            res.redirect('/cart');
+        }
     } else {
         req.flash('message', 'Error: El accesorio a eliminar no fue encontrado en el carrito');
-        res.redirect('/cart');
+        if(req.user.codigo_tipo_usuario == 3){
+            res.redirect('/employee/cart'); 
+        }else{
+            res.redirect('/cart');
+        }
     }
 };
 
