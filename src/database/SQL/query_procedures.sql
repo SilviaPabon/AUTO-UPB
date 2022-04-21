@@ -1821,6 +1821,14 @@ BEGIN
     SET @gastos =  (SELECT SUM(valor)
 					FROM PROFITS_OUTGOINGS_VIEW
 					WHERE codigo_movimiento = 2 OR codigo_movimiento = 3);
+
+    IF @gastos IS NULL THEN
+        SET @gastos = 0; 
+    END IF; 
+
+    IF @entradas IS NULL THEN
+        SET @entradas = 0;
+    END IF; 
                     
 	SELECT ROUND((@entradas - @gastos), 2) AS resumen FROM PROFITS_OUTGOINGS_VIEW
     GROUP BY resumen;
