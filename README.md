@@ -19,6 +19,11 @@ Wearcar is a company that sells vehicle accessories, belonging to the self-named
 ![Suse](https://img.shields.io/badge/OPEN%20Suse-0C322C?style=for-the-badge&logo=SUSE&logoColor=white)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu%20Server-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 
+## Network Topology
+
+<p align="center">
+  <img src="https://i.ibb.co/r5x7hMT/wearcar-network-topology.png" width="680px"/>
+</p>
 
 ## Page Previews
 
