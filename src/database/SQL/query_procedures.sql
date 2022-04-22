@@ -1256,17 +1256,6 @@ BEGIN
     
 END //
 
-DELIMITER ;
-BEGIN
-	
-    SELECT id_orden, codigo_estado_compra, fecha_compra, Subtotales, `Descuentos aplicados`, `IVA aplicado`, Total
-	FROM ORDER_SUMMARY AS OS; 
-    
-    INSERT INTO LOGS(id_usuario_responsable, codigo_tipo_transaccion, codigo_tabla_modificada) 
-    VALUES (session_user_id, 2, 3);
-    
-END //
-
 DELIMITER ; 
 
 /*
