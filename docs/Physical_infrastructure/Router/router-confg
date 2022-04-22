@@ -95,27 +95,22 @@ interface FastEthernet0/0
  ip virtual-reassembly in
  duplex auto
  speed auto
- ipv6 traffic-filter ipv6_102 in
 !
 interface FastEthernet0/0.1
  ip nat inside
  ip virtual-reassembly in
- ipv6 traffic-filter ipv6_102 in
 !
 interface FastEthernet0/0.2
  ip nat inside
  ip virtual-reassembly in
- ipv6 traffic-filter ipv6_102 in
 !
 interface FastEthernet0/0.3
  ip nat inside
  ip virtual-reassembly in
- ipv6 traffic-filter ipv6_102 in
 !
 interface FastEthernet0/0.4
  ip nat inside
  ip virtual-reassembly in
- ipv6 traffic-filter ipv6_102 in
 !
 interface FastEthernet0/0.10
  encapsulation dot1Q 10
@@ -153,28 +148,25 @@ interface FastEthernet0/1
 !
 interface Serial0/0/0
  ip address 10.10.70.2 255.255.255.252
- ip access-group 101 in
  ip nat outside
  ip virtual-reassembly in
  shutdown
  ipv6 address 2801:0:2E0:1::12/126
- ipv6 traffic-filter ipv6_101 in
  no fair-queue
  clock rate 2000000
 !
 interface Serial0/1/0
  ip address 10.10.20.1 255.255.255.252
- ip access-group 101 in
  ip nat outside
  ip virtual-reassembly in
  shutdown
  ipv6 address 2801:0:2E0:1::D/126
- ipv6 traffic-filter ipv6_101 in
  clock rate 2000000
 !
 router ospf 1
  network 10.10.20.0 0.0.0.3 area 0
  network 10.10.70.0 0.0.0.3 area 0
+ network 192.168.70.144 0.0.0.7 area 0
 !
 ip forward-protocol nd
 no ip http server
@@ -191,19 +183,6 @@ ip nat inside source static udp 192.168.70.147 110 10.10.20.1 110 extendable
 ip nat inside source static tcp 192.168.70.146 443 10.10.20.1 443 extendable
 ip route 0.0.0.0 0.0.0.0 Serial0/1/0
 !
-access-list 101 permit ospf any any
-access-list 101 permit tcp any any eq www
-access-list 101 permit tcp any any eq 443
-access-list 101 permit udp any any eq domain
-access-list 101 permit tcp any any eq pop3
-access-list 101 permit tcp any any eq smtp
-access-list 101 permit udp any any eq 110
-access-list 101 permit udp any any eq 25
-access-list 101 deny   icmp any 192.168.70.0 0.0.0.127
-access-list 101 deny   icmp any 192.168.70.128 0.0.0.15
-access-list 101 deny   icmp any 192.168.70.144 0.0.0.7
-access-list 101 deny   icmp any 192.168.70.152 0.0.0.3
-access-list 101 permit ip any any
 ipv6 route ::/0 Serial0/1/0
 ipv6 router ospf 1
 !
@@ -213,22 +192,6 @@ ipv6 router ospf 1
 !
 !
 !
-ipv6 access-list ipv6_102
- deny icmp 2801:0:2E0:A:A::/80 2801:0:2E0:A:B::/80
- deny icmp 2801:0:2E0:A:A::/80 2801:0:2E0:A:C::/80
- deny icmp 2801:0:2E0:A:A::/80 2801:0:2E0:A:D::/80
- permit ipv6 any any
-!
-ipv6 access-list ipv6_101
- permit tcp any host 2801:0:2E0:A:A::2 eq www
- permit tcp any host 2801:0:2E0:A:A::2 eq 443
- permit udp any host 2801:0:2E0:A:A::2 eq domain
- permit tcp any host 2801:0:2E0:A:A::3 eq pop3
- permit tcp any host 2801:0:2E0:A:A::3 eq smtp
- permit udp any host 2801:0:2E0:A:A::3 eq 110
- permit udp any host 2801:0:2E0:A:A::3 eq 25
- deny icmp any 2801:0:2E0:A::/64
- permit ipv6 any any
 !
 control-plane
 !
