@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>HISTÓRICO DE PRECIOS</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+        <main>
+            <%- include('../partials/_messages.ejs') %>
+            <section class="section--no-top-margin">
+                <h1 class="title title--center">HISTÓRICO DE PRECIOS</h1>
+                <% if (accesorios) { %>
+                    <table class="generic-table">
+                        <thead>
+                            <tr>
+                                <th>NOMBRE PRODUCTO</th>
+                                <th>PRECIO ASIGNADO</th>
+                                <th>FECHA</th>
+                                <th>USUARIO RESPONSABLE DEL CAMBIO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < accesorios[0].length; i++) { %>
+                                <tr>
+                                    <td data-label="Nombre"><%= accesorios[0][i].nombre_accesorio %></td>
+                                    <td data-label="Precio">$<%= accesorios[0][i].precio_asignado %></td>
+                                    <td data-label="Fecha"><%= accesorios[0][i].fecha_cambio %></td>
+                                    <td data-label="Responsable"><%= accesorios[0][i].u_responsable %></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+
+                    <a href="/admin/finances/historical_prices" class="btn btn--primary btn--center btn--no-radius btn--extra-margin">VOLVER AL LISTADO DE ACCESORIOS</a>
+            
+                <% } else {%>
+
+                    <div class="result-empty">
+                        <p class="result-empty__text">NO SE ENCONTRARON ACCESORIOS </p>
+                    </div>
+    
+                <% } %>
+    
+                
+                
+                
+                
+            </section>
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

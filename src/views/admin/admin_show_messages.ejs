@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/_globalHeaders.ejs') %>
+    <title>MENSAJES</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <main>
+        <div class="title-search-peer">
+            <h1 class="title titlle--black">MENSAJES DE USUARIOS</h1>
+        </div>
+
+        <table class="generic-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo electrónico</th>
+                    <th>Mensaje enviado</th>
+                    <th>Acciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                    <% if(data[0].length != 0) {%>
+                        <% for(var i=0; i < data[0].length; i++) { %>
+                            <tr>
+                                <td data-label="Nombre"><%= data[0][i].nombre_remitente %></td>
+                                <td data-label="Correo"><%= data[0][i].correo_remitente %></td>
+                                <td data-label="Mensaje" class="message"> <%= data[0][i].texto_mensaje %></td>  
+                                <td data-label="Acciones">
+                                    <input type="button" class="btn btn--primary" value="Marcar resuelto">
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+            </tbody>
+        </table>
+    </main>
+    
+    <%- include('../partials/_globalScripts.ejs') %>
+</body>
+</html>

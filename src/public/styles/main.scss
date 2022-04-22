@@ -1,4 +1,62 @@
+@font-face {
+    font-family: Roboto;
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Roboto-Thin;
+    src: url('../fonts/Roboto-Thin.ttf') format('truetype');
+    font-weight: lighter;
+}
+
 @import './base/globals';
-@import './components/components'; 
+@import './components/components';
+@import './layouts/nav';
+@import './pages/signup';
+@import './pages/home';
+@import './pages/inventory_select_accessory_type';
+@import './pages/inventory_select_existing_accessory';
+@import './pages/products';
+@import './pages/accessory_details';
+@import './pages/carrito';
+@import './pages/contactUS';
+@import './pages/bill';
+@import './pages/finances';
 
 /*Global rulesets*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $roboto;
+    color: white; /*Color por defecto de los textos*/
+}
+
+html {
+    background-color: white;
+}
+
+body {
+    min-height: 100vh;
+    max-width: 1440px;
+    background-color: $background_color;
+    margin: 0px auto;
+    border-left: 1px solid rgb(226, 226, 226);
+    border-right: 1px solid rgb(226, 226, 226);
+}
+
+main {
+    position: relative;
+    margin-left: 220px;
+    min-height: 100vh;
+    padding: 16px 16px;
+}
+
+/*Clase para fijar el body cuando se abre el menú en mobile*/
+.body--fixed {
+    top: 70px; /*Valor calculado a partir de los márgenes y padding existentes*/
+    width: 100%;
+    position: fixed;
+}
+
+@import './mediaQueries';

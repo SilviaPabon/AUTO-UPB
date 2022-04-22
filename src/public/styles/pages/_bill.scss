@@ -1,0 +1,68 @@
+.bill {
+    /*Estilos generales del contenedor de la factura*/
+    width: 90%;
+    max-width: 1000px;
+    min-width: 240px;
+    margin: 0 auto;
+    border: 1px solid black;
+    background-color: white;
+
+    &__title {
+        width: 100%;
+        background-color: $main_green;
+        padding: 12px;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    /*Header de la factura*/
+    &__header {
+        text-align: center;
+        margin: 12px 0;
+
+        &__company {
+            color: black;
+            font-weight: bold;
+            font-size: $x_lg;
+            margin: 8px 0;
+        }
+
+        &__content {
+            color: black;
+
+            & span {
+                color: black;
+                font-weight: bold;
+            }
+        }
+    }
+
+    /*Contenido de la factura*/
+    &__body {
+        padding: 16px 32px;
+
+        &__extra-row {
+            border-top: 1px solid #dfdfdf;
+            border-bottom: 1px solid #dfdfdf;
+            padding: 8px 16px;
+            margin: 8px;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            gap: 8px;
+
+            &__content {
+                padding: 8px;
+                color: black;
+
+                & span {
+                    color: black;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

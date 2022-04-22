@@ -10,18 +10,8 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ], 
-        "camelcase": [2, {"properties": "always"}]
+        "linebreak-style": ["error", "windows"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"]
     }
 }

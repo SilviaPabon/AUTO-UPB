@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>RENDIMIENTO FINANCIERO: GANANCIAS</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+        <main>
+            <%- include('../partials/_messages.ejs') %>
+            <section class="section--no-top-margin">
+                <h1 class="title title--center">RENDIMIENTO FINANCIERO</h1>
+                <% if (profits) { %>
+                    <h2 class="title title--black">GANANCIAS</h1>
+                    <table class="generic-table">
+                        <thead>
+                            <tr>
+                                <th>FECHA DEL MOVIMIENTO</th>
+                                <th>VALOR DE GANANCIA</th>
+                                <th>TIPO DE MOVIMIENTO</th>
+                                <th>RESPONSABLE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < profits[0].length; i++) { %>
+                                <tr>
+                                    <td data-label="Fecha"><%= profits[0][i].fecha_movimiento %></td>
+                                    <td data-label="Valor">$<%= profits[0][i].valor %></td>
+                                    <td data-label="Descripción"><%= profits[0][i].tipo_movimiento %></td>
+                                    <td data-label="Responsable"><%= profits[0][i].usuario_responsable %></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                <% } else {%>
+
+                    <div class="result-empty">
+                        <p class="result-empty__text">NO SE ENCONTRARON REPORTES </p>
+                    </div>
+    
+                <% } %>
+                
+            </section>
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

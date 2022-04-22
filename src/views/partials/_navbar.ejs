@@ -1,0 +1,204 @@
+<% if(user) {%>
+<nav class="aside-navigation">
+    <a href="/" class="brand">
+        <img src="/images/wearcar_logo.png" alt="Wearcar logo">
+    </a>
+
+    <div class="menu">
+        <ul class="navigation">
+
+            <li class="navigation__account">
+                <div class="navigation__account__icon"><span class="icon--bigger"><img src="/icons/user-circle-solid.svg" alt="Ícono usuario"></span></div>
+                <p class="navigation__account__name"><%= user.nombre %></p>
+            </li>
+
+            <% if(user.codigo_tipo_usuario == 1) { %>
+            <li class="navigation__item">
+                <a href="/accessories" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
+                    Ver productos</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/cart" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg" alt="Ícono carrito de compras"></span></div>
+                    Carrito de compras</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/user/orders" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra"></span></div>
+                    Mis órdenes</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/contact_us" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg" alt="Ícono formulario de contacto"></span></div>
+                    Escríbenos</a
+                >
+            </li>
+            <% } else if (user.codigo_tipo_usuario == 2){ %>
+            <li class="navigation__item">
+                <a href="/accessories" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
+                    Ver productos</a
+                >   
+            </li>
+            <li class="navigation__item">
+                <a href="/cart" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg" alt="Ícono carrito de compras"></span></div>
+                    Carrito de compras</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/user/orders" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra"></span></div>
+                    Mis órdenes</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/partner/accounts" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/users-solid.svg" alt="Ícono cuentas de clientes"></span></div>
+                    Consulta de clientes</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/partner/inventory" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg" alt="Ícono inventario"></span></div>
+                    Consultar inventario</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/contact_us" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg" alt="Ícono formulario de contacto"></span></div>
+                    Escríbenos</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="mailto:" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/envelope-open-text-solid.svg" alt="Ícono correo"></span></div>
+                    Abrir correo</a
+                >
+            </li>
+            <% } else if (user.codigo_tipo_usuario == 3){ %>
+            <li class="navigation__item">
+                <a href="/accessories" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
+                    Ver productos</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/employee/cart" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/shopping-cart-solid.svg" alt="Ícono carrito de compras"></span></div>
+                    Carrito de compras</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/employee/orders" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/briefcase-solid.svg" alt="Ícono órdenes de compra de clientes"></span></div>
+                    Órdenes de compra clientes</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/employee/refunds" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/exchange-alt-solid.svg" alt="Ícono gestión de devoluciones"></span></div>
+                    Devoluciones</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/employee/inventory" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg" alt="Ícono inventario"></span></div>
+                    Consultar inventario</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="mailto:" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/envelope-open-text-solid.svg" alt="Ícono correo"></span></div>
+                    Abrir correo</a
+                >
+            </li>
+            <% } else if (user.codigo_tipo_usuario == 4){ %>
+            <li class="navigation__item">
+                <a href="/accessories" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
+                    Ver productos</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/admin/accounts" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/users-solid.svg" alt="Ícono gestión de cuentas"></span></div>
+                    Gestión de cuentas</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/admin/inventory" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/th-list-solid.svg" alt="Ícono gestión de accesorios"></span></div>
+                    Gestión de inventario</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/admin/finances" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/money-bill-wave-alt-solid.svg" alt="Ícono detalles financieros"></span></div>
+                    Detalles financieros</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/admin/create_account" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/user-cog-solid.svg" alt="Ícono gestión de cuentas internas"></span></div>
+                    Creación de cuenta interna</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/admin/messages" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg" alt="Ícono mensajes de los usuarios"></span></div>
+                    Mensajes de los usuarios</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="mailto:" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/envelope-open-text-solid.svg" alt="Ícono correo"></span></div>
+                    Abrir correo</a
+                >
+            </li>
+            <% } %>
+        </ul>
+
+        <div class="bottom">
+            <a href="/update" class="btn btn--primary btn--block btn--no-radius">Editar perfil</a>
+            <a href="/logout" class="btn btn--primary btn--block btn--no-radius">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <div class="menu-toggle"><span class="icon"><img src="/icons/bars-solid.svg" alt="Ícono memú"></span></div>
+</nav>
+<% }else{ %>
+<nav class="aside-navigation">
+    <a href="/" class="brand">
+        <img src="/images/wearcar_logo.png" alt="Wearcar logo">
+    </a>
+
+    <div class="menu">
+        <ul class="navigation">
+            <li class="navigation__item">
+                <a href="/accessories" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/plus-square-solid.svg" alt="Ícono ver productos"></span></div>
+                    Ver productos</a
+                >
+            </li>
+            <li class="navigation__item">
+                <a href="/contact_us" class="navigation__link"
+                    ><div class="navigation__icon"><span class="icon"><img src="/icons/comment-alt-solid.svg" alt="Ícono formulario de contacto"></span></div>
+                    Escríbenos</a
+                >
+            </li>
+        </ul>
+
+        <div class="bottom">
+            <a href="/signup" class="btn btn--secondary btn--block btn--no-radius">Crear cuenta</a>
+            <a href="/login " class="btn btn--secondary btn--block btn--no-radius">Iniciar sesión</a>
+        </div>
+    </div>
+
+    <div class="menu-toggle"><span class="icon"><img src="/icons/bars-solid.svg" alt="Ícono menú"></span></div>
+</nav>
+<% } %>

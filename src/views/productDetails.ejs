@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('partials/_globalHeaders.ejs') %>
+        <title><%= product[0][0].nombre %></title>
+    </head>
+    <body>
+        <%- include('partials/_navbar.ejs') %>
+
+        <main>
+    
+            <%- include('partials/_messages.ejs') %>
+
+            <article class="accessory_details_card">
+                
+                <div class="accessory_details_card__img">
+                    <img src="/images<%= product[0][0].ruta_imagen %>" alt="<%= product[0][0].nombre %>">
+                </div>
+                <div class="accessory_details_card__head">
+                    <h1 class="card__title"><%= product[0][0].nombre %></h1>
+                    <p class="price"><span>PRECIO: </span>$<%= product[0][0].precio_final %> COP</p>
+                </div>
+                <div class="accessory_details_card__body">
+                    <p class="accessory-description"><span>DESCRIPCIÓN: </span><%= product[0][0].descripcion %></p>
+                    <div class="accessory-details-container">
+                        <table class="generic-table horizontal-table">
+                            <tbody>
+                                <tr>
+                                    <td>Precio base: </td>
+                                    <td>$<%= product[0][0].precio_base %> COP</td>
+                                </tr>
+                                <tr>
+                                    <td>Porcentaje descuento: </td>
+                                    <td><%= product[0][0].descuento %>%</td>
+                                </tr>
+                                <tr>
+                                    <td>Precio final: </td>
+                                    <td>$<%= product[0][0].precio_final %> COP</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <% if(user) {%>
+                        <% if(user.codigo_tipo_usuario != 4) {%>
+                            <a class="btn btn--primary btn--block btn--block btn--no-radius" data-id="<%= product[0][0].id_accesorio %>" id="addToCartBtn" aria-label="Añadir <%= product[0][0].nombre %> al carrito de compras">Añadir al carrito</a>
+                        <% } %>    
+                    <% } %>
+
+                </div>
+
+            </article>
+
+        </main>
+
+        <%- include('partials/_globalScripts.ejs') %>
+        <script src="/scripts/addToCartBtn.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>CARRITO DE COMPRAS</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            <%- include('../partials/_messages.ejs') %>
+            <div class="title-search-peer">
+                <h1 class="title title--black">CARRITO DE COMPRAS</h1>
+            </div>
+
+            <table class="generic-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Descuento/Unidad</th>
+                        <th>Cantidad</th>
+                        <th>Precio final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < cart.length; i++) { %>
+                    <tr>
+                        <td data-label="Acciones">
+                            <a
+                                href="cart/remove/<%= cart[i].id_accesorio %>"
+                                class="btn btn--alert btn--no-radius"
+                                name="reserveNow"
+                                aria-label="Eliminar <%= cart[i].nombre %> del carrito de compras"
+                                >X</a
+                            >
+                        </td>
+                        <td data-label="Nombre"><%= cart[i].nombre %></td>
+                        <td data-label="Precio base"><%= cart[i].precio_base %></td>
+                        <td data-label="Descuento"><%= cart[i].descuento %></td>
+                        <td data-label="Cantidad">
+                            <div class="card_cant">
+                                <button class="btn--amount btn--amount-a" aria-label="Disminuir en uno la cantidad actual del accesorio <%= cart[i].nombre %>">-</button>
+                                
+                                <label for="input">Cantidad del accesorio <%= cart[i].nombre %></label>
+                                <input
+                                    class="input_cart_amount"
+                                    type="number"
+                                    min="1"
+                                    max="<%= cart[i].stock %>"
+                                    step="1"
+                                    id="input"
+                                    value="<%= cart[i].cantidad %>"
+                                    data-id = "<%= cart[i].id_accesorio %>"
+                                />
+                                <button class="btn--amount btn--amount-b" aria-label="Aumentar en uno la cantidad actual del accesorio <%= cart[i].nombre %>">+</button>
+                            </div>
+                        </td>
+                        <td data-label="Precio final"><%= cart[i].precio_final %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <div class="resume-form-container">
+                <section class="shopping_resume">
+                    <h1 class="title title--black">RESUMEN</h1>
+
+                    <table class="generic-table horizontal-table">
+                        <tbody>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td><%= resume.subtotal %></td>
+                            </tr>
+                            <tr>
+                                <td>Impuestos</td>
+                                <td><%= resume.impuestos %></td>
+                            </tr>
+                            <tr>
+                                <td>Descuentos</td>
+                                <td><%= resume.descuentos %></td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td><%= resume.total %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <% if(cart.length > 0) { %>
+                        <a href="/cart/buy" class="btn btn--submit btn--primary btn--block btn--no-radius buy-btn"
+                        aria-label="Generar compra">REALIZAR COMPRA</a>
+                    <% } %>
+                </section>
+            </div>
+        </main>
+        <script src="/scripts/addSub.js"></script>
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+</html>

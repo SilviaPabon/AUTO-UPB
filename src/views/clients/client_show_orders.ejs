@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <%- include('../partials/_globalHeaders.ejs') %>
+        <title>MIS ÓRDENES DE COMPRA</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+        <main>
+            <%- include('../partials/_messages.ejs') %>
+            <section class="section--no-top-margin">
+                <h1 class="title title--center">MIS ÓRDENES DE COMPRA</h1>
+
+                <% if (data.length > 0) {%>
+
+                <table class="generic-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID ORDEN</th>
+                            <th>ESTADO</th>
+                            <th>FECHA DE COMPRA</th>
+                            <th>SUBTOTAL</th>
+                            <th>DESCUENTOS</th>
+                            <th>IMPUESTOS</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < data.length; i++) { %>
+                            <tr>
+                                <td  data-label="Acciones" class="table-row--buttons">
+                                    <% if(data[i].estado_compra == 'En tránsito'){%>
+                                        <a role="button" id="recieved" aria-label="Reportar recibido de la órden de compra número <%= data[i].id_orden %>" href="/user/orderDone/<%= data[i].id_orden %>" class="btn btn--primary">Reportar recibido</a>
+                                    <%}%>
+                                    
+                                    <a role="button" aria-label="Ver factura para la órden de compra número <%= data[i].id_orden %>" href="/user/bill/<%= data[i].id_orden %>" class="btn btn--primary">Ver factura</a>
+                                </td>
+                                <td data-label="Id" >#<%= data[i].id_orden %></td>
+                                <td data-label="Estado" ><%= data[i].estado_compra %></td>
+                                <td data-label="Fecha compra" ><%= data[i].fecha_compra %></td>
+                                <td data-label="Subtotal" >$<%= data[i]['Total Precios Base'] %></td>
+                                <td data-label="Descuentos" >$<%= data[i]['Descuentos aplicados'] %></td>
+                                <td data-label="Impuestos" >$<%= data[i]['IVA aplicado'] %></td>
+                                <td data-label="Total" >$<%= data[i].Total %></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <% } %>
+            </section>
+        </main>
+
+        <%- include('../partials/_globalScripts.ejs') %>
+    </body>
+    <script src="/scripts/recieved.js"></script>
+</html>

@@ -1,25 +1,34 @@
 /* ######## Colors ########*/
 
 /*Primary colors*/
-$background_color: #1E1E20; 
-$main_blue: #003078; 
-$very_dark: #100F12; 
-/*Secondary colors*/
-$bright_red: #E60118;
-$odd_table_row_color: #ccd2db;  
-$input_bg: #dcdcdc; 
-$placeholder_color: #959595; 
+$background_color: #fafafa;
 
-$total_white: #fff; 
-$total_black: #000; 
+$main_green: #36c9b8;
+$main_green_bright: #2ae0cb;
+
+$very_dark: #0d141c;
+
+/*Secondary colors*/
+$bright_red: #e60118;
+$bright_red_soft: #e74051;
+$even_table_row_color: #fff;
+$odd_table_row_color: #ececec;
+$input_bg: #dcdcdc;
+$placeholder_color: #959595;
+$partial_grey: #22252c;
+
+$total_white: #fff;
+$total_black: #000;
+
+$card_hover: rgb(212, 212, 212);
 
 /* ######## Font families ########*/
-$roboto: 'Roboto', sans-serif, arial; 
+$roboto: 'Roboto', sans-serif, arial;
 
 /*######## Font sizes ########*/
-$x_sm: 14px; 
-$sm: 16px; 
-$md: 18px; 
-$lg: 22px; 
-$x_lg: 32px; 
+$x_sm: 14px;
+$sm: 16px;
+$md: 18px;
+$lg: 22px;
+$x_lg: 32px;
 $giant: 42px;

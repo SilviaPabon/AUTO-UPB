@@ -1,0 +1,11 @@
+.accessory_type_card {
+    &__image img {
+        width: 100%;
+        border-bottom: 1px solid #dfdfdf;
+    }
+
+    &__body {
+        padding: 4px;
+        text-align: center;
+    }
+}

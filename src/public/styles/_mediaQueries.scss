@@ -1,0 +1,264 @@
+/*PARA CELULARES*/
+@media (max-width: 768px) {
+    $x_sm: 12px;
+    $sm: 14px;
+    $md: 16px;
+    $lg: 20px;
+    $x_lg: 30px;
+    $giant: 40px;
+
+    main {
+        margin-left: 0px;
+    }
+
+    .aside-navigation {
+        /*Columa contenedora de la barra de navegación*/
+        padding: 0px 16px;
+        height: 60px;
+        width: 100%;
+
+        /*Display flex para poner el logo encima de las opciones de navegación*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        & .brand {
+            margin-top: 0;
+            max-width: 140px;
+        }
+
+        /*La posición es fija al costado*/
+        position: inherit;
+
+        /*Contenedor de las opciones de navegación*/
+        .menu {
+            /*Tiene flex para separar la navegación de los botones de sesión*/
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            /*La posición es fija y comienza por fuera de la pantalla*/
+            position: fixed;
+            top: 60px;
+            left: 100%;
+            width: 100%;
+            height: calc(100vh - 60px);
+
+            flex-direction: column;
+            overflow-y: hidden;
+            z-index: 10;
+            background-color: $very_dark;
+
+            /*Padding a los laterales*/
+            padding: 0px 16px;
+
+            /*Transición para efecto smooth al abrir en celulares*/
+            transition: 0.4s ease all;
+
+            /*Navegación entre las pestañas de la página*/
+            .navigation {
+                /*Link dentro del li*/
+                &__link {
+                    /*Centrar los textos*/
+                    display: flex;
+                    justify-content: space-evenly;
+                    text-align: center;
+                    line-height: 1.5;
+                    border-bottom: 1px solid rgb(255, 255, 255);
+                }
+
+                &__link:hover {
+                    border-right: 2px transparent;
+                }
+            }
+        }
+
+        /*Clase que muestra la barra de navegación cuando se dé click al toggle*/
+        .menu-visible {
+            left: 0;
+        }
+
+        /*Menú de hamburguesa para dispositivos móviles*/
+        .menu-toggle {
+            display: block;
+
+            .icon img {
+                width: 20px;
+            }
+        }
+    }
+
+    /*#########*/
+    /*CONTENEDOR DE LOS SERVICIOS EN EL HOME*/
+    /*#########*/
+
+    .hero-services {
+        /*Contenedor principal, contiene la imágen del vehículo*/
+        justify-content: space-between;
+        min-height: 100vh;
+        padding: 8px 24px 24px 24px;
+
+        &__title-container {
+            height: 45vh;
+        }
+
+        &__services-container {
+            /*Contenedor inferior de los servicios*/
+            gap: 8px;
+        }
+
+        &__service {
+            width: 100%;
+            /*Contenedor de cada servicio*/
+            border-bottom: 1px solid rgba(255, 255, 255, 0.774);
+
+            /*El segundo elemento tiene bordes para indicar separación*/
+            &:nth-child(2) {
+                border-left: 1px transparent;
+                border-right: 1px transparent;
+            }
+
+            & h3 {
+                font-size: $md;
+            }
+
+            & p {
+                font-size: $sm;
+            }
+        }
+    }
+
+    /*########*/
+    /*SECCIÓN DE sobre nosotros*/
+    /* ###### */
+    .about-us {
+        gap: 0;
+
+        &__image-container {
+            grid-column: 1/-1;
+            grid-row: 1;
+            padding: 12px;
+        }
+
+        &__text-container {
+            grid-column: 1/-1;
+            grid-row: 2;
+            padding: 8px 24px 24px 24px;
+        }
+    }
+
+    .form-image {
+        display: grid;
+        grid-template-columns: 1fr;
+        border-radius: 16px;
+
+        &__img {
+            display: none;
+        }
+    }
+
+    /*########*/
+    /* Responsive de las tablas */
+    /* ###### */
+    .generic-table {
+        & thead {
+            display: none;
+        }
+
+        & tbody,
+        & tr,
+        & td {
+            display: block;
+            width: 100%;
+        }
+
+        & tr {
+            width: 100%;
+            margin-bottom: 24px;
+
+            & td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                overflow-x: auto;
+            }
+        }
+
+        /*Se agrega el label de cada fila*/
+        & td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            text-align: left;
+            padding-left: 12px;
+        }
+
+        & tbody tr td:nth-child(odd) {
+            background-color: $odd_table_row_color;
+        }
+
+        & tbody tr td:nth-child(even) {
+            background-color: $even_table_row_color;
+        }
+    }
+
+    /*Tabla especial*/
+    .horizontal-table {
+        & tr {
+            & td {
+                text-align: center;
+                padding-right: 0;
+                padding-left: 0;
+                position: relative;
+                overflow-x: auto;
+            }
+        }
+
+        /*Se agrega el label de cada fila*/
+        & td::before {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+
+/* PARA TABLETS*/
+@media (max-width: 992px) {
+    /*#########*/
+    /*CONTENEDOR DE LOS SERVICIOS EN EL HOME*/
+    /*#########*/
+
+    .hero-services {
+        /*Contenedor principal, contiene la imágen del vehículo*/
+        min-height: 80vh;
+        background-image: url('/images/home_header--medium.jpg');
+
+        &__services-container {
+            /*Contenedor inferior de los servicios*/
+            gap: 8px;
+        }
+
+        &__service {
+            /*Contenedor de cada servicio*/
+            border-bottom: 1px solid rgba(255, 255, 255, 0.774);
+
+            /*El segundo elemento tiene bordes para indicar separación*/
+            &:nth-child(2) {
+                border-left: 1px transparent;
+                border-right: 1px transparent;
+            }
+        }
+    }
+    .form-image {
+        display: block;
+        grid-template-columns: 1fr;
+        & .input-form {
+            margin: 0 auto;
+        }
+        &__img {
+            display: none;
+        }
+    }
+}

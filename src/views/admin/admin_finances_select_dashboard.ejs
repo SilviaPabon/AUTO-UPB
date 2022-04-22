@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/_globalHeaders.ejs') %>
+    <title>SELECCIÓN DETALLES FINANCIEROS</title>
+</head>
+<body>
+
+    <%- include('../partials/_navbar.ejs') %>
+
+    <main>
+        
+        <section class="select_accessory_type">
+            <h1 class="title title--center">SELECCIÓN DETALLES FINANCIEROS</h1>
+
+            <div class="cards_container cards_container--center-items">
+                
+                <article class="generic-card  accessory_type_card">
+                    <div class="accessory_type_card__image">
+                        <img src="/images/finances_historic_prices.jpg" alt="">
+                    </div>
+                    <div class="accessory_type_card__body">
+                        <a href="/admin/finances/historical_prices" class="btn btn--primary btn--center">HISTÓRICO DE PRECIOS</a>
+                    </div>
+                </article>
+
+                <article class="generic-card accessory_type_card">
+                    <div class="accessory_type_card__image">
+                        <img src="/images/finances_financial_perform.jpg" alt="">
+                    </div>
+                    <div class="accessory_type_card__body">
+                        <a href="/admin/finances/perform_details" class="btn btn--primary btn--center">RENDIMIENTOS FINANCIEROS</a>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+    
+    <%- include('../partials/_globalScripts.ejs') %>
+
+</body>
+</html>
