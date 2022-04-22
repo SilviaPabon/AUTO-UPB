@@ -1,0 +1,3771 @@
+<?xml version="1.0"?><config>
+<access-point>
+<description>VAP settings</description>
+<vap-status>up</vap-status>
+</access-point>
+<ap-meter></ap-meter>
+<cp-user-group name="Default"></cp-user-group>
+<captive-portal>
+<mode>down</mode>
+<auth-timeout>300</auth-timeout>
+<http-port>0</http-port>
+<https-port>0</https-port>
+<debug>0</debug>
+<instance-count>0</instance-count>
+<user-count>0</user-count>
+<group-count>1</group-count>
+</captive-portal>
+<cp-image name="cisco_bkg">
+<image_name>cisco_bkg.jpg</image_name>
+<image>begin-base64 644 /tmp/captive_portal/cisco_bkg.jpg
+/9j/4AAQSkZJRgABAQEAZABkAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJ
+ChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/
+2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgo
+KCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAKKAyADASIAAhEBAxEB/8QA
+GwABAQEBAQEBAQAAAAAAAAAAAAECAwQFBgf/xAAzEAEAAgECBAMHBAMAAgMA
+AAAAARECAxIEMUFREyFhBRQyQnGBkSIzQ1IVU6EjYnKisf/EABoBAQEBAQAD
+AAAAAAAAAAAAAAABAgMEBQb/xAAhEQEAAwEAAgMBAQEBAAAAAAAAARESAgMT
+ITFRQSJhBP/aAAwDAQACEQMRAD8A/ntFNUU+tfLM0UtFAlFLRQIpS0CC0Agp
+QM0U1RQM0U1SUKlDVJQJRTVFCM0NUUDJS0tAzQtFAgtFAhTVJQJRS0UCKUUC
+wsMqJSrSeaiUUCiIpRQUedqiiCpEHmFNL5pEW1jhM9ESkIh2w0Znm74aBZl5
+YxmXTDRmXtw0HfDRZnpY4eLDQ9HfDQl7cdKIdccIhiemo4eXDQdsdGI5u8QV
+9EtcwxjhEdGm6jusRHeEKYKdscL5umOnj1mykmYh58cZnlDpjpT1l3iI6TC1
+HdfhiZmfpyx04jo1TpERLcYLbOb+3CjbL0xprGn5JZl5tkr4b1RpNRplpTye
+EvhPbGjM8oluOGznljK2jwxpNRpvoY8FqT8rrjwGXWYhbhKfK8JfBfXjgY65
+S3HB6cc7ktmpfG8CE93fdjhtOOWP5WNHCPlj8LpmYfBjhpX3TKfln8PvbI6R
+BtWJZmHwY4PP+k/hfccv6vu7YTZDVsTzD4XuOX9T3DLtD7k4RSeH5LbEw+FP
+s6Z5xDM+zZ7w+5ODM4rVs3MPhz7Mn+0MT7MnvD7s4sTiYs9kw+HPs3vLM+zv
+q+5ODE4wevr+Se7n+w+JPAfVieCiOmT7U4MTgzjuGo8vjl8WeEx7SxPC4dpf
+Zy0/Rzy0+8J/qPtuJ5n6l8meFw7Mzw2H9YfUy047OU6cJpuPh83Lh8P6w5zw
++PTGPw+nlpR0c8tJdNx0+ZloY9cI/DnloY9Kh9LLSn6ueWn3hfiXTnyTD5uW
+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
+lOOODcYO8aTrjo2zMrEPNjg3Gm9WOi646Mdktqnkx05dcdJ68dGHXHShmemo
+h5cdL0dcdN2ynS04/wDJqY4/WXHP2lwWl5eJun/1i0+Z+l+I+3bHSl1x0nzd
+T25pR+1o5Zf/ACmnnz9t8Tl+3jp4R9LMdSa5h9/HTanbhF5ZRH1mn5XU9ocV
+qfHr5RHpNPPlnum888sp9ZtfXKeyH6rV47htPnrY/abeTU9r8PF7N+X0h+fj
+LFqM49IajxwzPkl9jL2tfwaM/eXLL2jrTyjDH7Pm+NjHOUnicY5LHEJuX0Z4
+zXnnqT9vJieIznnnlP3fOniY6MzxMy1lm7+30J1vPrLM600+fOvM9YZ8ae60
+j35as1zc8taekvH4qTqWuWZl6MtWZlmZno5b5rsk5xHVqOXOZbPPs5zq9k8S
+Z6t0xMu0RXOVmnDf6r4lLTMu26kuJ5uE6hv9VZl35JOVOE6nqz4is09G4nN5
+t/qTmqPRvZnNx3JMzaszDtvSc3Gzc0zMO3iTHKZajiM4+a/q892DNPTHE5Rz
+iG44qJ5xLxqtQny90auGXzNXHSXz1jKY87pB779R4o1so639XTHif7R+GZlq
+OXptYlxx1sJ619YbiYy5TEszLUcNrcd2C47s6aw3aWxZuZ0163S7ZmWbNyWu
+GrS2ZyZstcN3XZNzO5NwYb3EZOe5bEy3uN0uczCWph13G5yv1LGcOu9qNT1e
+eyxMPT4kLGpHd5Zk3eqGHzaWnSjarzHOh02lAxRTe0oViIapqliAZ2m1uloH
+PaU3RQMUsQ3tNoM0sQ1GLcYoMRCxi6Ri1GPojTlGLW2XWMJWMQcoxbjD0dNr
+UYJasY4ejpGDWOLrGLKueOMQ3GLcYtxArEYtxi3ENxj5ornGLcYtTtx88soj
+6uWfG8Np/FqxM+nmnyfEO2ODpjh5vnZ+19LH9vDLKfXyefU9r68/t4YY/azH
+Um+YfexwXLLS04/Xnjj9Zfl9TjuJ1Pi1cq7RNOM5ZTP6spmfVfV+p7Px+oz9
+o8Jp/wAm6f8A1i3nz9t6cft6Uz9Zp+fuOsniRHKGo8UJ7JfY1PbPE5fBGOEe
+kW8+pxnE6vx62X5fP8aekMzq5SscRDO5ey788srN+EeTwzqZT1TdLWU09068
+RypMteZ5PFulN0mTT1zrT3TxfV5blLkpLevxp7p4vq8vmXK0W9M6nqnierz+
+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
+lCrEAyLQCI0UCUUtAIKtAgoCkqAyKgCKCAKKgoCKAgilCoooMqAAAJIoCClA
+BSgyLRQIUoCClAlJENEgzRTSAlCgJSiggpQIKUCUKSCAAIoCCgM0pS0DNFKA
+nQpVBKKUBClABaKBBaKABQZFKBBaKBBaQEopQGaKaoBmimqKBkpqgGSmgEoU
+AoPqoIKAgtFAgtKDJTSAiqAhSgAAAACKAgoCCgCKAiooCKAlKAAAAAAAAAAA
+AACKAigAigJSgCKAAAIoAAAhSoBQqAgtAIC0CClAgtABJSgkKACKAAAAAAAA
+AAAhSgIUKCJMNAM0tKAkioBQoCKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACKAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAA//Z
+====
+</image>
+</cp-image>
+<cp-image name="cisco_logo">
+<image_name>cisco_logo.png</image_name>
+<image>begin-base64 644 /tmp/captive_portal/cisco_logo.png
+iVBORw0KGgoAAAANSUhEUgAAAD4AAAAhCAYAAACBQRgKAAAAGXRFWHRTb2Z0
+d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAt1JREFUeNrsWYuRmzAQxR4X
+oBJ0HVAC1wGpIKaCTDrgKrh04HTApQKcCiAV2B1AB0S6rHzrvRX6YHRzE++M
+xtgSq/dgv3I2TVMWOaQaw/RPyiyR6L1gT723hN+Cx3YBBr2pgOtvWTr5Cp8C
+METJNvt8Im6h5DMSz+7EVySug9akRhdqYiqA1BCEmogA1sC9dYQbdIB579pk
+brTTmxRkrkBzLaPXRPwpgriRgZm7wkQ4XGFaK6qnCEJiTVPXyovUPqaeeq7H
+B7i35io08ZMa2lQPKYsQ8MUuZfEDHDXX0xaZk0wIILdcry2Go7inszvxaxkt
+1z7S30DvOXBPb7w7Nb6An70w85UafwBAHwiiggLo3X2bzeaHSe/6mrl3DpPr
+YVfgy5ze7xdMC9rS2QJmxYwwV8AkaUuxGf5O6J6/FrjCm9VFVJQ0PUhlrsfE
+xY9+02e179m88dTEjZ9+aISO4XBPZ/+b7AJKTAmfRwgqZ2RqEpWDF99j/DKH
+/PqaHtW60WK6AtYWkKK0zt53rVfqdYT9nKQPLHhdjX6vmS7sxNzP9fBCjWfL
+foXlsGPgdMO+Vm47x1tub9ATNwENUOvbtCjwh5lTlgJ0Pdre/s4BWJCq6IjM
+yqvnJqQrMEVBHyhYSk5KzhdEBK/dE9Ij4BNIhwAODyGmXhLT2TN/JjhNnVR3
+Ro+w4MAm29F1+DvMX61FWPZkz5LjaCNeE8WuWDDn45wPHggRSeZzzzO5yeLL
++MHUsSXruNDHHxkd2kxbRF6Sgsi7IbKsdVaSPsTlkgAHwB6gM+pJ8Cy5Fjbk
+OAr8nUoZm85yzjSJH3mZOrNfZ4kHOOUNOH0BHom+N3Qt4BCA1eUKme+ZupFT
+SB4HQB2AqRlQJX7Llv0GmseZoGmTxsZvjrggbye4gHEA7LjcPLP+XUpzkKbR
+3ju4jRCYnpi+17cPHi2//QTdNB5UcPrSM/eMZK3RcWSwPVmC6kX+CjAA3P1W
+5hqLvssAAAAASUVORK5CYII=
+====
+</image>
+</cp-image>
+<cp-image name="login_key">
+<image_name>login_key.jpg</image_name>
+<image>begin-base64 644 /tmp/captive_portal/login_key.jpg
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsL
+DBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/
+2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABdAfMDASIAAhEBAxEB/8QA
+HwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUF
+BAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkK
+FhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1
+dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXG
+x8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEB
+AQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAEC
+AxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRom
+JygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOE
+hYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU
+1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0QDNOoxTg
+K7TAAKUD2pQKzb26mnvBp1mQshG6SQ/wD/OPzpXAuT3dtan9/PHF/vNimDUb
+FhlbuIj2YVmWflq5/su0W4ZThrqdiA30wcenatUPrQGRdxRj0VFIH5rUtvoN
+W6jDqenqcG8hB9N1WI3SZN0TB1PcVk3+rXEKlLi6tJ+P9W3yk/kKyIbqCciW
+BJLC4J+RjzG7enJPr6dxS57O0iuW6ujrsU0/SqGm6ha3FvLDfRkajEPmVTwR
+2I59qksJvMDoeCDx9K46eYRliPYSVmbvCv2TqxeiLRGaYRipCKaRXoHIRkUw
+jtUpphFMCOmEYNSGmsOM1QmREZFMPSpKYR1FMkYRx9KbUh60w0wIiOKaetPN
+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
+j+0aPmHsJn//2Q==
+====
+</image>
+</cp-image>
+<cp-vap name="vap0">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap0">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap1">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap1">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap2">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap2">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap3">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap3">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap4">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap4">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap5">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap5">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap6">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap6">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap7">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap7">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap8">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap8">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap9">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap9">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap10">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap10">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap11">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap11">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap12">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap12">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap13">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap13">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap14">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap14">
+<radio>wlan1</radio>
+</cp-vap>
+<cp-vap name="vap15">
+<radio>wlan0</radio>
+</cp-vap>
+<cp-vap name="vap15">
+<radio>wlan1</radio>
+</cp-vap>
+<cdpd></cdpd>
+<channel-planner>
+<status>down</status>
+<change-threshold>75</change-threshold>
+<interval>60</interval>
+<locked-ips></locked-ips>
+</channel-planner>
+<client-qos>
+<mode>down</mode>
+</client-qos>
+<cluster>
+<location>No Default</location>
+<ipversion>ipv4</ipversion>
+<cluster-ipaddr>0.0.0.0</cluster-ipaddr>
+<priority>0</priority>
+<trace-debug>0</trace-debug>
+<cluster-name>ciscosb-cluster</cluster-name>
+<clustered>0</clustered>
+</cluster>
+<cluster-firmware-upgrade></cluster-firmware-upgrade>
+<config>
+<version>1.02</version>
+<backup-file-format>plain</backup-file-format>
+</config>
+<debug>
+<level>0</level>
+<klevel>1</klevel>
+</debug>
+<device-info>
+<device-name>Cisco AP</device-name>
+<version-id>V02</version-id>
+<product-id>WAP561-A-K9</product-id>
+<device-description>WAP561 Wireless-N Dual Radio Selectable-Band Access Point with Single Point Setup</device-description>
+</device-info>
+<udi>
+<pid>WAP561-A-K9</pid>
+<vid>V02</vid>
+<sn>DNI2203A01X</sn>
+</udi>
+<dot11>
+<status>up</status>
+<debug>0</debug>
+<vpd-init>1</vpd-init>
+</dot11>
+<radio name="wlan0">
+<description>IEEE 802.11g</description>
+<max-bss>16</max-bss>
+<channel-policy>best</channel-policy>
+<static-channel>6</static-channel>
+<valid-mode-list>bg bg-n n-only-g a a-n n-only-a</valid-mode-list>
+<mode>bg-n</mode>
+<dot11h>on</dot11h>
+<dot11d>up</dot11d>
+<block-time>31</block-time>
+<quiet-duration>0</quiet-duration>
+<quiet-period>0</quiet-period>
+<tx-mitigation>3</tx-mitigation>
+<tx-power>100</tx-power>
+<tx-rx-status>up</tx-rx-status>
+<beacon-interval>100</beacon-interval>
+<fragmentation-threshold>2346</fragmentation-threshold>
+<rts-threshold>65535</rts-threshold>
+<load-balance-disassociation-utilization>0</load-balance-disassociation-utilization>
+<load-balance-disassociation-stations>0</load-balance-disassociation-stations>
+<load-balance-no-association-utilization>70</load-balance-no-association-utilization>
+<ap-detection>off</ap-detection>
+<sentry-mode>off</sentry-mode>
+<channel-hopping>on</channel-hopping>
+<passive-scan-band>0</passive-scan-band>
+<data-snooping>off</data-snooping>
+<wme>on</wme>
+<wme-noack>off</wme-noack>
+<wme-apsd>on</wme-apsd>
+<rate-limit-enable>off</rate-limit-enable>
+<rate-limit>50</rate-limit>
+<rate-limit-burst>75</rate-limit-burst>
+<n-bandwidth>20</n-bandwidth>
+<n-primary-channel>lower</n-primary-channel>
+<protection>auto</protection>
+<edca-template>custom</edca-template>
+<fixed-multicast-rate>auto</fixed-multicast-rate>
+<short-guard-interval-supported>yes</short-guard-interval-supported>
+<stbc-mode>off</stbc-mode>
+<coex-mode>on</coex-mode>
+<dtim-period>2</dtim-period>
+<max-stations>200</max-stations>
+<frame-burst>off</frame-burst>
+<max-mcs-index>23</max-mcs-index>
+<status>up</status>
+</radio>
+<radio name="wlan1">
+<description>IEEE 802.11a</description>
+<max-bss>16</max-bss>
+<channel-policy>best</channel-policy>
+<static-channel>36</static-channel>
+<valid-mode-list>a a-n n-only-a</valid-mode-list>
+<mode>a-n</mode>
+<dot11h>on</dot11h>
+<dot11d>up</dot11d>
+<block-time>31</block-time>
+<quiet-duration>0</quiet-duration>
+<quiet-period>0</quiet-period>
+<tx-mitigation>3</tx-mitigation>
+<tx-power>100</tx-power>
+<tx-rx-status>up</tx-rx-status>
+<beacon-interval>100</beacon-interval>
+<fragmentation-threshold>2346</fragmentation-threshold>
+<rts-threshold>65535</rts-threshold>
+<load-balance-disassociation-utilization>0</load-balance-disassociation-utilization>
+<load-balance-disassociation-stations>0</load-balance-disassociation-stations>
+<load-balance-no-association-utilization>0</load-balance-no-association-utilization>
+<ap-detection>off</ap-detection>
+<sentry-mode>off</sentry-mode>
+<channel-hopping>on</channel-hopping>
+<passive-scan-band>0</passive-scan-band>
+<data-snooping>off</data-snooping>
+<wme>on</wme>
+<wme-noack>off</wme-noack>
+<wme-apsd>on</wme-apsd>
+<rate-limit-enable>off</rate-limit-enable>
+<rate-limit>50</rate-limit>
+<rate-limit-burst>75</rate-limit-burst>
+<n-bandwidth>40</n-bandwidth>
+<n-primary-channel>lower</n-primary-channel>
+<protection>auto</protection>
+<fixed-multicast-rate>auto</fixed-multicast-rate>
+<short-guard-interval-supported>yes</short-guard-interval-supported>
+<stbc-mode>off</stbc-mode>
+<coex-mode>on</coex-mode>
+<dtim-period>2</dtim-period>
+<max-stations>200</max-stations>
+<frame-burst>off</frame-burst>
+<max-mcs-index>23</max-mcs-index>
+<status>down</status>
+<edca-template>default</edca-template>
+</radio>
+<basic-rate name="wlan0">
+<rate>11</rate>
+</basic-rate>
+<basic-rate name="wlan0">
+<rate>5.5</rate>
+</basic-rate>
+<basic-rate name="wlan0">
+<rate>2</rate>
+</basic-rate>
+<basic-rate name="wlan0">
+<rate>1</rate>
+</basic-rate>
+<basic-rate name="wlan1">
+<rate>24</rate>
+</basic-rate>
+<basic-rate name="wlan1">
+<rate>12</rate>
+</basic-rate>
+<basic-rate name="wlan1">
+<rate>6</rate>
+</basic-rate>
+<supported-rate name="wlan0">
+<rate>54</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>48</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>36</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>24</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>18</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>12</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>11</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>9</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>6</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>5.5</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>2</rate>
+</supported-rate>
+<supported-rate name="wlan0">
+<rate>1</rate>
+</supported-rate>
+<supported-rate name="wlan1">
+<rate>54</rate>
+</supported-rate>
+<supported-rate name="wlan1">
+<rate>48</rate>
+</supported-rate>
+<supported-rate name="wlan1">
+<rate>36</rate>
+</supported-rate>
+<supported-rate name="wlan1">
+<rate>24</rate>
+</supported-rate>
+<supported-rate name="wlan1">
+<rate>18</rate>
+</supported-rate>
+<supported-rate name="wlan1">
+<rate>12</rate>
+</supported-rate>
+<supported-rate name="wlan1">
+<rate>9</rate>
+</supported-rate>
+<supported-rate name="wlan1">
+<rate>6</rate>
+</supported-rate>
+<mcs-index name="wlan0">
+<index>0</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>1</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>2</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>3</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>4</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>5</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>6</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>7</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>8</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>9</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>10</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>11</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>12</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>13</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>14</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>15</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>16</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>17</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>18</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>19</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>20</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>21</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>22</index>
+</mcs-index>
+<mcs-index name="wlan0">
+<index>23</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>0</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>1</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>2</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>3</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>4</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>5</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>6</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>7</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>8</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>9</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>10</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>11</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>12</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>13</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>14</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>15</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>16</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>17</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>18</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>19</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>20</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>21</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>22</index>
+</mcs-index>
+<mcs-index name="wlan1">
+<index>23</index>
+</mcs-index>
+<tx-queue name="wlan0">
+<queue>data0</queue>
+<aifs>1</aifs>
+<cwmin>3</cwmin>
+<cwmax>7</cwmax>
+<burst>1.5</burst>
+</tx-queue>
+<tx-queue name="wlan0">
+<queue>data1</queue>
+<aifs>1</aifs>
+<cwmin>7</cwmin>
+<cwmax>15</cwmax>
+<burst>3.0</burst>
+</tx-queue>
+<tx-queue name="wlan0">
+<queue>data2</queue>
+<aifs>3</aifs>
+<cwmin>15</cwmin>
+<cwmax>63</cwmax>
+<burst>0</burst>
+</tx-queue>
+<tx-queue name="wlan0">
+<queue>data3</queue>
+<aifs>7</aifs>
+<cwmin>15</cwmin>
+<cwmax>1023</cwmax>
+<burst>0</burst>
+</tx-queue>
+<tx-queue name="wlan1">
+<queue>data0</queue>
+<aifs>1</aifs>
+<cwmin>3</cwmin>
+<cwmax>7</cwmax>
+<burst>1.5</burst>
+</tx-queue>
+<tx-queue name="wlan1">
+<queue>data1</queue>
+<aifs>1</aifs>
+<cwmin>7</cwmin>
+<cwmax>15</cwmax>
+<burst>3.0</burst>
+</tx-queue>
+<tx-queue name="wlan1">
+<queue>data2</queue>
+<aifs>3</aifs>
+<cwmin>15</cwmin>
+<cwmax>63</cwmax>
+<burst>0</burst>
+</tx-queue>
+<tx-queue name="wlan1">
+<queue>data3</queue>
+<aifs>7</aifs>
+<cwmin>15</cwmin>
+<cwmax>1023</cwmax>
+<burst>0</burst>
+</tx-queue>
+<wme-queue name="wlan0">
+<queue>vo</queue>
+<aifs>2</aifs>
+<cwmin>3</cwmin>
+<cwmax>7</cwmax>
+<txop-limit>47</txop-limit>
+</wme-queue>
+<wme-queue name="wlan0">
+<queue>vi</queue>
+<aifs>2</aifs>
+<cwmin>7</cwmin>
+<cwmax>15</cwmax>
+<txop-limit>94</txop-limit>
+</wme-queue>
+<wme-queue name="wlan0">
+<queue>be</queue>
+<aifs>3</aifs>
+<cwmin>15</cwmin>
+<cwmax>1023</cwmax>
+<txop-limit>0</txop-limit>
+</wme-queue>
+<wme-queue name="wlan0">
+<queue>bk</queue>
+<aifs>7</aifs>
+<cwmin>15</cwmin>
+<cwmax>1023</cwmax>
+<txop-limit>0</txop-limit>
+</wme-queue>
+<wme-queue name="wlan1">
+<queue>vo</queue>
+<aifs>2</aifs>
+<cwmin>3</cwmin>
+<cwmax>7</cwmax>
+<txop-limit>47</txop-limit>
+</wme-queue>
+<wme-queue name="wlan1">
+<queue>vi</queue>
+<aifs>2</aifs>
+<cwmin>7</cwmin>
+<cwmax>15</cwmax>
+<txop-limit>94</txop-limit>
+</wme-queue>
+<wme-queue name="wlan1">
+<queue>be</queue>
+<aifs>3</aifs>
+<cwmin>15</cwmin>
+<cwmax>1023</cwmax>
+<txop-limit>0</txop-limit>
+</wme-queue>
+<wme-queue name="wlan1">
+<queue>bk</queue>
+<aifs>7</aifs>
+<cwmin>15</cwmin>
+<cwmax>1023</cwmax>
+<txop-limit>0</txop-limit>
+</wme-queue>
+<tspec-acm name="wlan0">
+<tspec-mode>off</tspec-mode>
+<voice-acm-mode>off</voice-acm-mode>
+<video-acm-mode>off</video-acm-mode>
+<voice-acm-limit>20</voice-acm-limit>
+<video-acm-limit>15</video-acm-limit>
+<ap-inactivity-timeout>30</ap-inactivity-timeout>
+<sta-inactivity-timeout>30</sta-inactivity-timeout>
+<legacy-wmm-queue-map-mode>off</legacy-wmm-queue-map-mode>
+<fbt-voice-acm-limit>0</fbt-voice-acm-limit>
+<fbt-video-acm-limit>0</fbt-video-acm-limit>
+<be-acm-limit>0</be-acm-limit>
+<bk-acm-limit>0</bk-acm-limit>
+<be-acm-mode>off</be-acm-mode>
+<bk-acm-mode>off</bk-acm-mode>
+</tspec-acm>
+<tspec-acm name="wlan1">
+<tspec-mode>off</tspec-mode>
+<voice-acm-mode>off</voice-acm-mode>
+<video-acm-mode>off</video-acm-mode>
+<voice-acm-limit>20</voice-acm-limit>
+<video-acm-limit>15</video-acm-limit>
+<ap-inactivity-timeout>30</ap-inactivity-timeout>
+<sta-inactivity-timeout>30</sta-inactivity-timeout>
+<legacy-wmm-queue-map-mode>off</legacy-wmm-queue-map-mode>
+<fbt-voice-acm-limit>0</fbt-voice-acm-limit>
+<fbt-video-acm-limit>0</fbt-video-acm-limit>
+<be-acm-limit>0</be-acm-limit>
+<bk-acm-limit>0</bk-acm-limit>
+<be-acm-mode>off</be-acm-mode>
+<bk-acm-mode>off</bk-acm-mode>
+</tspec-acm>
+<tspec-config>
+<violation-interval>300</violation-interval>
+</tspec-config>
+<tspec-radio name="wlan0">
+<access-category>be</access-category>
+</tspec-radio>
+<tspec-radio name="wlan0">
+<access-category>bk</access-category>
+</tspec-radio>
+<tspec-radio name="wlan0">
+<access-category>vo</access-category>
+</tspec-radio>
+<tspec-radio name="wlan0">
+<access-category>vi</access-category>
+</tspec-radio>
+<tspec-radio name="wlan1">
+<access-category>be</access-category>
+</tspec-radio>
+<tspec-radio name="wlan1">
+<access-category>bk</access-category>
+</tspec-radio>
+<tspec-radio name="wlan1">
+<access-category>vo</access-category>
+</tspec-radio>
+<tspec-radio name="wlan1">
+<access-category>vi</access-category>
+</tspec-radio>
+<tspec-vap name="vap0">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap0">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap0">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap0">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap0">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap0">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap0">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap0">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap1">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap1">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap1">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap1">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap1">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap1">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap1">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap1">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap2">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap2">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap2">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap2">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap2">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap2">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap2">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap2">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap3">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap3">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap3">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap3">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap3">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap3">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap3">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap3">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap4">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap4">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap4">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap4">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap4">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap4">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap4">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap4">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap5">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap5">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap5">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap5">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap5">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap5">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap5">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap5">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap6">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap6">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap6">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap6">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap6">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap6">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap6">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap6">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap7">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap7">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap7">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap7">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap7">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap7">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap7">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap7">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap8">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap8">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap8">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap8">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap8">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap8">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap8">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap8">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap9">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap9">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap9">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap9">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap9">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap9">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap9">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap9">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap10">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap10">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap10">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap10">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap10">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap10">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap10">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap10">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap11">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap11">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap11">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap11">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap11">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap11">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap11">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap11">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap12">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap12">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap12">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap12">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap12">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap12">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap12">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap12">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap13">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap13">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap13">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap13">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap13">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap13">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap13">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap13">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap14">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap14">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap14">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap14">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap14">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap14">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap14">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap14">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap15">
+<radio>wlan0</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap15">
+<radio>wlan0</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap15">
+<radio>wlan0</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap15">
+<radio>wlan0</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<tspec-vap name="vap15">
+<radio>wlan1</radio>
+<access-category>be</access-category>
+</tspec-vap>
+<tspec-vap name="vap15">
+<radio>wlan1</radio>
+<access-category>bk</access-category>
+</tspec-vap>
+<tspec-vap name="vap15">
+<radio>wlan1</radio>
+<access-category>vo</access-category>
+</tspec-vap>
+<tspec-vap name="vap15">
+<radio>wlan1</radio>
+<access-category>vi</access-category>
+</tspec-vap>
+<rfscan name="wlan0"></rfscan>
+<rfscan name="wlan1"></rfscan>
+<wg-bridge-dwstrm>
+<status>down</status>
+<vlan-id>1</vlan-id>
+<ssid>Access Point SSID</ssid>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<mfp>mfp-capable</mfp>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<iface>wlan0dwstrm</iface>
+</wg-bridge-dwstrm>
+<wgbridge>
+<wgbridge-mode>down</wgbridge-mode>
+<radio>wlan0</radio>
+</wgbridge>
+<wg-bridge-upstrm>
+<ssid>Infrastructure Client SSID</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>on</shared-key-authentication>
+<wpa2-allowed>on</wpa2-allowed>
+<vlan-id>1</vlan-id>
+<eap-method>peap</eap-method>
+<mfp>mfp-capable</mfp>
+<wpa-cipher-tkip>off</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>off</wpa-allowed>
+<roam-threshold>-75</roam-threshold>
+<roam-delta>10</roam-delta>
+<iface>wlan0upstrm</iface>
+</wg-bridge-upstrm>
+<mac-aclist-mode>
+<mac-acl-mode>deny-list</mac-acl-mode>
+</mac-aclist-mode>
+<bss name="wlan0bssvap0">
+<description>Virtual Access Point 1</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0</beacon-interface>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-name>default</mac-acl-name>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<syslog>8</syslog>
+<status>up</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+<global-radius>off</global-radius>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<station-isolation>off</station-isolation>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<radius-ipv6>::</radius-ipv6>
+<radius-backupone-ip></radius-backupone-ip>
+<radius-backuptwo-ip></radius-backuptwo-ip>
+<radius-backupthree-ip></radius-backupthree-ip>
+<radius-backupone-ipv6></radius-backupone-ipv6>
+<radius-backuptwo-ipv6></radius-backuptwo-ipv6>
+<radius-backupthree-ipv6></radius-backupthree-ipv6>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ip>192.168.70.147</radius-ip>
+<radius-accounting>off</radius-accounting>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<encrypted-radius-key>3130313938643230393166323434363137623561616136303535323966336362323362326531626565636138393063353333373961366363336637616539643766376161313037653335643537666131393563653836326564306135336335343063663862373939396331306563333530343431316131343133326165326662</encrypted-radius-key>
+</bss>
+<bss name="wlan0bssvap1">
+<description>Virtual Access Point 2</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap1</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap2">
+<description>Virtual Access Point 3</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap2</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap3">
+<description>Virtual Access Point 4</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap3</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap4">
+<description>Virtual Access Point 5</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap4</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap5">
+<description>Virtual Access Point 6</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap5</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap6">
+<description>Virtual Access Point 7</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap6</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap7">
+<description>Virtual Access Point 8</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap7</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap8">
+<description>Virtual Access Point 9</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap8</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap9">
+<description>Virtual Access Point 10</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap9</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap10">
+<description>Virtual Access Point 11</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap10</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap11">
+<description>Virtual Access Point 12</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap11</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap12">
+<description>Virtual Access Point 13</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap12</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap13">
+<description>Virtual Access Point 14</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap13</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap14">
+<description>Virtual Access Point 15</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap14</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan0bssvap15">
+<description>Virtual Access Point 16</description>
+<radio>wlan0</radio>
+<beacon-interface>wlan0vap15</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap0">
+<description>Virtual Access Point 0 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>up</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<wpa-allowed>on</wpa-allowed>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap1">
+<description>Virtual Access Point 2 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap1</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap2">
+<description>Virtual Access Point 3- Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap2</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap3">
+<description>Virtual Access Point 4- Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap3</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap4">
+<description>Virtual Access Point 5 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap4</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap5">
+<description>Virtual Access Point 6 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap5</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap6">
+<description>Virtual Access Point 7 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap6</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap7">
+<description>Virtual Access Point 8 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap7</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap8">
+<description>Virtual Access Point 9- Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap8</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap9">
+<description>Virtual Access Point 10 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap9</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap10">
+<description>Virtual Access Point 11 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap10</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap11">
+<description>Virtual Access Point 12 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap11</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap12">
+<description>Virtual Access Point 13 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap12</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap13">
+<description>Virtual Access Point 14 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap13</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap14">
+<description>Virtual Access Point 15 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap14</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<bss name="wlan1bssvap15">
+<description>Virtual Access Point 16 - Radio 2</description>
+<radio>wlan1</radio>
+<beacon-interface>wlan1vap15</beacon-interface>
+<ignore-broadcast-ssid>off</ignore-broadcast-ssid>
+<wmf-bss-enable>off</wmf-bss-enable>
+<wmf-ucast-igmp>off</wmf-ucast-igmp>
+<wmf-mcast-data-sendup>off</wmf-mcast-data-sendup>
+<mac-acl-auth-type>disable</mac-acl-auth-type>
+<mac-acl-name>default</mac-acl-name>
+<global-radius>on</global-radius>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>393437643137626564353634633939366665376537653661623837303264336133333465363234633630653639303761336531613166316130376635393738323235306563383336303137323965646332303863383163366137663834613962623863323264333162393162316136373032663165306335343938306566343200</encrypted-radius-key>
+<radius-own-ip-interface>brtrunk</radius-own-ip-interface>
+<radius-accounting>off</radius-accounting>
+<radius-port>1812</radius-port>
+<radius-accounting-port>1813</radius-accounting-port>
+<vlan-tagged-interface>brtrunk</vlan-tagged-interface>
+<open-system-authentication>on</open-system-authentication>
+<shared-key-authentication>off</shared-key-authentication>
+<wpa-cipher-tkip>on</wpa-cipher-tkip>
+<wpa-cipher-ccmp>on</wpa-cipher-ccmp>
+<wpa-allowed>on</wpa-allowed>
+<wpa2-allowed>on</wpa2-allowed>
+<rsn-preauthentication>on</rsn-preauthentication>
+<broadcast-key-refresh-rate>86400</broadcast-key-refresh-rate>
+<session-key-refresh-rate>0</session-key-refresh-rate>
+<station-isolation>off</station-isolation>
+<syslog>8</syslog>
+<status>down</status>
+<mac-acl-mode>deny-list</mac-acl-mode>
+<mfp>mfp-capable</mfp>
+</bss>
+<mgmt-acl>
+<mode>down</mode>
+</mgmt-acl>
+<led-display>
+<mode>up</mode>
+</led-display>
+<led name="power-led">
+<scheduler-profile-name>None</scheduler-profile-name>
+</led>
+<led name="wlan-led">
+<scheduler-profile-name>None</scheduler-profile-name>
+</led>
+<led name="ethernet-led">
+<scheduler-profile-name>None</scheduler-profile-name>
+</led>
+<led name="all-leds">
+<scheduler-profile-name>None</scheduler-profile-name>
+</led>
+<dot1x-supplicant>
+<status>down</status>
+<eap-method>md5</eap-method>
+<debug>off</debug>
+</dot1x-supplicant>
+<ftp-server>
+<status>down</status>
+</ftp-server>
+<firmware-upgrade></firmware-upgrade>
+<global-radius-server>
+<description>Global radius server settings</description>
+<radius-ip>0.0.0.0</radius-ip>
+<radius-ip-network>ipv4</radius-ip-network>
+<radius-ipv6>::</radius-ipv6>
+<encrypted-radius-key>3934376431376265643536346339393666653765376536616238373032643361663138636235333032663964353737623266313364353634313138393734393166633535646137396134396364623937643839383761353965333864656566373532663039336461643565313939636463613332376363363466303534643762</encrypted-radius-key>
+<radius-accounting>off</radius-accounting>
+</global-radius-server>
+<interface name="wlan0wds0">
+<description>Wireless Distribution System - Link 1</description>
+<type>wds</type>
+<status>down</status>
+<radio>wlan0</radio>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+<priority>128</priority>
+<path-cost>70</path-cost>
+</interface>
+<interface name="wlan0wds1">
+<description>Wireless Distribution System - Link 2</description>
+<type>wds</type>
+<status>down</status>
+<radio>wlan0</radio>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+<priority>128</priority>
+<path-cost>70</path-cost>
+</interface>
+<interface name="wlan0wds2">
+<description>Wireless Distribution System - Link 3</description>
+<type>wds</type>
+<status>down</status>
+<radio>wlan0</radio>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+<priority>128</priority>
+<path-cost>70</path-cost>
+</interface>
+<interface name="wlan0wds3">
+<description>Wireless Distribution System - Link 4</description>
+<type>wds</type>
+<status>down</status>
+<radio>wlan0</radio>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+<priority>128</priority>
+<path-cost>70</path-cost>
+</interface>
+<interface name="wlan0">
+<description>Wireless - Virtual Access Point 1</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap0</bss>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+<priority>128</priority>
+<path-cost>70</path-cost>
+<security>wpa-enterprise</security>
+<ssid>wearcar</ssid>
+</interface>
+<interface name="wlan0vap1">
+<description>Wireless - Virtual Access Point 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap1</bss>
+<ssid>Virtual Access Point 2</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap2">
+<description>Wireless - Virtual Access Point 3</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap2</bss>
+<ssid>Virtual Access Point 3</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap3">
+<description>Wireless - Virtual Access Point 4</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap3</bss>
+<ssid>Virtual Access Point 4</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap4">
+<description>Wireless - Virtual Access Point 5</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap4</bss>
+<ssid>Virtual Access Point 5</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap5">
+<description>Wireless - Virtual Access Point 6</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap5</bss>
+<ssid>Virtual Access Point 6</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap6">
+<description>Wireless - Virtual Access Point 7</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap6</bss>
+<ssid>Virtual Access Point 7</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap7">
+<description>Wireless - Virtual Access Point 8</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap7</bss>
+<ssid>Virtual Access Point 8</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap8">
+<description>Wireless - Virtual Access Point 9</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap8</bss>
+<ssid>Virtual Access Point 9</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap9">
+<description>Wireless - Virtual Access Point 10</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap9</bss>
+<ssid>Virtual Access Point 10</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap10">
+<description>Wireless - Virtual Access Point 11</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap10</bss>
+<ssid>Virtual Access Point 11</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap11">
+<description>Wireless - Virtual Access Point 12</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap11</bss>
+<ssid>Virtual Access Point 12</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap12">
+<description>Wireless - Virtual Access Point 13</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap12</bss>
+<ssid>Virtual Access Point 13</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap13">
+<description>Wireless - Virtual Access Point 14</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap13</bss>
+<ssid>Virtual Access Point 14</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap14">
+<description>Wireless - Virtual Access Point 15</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap14</bss>
+<ssid>Virtual Access Point 15</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan0vap15">
+<description>Wireless - Virtual Access Point 16</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan0bssvap15</bss>
+<ssid>Virtual Access Point 16</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1">
+<description>Wireless - Virtual Access Point 1 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap0</bss>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+<priority>128</priority>
+<path-cost>70</path-cost>
+<ssid>ciscosb</ssid>
+<security>plain-text</security>
+</interface>
+<interface name="wlan1vap1">
+<description>Wireless - Virtual Access Point 2 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap1</bss>
+<ssid>Virtual Access Point 2</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap2">
+<description>Wireless - Virtual Access Point 3 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap2</bss>
+<ssid>Virtual Access Point 3</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap3">
+<description>Wireless - Virtual Access Point 4- Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap3</bss>
+<ssid>Virtual Access Point 4</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap4">
+<description>Wireless - Virtual Access Point5 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap4</bss>
+<ssid>Virtual Access Point 5</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap5">
+<description>Wireless - Virtual Access Point 6 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap5</bss>
+<ssid>Virtual Access Point 6</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap6">
+<description>Wireless - Virtual Access Point 7- Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap6</bss>
+<ssid>Virtual Access Point 7</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap7">
+<description>Wireless - Virtual Access Point 8 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap7</bss>
+<ssid>Virtual Access Point 8</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap8">
+<description>Wireless - Virtual Access Point 9 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap8</bss>
+<ssid>Virtual Access Point 9</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap9">
+<description>Wireless - Virtual Access Point 10 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap9</bss>
+<ssid>Virtual Access Point 10</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap10">
+<description>Wireless - Virtual Access Point 11 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap10</bss>
+<ssid>Virtual Access Point 11</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap11">
+<description>Wireless - Virtual Access Point 12 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap11</bss>
+<ssid>Virtual Access Point 12</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap12">
+<description>Wireless - Virtual Access Point 13 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap12</bss>
+<ssid>Virtual Access Point 13</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap13">
+<description>Wireless - Virtual Access Point 14 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap13</bss>
+<ssid>Virtual Access Point 14</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap14">
+<description>Wireless - Virtual Access Point 15- Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap14</bss>
+<ssid>Virtual Access Point 15</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="wlan1vap15">
+<description>Wireless - Virtual Access Point 16 - Radio 2</description>
+<type>service-set</type>
+<status>up</status>
+<bss>wlan1bssvap15</bss>
+<ssid>Virtual Access Point 16</ssid>
+<security>plain-text</security>
+<wep-default-key>1</wep-default-key>
+<wep-key-length>104</wep-key-length>
+<wep-key-ascii>no</wep-key-ascii>
+</interface>
+<interface name="eth0">
+<description>Ethernet</description>
+<type>ethernet</type>
+<status>up</status>
+<priority>128</priority>
+<path-cost>70</path-cost>
+<auto-negotiation>up</auto-negotiation>
+<green-ethernet-mode>up</green-ethernet-mode>
+</interface>
+<interface name="lo">
+<description>Loopback</description>
+<type>loopback</type>
+<status>up</status>
+<static-ip>127.0.0.1</static-ip>
+</interface>
+<interface name="isatap0">
+<description>ISATAP Tunnel</description>
+<type>tunnel</type>
+<status>down</status>
+</interface>
+<interface name="brtrunk">
+<description>Bridge - Trunk</description>
+<type>bridge</type>
+<status>up</status>
+<stp>on</stp>
+<port-isolation>off</port-isolation>
+<fd>15</fd>
+<hello>2</hello>
+<priority>32768</priority>
+<static-ip>192.168.1.245</static-ip>
+<static-mask>255.255.255.0</static-mask>
+</interface>
+<bridge-port name="brtrunk">
+<interface>eth0</interface>
+</bridge-port>
+<bridge-port name="brtrunk">
+<interface>wlan0wds0</interface>
+</bridge-port>
+<bridge-port name="brtrunk">
+<interface>wlan0wds1</interface>
+</bridge-port>
+<bridge-port name="brtrunk">
+<interface>wlan0wds2</interface>
+</bridge-port>
+<bridge-port name="brtrunk">
+<interface>wlan0wds3</interface>
+</bridge-port>
+<bridge-port name="brtrunk">
+<interface>wlan0</interface>
+</bridge-port>
+<bridge-port name="brtrunk">
+<interface>wlan1</interface>
+</bridge-port>
+<host>
+<static-domain>example.com</static-domain>
+<dns-via-dhcp>up</dns-via-dhcp>
+<dns-via-dhcpv6>up</dns-via-dhcpv6>
+<static-dns-ipv6-1>::</static-dns-ipv6-1>
+<static-dns-ipv6-2>::</static-dns-ipv6-2>
+<id>wap447a60</id>
+</host>
+<static-ip-route>
+<gateway>192.168.1.1</gateway>
+<destination>0.0.0.0</destination>
+<mask>0.0.0.0</mask>
+</static-ip-route>
+<static-ipv6-route>
+<destination>::</destination>
+<prefix-length>0</prefix-length>
+<gateway>::</gateway>
+</static-ipv6-route>
+<isatap>
+<status>down</status>
+<solicit-interval>120</solicit-interval>
+<query-interval>120</query-interval>
+<router>isatap</router>
+<router-addr-type>dns</router-addr-type>
+</isatap>
+<log>
+<depth>512</depth>
+<severity>7</severity>
+<persistence>no</persistence>
+<persistence-depth>128</persistence-depth>
+<relay-enabled>0</relay-enabled>
+<relay-port>514</relay-port>
+<debug-level>0</debug-level>
+<relay-host></relay-host>
+<reinit>0</reinit>
+</log>
+<email-alert>
+<mode>down</mode>
+<log-severity>4</log-severity>
+<urgent-severity>1</urgent-severity>
+<log-duration>30</log-duration>
+<subject>Log message from AP</subject>
+<server-security>TLSv1</server-security>
+<server-port>465</server-port>
+</email-alert>
+<management>
+<vlan-id>1</vlan-id>
+<interface>brtrunk</interface>
+<dhcp6-status>up</dhcp6-status>
+<static-ip>192.168.1.245</static-ip>
+<static-mask>255.255.255.0</static-mask>
+<ipv6-status>up</ipv6-status>
+<ipv6-autoconfig-status>up</ipv6-autoconfig-status>
+<static-ipv6>::</static-ipv6>
+<static-ipv6-prefix-length>0</static-ipv6-prefix-length>
+<sw-ratelimit-enable>up</sw-ratelimit-enable>
+<ucast-prom-ratelimit>60000</ucast-prom-ratelimit>
+<ucast-sw-ratelimit>60000</ucast-sw-ratelimit>
+<mcast-sw-ratelimit>10000</mcast-sw-ratelimit>
+<bcast-sw-ratelimit>1000</bcast-sw-ratelimit>
+<arp-req-sw-ratelimit>500</arp-req-sw-ratelimit>
+<sw-ratelimit-timer>100</sw-ratelimit-timer>
+<led-prev-state>1</led-prev-state>
+<dhcp-status>up</dhcp-status>
+<mask></mask>
+<mac>88:90:8D:44:7A:60</mac>
+</management>
+<managed-ap>
+<mode>down</mode>
+<managed-mode-watchdog>0</managed-mode-watchdog>
+<cfg-ip-base-port>57775</cfg-ip-base-port>
+<wds-eth0-port-mode>down</wds-eth0-port-mode>
+<wds-satellite-mode>down</wds-satellite-mode>
+</managed-ap>
+<map-ap-provisioning></map-ap-provisioning>
+<ntp>
+<debug>off</debug>
+<server-type>dns</server-type>
+<status>up</status>
+<server>0.ciscosb.pool.ntp.org</server>
+<reinit>0</reinit>
+</ntp>
+<packet-capture>
+<capture-beacons>up</capture-beacons>
+<wireless-client-filter-mac>00:00:00:00:00:00</wireless-client-filter-mac>
+<wireless-client-filter-mode>down</wireless-client-filter-mode>
+<wireless-promiscuous-mode>down</wireless-promiscuous-mode>
+<file-capture-interface>radio1</file-capture-interface>
+<file-capture-duration>60</file-capture-duration>
+<file-capture-max-size>1024</file-capture-max-size>
+<remote-capture-ip-port>2002</remote-capture-ip-port>
+<packet-capture-method>local</packet-capture-method>
+</packet-capture>
+<scheduler-config>
+<mode>down</mode>
+</scheduler-config>
+<serial>
+<status>up</status>
+<baud-rate>115200</baud-rate>
+</serial>
+<grat-arp></grat-arp>
+<bonjour>
+<status>up</status>
+</bonjour>
+<snmp>
+<status>down</status>
+<rw-status>up</rw-status>
+<ro-community>public</ro-community>
+<rw-community>private</rw-community>
+<port>161</port>
+<primary-bridge>brtrunk</primary-bridge>
+<source-status>down</source-status>
+</snmp>
+<snmpv1></snmpv1>
+<snmp-view name="view-all">
+<type>included</type>
+<oid>.1</oid>
+<mask></mask>
+</snmp-view>
+<snmp-view name="view-none">
+<type>excluded</type>
+<oid>.1</oid>
+<mask></mask>
+</snmp-view>
+<snmp-group name="RO">
+<secur-level>authPriv</secur-level>
+<write-view>view-none</write-view>
+<read-view>view-all</read-view>
+</snmp-group>
+<snmp-group name="RW">
+<secur-level>authPriv</secur-level>
+<write-view>view-all</write-view>
+<read-view>view-all</read-view>
+</snmp-group>
+<ssh>
+<status>down</status>
+<dss-host-key>000000077373682D6473730000008100833575DD3903C9B0CE5D0144C33962DB316E6605BC89D0A7259704C843942493DC2962A71A87DE81ED45DB6F54E8EB63782785A54A5F39C6BC0802A559F58B3FDC2636E8AB56FACE2D3CC0AC338D0B6C3898B6A890FD2B4A4650EDAA1E955007E783E9CD1C11BCCD7BC91408A22C3EA8ACDDC56CA15CC8E79627E7633BE86CE30000001500E69DBB518547304A57E289858EF0E16A6926FA2F00000080428E440874B82D5CE0F479D340C5A84B718F9B76A275625B28E1DDD503BCC6EDAC388F3CF54989A20DF1AF474FFE4E5F2DE024C613559E94951F0225A24752717B4E38C58C7F7A75F9981BC602CEC5F621BD086F4D404F3E11CB3476CF652E80BAD4740B6B2A7FD98F5A647E351F671968840CDDE0F6B2D5410692323F17F5B200000080174686B0596CF4FA7C6CF89D9414018BFE39E7885C2F32943DBF2806D6D3D675B4AF053EA9FFE1692038FBB32A6BA47A1A36F695AF90091B2FC24E7133909A07F2A54CB7E3D110552B30A0DE4EE0B3ED36D0A76264319399CF371F393564B7E29AA7D19A8FEF703402CF9316F135FBFC65B37E7A4F52E81A2C94D95FC65D05760000001500A588D288A8E3AA05FF170FEB524E08528335B2A6</dss-host-key>
+<rsa-host-key>000000077373682D727361000000030100010000008300883FBCA3ECD441EA9279F313F0151262B79DD504BF6164953F925C4E8360D276004984137AF33E564F0EBF5D7D4BB1A170F36AB5EC1CEB2A1CBF70F3402FCDA674502884EE2801647A521B63E74A6F88A8C58BB7D463965970150232DACF51A4AA42EFB673066D4C1E1D8907CF3E935ECC8EF66700A60143371710CBACF548461F1D000000820A81478D280C718CA1808F9260F76EF4778DCEC7CFEDB570A0772B70CE465FD3C34FE7C40CBDC677A71ECEF86959B5B769DB0AC63E0F38BE857AE93D881C6771C6F73E86D9C348FE3905292B5EA7FB2BE408F58CCE7E5D46AA1E28DDFE08EECD6D69FAD12D81B0367FD9FCF573CA4765FF8BB59834FCA27AF6D18D264E4858D100AD0000004200BA8C132940A8888D901B30F6796A8715F70A9FE803AA3C30983173548A9740CFC750C5849D8F313731B026818E4D7D2767C668DE4F1BF2EB11A7BAFC04A840CEEB0000004200BAF9B5CB7BA665FB13750D34A2ECCBB550D4990FA0A16F8134D2F838A8161F589CF2053B11CACB00D60563F9DADEF88C30E85C08A94CFD8C971E652CD418C89817</rsa-host-key>
+</ssh>
+<system>
+<username>cisco</username>
+<user-account-max>4</user-account-max>
+<system-contact></system-contact>
+<system-location></system-location>
+<lastboot>success</lastboot>
+<summer-time>disabled</summer-time>
+<enable-dst>on</enable-dst>
+<system-date>12.31.1999/12:00</system-date>
+<dst-start>March.Second.Sunday/02:00</dst-start>
+<dst-end>November.First.Sunday/02:00</dst-end>
+<dst-offset>60</dst-offset>
+<password-min-character-class>3</password-min-character-class>
+<password-min-length>8</password-min-length>
+<password-max-length>64</password-max-length>
+<password-aging-support>on</password-aging-support>
+<password-aging-time>180</password-aging-time>
+<password-different-from-current>yes</password-different-from-current>
+<wpa-personal-key-min-complexity-support>off</wpa-personal-key-min-complexity-support>
+<wpa-personal-key-min-character-class>3</wpa-personal-key-min-character-class>
+<wpa-personal-key-min-length>8</wpa-personal-key-min-length>
+<wpa-personal-key-max-length>63</wpa-personal-key-max-length>
+<wpa-personal-key-different-from-current>no</wpa-personal-key-different-from-current>
+<port-validation>on</port-validation>
+<version>1.2.1.5</version>
+<altversion>1.2.1.5</altversion>
+<dfs-supported>no</dfs-supported>
+<country>us</country>
+<country-code-is-configurable>on</country-code-is-configurable>
+<base-mac>88:90:8d:44:7a:60</base-mac>
+<base-mac-status>on</base-mac-status>
+<system-name>wap447a60</system-name>
+<serial-number>DNI2203A01X</serial-number>
+<model>WAP561</model>
+<time-zone>United Kingdom</time-zone>
+<password-min-complexity-support>on</password-min-complexity-support>
+<encrypted-password>$1$UeUeUeUe$KDBJ4eGEdRDvnuFCWcxQR.</encrypted-password>
+<password-initialized>1</password-initialized>
+<factory-default-state>no</factory-default-state>
+</system>
+<telnet>
+<status>down</status>
+</telnet>
+<untagged-vlan>
+<vlan-id>1</vlan-id>
+<status>up</status>
+</untagged-vlan>
+<vap name="vap0">
+<radio>wlan0</radio>
+<description>Virtual Access Point 1</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+<vlan-id>1</vlan-id>
+<status>up</status>
+</vap>
+<vap name="vap0">
+<radio>wlan1</radio>
+<status>up</status>
+<description>Virtual Access Point 1 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+<vlan-id>1</vlan-id>
+</vap>
+<vap name="vap1">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap1">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 2 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap2">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 3</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap2">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 3 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap3">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 4</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap3">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 4 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap4">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 5</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap4">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 5 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap5">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 6</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap5">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 6 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap6">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 7</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap6">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 7 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap7">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 8</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap7">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 8 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap8">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 9</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap8">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 9 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap9">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 10</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap9">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 10 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap10">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 11</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap10">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 11 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap11">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 12</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap11">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 12 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap12">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 13</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap12">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 13 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap13">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 14</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap13">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 14 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap14">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 15</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap14">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 15 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap15">
+<radio>wlan0</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 16</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<vap name="vap15">
+<radio>wlan1</radio>
+<vlan-id>1</vlan-id>
+<status>down</status>
+<description>Virtual Access Point 16 - Radio 2</description>
+<qos-mode>down</qos-mode>
+<def-bwmax-up>0</def-bwmax-up>
+<def-bwmax-down>0</def-bwmax-down>
+<def-acltype-up>none</def-acltype-up>
+<def-acltype-down>none</def-acltype-down>
+<def-acl-up></def-acl-up>
+<def-acl-down></def-acl-down>
+</vap>
+<web-server>
+<http-status>up</http-status>
+<https-status>up</https-status>
+<http-port>80</http-port>
+<https-port>443</https-port>
+<session-timeout>10</session-timeout>
+<session-max>5</session-max>
+<max-connections>20</max-connections>
+<xml-api-mode>up</xml-api-mode>
+<http-redirect>down</http-redirect>
+<ssl-cert-generate>0</ssl-cert-generate>
+<ssl-cert-present>yes</ssl-cert-present>
+<ssl-cert-expiry-date>Dec 26 12:00:04 2019 GMT</ssl-cert-expiry-date>
+<ssl-cert-issuer>CN=192.168.1.245</ssl-cert-issuer>
+</web-server>
+<wizard>
+<display-on-startup>yes</display-on-startup>
+</wizard>
+<wps-global>
+<wps-protocol-version>2.0</wps-protocol-version>
+</wps-global>
+<wps name="wps1">
+<radio>wlan0</radio>
+<mode>down</mode>
+<vap-id>0</vap-id>
+<internal-registrar>up</internal-registrar>
+<vap-is-configured>no</vap-is-configured>
+</wps>
+</config>
+ 
